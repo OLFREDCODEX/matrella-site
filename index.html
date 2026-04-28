@@ -1,1 +1,259 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alfredo Matrella | Valutatore e ricercatore sociale</title>
+  <meta name="description" content="Sito personale di Alfredo Matrella, valutatore e ricercatore sociale. Ricerca sociale, valutazione, metodologia e analisi dei dati." />
 
+  <style>
+    :root {
+      --bg: #f7f5ef;
+      --paper: #ffffff;
+      --ink: #1f2933;
+      --muted: #6b7280;
+      --accent: #355c7d;
+      --accent-2: #b08968;
+      --line: #e5e0d8;
+      --soft: #edf2f7;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(247,245,239,0.9);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      width: min(1120px,92%);
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      padding: 18px 0;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+      color: var(--muted);
+    }
+
+    .hero {
+      width: min(1120px,92%);
+      margin: auto;
+      padding: 90px 0;
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 40px;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem,6vw,5rem);
+      margin-bottom: 20px;
+    }
+
+    .lead {
+      color: #4b5563;
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: bold;
+    }
+
+    .btn.primary {
+      background: var(--ink);
+      color: white;
+    }
+
+    .btn.secondary {
+      border: 1px solid var(--line);
+    }
+
+    .profile-card {
+      background: white;
+      border: 1px solid var(--line);
+      padding: 25px;
+      border-radius: 20px;
+    }
+
+    .tag {
+      background: var(--soft);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+    }
+
+    section {
+      width: min(1120px,92%);
+      margin: auto;
+      padding: 60px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--line);
+      padding: 20px;
+      border-radius: 20px;
+    }
+
+    .items {
+      display: grid;
+      gap: 14px;
+    }
+
+    .item {
+      background: white;
+      border: 1px solid var(--line);
+      padding: 20px;
+      border-radius: 20px;
+    }
+
+    .publication {
+      background: white;
+      border: 1px solid var(--line);
+      padding: 18px;
+      border-radius: 20px;
+    }
+
+    .contact-box {
+      background: white;
+      border: 1px solid var(--line);
+      padding: 30px;
+      border-radius: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    footer {
+      width: min(1120px,92%);
+      margin: auto;
+      padding: 30px 0;
+      color: var(--muted);
+    }
+
+    @media(max-width:800px){
+      .hero,.grid,.contact-box{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+    <strong>Alfredo Matrella</strong>
+    <nav>
+      <ul>
+        <li><a href="#servizi">Servizi</a></li>
+        <li><a href="#esperienze">Esperienze</a></li>
+        <li><a href="#formazione">Formazione</a></li>
+        <li><a href="#pubblicazioni">Pubblicazioni</a></li>
+        <li><a href="#contatti">Contatti</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div>
+    <h1>Capire il cambiamento sociale con metodo.</h1>
+    <p class="lead">Valutatore e ricercatore sociale. Analisi quantitativa, qualitativa e mixed methods.</p>
+    <a class="btn primary" href="#contatti">Contattami</a>
+  </div>
+
+  <div class="profile-card">
+    <div>
+      <span class="tag">Quantitative data analysis</span>
+      <span class="tag">Qualitative data analysis</span>
+      <span class="tag">Mixed methods research</span>
+      <span class="tag">Evaluation</span>
+    </div>
+  </div>
+</section>
+
+<section id="servizi">
+  <h2>Servizi</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Disegno della ricerca</h3>
+      <p>Definizione del problema e costruzione del disegno di ricerca.</p>
+    </div>
+    <div class="card">
+      <h3>Analisi dei dati</h3>
+      <p>Analisi quantitativa, qualitativa e mixed methods.</p>
+    </div>
+    <div class="card">
+      <h3>Methods Guards</h3>
+      <p>Revisione della robustezza metodologica.</p>
+    </div>
+  </div>
+</section>
+
+<section id="esperienze">
+  <h2>Esperienze</h2>
+  <div class="items">
+    <div class="item">Assegno di ricerca UNIMI</div>
+    <div class="item">Qualità della vita lavoratori universitari</div>
+    <div class="item">Progetto SHEIN</div>
+    <div class="item">Scuole Roma</div>
+    <div class="item">Technology addiction</div>
+  </div>
+</section>
+
+<section id="formazione">
+  <h2>Formazione</h2>
+  <div class="items">
+    <div class="item">Dottorato Sapienza</div>
+    <div class="item">Laurea magistrale 110L</div>
+    <div class="item">Formazione metodi</div>
+  </div>
+</section>
+
+<section id="pubblicazioni">
+  <h2>Pubblicazioni</h2>
+  <div class="items">
+    <div class="publication">Matrella (2025)</div>
+    <div class="publication">Matrella et al. (2025)</div>
+    <div class="publication">Matrella (2024)</div>
+  </div>
+</section>
+
+<section id="contatti">
+  <div class="contact-box">
+    <div>
+      <h2>Contatti</h2>
+      <a href="mailto:alfredo@matrella.it">alfredo@matrella.it</a>
+    </div>
+    <div>
+      <a href="https://www.linkedin.com/in/alfredomatrella/">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© Alfredo Matrella</p>
+</footer>
+
+</body>
+</html>
