@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Alfredo Matrella | Valutatore e ricercatore sociale</title>
   <meta name="description" content="Sito personale di Alfredo Matrella, valutatore e ricercatore sociale. Ricerca sociale, valutazione, metodologia e analisi dei dati." />
-
   <style>
     :root {
       --bg: #f7f5ef;
@@ -20,58 +19,112 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: Inter, system-ui, sans-serif;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: var(--bg);
       color: var(--ink);
       line-height: 1.6;
     }
 
+    a { color: inherit; text-decoration: none; }
+
     header {
       position: sticky;
       top: 0;
-      background: rgba(247,245,239,0.9);
+      z-index: 20;
+      background: rgba(247, 245, 239, 0.9);
+      backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--line);
     }
 
     .nav {
-      width: min(1120px,92%);
+      width: min(1120px, 92%);
       margin: auto;
       display: flex;
       justify-content: space-between;
+      align-items: center;
       padding: 18px 0;
     }
 
-    nav ul {
-      display: flex;
-      gap: 20px;
-      list-style: none;
-      color: var(--muted);
+    .logo {
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      font-size: 1.15rem;
     }
 
+    .logo span { color: var(--accent); }
+
+    nav ul {
+      display: flex;
+      gap: 22px;
+      list-style: none;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    nav a:hover { color: var(--accent); }
+
     .hero {
-      width: min(1120px,92%);
+      width: min(1120px, 92%);
       margin: auto;
-      padding: 90px 0;
+      padding: 92px 0 70px;
       display: grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 40px;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: var(--accent-2);
+      display: inline-block;
     }
 
     h1 {
-      font-size: clamp(2.5rem,6vw,5rem);
-      margin-bottom: 20px;
+      font-size: clamp(2.65rem, 6vw, 5.4rem);
+      line-height: 0.94;
+      letter-spacing: -0.075em;
+      margin-bottom: 24px;
     }
 
     .lead {
+      font-size: clamp(1.05rem, 2vw, 1.3rem);
       color: #4b5563;
-      margin-bottom: 25px;
+      max-width: 720px;
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
     }
 
     .btn {
-      padding: 10px 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       border-radius: 999px;
-      font-weight: bold;
+      padding: 13px 20px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      transition: 0.2s ease;
     }
 
     .btn.primary {
@@ -79,181 +132,463 @@
       color: white;
     }
 
+    .btn.primary:hover { transform: translateY(-2px); background: var(--accent); }
+
     .btn.secondary {
-      border: 1px solid var(--line);
+      border-color: var(--line);
+      background: rgba(255,255,255,0.55);
+      color: var(--ink);
     }
 
+    .btn.secondary:hover { border-color: var(--accent); color: var(--accent); }
+
     .profile-card {
-      background: white;
+      background: var(--paper);
       border: 1px solid var(--line);
-      padding: 25px;
-      border-radius: 20px;
+      border-radius: 28px;
+      padding: 30px;
+      box-shadow: 0 24px 70px rgba(31, 41, 51, 0.08);
+    }
+
+    .profile-mark {
+      width: 76px;
+      height: 76px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, var(--accent), #16213e);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 22px;
+    }
+
+    .profile-card h2 {
+      font-size: 1.55rem;
+      margin-bottom: 10px;
+      letter-spacing: -0.04em;
+    }
+
+    .profile-card p { color: var(--muted); margin-bottom: 20px; }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
     .tag {
+      font-size: 0.82rem;
       background: var(--soft);
-      padding: 6px 10px;
+      color: #374151;
+      padding: 7px 10px;
       border-radius: 999px;
-      font-size: 0.8rem;
     }
 
     section {
-      width: min(1120px,92%);
+      width: min(1120px, 92%);
       margin: auto;
-      padding: 60px 0;
+      padding: 72px 0;
       border-top: 1px solid var(--line);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 0.75fr 1.25fr;
+      gap: 48px;
+      margin-bottom: 34px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1;
+      letter-spacing: -0.06em;
+    }
+
+    .section-head p {
+      color: #4b5563;
+      font-size: 1.08rem;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(3,1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 18px;
     }
 
     .card {
-      background: white;
+      background: var(--paper);
       border: 1px solid var(--line);
-      padding: 20px;
-      border-radius: 20px;
+      border-radius: 24px;
+      padding: 24px;
+      min-height: 210px;
+    }
+
+    .card .num {
+      color: var(--accent-2);
+      font-weight: 800;
+      font-size: 0.85rem;
+      margin-bottom: 28px;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      letter-spacing: -0.03em;
+    }
+
+    .card p { color: var(--muted); }
+
+    .wide-card {
+      background: var(--ink);
+      color: white;
+      border-radius: 30px;
+      padding: 38px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .wide-card h2 {
+      font-size: clamp(1.8rem, 4vw, 3.2rem);
+      line-height: 1;
+      letter-spacing: -0.055em;
+    }
+
+    .wide-card p { color: #d1d5db; }
+
+    .list {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .list li {
+      list-style: none;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.14);
+      color: #f3f4f6;
     }
 
     .items {
       display: grid;
-      gap: 14px;
+      gap: 16px;
     }
 
     .item {
-      background: white;
+      display: grid;
+      grid-template-columns: 0.4fr 1.2fr 0.4fr;
+      gap: 20px;
+      align-items: start;
+      background: rgba(255,255,255,0.55);
       border: 1px solid var(--line);
-      padding: 20px;
-      border-radius: 20px;
+      border-radius: 22px;
+      padding: 22px;
+    }
+
+    .item strong { color: var(--accent); }
+    .item p { color: var(--muted); }
+    .item .status { color: var(--accent-2); font-weight: 800; font-size: 0.85rem; }
+
+    .publication-list {
+      display: grid;
+      gap: 14px;
     }
 
     .publication {
-      background: white;
+      background: rgba(255,255,255,0.55);
       border: 1px solid var(--line);
-      padding: 18px;
       border-radius: 20px;
+      padding: 20px 22px;
     }
 
+    .publication p { color: var(--muted); }
+
     .contact-box {
-      background: white;
+      background: var(--paper);
       border: 1px solid var(--line);
-      padding: 30px;
-      border-radius: 20px;
+      border-radius: 30px;
+      padding: 42px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .contact-box h2 {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 1;
+      letter-spacing: -0.06em;
+      margin-bottom: 18px;
+    }
+
+    .contact-box p { color: var(--muted); margin-bottom: 24px; }
+
+    .contact-links {
+      display: grid;
+      gap: 12px;
+    }
+
+    .contact-links a {
+      background: var(--soft);
+      border-radius: 16px;
+      padding: 15px 16px;
+      color: var(--ink);
+      font-weight: 700;
     }
 
     footer {
-      width: min(1120px,92%);
+      width: min(1120px, 92%);
       margin: auto;
-      padding: 30px 0;
+      padding: 32px 0 44px;
       color: var(--muted);
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      border-top: 1px solid var(--line);
     }
 
-    @media(max-width:800px){
-      .hero,.grid,.contact-box{grid-template-columns:1fr}
+    @media (max-width: 860px) {
+      nav ul { display: none; }
+      .hero, .section-head, .wide-card, .contact-box { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: 1fr; }
+      .item { grid-template-columns: 1fr; }
+      .hero { padding-top: 60px; }
+      footer { flex-direction: column; }
     }
   </style>
 </head>
-
 <body>
-
-<header>
-  <div class="nav">
-    <strong>Alfredo Matrella</strong>
-    <nav>
-      <ul>
-        <li><a href="#servizi">Servizi</a></li>
-        <li><a href="#esperienze">Esperienze</a></li>
-        <li><a href="#formazione">Formazione</a></li>
-        <li><a href="#pubblicazioni">Pubblicazioni</a></li>
-        <li><a href="#contatti">Contatti</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-<section class="hero">
-  <div>
-    <h1>Capire il cambiamento sociale con metodo.</h1>
-    <p class="lead">Valutatore e ricercatore sociale. Analisi quantitativa, qualitativa e mixed methods.</p>
-    <a class="btn primary" href="#contatti">Contattami</a>
-  </div>
-
-  <div class="profile-card">
-    <div>
-      <span class="tag">Quantitative data analysis</span>
-      <span class="tag">Qualitative data analysis</span>
-      <span class="tag">Mixed methods research</span>
-      <span class="tag">Evaluation</span>
+  <header>
+    <div class="nav">
+      <a class="logo" href="#top">Alfredo <span>Matrella</span></a>
+      <nav aria-label="Navigazione principale">
+        <ul>
+          <li><a href="#servizi">Servizi</a></li>
+          <li><a href="#metodo">Metodo</a></li>
+          <li><a href="#esperienze">Esperienze</a></li>
+          <li><a href="#formazione">Formazione</a></li>
+          <li><a href="#pubblicazioni">Pubblicazioni</a></li>
+          <li><a href="#contatti">Contatti</a></li>
+        </ul>
+      </nav>
     </div>
-  </div>
-</section>
+  </header>
 
-<section id="servizi">
-  <h2>Servizi</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Disegno della ricerca</h3>
-      <p>Definizione del problema e costruzione del disegno di ricerca.</p>
-    </div>
-    <div class="card">
-      <h3>Analisi dei dati</h3>
-      <p>Analisi quantitativa, qualitativa e mixed methods.</p>
-    </div>
-    <div class="card">
-      <h3>Methods Guards</h3>
-      <p>Revisione della robustezza metodologica.</p>
-    </div>
-  </div>
-</section>
+  <main id="top">
+    <section class="hero" aria-labelledby="titolo-hero">
+      <div>
+        <div class="eyebrow">Valutatore · Ricercatore sociale</div>
+        <h1 id="titolo-hero">Capire il cambiamento sociale con metodo.</h1>
+        <p class="lead">
+          Progetto e analizzo ricerche sociali con approcci quantitativi, qualitativi e mixed methods, trasformando dati complessi in evidenze utili e leggibili.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#contatti">Parliamo di un progetto</a>
+          <a class="btn secondary" href="#servizi">Esplora i servizi</a>
+        </div>
+      </div>
 
-<section id="esperienze">
-  <h2>Esperienze</h2>
-  <div class="items">
-    <div class="item">Assegno di ricerca UNIMI</div>
-    <div class="item">Qualità della vita lavoratori universitari</div>
-    <div class="item">Progetto SHEIN</div>
-    <div class="item">Scuole Roma</div>
-    <div class="item">Technology addiction</div>
-  </div>
-</section>
+      <aside class="profile-card" aria-label="Sintesi profilo">
+        <div class="profile-mark">AM</div>
+        <h2>Valutazione e ricerca sociale</h2>
+        <p>
+          Un approccio rigoroso ma accessibile: domande chiare, dati solidi, interpretazioni responsabili.
+        </p>
+        <div class="tags">
+          <span class="tag">Quantitative data analysis</span>
+          <span class="tag">Qualitative data analysis</span>
+          <span class="tag">Mixed methods research</span>
+          <span class="tag">Social research</span>
+          <span class="tag">Evaluation</span>
+        </div>
+      </aside>
+    </section>
 
-<section id="formazione">
-  <h2>Formazione</h2>
-  <div class="items">
-    <div class="item">Dottorato Sapienza</div>
-    <div class="item">Laurea magistrale 110L</div>
-    <div class="item">Formazione metodi</div>
-  </div>
-</section>
+    <section id="servizi">
+      <div class="section-head">
+        <h2>Servizi</h2>
+        <p>
+          Supporto metodologico e analitico per enti, gruppi di ricerca, studenti, professionisti e organizzazioni che vogliono progettare, analizzare o comunicare meglio la propria ricerca.
+        </p>
+      </div>
 
-<section id="pubblicazioni">
-  <h2>Pubblicazioni</h2>
-  <div class="items">
-    <div class="publication">Matrella (2025)</div>
-    <div class="publication">Matrella et al. (2025)</div>
-    <div class="publication">Matrella (2024)</div>
-  </div>
-</section>
+      <div class="grid">
+        <article class="card">
+          <div class="num">A</div>
+          <h3>Disegno della ricerca</h3>
+          <p>Supporto nella formulazione di domande, ipotesi, obiettivi, strumenti e strategie di raccolta dati.</p>
+        </article>
+        <article class="card">
+          <div class="num">B</div>
+          <h3>Analisi dei dati</h3>
+          <p>Analisi quantitativa, qualitativa e mixed methods, con attenzione alla coerenza tra domanda, dati, tecniche e interpretazione.</p>
+        </article>
+        <article class="card">
+          <div class="num">C</div>
+          <h3>Methods Guards</h3>
+          <p>Revisione della robustezza metodologica di prodotti scientifici e accademici: paper, progetti di ricerca, tesi, libri e report.</p>
+        </article>
+      </div>
+    </section>
 
-<section id="contatti">
-  <div class="contact-box">
-    <div>
-      <h2>Contatti</h2>
-      <a href="mailto:alfredo@matrella.it">alfredo@matrella.it</a>
-    </div>
-    <div>
-      <a href="https://www.linkedin.com/in/alfredomatrella/">LinkedIn</a>
-    </div>
-  </div>
-</section>
+    <section id="metodo">
+      <div class="wide-card">
+        <div>
+          <h2>Dal problema conoscitivo alla decisione.</h2>
+        </div>
+        <div>
+          <p>
+            Ogni progetto parte da una domanda: che cosa vogliamo capire, perché è importante e quali dati possono sostenerlo? Il metodo non è burocrazia scientifica: è la struttura che permette di distinguere un'intuizione da un'evidenza.
+          </p>
+          <ul class="list">
+            <li>Definizione del problema e degli obiettivi conoscitivi</li>
+            <li>Costruzione del disegno di ricerca</li>
+            <li>Raccolta e analisi dei dati</li>
+            <li>Restituzione chiara dei risultati</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-<footer>
-  <p>© Alfredo Matrella</p>
-</footer>
+    <section id="esperienze">
+      <div class="section-head">
+        <h2>Esperienze di ricerca</h2>
+        <p>
+          Una selezione delle principali attività di ricerca, scelta per rappresentare il profilo metodologico, valutativo e analitico.
+        </p>
+      </div>
 
+      <div class="items">
+        <article class="item">
+          <strong>Ricerca</strong>
+          <div>
+            <h3>Assegno di ricerca presso Università degli Studi di Milano</h3>
+            <p>Progetto I.TEC.O su innovazione tecnologica, competenze digitali, lavoro e organizzazioni.</p>
+          </div>
+          <div class="status">2024–2025</div>
+        </article>
+        <article class="item">
+          <strong>Ricerca</strong>
+          <div>
+            <h3>Qualità della vita dei lavoratori universitari</h3>
+            <p>Ricerca mixed methods su benessere, traiettorie di carriera e condizioni lavorative nel contesto universitario.</p>
+          </div>
+          <div class="status">2023–2024</div>
+        </article>
+        <article class="item">
+          <strong>Ricerca</strong>
+          <div>
+            <h3>Progetto SHEIN</h3>
+            <p>Analisi delle pratiche di consumo digitale e dell'esperienza utente nella piattaforma di fast fashion.</p>
+          </div>
+          <div class="status">2024–2025</div>
+        </article>
+        <article class="item">
+          <strong>Ricerca</strong>
+          <div>
+            <h3>Scuole secondarie di secondo grado a Roma</h3>
+            <p>Ricerca sull'uso delle tecnologie digitali nei contesti scolastici e sulle pratiche educative.</p>
+          </div>
+          <div class="status">2022–2024</div>
+        </article>
+        <article class="item">
+          <strong>Ricerca</strong>
+          <div>
+            <h3>Technology addiction</h3>
+            <p>Ricerca su nuove forme di dipendenza digitale, socializzazione e reti sociali.</p>
+          </div>
+          <div class="status">2018–2019</div>
+        </article>
+      </div>
+    </section>
+
+    <section id="formazione">
+      <div class="section-head">
+        <h2>Formazione</h2>
+        <p>
+          Percorso formativo e metodologico centrato sulla ricerca sociale, sulla valutazione e sull'analisi empirica dei dati.
+        </p>
+      </div>
+
+      <div class="items">
+        <article class="item">
+          <strong>Dottorato</strong>
+          <div>
+            <h3>Dottorato in Comunicazione, Ricerca Sociale e Marketing</h3>
+            <p>Indirizzo in Metodologia delle scienze sociali, Sapienza Università di Roma.</p>
+          </div>
+          <div class="status">2020–2024</div>
+        </article>
+        <article class="item">
+          <strong>Laurea magistrale</strong>
+          <div>
+            <h3>Comunicazione, Valutazione e Ricerca Sociale per le Organizzazioni</h3>
+            <p>Interclasse LM-88, curriculum Valutazione e Ricerca Sociale Applicata. Voto: 110 e lode.</p>
+          </div>
+          <div class="status">2020</div>
+        </article>
+        <article class="item">
+          <strong>Metodi</strong>
+          <div>
+            <h3>Formazione metodologica ed extra-curriculare</h3>
+            <p>SEM in R, metodi creativi, costruzione di questionari, ACP, ACM, R, etnografia e analisi dei dati.</p>
+          </div>
+          <div class="status">2018–2026</div>
+        </article>
+      </div>
+    </section>
+
+    <section id="pubblicazioni">
+      <div class="section-head">
+        <h2>Pubblicazioni</h2>
+        <p>
+          Selezione di pubblicazioni scientifiche e contributi coerenti con il profilo di ricerca sociale, metodologia e analisi dei processi digitali.
+        </p>
+      </div>
+
+      <div class="publication-list">
+        <article class="publication">
+          <p>Matrella, A. (2025). <i>Qualità della vita dei lavoratori universitari e interdipendenza tra domini della vita esperienziale</i>. Bonanno Editore.</p>
+        </article>
+        <article class="publication">
+          <p>Matrella, A., Cavagnuolo, M., & Capozza, V. (2025). The use of artificial intelligence within social research: A classification proposal. <i>The Lab’s Quarterly</i>.</p>
+        </article>
+        <article class="publication">
+          <p>Matrella, A. (2024). Quality of life of academic actors. <i>Italian Journal of Sociology of Education, 16</i>(2), 19–46.</p>
+        </article>
+        <article class="publication">
+          <p>Parziale, F., Cavagnuolo, M., & Matrella, A. (2024). The uses of digital technologies in schools. A Bourdieusian analysis of upper-secondary school teachers and students in Rome. <i>Italian Sociological Review</i>.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contatti">
+      <div class="contact-box">
+        <div>
+          <h2>Hai un progetto da discutere?</h2>
+          <p>
+            Posso aiutarti a costruire un disegno di ricerca, revisionare uno strumento, interpretare dati o trasformare risultati complessi in una restituzione chiara.
+          </p>
+          <a class="btn primary" href="mailto:alfredo@matrella.it">Scrivimi</a>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:alfredo@matrella.it">Email: alfredo@matrella.it</a>
+          <a href="https://www.linkedin.com/in/alfredomatrella/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© <span id="year"></span> Alfredo Matrella</span>
+    <span>Valutazione · Ricerca sociale · Metodi · Analisi dei dati</span>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
