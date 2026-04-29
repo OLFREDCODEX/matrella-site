@@ -358,6 +358,32 @@
       .hero { padding-top: 60px; }
       footer { flex-direction: column; }
     }
+    form {
+  display: grid;
+  gap: 12px;
+}
+
+input,
+textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px 16px;
+  font: inherit;
+  background: var(--soft);
+  color: var(--ink);
+}
+
+textarea {
+  resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: #ffffff;
+}
   </style>
 </head>
 <body>
@@ -566,20 +592,22 @@
     </section>
 
     <section id="contatti">
-      <div class="contact-box">
-        <div>
-          <h2>Hai un progetto da discutere?</h2>
-          <p>
-            Posso aiutarti a costruire un disegno di ricerca, revisionare uno strumento, interpretare dati o trasformare risultati complessi in una restituzione chiara.
-          </p>
-          <a class="btn primary" href="mailto:alfredo@matrella.it">Scrivimi</a>
-        </div>
-        <div class="contact-links">
-          <a href="mailto:alfredo@matrella.it">Email: alfredo@matrella.it</a>
-          <a href="https://www.linkedin.com/in/alfredomatrella/" target="_blank" rel="noopener">LinkedIn</a>
-        </div>
-      </div>
-    </section>
+  <div class="contact-box">
+    <div>
+      <h2>Hai un progetto da discutere?</h2>
+      <p>
+        Scrivimi per collaborazioni, consulenze metodologiche, analisi dei dati o progetti di ricerca.
+      </p>
+    </div>
+
+    <form action="https://formspree.io/f/mdabnogw" method="POST">
+      <input type="text" name="name" placeholder="Il tuo nome" required>
+      <input type="email" name="email" placeholder="La tua email" required>
+      <textarea name="message" placeholder="Il tuo messaggio" rows="6" required></textarea>
+      <button class="btn primary" type="submit">Invia messaggio</button>
+    </form>
+  </div>
+</section>
   </main>
 
   <footer>
