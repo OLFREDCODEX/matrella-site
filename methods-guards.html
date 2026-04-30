@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Methods Guards AI | Alfredo Matrella</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #f7f5ef;
+      color: #1f2933;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    main {
+      width: min(900px, 92%);
+      margin: auto;
+      padding: 60px 0;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+
+    p {
+      color: #4b5563;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 280px;
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid #ddd;
+      font: inherit;
+      margin-top: 20px;
+    }
+
+    button {
+      margin-top: 16px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 999px;
+      background: #1f2933;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      background: white;
+      border: 1px solid #e5e0d8;
+      border-radius: 20px;
+      padding: 24px;
+      margin-top: 30px;
+    }
+
+    a {
+      color: #355c7d;
+      text-decoration: none;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+<main>
+  <a href="/">← Torna al sito</a>
+
+  <h1>Methods Guards AI</h1>
+
+  <p>
+    Incolla un abstract, una sezione metodologica o una descrizione di progetto.
+    L’agente produrrà una valutazione preliminare della robustezza metodologica.
+  </p>
+
+  <textarea id="inputText" placeholder="Incolla qui il testo da analizzare..."></textarea>
+
+  <br>
+
+  <button onclick="analyze()">Analizza con Methods Guards AI</button>
+
+  <pre id="output"></pre>
+</main>
+
+<script>
+async function analyze() {
+  const text = document.getElementById("inputText").value;
+  const output = document.getElementById("output");
+
+  if (!text.trim()) {
+    output.innerText = "Inserisci un testo da analizzare.";
+    return;
+  }
+
+  output.innerText = "Analisi in corso...";
+
+  try {
+    const res = await fetch("https://methods-guards-backend.vercel.app/api/methods-guards", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ text })
+    });
+
+    const data = await res.json();
+
+    if (data.output) {
+      output.innerText = data.output;
+    } else {
+      output.innerText = "Errore: risposta non valida dal server.";
+    }
+
+  } catch (error) {
+    output.innerText = "Errore di connessione con Methods Guards AI.";
+  }
+}
+</script>
+
+</body>
+</html>
