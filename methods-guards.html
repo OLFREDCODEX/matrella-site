@@ -148,6 +148,7 @@
 async function analyzePdf() {
   const fileInput = document.getElementById("pdf");
   const mode = document.getElementById("mode").value;
+  const productType = document.getElementById("productType").value;
   const output = document.getElementById("output");
   const button = document.getElementById("analyzeButton");
 
@@ -180,10 +181,11 @@ async function analyzePdf() {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        fileBase64: base64,
-        fileName: file.name,
-        mode: mode
-      })
+  fileBase64: base64,
+  fileName: file.name,
+  mode: mode,
+  productType: productType
+})
     });
 
     const data = await res.json();
