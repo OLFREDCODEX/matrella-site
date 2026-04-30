@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Methods Guards AI | Alfredo Matrella</title>
+
   <style>
+    :root {
+      --bg: #f7f5ef;
+      --paper: #ffffff;
+      --ink: #1f2933;
+      --muted: #6b7280;
+      --accent: #355c7d;
+      --line: #e5e0d8;
+      --soft: #edf2f7;
+    }
+
     body {
-      font-family: system-ui, sans-serif;
-      background: #f7f5ef;
-      color: #1f2933;
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
       margin: 0;
       line-height: 1.6;
     }
@@ -16,34 +28,52 @@
     main {
       width: min(900px, 92%);
       margin: auto;
-      padding: 60px 0;
+      padding: 70px 0;
+    }
+
+    a {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
     }
 
     h1 {
-      font-size: 3rem;
-      margin-bottom: 16px;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 1;
+      letter-spacing: -0.06em;
+      margin: 24px 0;
     }
 
-    p {
-      color: #4b5563;
+    .lead {
+      color: var(--muted);
+      font-size: 1.15rem;
+      margin-bottom: 30px;
     }
 
-    textarea {
+    .box {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 32px;
+      margin-top: 28px;
+    }
+
+    input, select {
       width: 100%;
-      min-height: 280px;
-      padding: 16px;
-      border-radius: 16px;
-      border: 1px solid #ddd;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: var(--soft);
       font: inherit;
-      margin-top: 20px;
+      margin-top: 10px;
     }
 
     button {
-      margin-top: 16px;
-      padding: 12px 20px;
-      border: none;
+      margin-top: 18px;
+      padding: 13px 20px;
       border-radius: 999px;
-      background: #1f2933;
+      border: none;
+      background: var(--ink);
       color: white;
       font-weight: 700;
       cursor: pointer;
@@ -52,74 +82,119 @@
     pre {
       white-space: pre-wrap;
       background: white;
-      border: 1px solid #e5e0d8;
-      border-radius: 20px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
       padding: 24px;
       margin-top: 30px;
+      overflow-x: auto;
     }
 
-    a {
-      color: #355c7d;
-      text-decoration: none;
-      font-weight: 700;
+    .note {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 14px;
     }
   </style>
 </head>
+
 <body>
+  <main>
+    <a href="/">← Torna al sito</a>
 
-<main>
-  <a href="/">← Torna al sito</a>
+    <h1>Methods Guards AI</h1>
 
-  <h1>Methods Guards AI</h1>
+    <p class="lead">
+      Carica un PDF e ricevi una valutazione preliminare della robustezza metodologica.
+      Per ora questa è una versione di test: usa PDF piccoli.
+    </p>
 
-  <p>
-    Incolla un abstract, una sezione metodologica o una descrizione di progetto.
-    L’agente produrrà una valutazione preliminare della robustezza metodologica.
-  </p>
+    <div class="box">
+      <label for="mode"><strong>Tipo di analisi</strong></label>
+      <select id="mode">
+        <option value="free">Free — solo percentuale di robustezza</option>
+        <option value="paid">Report completo — test interno</option>
+      </select>
 
-  <textarea id="inputText" placeholder="Incolla qui il testo da analizzare..."></textarea>
+      <label for="pdf"><strong>Carica PDF</strong></label>
+      <input id="pdf" type="file" accept="application/pdf" />
 
-  <br>
+      <p class="note">
+        Versione test: consigliati PDF brevi. Per tesi/report/libri servirà una gestione upload più avanzata.
+      </p>
 
-  <button onclick="analyze()">Analizza con Methods Guards AI</button>
+      <button onclick="analyzePdf()">Analizza PDF</button>
+    </div>
 
-  <pre id="output"></pre>
-</main>
+    <pre id="output"></pre>
+  </main>
 
-<script>
-async function analyze() {
-  const text = document.getElementById("inputText").value;
-  const output = document.getElementById("output");
+  <script>
+    async function analyzePdf() {
+      const fileInput = document.getElementById("pdf");
+      const mode = document.getElementById("mode").value;
+      const output = document.getElementById("output");
 
-  if (!text.trim()) {
-    output.innerText = "Inserisci un testo da analizzare.";
-    return;
-  }
+      if (!fileInput.files.length) {
+        output.innerText = "Carica un PDF prima di avviare l'analisi.";
+        return;
+      }
 
-  output.innerText = "Analisi in corso...";
+      const file = fileInput.files[0];
 
-  try {
-    const res = await fetch("https://methods-guards-backend.vercel.app/api/methods-guards", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ text })
-    });
+      if (file.type !== "application/pdf") {
+        output.innerText = "Il file deve essere un PDF.";
+        return;
+      }
 
-    const data = await res.json();
+      if (file.size > 8 * 1024 * 1024) {
+        output.innerText = "PDF troppo grande per questa versione di test. Usa un file sotto 8 MB.";
+        return;
+      }
 
-    if (data.output) {
-      output.innerText = data.output;
-    } else {
-      output.innerText = "Errore: risposta non valida dal server.";
+      output.innerText = "Analisi in corso...";
+
+      const base64 = await fileToBase64(file);
+
+      try {
+        const res = await fetch("https://methods-guards-backend.vercel.app/api/methods-guards", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            fileBase64: base64,
+            fileName: file.name,
+            mode: mode
+          })
+        });
+
+        const data = await res.json();
+
+        if (data.output) {
+          output.innerText = data.output;
+        } else {
+          output.innerText = data.error || "Errore: risposta non valida dal server.";
+        }
+
+      } catch (error) {
+        output.innerText = "Errore di connessione con Methods Guards AI.";
+      }
     }
 
-  } catch (error) {
-    output.innerText = "Errore di connessione con Methods Guards AI.";
-  }
-}
-</script>
+    function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
 
+        reader.onload = () => {
+          const result = reader.result;
+          const base64 = result.split(",")[1];
+          resolve(base64);
+        };
+
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+  </script>
 </body>
 </html>
