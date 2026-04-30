@@ -66,6 +66,7 @@
       background: var(--soft);
       font: inherit;
       margin-top: 10px;
+      box-sizing: border-box;
     }
 
     button {
@@ -79,6 +80,11 @@
       cursor: pointer;
     }
 
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
     pre {
       white-space: pre-wrap;
       background: white;
@@ -87,6 +93,7 @@
       padding: 24px;
       margin-top: 30px;
       overflow-x: auto;
+      min-height: 80px;
     }
 
     .note {
@@ -122,7 +129,7 @@
         Versione test: consigliati PDF brevi. Per tesi/report/libri servirà una gestione upload più avanzata.
       </p>
 
-      <button onclick="analyzePdf()">Analizza PDF</button>
+      <button id="analyzeButton" onclick="analyzePdf()">Analizza PDF</button>
     </div>
 
     <pre id="output"></pre>
@@ -133,6 +140,7 @@
       const fileInput = document.getElementById("pdf");
       const mode = document.getElementById("mode").value;
       const output = document.getElementById("output");
+      const button = document.getElementById("analyzeButton");
 
       if (!fileInput.files.length) {
         output.innerText = "Carica un PDF prima di avviare l'analisi.";
@@ -152,11 +160,12 @@
       }
 
       output.innerText = "Analisi in corso...";
-
-      const base64 = await fileToBase64(file);
+      button.disabled = true;
 
       try {
-        const res = await fetch("https://methods-guards-backend.vercel.app/api/methods-guards", {
+        const base64 = await fileToBase64(file);
+
+        const res = await fetch("https://methods-guards-backend-fbdwjm3xl-olfredcodexs-projects.vercel.app/api/methods-guards", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -170,6 +179,11 @@
 
         const data = await res.json();
 
+        if (!res.ok) {
+          output.innerText = data.error || "Errore server durante l'analisi.";
+          return;
+        }
+
         if (data.output) {
           output.innerText = data.output;
         } else {
@@ -178,6 +192,8 @@
 
       } catch (error) {
         output.innerText = "Errore di connessione con Methods Guards AI.";
+      } finally {
+        button.disabled = false;
       }
     }
 
