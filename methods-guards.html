@@ -165,7 +165,7 @@ async function analyzePdf() {
   try {
     const base64 = await fileToBase64(file);
 
-    const res = await fetch("https://methods-guards-backend-fbdwjm3xl-olfredcodexs-projects.vercel.app/api/methods-guards", {
+    const res = await fetch("https://methods-guards-backend.vercel.app/api/methods-guards", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
