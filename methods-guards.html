@@ -199,11 +199,18 @@ async function analyzePdf() {
     const data = await res.json();
 
     if (!res.ok) {
-      output.innerText = data.error || "Errore server durante l'analisi.";
-      return;
-    }
+  output.innerText = data.error || "Errore server durante l'analisi.";
+  document.getElementById("unlockSection").style.display = "none";
+  return;
+}
 
-    output.innerText = data.output || data.error || "Errore: risposta non valida dal server.";
+output.innerText = data.output || data.error || "Errore: risposta non valida dal server.";
+
+if (mode === "free") {
+  document.getElementById("unlockSection").style.display = "block";
+} else {
+  document.getElementById("unlockSection").style.display = "none";
+}
 
   } catch (error) {
     output.innerText = "Errore di connessione con Methods Guards AI: " + error.message;
