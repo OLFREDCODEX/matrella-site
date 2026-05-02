@@ -219,6 +219,7 @@ async function analyzePdf() {
 
   try {
     const base64 = await fileToBase64(file);
+const fileHash = await fileToHash(file);
 
     const res = await fetch("https://methods-guards-backend.vercel.app/api/methods-guards", {
       method: "POST",
@@ -228,6 +229,7 @@ async function analyzePdf() {
       body: JSON.stringify({
         fileBase64: base64,
         fileName: file.name,
+        fileHash: fileHash,
         mode: mode,
         productType: productType,
         sessionId: sessionId
@@ -313,6 +315,15 @@ function fileToBase64(file) {
     reader.onerror = reject;
     reader.readAsDataURL(file);
   });
+}
+  async function fileToHash(file) {
+  const arrayBuffer = await file.arrayBuffer();
+  const hashBuffer = await crypto.subtle.digest("SHA-256", arrayBuffer);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+
+  return hashArray
+    .map(byte => byte.toString(16).padStart(2, "0"))
+    .join("");
 }
 </script>
 </body>
