@@ -216,13 +216,6 @@ if (
 } else {
   unlockSection.style.display = "none";
 }
-
-if (mode === "free") {
-  document.getElementById("unlockSection").style.display = "block";
-} else {
-  document.getElementById("unlockSection").style.display = "none";
-}
-
   } catch (error) {
     output.innerText = "Errore di connessione con Methods Guards AI: " + error.message;
     console.error(error);
