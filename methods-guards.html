@@ -208,7 +208,10 @@ output.innerText = data.output || data.error || "Errore: risposta non valida dal
 
 const unlockSection = document.getElementById("unlockSection");
 
-if (data.locked) {
+if (
+  data.locked === true ||
+  (data.output && data.output.includes("Report completo bloccato"))
+) {
   unlockSection.style.display = "block";
 } else {
   unlockSection.style.display = "none";
