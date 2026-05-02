@@ -179,11 +179,21 @@ document.addEventListener("DOMContentLoaded", updatePriceInfo);
 
 async function analyzePdf() {
   const fileInput = document.getElementById("pdf");
-  const mode = document.getElementById("mode").value;
   const productType = document.getElementById("productType").value;
   const output = document.getElementById("output");
   const button = document.getElementById("analyzeButton");
   const unlockSection = document.getElementById("unlockSection");
+
+  let mode = document.getElementById("mode").value;
+
+  const hasPaid = localStorage.getItem("methodsGuardsPaid") === "true";
+
+  if (mode === "full" && !hasPaid) {
+    output.innerText = "🔒 Report completo bloccato.\n\nPer sbloccarlo effettua il pagamento.";
+    unlockSection.style.display = "block";
+    updatePriceInfo();
+    return;
+  }
 
   if (!fileInput.files.length) {
     output.innerText = "Carica un PDF prima di avviare l'analisi.";
