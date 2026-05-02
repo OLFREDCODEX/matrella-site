@@ -187,6 +187,11 @@ async function analyzePdf() {
   let mode = document.getElementById("mode").value;
 
   const hasPaid = localStorage.getItem("methodsGuardsPaid") === "true";
+  const sessionId = localStorage.getItem("methodsGuardsSessionId") || "";
+
+  if (hasPaid) {
+    unlockSection.style.display = "none";
+  }
 
   if (mode === "full" && !hasPaid) {
     output.innerText = "🔒 Report completo bloccato.\n\nPer sbloccarlo effettua il pagamento.";
@@ -231,7 +236,8 @@ async function analyzePdf() {
         fileBase64: base64,
         fileName: file.name,
         mode: mode,
-        productType: productType
+        productType: productType,
+        sessionId: sessionId
       })
     });
 
