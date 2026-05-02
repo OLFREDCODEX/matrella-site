@@ -193,14 +193,7 @@ async function analyzePdf() {
     unlockSection.style.display = "none";
   }
 
-  if (mode === "full" && !hasPaid) {
-    output.innerText = "🔒 Report completo bloccato.\n\nPer sbloccarlo effettua il pagamento.";
-    unlockSection.style.display = "block";
-    updatePriceInfo();
-    return;
-  }
-
-  if (!fileInput.files.length) {
+   if (!fileInput.files.length) {
     output.innerText = "Carica un PDF prima di avviare l'analisi.";
     unlockSection.style.display = "none";
     return;
