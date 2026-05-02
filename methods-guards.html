@@ -206,6 +206,14 @@ async function analyzePdf() {
 
 output.innerText = data.output || data.error || "Errore: risposta non valida dal server.";
 
+const unlockSection = document.getElementById("unlockSection");
+
+if (data.locked) {
+  unlockSection.style.display = "block";
+} else {
+  unlockSection.style.display = "none";
+}
+
 if (mode === "free") {
   document.getElementById("unlockSection").style.display = "block";
 } else {
