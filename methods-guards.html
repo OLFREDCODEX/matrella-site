@@ -101,6 +101,42 @@
       font-size: 0.9rem;
       margin-top: 14px;
     }
+
+    .disclaimer {
+      background: #fff8e6;
+      border: 1px solid #f0d98c;
+      border-radius: 18px;
+      padding: 16px;
+      margin-top: 20px;
+      color: #5f4b16;
+      font-size: 0.95rem;
+    }
+
+    .donation-box {
+      display: none;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 24px;
+      margin-top: 24px;
+    }
+
+    .donation-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .donation-buttons a {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+    }
   </style>
 </head>
 
@@ -111,15 +147,14 @@
     <h1>Methods Guards AI</h1>
 
     <p class="lead">
-      Carica un PDF e ricevi una valutazione preliminare della robustezza metodologica.
-      Per ora questa è una versione di test: usa PDF piccoli.
+      Carica un PDF e ricevi gratuitamente una diagnosi metodologica preliminare.
+      Methods Guards AI aiuta a individuare criticità, punti di forza e azioni correttive.
     </p>
 
     <div class="box">
       <label for="mode"><strong>Tipo di analisi</strong></label>
       <select id="mode">
-        <option value="free">Free — solo percentuale di robustezza</option>
-        <option value="full">Full — report completo</option>
+        <option value="full">Analisi completa gratuita</option>
       </select>
 
       <label for="productType"><strong>Tipo di prodotto</strong></label>
@@ -137,65 +172,46 @@
       <input id="pdf" type="file" accept="application/pdf" />
 
       <p class="note">
-        Versione test: consigliati PDF brevi. Per tesi/report/libri servirà una gestione upload più avanzata.
+        Versione test: consigliati PDF brevi. Limite attuale: 8 MB.
       </p>
 
-      <button id="analyzeButton" onclick="analyzePdf()">Analizza PDF</button>
+      <div class="disclaimer">
+        <strong>Nota metodologica:</strong> Methods Guards AI è un sistema di supporto alla valutazione metodologica.
+        Non sostituisce la revisione umana esperta, la peer review o la responsabilità scientifica dell'autore.
+      </div>
+
+      <button id="analyzeButton" onclick="analyzePdf()">Analizza PDF gratuitamente</button>
     </div>
 
     <pre id="output"></pre>
 
-    <div id="unlockSection" style="display:none; margin-top:20px;">
-      <p><strong>Vuoi il report completo?</strong></p>
-      <p id="priceInfo">Il prezzo dipende dal tipo di prodotto selezionato.</p>
+    <div id="donationSection" class="donation-box">
+      <p><strong>Ti è stato utile Methods Guards AI?</strong></p>
+      <p class="note">
+        Il servizio è gratuito. Puoi sostenerne lo sviluppo con una donazione volontaria.
+      </p>
 
-      <button type="button" id="payBtn">
-        Sblocca report completo
-      </button>
+      <div class="donation-buttons">
+        <a href="#" target="_blank">Dona 1€</a>
+        <a href="#" target="_blank">Dona 2€</a>
+        <a href="#" target="_blank">Dona 3€</a>
+        <a href="#" target="_blank">Dona 5€</a>
+        <a href="#" target="_blank">Importo libero</a>
+      </div>
     </div>
   </main>
 
 <script>
-const productPrices = {
-  abstract: "2,50€",
-  paper: "9,99€",
-  progetto: "15,99€",
-  relazione: "15,99€",
-  tesi: "49,99€",
-  report: "15,99€",
-  libro: "85,00€"
-};
-
-function updatePriceInfo() {
-  const productType = document.getElementById("productType").value;
-  const priceInfo = document.getElementById("priceInfo");
-  const price = productPrices[productType] || "prezzo non disponibile";
-
-  priceInfo.innerText = "Prezzo report completo: " + price;
-}
-
-document.getElementById("productType").addEventListener("change", updatePriceInfo);
-document.addEventListener("DOMContentLoaded", updatePriceInfo);
-
 async function analyzePdf() {
   const fileInput = document.getElementById("pdf");
   const productType = document.getElementById("productType").value;
   const output = document.getElementById("output");
   const button = document.getElementById("analyzeButton");
-  const unlockSection = document.getElementById("unlockSection");
+  const donationSection = document.getElementById("donationSection");
 
-  let mode = document.getElementById("mode").value;
-
-  const hasPaid = localStorage.getItem("methodsGuardsPaid") === "true";
-  const sessionId = localStorage.getItem("methodsGuardsSessionId") || "";
-
-  if (hasPaid) {
-    unlockSection.style.display = "none";
-  }
-
-   if (!fileInput.files.length) {
+  if (!fileInput.files.length) {
     output.innerText = "Carica un PDF prima di avviare l'analisi.";
-    unlockSection.style.display = "none";
+    donationSection.style.display = "none";
     return;
   }
 
@@ -203,23 +219,22 @@ async function analyzePdf() {
 
   if (file.type !== "application/pdf") {
     output.innerText = "Il file deve essere un PDF.";
-    unlockSection.style.display = "none";
+    donationSection.style.display = "none";
     return;
   }
 
   if (file.size > 8 * 1024 * 1024) {
     output.innerText = "PDF troppo grande per questa versione di test. Usa un file sotto 8 MB.";
-    unlockSection.style.display = "none";
+    donationSection.style.display = "none";
     return;
   }
 
   output.innerText = "Analisi in corso...";
-  unlockSection.style.display = "none";
+  donationSection.style.display = "none";
   button.disabled = true;
 
   try {
     const base64 = await fileToBase64(file);
-const fileHash = await fileToHash(file);
 
     const res = await fetch("https://methods-guards-backend.vercel.app/api/methods-guards", {
       method: "POST",
@@ -229,10 +244,7 @@ const fileHash = await fileToHash(file);
       body: JSON.stringify({
         fileBase64: base64,
         fileName: file.name,
-        fileHash: fileHash,
-        mode: mode,
-        productType: productType,
-        sessionId: sessionId
+        productType: productType
       })
     });
 
@@ -240,69 +252,26 @@ const fileHash = await fileToHash(file);
 
     if (!res.ok) {
       output.innerText = data.error || "Errore server durante l'analisi.";
-      unlockSection.style.display = "none";
+      donationSection.style.display = "none";
       return;
     }
 
     output.innerText = data.output || data.error || "Errore: risposta non valida dal server.";
 
-    if (
-      data.locked === true ||
-      (data.output && data.output.includes("Report completo bloccato"))
-    ) {
-      updatePriceInfo();
-      unlockSection.style.display = "block";
+    if (data.output && !data.output.includes("ANALISI NON ESEGUITA")) {
+      donationSection.style.display = "block";
     } else {
-      unlockSection.style.display = "none";
+      donationSection.style.display = "none";
     }
 
   } catch (error) {
     output.innerText = "Errore di connessione con Methods Guards AI: " + error.message;
-    unlockSection.style.display = "none";
+    donationSection.style.display = "none";
     console.error(error);
   } finally {
     button.disabled = false;
   }
 }
-
-document.getElementById("payBtn").addEventListener("click", async () => {
-  try {
-    const fileInput = document.getElementById("pdf");
-    const productType = document.getElementById("productType").value;
-
-    if (!fileInput.files.length) {
-      alert("Carica prima un PDF.");
-      return;
-    }
-
-    const file = fileInput.files[0];
-    const fileHash = await fileToHash(file);
-
-    const response = await fetch("https://methods-guards-backend.vercel.app/api/create-checkout-session", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        fileName: file.name,
-        productType: productType,
-        fileHash: fileHash
-      })
-    });
-
-    const data = await response.json();
-
-    if (data.url) {
-      window.location.href = data.url;
-    } else {
-      alert(data.error || "Errore durante la creazione del pagamento.");
-    }
-
-  } catch (error) {
-    alert("Errore di connessione con Stripe.");
-    console.error(error);
-  }
-});
 
 function fileToBase64(file) {
   return new Promise((resolve, reject) => {
@@ -317,15 +286,6 @@ function fileToBase64(file) {
     reader.onerror = reject;
     reader.readAsDataURL(file);
   });
-}
-  async function fileToHash(file) {
-  const arrayBuffer = await file.arrayBuffer();
-  const hashBuffer = await crypto.subtle.digest("SHA-256", arrayBuffer);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-
-  return hashArray
-    .map(byte => byte.toString(16).padStart(2, "0"))
-    .join("");
 }
 </script>
 </body>
