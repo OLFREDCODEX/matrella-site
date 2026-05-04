@@ -195,14 +195,16 @@
         <a class="secondary" href="https://donate.stripe.com/test_5kQ4gy4WV4iV7VD4z773G04" target="_blank">Importo libero</a>
       </div>
     </div>
-<div class="box">
-  <label for="codeInput"><strong>Hai un codice senza pubblicità?</strong></label>
-  <input id="codeInput" type="text" placeholder="Inserisci codice" />
 
-  <button type="button" onclick="activateCode()">Attiva codice</button>
+    <div class="box">
+      <label for="codeInput"><strong>Hai un codice senza pubblicità?</strong></label>
+      <input id="codeInput" type="text" placeholder="Inserisci codice" />
 
-  <p id="codeStatus" class="note"></p>
-</div>
+      <button type="button" onclick="activateCode()">Attiva codice</button>
+
+      <p id="codeStatus" class="note"></p>
+    </div>
+
     <div class="box">
       <label for="mode"><strong>Tipo di analisi</strong></label>
       <select id="mode">
@@ -249,11 +251,13 @@
       <p class="donation-title"><strong>Ti è stato utile Methods Guards AI?</strong></p>
       <p class="note">
         Methods Guards AI è gratuito, ma ogni analisi ha costi reali di infrastruttura, AI e sviluppo.
-  Se questo report ti è stato utile, una donazione aiuta a mantenere il servizio attivo, accessibile e migliorarlo nel tempo.
+        Se questo report ti è stato utile, una donazione aiuta a mantenere il servizio attivo, accessibile e migliorarlo nel tempo.
       </p>
-<p style="margin-top:16px; font-weight:600;">
-  👉 Anche 1€ fa la differenza.
-</p>
+
+      <p style="margin-top:16px; font-weight:600;">
+        👉 Anche 1€ fa la differenza.
+      </p>
+
       <div class="donation-buttons">
         <a href="https://donate.stripe.com/test_00w5kCblj6r31xfaXv73G01" target="_blank">Sostieni con 1€</a>
         <a href="https://donate.stripe.com/test_aFabJ08977v78ZH4z773G02" target="_blank">Sostieni con 3€</a>
@@ -264,9 +268,10 @@
   </main>
 
 <script>
-  async function activateCode() {
-  const code = document.getElementById("codeInput").value.trim();
+async function activateCode() {
+  const input = document.getElementById("codeInput");
   const status = document.getElementById("codeStatus");
+  const code = input.value.trim();
 
   if (!code) {
     status.innerText = "Inserisci un codice valido.";
@@ -283,30 +288,27 @@
     });
 
     const data = await res.json();
-    if (data.remaining !== undefined) {
-  const status = document.getElementById("codeStatus");
-
-  if (data.remaining > 0) {
-    status.innerText = "Codice attivo. Analisi senza pubblicità residue: " + data.remaining;
-  } else {
-    status.innerText = "Codice esaurito. Dalla prossima analisi verrà mostrata la pubblicità.";
-    localStorage.removeItem("mg_code");
-  }
-}
 
     if (!res.ok) {
+      localStorage.removeItem("mg_code");
       status.innerText = data.error || "Codice non valido.";
       return;
     }
 
-    localStorage.setItem("mg_code", code);
+    if (data.remaining !== undefined && data.remaining > 0) {
+      localStorage.setItem("mg_code", code);
+      status.innerText = "Codice attivato. Analisi senza pubblicità residue: " + data.remaining;
+      return;
+    }
 
-    status.innerText = "Codice attivato. Analisi senza pubblicità: " + data.remaining;
+    localStorage.removeItem("mg_code");
+    status.innerText = "Codice esaurito o non utilizzabile.";
 
   } catch (err) {
     status.innerText = "Errore di connessione.";
   }
 }
+
 async function analyzePdf() {
   const fileInput = document.getElementById("pdf");
   const productType = document.getElementById("productType").value;
@@ -341,9 +343,13 @@ async function analyzePdf() {
 
   output.innerText = "Analisi in corso...";
   donationSection.classList.add("hidden");
-if (!code) {
-  adBanner.classList.remove("hidden");
-}
+
+  if (!code) {
+    adBanner.classList.remove("hidden");
+  } else {
+    adBanner.classList.add("hidden");
+  }
+
   button.disabled = true;
 
   try {
@@ -354,17 +360,28 @@ if (!code) {
       headers: {
         "Content-Type": "application/json"
       },
-     body: JSON.stringify({
-  fileBase64: base64,
-  fileName: file.name,
-  productType: productType,
-  code: code
-})
+      body: JSON.stringify({
+        fileBase64: base64,
+        fileName: file.name,
+        productType: productType,
+        code: code
+      })
     });
 
     const data = await res.json();
 
     adBanner.classList.add("hidden");
+
+    if (data.remaining !== undefined) {
+      const status = document.getElementById("codeStatus");
+
+      if (data.remaining > 0) {
+        status.innerText = "Codice attivo. Analisi senza pubblicità residue: " + data.remaining;
+      } else {
+        status.innerText = "Codice esaurito. Dalla prossima analisi verrà mostrata la pubblicità.";
+        localStorage.removeItem("mg_code");
+      }
+    }
 
     if (!res.ok) {
       output.innerText = data.error || "Errore server durante l'analisi.";
