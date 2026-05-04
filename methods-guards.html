@@ -304,6 +304,7 @@ async function analyzePdf() {
   const button = document.getElementById("analyzeButton");
   const donationSection = document.getElementById("donationSection");
   const adBanner = document.getElementById("adBanner");
+  const code = localStorage.getItem("mg_code") || "";
 
   if (!fileInput.files.length) {
     output.innerText = "Carica un PDF prima di avviare l'analisi.";
@@ -341,11 +342,12 @@ async function analyzePdf() {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({
-        fileBase64: base64,
-        fileName: file.name,
-        productType: productType
-      })
+     body: JSON.stringify({
+  fileBase64: base64,
+  fileName: file.name,
+  productType: productType,
+  code: code
+})
     });
 
     const data = await res.json();
