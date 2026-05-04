@@ -26,7 +26,7 @@
     }
 
     main {
-      width: min(900px, 92%);
+      width: min(1000px, 92%);
       margin: auto;
       padding: 70px 0;
     }
@@ -44,11 +44,14 @@
       margin-bottom: 28px;
     }
 
-    .box {
+    .box, .card {
       background: var(--paper);
-      border: 1px solid var(--line);
       border-radius: 28px;
       padding: 28px;
+    }
+
+    .box {
+      border: 1px solid var(--line);
       margin-top: 24px;
     }
 
@@ -88,10 +91,7 @@
     }
 
     .card {
-      background: var(--paper);
       border: 2px solid var(--accent);
-      border-radius: 24px;
-      padding: 24px;
     }
 
     .label {
@@ -106,6 +106,10 @@
       line-height: 1;
     }
 
+    .wide {
+      grid-column: 1 / -1;
+    }
+
     .hidden {
       display: none;
     }
@@ -115,9 +119,47 @@
       font-weight: 700;
     }
 
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      font-size: 0.95rem;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 10px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .bar-track {
+      width: 100%;
+      height: 10px;
+      background: var(--line);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .bar-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      border-radius: 999px;
+    }
+
     @media (max-width: 700px) {
       .grid {
         grid-template-columns: 1fr;
+      }
+
+      table {
+        font-size: 0.85rem;
       }
     }
   </style>
@@ -169,6 +211,37 @@
         <div class="label">Media analisi per identificativo oggi</div>
         <div id="avgAnalysesPerIdentifierToday" class="value">—</div>
       </div>
+
+      <div class="card">
+        <div class="label">Quota analisi con codice ultimi 7 giorni</div>
+        <div id="codeUsageRate" class="value">—</div>
+        <div class="bar-track">
+          <div id="codeUsageBar" class="bar-fill"></div>
+        </div>
+      </div>
+
+      <div class="card wide">
+        <div class="label">Periodo ultimi 7 giorni</div>
+        <div class="value" id="recentPeriodTotal">—</div>
+        <p class="note" id="recentPeriodText">—</p>
+      </div>
+
+      <div class="card wide">
+        <div class="label">Trend ultimi 7 giorni</div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Analisi</th>
+              <th>Con codice</th>
+              <th>Senza codice</th>
+            </tr>
+          </thead>
+          <tbody id="trendTable">
+          </tbody>
+        </table>
+      </div>
     </div>
   </main>
 
@@ -207,6 +280,21 @@
         document.getElementById("uniqueIdentifiersToday").innerText = formatNumber(data.uniqueIdentifiersToday);
         document.getElementById("avgAnalysesPerIdentifierToday").innerText = formatNumber(data.avgAnalysesPerIdentifierToday);
 
+        const recent = data.recentPeriod || {};
+        const rate = typeof recent.codeUsageRate === "number" ? recent.codeUsageRate : 0;
+
+        document.getElementById("codeUsageRate").innerText = rate.toLocaleString("it-IT") + "%";
+        document.getElementById("codeUsageBar").style.width = Math.min(rate, 100) + "%";
+
+        document.getElementById("recentPeriodTotal").innerText = formatNumber(recent.analyses) + " analisi";
+        document.getElementById("recentPeriodText").innerText =
+          "Dal " + (recent.fromUTC || "—") +
+          " al " + (recent.toUTC || "—") +
+          " | con codice: " + formatNumber(recent.analysesWithCode) +
+          " | senza codice: " + formatNumber(recent.analysesWithoutCode);
+
+        renderTrendTable(data.last7Days || []);
+
         dashboard.classList.remove("hidden");
         status.innerText = "Dati caricati correttamente.";
 
@@ -216,9 +304,40 @@
       }
     }
 
+    function renderTrendTable(days) {
+      const tbody = document.getElementById("trendTable");
+      tbody.innerHTML = "";
+
+      if (!Array.isArray(days) || days.length === 0) {
+        tbody.innerHTML = "<tr><td colspan='4'>Nessun dato disponibile.</td></tr>";
+        return;
+      }
+
+      days.forEach((day) => {
+        const tr = document.createElement("tr");
+
+        tr.innerHTML =
+          "<td>" + escapeHtml(day.date || "—") + "</td>" +
+          "<td>" + formatNumber(day.analyses) + "</td>" +
+          "<td>" + formatNumber(day.withCode) + "</td>" +
+          "<td>" + formatNumber(day.withoutCode) + "</td>";
+
+        tbody.appendChild(tr);
+      });
+    }
+
     function formatNumber(value) {
       if (typeof value !== "number") return "—";
       return value.toLocaleString("it-IT");
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
     }
   </script>
 </body>
