@@ -485,12 +485,12 @@ function fileToBase64(file) {
     const data = await res.json();
 
     if (res.ok && typeof data.totalAnalyses === "number") {
-      counter.innerText = "Analisi effettuate: " + data.totalAnalyses;
+      counter.innerHTML = "🔍 <strong>" + data.totalAnalyses + "</strong> analisi metodologiche già effettuate";
     } else {
-      counter.innerText = "Analisi effettuate: non disponibili";
+      counter.innerText = "Analisi metodologiche effettuate: dato temporaneamente non disponibile";
     }
   } catch (error) {
-    counter.innerText = "Analisi effettuate: non disponibili";
+    counter.innerText = "Analisi metodologiche effettuate: dato temporaneamente non disponibile";
   }
 }
 </script>
