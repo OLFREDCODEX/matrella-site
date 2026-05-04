@@ -58,6 +58,29 @@
       margin-top: 28px;
     }
 
+    .code-box {
+      max-width: 400px;
+      padding: 14px 16px;
+      border-radius: 20px;
+      margin-top: 22px;
+    }
+
+    .code-box label {
+      font-size: 0.95rem;
+    }
+
+    .code-box input {
+      padding: 8px 10px;
+      font-size: 0.9rem;
+      margin-top: 8px;
+    }
+
+    .code-box button {
+      padding: 7px 12px;
+      font-size: 0.9rem;
+      margin-top: 10px;
+    }
+
     input, select {
       width: 100%;
       padding: 14px 16px;
@@ -100,6 +123,18 @@
       color: var(--muted);
       font-size: 0.9rem;
       margin-top: 14px;
+    }
+
+    .upload-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .upload-helper {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 0;
+      margin-bottom: 8px;
     }
 
     .disclaimer {
@@ -188,12 +223,14 @@
       Carica un PDF e ricevi gratuitamente una diagnosi metodologica preliminare.
       Methods Guards AI aiuta a individuare criticità, punti di forza e azioni correttive.
     </p>
+
     <p id="analysisCounter" class="note" style="font-size: 1.1em;">
-  Analisi effettuate: —
-</p>
+      Analisi effettuate: —
+    </p>
+
     <p class="note" style="font-size: 0.9em;">
-  Analisi basata esclusivamente sul contenuto del documento. Le informazioni non presenti non vengono inferite né inventate.
-</p>
+      Analisi basata esclusivamente sul contenuto del documento. Le informazioni non presenti non vengono inferite né inventate.
+    </p>
 
     <div class="donation-box">
       <p class="donation-title"><strong>Supporta Methods Guards AI</strong></p>
@@ -209,15 +246,14 @@
       </div>
     </div>
 
-    <div class="box" style="max-width: 400px; padding: 12px 14px;">
-     <label for="codeInput" style="font-size: 0.95em;">
-  <strong>Hai un codice?</strong>
-</label>
-      <input id="codeInput" type="text" placeholder="Inserisci codice" style="padding: 6px 8px; font-size: 0.9em;" />
+    <div class="box code-box">
+      <label for="codeInput">
+        <strong>Hai un codice?</strong>
+      </label>
 
-      <button type="button" onclick="activateCode()" style="padding: 6px 10px; font-size: 0.9em;">
-  Attiva codice
-</button>
+      <input id="codeInput" type="text" placeholder="Inserisci codice" />
+
+      <button type="button" onclick="activateCode()">Attiva codice</button>
 
       <p id="codeStatus" class="note"></p>
     </div>
@@ -239,12 +275,14 @@
         <option value="libro">Libro / monografia</option>
       </select>
 
-      <label for="pdf"><strong>Carica PDF</strong></label>
+      <p class="upload-title">Carica il tuo documento PDF</p>
+      <p class="upload-helper">
+        Formato PDF • massimo 19 MB • il documento viene analizzato solo per produrre la diagnosi metodologica richiesta.
+      </p>
+
       <input id="pdf" type="file" accept="application/pdf" />
 
-      <p class="note">
-        Versione test: consigliati PDF brevi. Limite attuale: 19 MB.
-      </p>
+      <p id="fileNamePreview" class="note"></p>
 
       <div class="disclaimer">
         <strong>Nota metodologica:</strong> Methods Guards AI è un sistema di supporto alla valutazione metodologica.
@@ -256,7 +294,7 @@
         <a href="/trasparenza.html">pagina Trasparenza e utilizzo dati</a>.
       </p>
 
-      <button id="analyzeButton" onclick="analyzePdf()">Analizza PDF gratuitamente</button>
+      <button id="analyzeButton" onclick="analyzePdf()">Avvia analisi metodologica</button>
     </div>
 
     <div id="adBanner" class="ad-banner hidden">
@@ -293,214 +331,230 @@
     </div>
   </main>
 
-<script>
-let activeCode = "";
+  <script>
+    let activeCode = "";
 
-document.addEventListener("DOMContentLoaded", () => {
-  localStorage.removeItem("mg_code");
-  loadAnalysisCounter();
+    document.addEventListener("DOMContentLoaded", () => {
+      localStorage.removeItem("mg_code");
+      loadAnalysisCounter();
 
-  const codeInput = document.getElementById("codeInput");
-  const codeStatus = document.getElementById("codeStatus");
+      const codeInput = document.getElementById("codeInput");
+      const codeStatus = document.getElementById("codeStatus");
+      const fileInput = document.getElementById("pdf");
+      const fileNamePreview = document.getElementById("fileNamePreview");
 
-  codeInput.addEventListener("input", () => {
-    const currentValue = codeInput.value.trim().toUpperCase();
+      if (codeInput && codeStatus) {
+        codeInput.addEventListener("input", () => {
+          const currentValue = codeInput.value.trim().toUpperCase();
 
-    if (activeCode && currentValue !== activeCode) {
-      activeCode = "";
-      codeStatus.innerText = "Codice modificato. Premi di nuovo 'Attiva codice' per usarlo.";
-    }
-  });
-});
+          if (activeCode && currentValue !== activeCode) {
+            activeCode = "";
+            codeStatus.innerText = "Codice modificato. Premi di nuovo 'Attiva codice' per usarlo.";
+          }
+        });
+      }
 
-async function activateCode() {
-  const input = document.getElementById("codeInput");
-  const status = document.getElementById("codeStatus");
-  const code = input.value.trim();
-
-  activeCode = "";
-  localStorage.removeItem("mg_code");
-
-  if (!code) {
-    status.innerText = "Inserisci un codice valido.";
-    return;
-  }
-
-  try {
-    const res = await fetch("https://methods-guards-backend.vercel.app/api/redeem-code", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ code: code })
+      if (fileInput && fileNamePreview) {
+        fileInput.addEventListener("change", () => {
+          if (fileInput.files.length > 0) {
+            fileNamePreview.innerText = "📄 File selezionato: " + fileInput.files[0].name;
+          } else {
+            fileNamePreview.innerText = "";
+          }
+        });
+      }
     });
 
-    const data = await res.json();
+    async function activateCode() {
+      const input = document.getElementById("codeInput");
+      const status = document.getElementById("codeStatus");
+      const code = input.value.trim();
 
-    if (!res.ok) {
       activeCode = "";
-      status.innerText = data.error || "Codice non valido.";
-      return;
-    }
+      localStorage.removeItem("mg_code");
 
-    if (data.code && data.remaining !== undefined && data.remaining > 0) {
-      activeCode = String(data.code).trim().toUpperCase();
-      input.value = activeCode;
-      status.innerText = "Codice attivato. Analisi senza pubblicità residue: " + data.remaining;
-      return;
-    }
+      if (!code) {
+        status.innerText = "Inserisci un codice valido.";
+        return;
+      }
 
-    activeCode = "";
-    status.innerText = "Codice esaurito o non utilizzabile.";
+      try {
+        const res = await fetch("https://methods-guards-backend.vercel.app/api/redeem-code", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ code: code })
+        });
 
-  } catch (err) {
-    activeCode = "";
-    status.innerText = "Errore di connessione.";
-  }
-}
+        const data = await res.json();
 
-async function analyzePdf() {
-  const fileInput = document.getElementById("pdf");
-  const productType = document.getElementById("productType").value;
-  const output = document.getElementById("output");
-  const button = document.getElementById("analyzeButton");
-  const donationSection = document.getElementById("donationSection");
-  const adBanner = document.getElementById("adBanner");
-  const codeInput = document.getElementById("codeInput");
-  const codeStatus = document.getElementById("codeStatus");
+        if (!res.ok) {
+          activeCode = "";
+          status.innerText = data.error || "Codice non valido.";
+          return;
+        }
 
-  const typedCode = codeInput.value.trim().toUpperCase();
-  const code = activeCode && typedCode === activeCode ? activeCode : "";
+        if (data.code && data.remaining !== undefined && data.remaining > 0) {
+          activeCode = String(data.code).trim().toUpperCase();
+          input.value = activeCode;
+          status.innerText = "Codice attivato. Analisi senza pubblicità residue: " + data.remaining;
+          return;
+        }
 
-  if (typedCode && !code) {
-    codeStatus.innerText = "Codice non attivo. Premi 'Attiva codice' prima di usarlo.";
-  }
-
-  if (!fileInput.files.length) {
-    output.innerText = "Carica un PDF prima di avviare l'analisi.";
-    donationSection.classList.add("hidden");
-    adBanner.classList.add("hidden");
-    return;
-  }
-
-  const file = fileInput.files[0];
-
-  if (file.type !== "application/pdf") {
-    output.innerText = "Il file deve essere un PDF.";
-    donationSection.classList.add("hidden");
-    adBanner.classList.add("hidden");
-    return;
-  }
-
-  if (file.size > 19 * 1024 * 1024) {
-    output.innerText = "PDF troppo grande. Usa un file sotto 19 MB.";
-    donationSection.classList.add("hidden");
-    adBanner.classList.add("hidden");
-    return;
-  }
-
-  output.innerText = "Analisi in corso...";
-  donationSection.classList.add("hidden");
-
-  if (!code) {
-    adBanner.classList.remove("hidden");
-  } else {
-    adBanner.classList.add("hidden");
-  }
-
-  button.disabled = true;
-
-  try {
-    const base64 = await fileToBase64(file);
-
-    const res = await fetch("https://methods-guards-backend.vercel.app/api/methods-guards", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        fileBase64: base64,
-        fileName: file.name,
-        productType: productType,
-        code: code
-      })
-    });
-
-    const data = await res.json();
-
-    adBanner.classList.add("hidden");
-
-    if (data.remaining !== undefined) {
-      if (data.remaining > 0 && code) {
-        codeStatus.innerText = "Codice attivo. Analisi senza pubblicità residue: " + data.remaining;
-      } else if (data.remaining === 0 && code) {
         activeCode = "";
-        codeStatus.innerText = "Codice esaurito. Dalla prossima analisi verrà mostrata la pubblicità.";
+        status.innerText = "Codice esaurito o non utilizzabile.";
+
+      } catch (err) {
+        activeCode = "";
+        status.innerText = "Errore di connessione.";
       }
     }
 
-    if (!res.ok) {
-  if (res.status === 429) {
-    output.innerText = "Hai raggiunto il limite giornaliero. Riprova domani.";
-  } else {
-    output.innerText = data.error || "Errore server durante l'analisi.";
-  }
-  donationSection.classList.add("hidden");
-  return;
-}
+    async function analyzePdf() {
+      const fileInput = document.getElementById("pdf");
+      const productType = document.getElementById("productType").value;
+      const output = document.getElementById("output");
+      const button = document.getElementById("analyzeButton");
+      const donationSection = document.getElementById("donationSection");
+      const adBanner = document.getElementById("adBanner");
+      const codeInput = document.getElementById("codeInput");
+      const codeStatus = document.getElementById("codeStatus");
 
-    output.innerText = data.output || data.error || "Errore: risposta non valida dal server.";
+      const typedCode = codeInput.value.trim().toUpperCase();
+      const code = activeCode && typedCode === activeCode ? activeCode : "";
 
-    if (data.output && !data.output.includes("ANALISI NON ESEGUITA")) {
-      donationSection.classList.remove("hidden");
-      donationSection.scrollIntoView({ behavior: "smooth", block: "start" });
-    } else {
+      if (typedCode && !code) {
+        codeStatus.innerText = "Codice non attivo. Premi 'Attiva codice' prima di usarlo.";
+      }
+
+      if (!fileInput.files.length) {
+        output.innerText = "Carica un PDF prima di avviare l'analisi.";
+        donationSection.classList.add("hidden");
+        adBanner.classList.add("hidden");
+        return;
+      }
+
+      const file = fileInput.files[0];
+
+      if (file.type !== "application/pdf") {
+        output.innerText = "Il file deve essere un PDF.";
+        donationSection.classList.add("hidden");
+        adBanner.classList.add("hidden");
+        return;
+      }
+
+      if (file.size > 19 * 1024 * 1024) {
+        output.innerText = "PDF troppo grande. Usa un file sotto 19 MB.";
+        donationSection.classList.add("hidden");
+        adBanner.classList.add("hidden");
+        return;
+      }
+
+      output.innerText = "Analisi in corso...";
       donationSection.classList.add("hidden");
+
+      if (!code) {
+        adBanner.classList.remove("hidden");
+      } else {
+        adBanner.classList.add("hidden");
+      }
+
+      button.disabled = true;
+
+      try {
+        const base64 = await fileToBase64(file);
+
+        const res = await fetch("https://methods-guards-backend.vercel.app/api/methods-guards", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            fileBase64: base64,
+            fileName: file.name,
+            productType: productType,
+            code: code
+          })
+        });
+
+        const data = await res.json();
+
+        adBanner.classList.add("hidden");
+
+        if (data.remaining !== undefined) {
+          if (data.remaining > 0 && code) {
+            codeStatus.innerText = "Codice attivo. Analisi senza pubblicità residue: " + data.remaining;
+          } else if (data.remaining === 0 && code) {
+            activeCode = "";
+            codeStatus.innerText = "Codice esaurito. Dalla prossima analisi verrà mostrata la pubblicità.";
+          }
+        }
+
+        if (!res.ok) {
+          if (res.status === 429) {
+            output.innerText = "Hai raggiunto il limite giornaliero. Riprova domani.";
+          } else {
+            output.innerText = data.error || "Errore server durante l'analisi.";
+          }
+
+          donationSection.classList.add("hidden");
+          return;
+        }
+
+        output.innerText = data.output || data.error || "Errore: risposta non valida dal server.";
+
+        if (data.output && !data.output.includes("ANALISI NON ESEGUITA")) {
+          donationSection.classList.remove("hidden");
+          donationSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else {
+          donationSection.classList.add("hidden");
+        }
+
+      } catch (error) {
+        output.innerText = "Errore di connessione con Methods Guards AI: " + error.message;
+        donationSection.classList.add("hidden");
+        adBanner.classList.add("hidden");
+        console.error(error);
+      } finally {
+        button.disabled = false;
+      }
     }
 
-  } catch (error) {
-    output.innerText = "Errore di connessione con Methods Guards AI: " + error.message;
-    donationSection.classList.add("hidden");
-    adBanner.classList.add("hidden");
-    console.error(error);
-  } finally {
-    button.disabled = false;
-  }
-}
+    function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
 
-function fileToBase64(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
+        reader.onload = () => {
+          const result = reader.result;
+          const base64 = result.split(",")[1];
+          resolve(base64);
+        };
 
-    reader.onload = () => {
-      const result = reader.result;
-      const base64 = result.split(",")[1];
-      resolve(base64);
-    };
-
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
-}
-  async function loadAnalysisCounter() {
-  const counter = document.getElementById("analysisCounter");
-
-  if (!counter) return;
-
-  try {
-    const res = await fetch("https://methods-guards-backend.vercel.app/api/stats");
-    const data = await res.json();
-
-    if (res.ok && typeof data.totalAnalyses === "number") {
-      const formatted = data.totalAnalyses.toLocaleString("it-IT");
-counter.innerHTML = "🔍 <strong>" + formatted + "</strong> analisi metodologiche già effettuate";
-    } else {
-      counter.innerText = "Analisi metodologiche effettuate: dato temporaneamente non disponibile";
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
     }
-  } catch (error) {
-    counter.innerText = "Analisi metodologiche effettuate: dato temporaneamente non disponibile";
-  }
-}
-</script>
+
+    async function loadAnalysisCounter() {
+      const counter = document.getElementById("analysisCounter");
+
+      if (!counter) return;
+
+      try {
+        const res = await fetch("https://methods-guards-backend.vercel.app/api/stats");
+        const data = await res.json();
+
+        if (res.ok && typeof data.totalAnalyses === "number") {
+          const formatted = data.totalAnalyses.toLocaleString("it-IT");
+          counter.innerHTML = "🔍 <strong>" + formatted + "</strong> analisi metodologiche già effettuate";
+        } else {
+          counter.innerText = "Analisi metodologiche effettuate: dato temporaneamente non disponibile";
+        }
+      } catch (error) {
+        counter.innerText = "Analisi metodologiche effettuate: dato temporaneamente non disponibile";
+      }
+    }
+  </script>
 </body>
 </html>
