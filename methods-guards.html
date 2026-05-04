@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Methods Guards AI </title>
+  <title>Methods Guards AI</title>
 
   <style>
     :root {
@@ -73,12 +73,12 @@
       box-sizing: border-box;
     }
 
-  .code-box {
-  padding: 22px;
-  border-radius: 24px;
-  border: 2px solid var(--accent);
-  background: var(--paper);
-}
+    .code-box {
+      padding: 22px;
+      border-radius: 24px;
+      border: 2px solid var(--accent);
+      background: var(--paper);
+    }
 
     .code-box label {
       font-size: 0.95rem;
@@ -219,11 +219,27 @@
       margin-bottom: 8px;
     }
 
-    .footer-link {
-      text-align: center;
-      margin: 40px 0 0;
-      font-size: 0.9rem;
-      color: var(--muted);
+    .loading-box {
+      margin-top: 18px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+    }
+
+    .loading-track {
+      height: 8px;
+      background: var(--line);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .loading-bar {
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      border-radius: 999px;
+      transition: width 0.35s ease;
     }
 
     @media (max-width: 760px) {
@@ -318,6 +334,13 @@
       </p>
 
       <button id="analyzeButton" onclick="analyzePdf()">Avvia analisi metodologica</button>
+
+      <div id="loadingBox" class="loading-box hidden">
+        <div class="loading-track">
+          <div id="loadingBar" class="loading-bar"></div>
+        </div>
+        <p id="loadingText" class="note">Preparazione analisi...</p>
+      </div>
     </div>
 
     <div id="adBanner" class="ad-banner hidden">
@@ -348,11 +371,12 @@
         <a class="secondary" href="https://donate.stripe.com/test_5kQ4gy4WV4iV7VD4z773G04" target="_blank">Sostegno personalizzato</a>
       </div>
     </div>
-
   </main>
 
   <script>
     let activeCode = "";
+    let loadingTimerOne = null;
+    let loadingTimerTwo = null;
 
     document.addEventListener("DOMContentLoaded", () => {
       localStorage.removeItem("mg_code");
@@ -431,16 +455,62 @@
       }
     }
 
+    function startLoadingState() {
+      const loadingBox = document.getElementById("loadingBox");
+      const loadingBar = document.getElementById("loadingBar");
+      const loadingText = document.getElementById("loadingText");
+
+      if (!loadingBox || !loadingBar || !loadingText) return;
+
+      clearTimeout(loadingTimerOne);
+      clearTimeout(loadingTimerTwo);
+
+      loadingBox.classList.remove("hidden");
+      loadingBar.style.width = "18%";
+      loadingText.innerText = "Preparazione file...";
+
+      loadingTimerOne = setTimeout(() => {
+        loadingBar.style.width = "55%";
+        loadingText.innerText = "Analisi metodologica in corso...";
+      }, 800);
+
+      loadingTimerTwo = setTimeout(() => {
+        loadingBar.style.width = "82%";
+        loadingText.innerText = "Finalizzazione del risultato...";
+      }, 2200);
+    }
+
+    function stopLoadingState() {
+      const loadingBox = document.getElementById("loadingBox");
+      const loadingBar = document.getElementById("loadingBar");
+      const loadingText = document.getElementById("loadingText");
+
+      if (!loadingBox || !loadingBar || !loadingText) return;
+
+      clearTimeout(loadingTimerOne);
+      clearTimeout(loadingTimerTwo);
+
+      loadingBar.style.width = "100%";
+      loadingText.innerText = "Analisi completata.";
+
+      setTimeout(() => {
+        loadingBox.classList.add("hidden");
+        loadingBar.style.width = "0%";
+        loadingText.innerText = "Preparazione analisi...";
+      }, 800);
+    }
+
     async function analyzePdf() {
       const fileInput = document.getElementById("pdf");
       const productType = document.getElementById("productType").value;
       const output = document.getElementById("output");
-      output.classList.remove("hidden");
       const button = document.getElementById("analyzeButton");
       const donationSection = document.getElementById("donationSection");
       const adBanner = document.getElementById("adBanner");
       const codeInput = document.getElementById("codeInput");
       const codeStatus = document.getElementById("codeStatus");
+
+      output.classList.remove("hidden");
 
       const typedCode = codeInput.value.trim().toUpperCase();
       const code = activeCode && typedCode === activeCode ? activeCode : "";
@@ -472,8 +542,9 @@
         return;
       }
 
-      output.innerText = "Analisi in corso...";
+      output.innerText = "";
       donationSection.classList.add("hidden");
+      startLoadingState();
 
       if (!code) {
         adBanner.classList.remove("hidden");
@@ -539,6 +610,7 @@
         console.error(error);
       } finally {
         button.disabled = false;
+        stopLoadingState();
       }
     }
 
