@@ -283,6 +283,16 @@
     });
 
     const data = await res.json();
+    if (data.remaining !== undefined) {
+  const status = document.getElementById("codeStatus");
+
+  if (data.remaining > 0) {
+    status.innerText = "Codice attivo. Analisi senza pubblicità residue: " + data.remaining;
+  } else {
+    status.innerText = "Codice esaurito. Dalla prossima analisi verrà mostrata la pubblicità.";
+    localStorage.removeItem("mg_code");
+  }
+}
 
     if (!res.ok) {
       status.innerText = data.error || "Codice non valido.";
