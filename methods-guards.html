@@ -226,7 +226,7 @@
       <input id="pdf" type="file" accept="application/pdf" />
 
       <p class="note">
-        Versione test: consigliati PDF brevi. Limite attuale: 8 MB.
+        Versione test: consigliati PDF brevi. Limite attuale: 19 MB.
       </p>
 
       <div class="disclaimer">
@@ -334,8 +334,8 @@ async function analyzePdf() {
     return;
   }
 
-  if (file.size > 8 * 1024 * 1024) {
-    output.innerText = "PDF troppo grande per questa versione di test. Usa un file sotto 8 MB.";
+  if (file.size > 19 * 1024 * 1024) {
+  output.innerText = "PDF troppo grande. Usa un file sotto 19 MB.";
     donationSection.classList.add("hidden");
     adBanner.classList.add("hidden");
     return;
