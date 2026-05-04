@@ -429,10 +429,14 @@ async function analyzePdf() {
     }
 
     if (!res.ok) {
-      output.innerText = data.error || "Errore server durante l'analisi.";
-      donationSection.classList.add("hidden");
-      return;
-    }
+  if (res.status === 429) {
+    output.innerText = "Hai raggiunto il limite giornaliero. Riprova domani.";
+  } else {
+    output.innerText = data.error || "Errore server durante l'analisi.";
+  }
+  donationSection.classList.add("hidden");
+  return;
+}
 
     output.innerText = data.output || data.error || "Errore: risposta non valida dal server.";
 
