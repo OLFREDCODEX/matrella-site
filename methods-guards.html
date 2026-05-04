@@ -209,11 +209,15 @@
       </div>
     </div>
 
-    <div class="box">
-      <label for="codeInput"><strong>Hai un codice senza pubblicità?</strong></label>
-      <input id="codeInput" type="text" placeholder="Inserisci codice" />
+    <div class="box" style="max-width: 400px; padding: 12px 14px;">
+     <label for="codeInput" style="font-size: 0.95em;">
+  <strong>Hai un codice?</strong>
+</label>
+      <input id="codeInput" type="text" placeholder="Inserisci codice" style="padding: 6px 8px; font-size: 0.9em;" />
 
-      <button type="button" onclick="activateCode()">Attiva codice</button>
+      <button type="button" onclick="activateCode()" style="padding: 6px 10px; font-size: 0.9em;">
+  Attiva codice
+</button>
 
       <p id="codeStatus" class="note"></p>
     </div>
