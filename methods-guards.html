@@ -188,6 +188,9 @@
       Carica un PDF e ricevi gratuitamente una diagnosi metodologica preliminare.
       Methods Guards AI aiuta a individuare criticità, punti di forza e azioni correttive.
     </p>
+    <p id="analysisCounter" class="note">
+  Analisi effettuate: —
+</p>
 
     <div class="donation-box">
       <p class="donation-title"><strong>Supporta Methods Guards AI</strong></p>
@@ -288,6 +291,7 @@ let activeCode = "";
 
 document.addEventListener("DOMContentLoaded", () => {
   localStorage.removeItem("mg_code");
+  loadAnalysisCounter();
 
   const codeInput = document.getElementById("codeInput");
   const codeStatus = document.getElementById("codeStatus");
@@ -470,6 +474,24 @@ function fileToBase64(file) {
     reader.onerror = reject;
     reader.readAsDataURL(file);
   });
+}
+  async function loadAnalysisCounter() {
+  const counter = document.getElementById("analysisCounter");
+
+  if (!counter) return;
+
+  try {
+    const res = await fetch("https://methods-guards-backend.vercel.app/api/stats");
+    const data = await res.json();
+
+    if (res.ok && typeof data.totalAnalyses === "number") {
+      counter.innerText = "Analisi effettuate: " + data.totalAnalyses;
+    } else {
+      counter.innerText = "Analisi effettuate: non disponibili";
+    }
+  } catch (error) {
+    counter.innerText = "Analisi effettuate: non disponibili";
+  }
 }
 </script>
 </body>
