@@ -195,7 +195,14 @@
         <a class="secondary" href="https://donate.stripe.com/test_5kQ4gy4WV4iV7VD4z773G04" target="_blank">Importo libero</a>
       </div>
     </div>
+<div class="box">
+  <label for="codeInput"><strong>Hai un codice senza pubblicità?</strong></label>
+  <input id="codeInput" type="text" placeholder="Inserisci codice" />
 
+  <button type="button" onclick="activateCode()">Attiva codice</button>
+
+  <p id="codeStatus" class="note"></p>
+</div>
     <div class="box">
       <label for="mode"><strong>Tipo di analisi</strong></label>
       <select id="mode">
@@ -257,6 +264,39 @@
   </main>
 
 <script>
+  async function activateCode() {
+  const code = document.getElementById("codeInput").value.trim();
+  const status = document.getElementById("codeStatus");
+
+  if (!code) {
+    status.innerText = "Inserisci un codice valido.";
+    return;
+  }
+
+  try {
+    const res = await fetch("https://methods-guards-backend.vercel.app/api/redeem-code", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ code: code })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      status.innerText = data.error || "Codice non valido.";
+      return;
+    }
+
+    localStorage.setItem("mg_code", code);
+
+    status.innerText = "Codice attivato. Analisi senza pubblicità: " + data.remaining;
+
+  } catch (err) {
+    status.innerText = "Errore di connessione.";
+  }
+}
 async function analyzePdf() {
   const fileInput = document.getElementById("pdf");
   const productType = document.getElementById("productType").value;
