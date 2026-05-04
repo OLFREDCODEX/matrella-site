@@ -188,8 +188,11 @@
       Carica un PDF e ricevi gratuitamente una diagnosi metodologica preliminare.
       Methods Guards AI aiuta a individuare criticità, punti di forza e azioni correttive.
     </p>
-    <p id="analysisCounter" class="note">
+    <p id="analysisCounter" class="note" style="font-size: 1.1em;">
   Analisi effettuate: —
+</p>
+    <p class="note" style="font-size: 0.9em;">
+  Analisi basata esclusivamente sul contenuto del documento. Le informazioni non presenti non vengono inferite né inventate.
 </p>
 
     <div class="donation-box">
@@ -485,7 +488,8 @@ function fileToBase64(file) {
     const data = await res.json();
 
     if (res.ok && typeof data.totalAnalyses === "number") {
-      counter.innerHTML = "🔍 <strong>" + data.totalAnalyses + "</strong> analisi metodologiche già effettuate";
+      const formatted = data.totalAnalyses.toLocaleString("it-IT");
+counter.innerHTML = "🔍 <strong>" + formatted + "</strong> analisi metodologiche già effettuate";
     } else {
       counter.innerText = "Analisi metodologiche effettuate: dato temporaneamente non disponibile";
     }
