@@ -268,10 +268,31 @@
   </main>
 
 <script>
+let activeCode = "";
+
+document.addEventListener("DOMContentLoaded", () => {
+  localStorage.removeItem("mg_code");
+
+  const codeInput = document.getElementById("codeInput");
+  const codeStatus = document.getElementById("codeStatus");
+
+  codeInput.addEventListener("input", () => {
+    const currentValue = codeInput.value.trim().toUpperCase();
+
+    if (activeCode && currentValue !== activeCode) {
+      activeCode = "";
+      codeStatus.innerText = "Codice modificato. Premi di nuovo 'Attiva codice' per usarlo.";
+    }
+  });
+});
+
 async function activateCode() {
   const input = document.getElementById("codeInput");
   const status = document.getElementById("codeStatus");
   const code = input.value.trim();
+
+  activeCode = "";
+  localStorage.removeItem("mg_code");
 
   if (!code) {
     status.innerText = "Inserisci un codice valido.";
@@ -290,21 +311,23 @@ async function activateCode() {
     const data = await res.json();
 
     if (!res.ok) {
-      localStorage.removeItem("mg_code");
+      activeCode = "";
       status.innerText = data.error || "Codice non valido.";
       return;
     }
 
-    if (data.remaining !== undefined && data.remaining > 0) {
-      localStorage.setItem("mg_code", code);
+    if (data.code && data.remaining !== undefined && data.remaining > 0) {
+      activeCode = String(data.code).trim().toUpperCase();
+      input.value = activeCode;
       status.innerText = "Codice attivato. Analisi senza pubblicità residue: " + data.remaining;
       return;
     }
 
-    localStorage.removeItem("mg_code");
+    activeCode = "";
     status.innerText = "Codice esaurito o non utilizzabile.";
 
   } catch (err) {
+    activeCode = "";
     status.innerText = "Errore di connessione.";
   }
 }
@@ -316,7 +339,15 @@ async function analyzePdf() {
   const button = document.getElementById("analyzeButton");
   const donationSection = document.getElementById("donationSection");
   const adBanner = document.getElementById("adBanner");
-  const code = localStorage.getItem("mg_code") || "";
+  const codeInput = document.getElementById("codeInput");
+  const codeStatus = document.getElementById("codeStatus");
+
+  const typedCode = codeInput.value.trim().toUpperCase();
+  const code = activeCode && typedCode === activeCode ? activeCode : "";
+
+  if (typedCode && !code) {
+    codeStatus.innerText = "Codice non attivo. Premi 'Attiva codice' prima di usarlo.";
+  }
 
   if (!fileInput.files.length) {
     output.innerText = "Carica un PDF prima di avviare l'analisi.";
@@ -335,7 +366,7 @@ async function analyzePdf() {
   }
 
   if (file.size > 19 * 1024 * 1024) {
-  output.innerText = "PDF troppo grande. Usa un file sotto 19 MB.";
+    output.innerText = "PDF troppo grande. Usa un file sotto 19 MB.";
     donationSection.classList.add("hidden");
     adBanner.classList.add("hidden");
     return;
@@ -373,13 +404,11 @@ async function analyzePdf() {
     adBanner.classList.add("hidden");
 
     if (data.remaining !== undefined) {
-      const status = document.getElementById("codeStatus");
-
-      if (data.remaining > 0) {
-        status.innerText = "Codice attivo. Analisi senza pubblicità residue: " + data.remaining;
-      } else {
-        status.innerText = "Codice esaurito. Dalla prossima analisi verrà mostrata la pubblicità.";
-        localStorage.removeItem("mg_code");
+      if (data.remaining > 0 && code) {
+        codeStatus.innerText = "Codice attivo. Analisi senza pubblicità residue: " + data.remaining;
+      } else if (data.remaining === 0 && code) {
+        activeCode = "";
+        codeStatus.innerText = "Codice esaurito. Dalla prossima analisi verrà mostrata la pubblicità.";
       }
     }
 
