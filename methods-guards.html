@@ -73,10 +73,12 @@
       box-sizing: border-box;
     }
 
-    .code-box {
-      padding: 22px;
-      border-radius: 24px;
-    }
+  .code-box {
+  padding: 22px;
+  border-radius: 24px;
+  border: 2px solid var(--accent);
+  background: var(--paper);
+}
 
     .code-box label {
       font-size: 0.95rem;
@@ -326,7 +328,7 @@
       </p>
     </div>
 
-    <pre id="output"></pre>
+    <pre id="output" class="hidden"></pre>
 
     <div id="donationSection" class="donation-box hidden">
       <p class="donation-title"><strong>Ti è stato utile Methods Guards AI?</strong></p>
@@ -347,9 +349,6 @@
       </div>
     </div>
 
-    <div class="footer-link">
-      <a href="/trasparenza.html">Trasparenza e utilizzo dati</a>
-    </div>
   </main>
 
   <script>
@@ -436,6 +435,7 @@
       const fileInput = document.getElementById("pdf");
       const productType = document.getElementById("productType").value;
       const output = document.getElementById("output");
+      output.classList.remove("hidden");
       const button = document.getElementById("analyzeButton");
       const donationSection = document.getElementById("donationSection");
       const adBanner = document.getElementById("adBanner");
