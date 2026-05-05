@@ -221,6 +221,21 @@
       </div>
 
       <div class="card wide">
+  <div class="label">Analisi per tipo prodotto (ultimi 7 giorni)</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Tipo</th>
+        <th>Analisi</th>
+      </tr>
+    </thead>
+    <tbody id="productTypeTable">
+    </tbody>
+  </table>
+</div>
+      
+      <div class="card wide">
         <div class="label">Periodo ultimi 7 giorni</div>
         <div class="value" id="recentPeriodTotal">—</div>
         <p class="note" id="recentPeriodText">—</p>
@@ -294,6 +309,7 @@
           " | senza codice: " + formatNumber(recent.analysesWithoutCode);
 
         renderTrendTable(data.last7Days || []);
+        renderProductTypeTable(data.byProductType || {});
 
         dashboard.classList.remove("hidden");
         status.innerText = "Dati caricati correttamente.";
@@ -339,6 +355,29 @@
         .replaceAll('"', "&quot;")
         .replaceAll("'", "&#039;");
     }
+    function renderProductTypeTable(obj) {
+  const tbody = document.getElementById("productTypeTable");
+  tbody.innerHTML = "";
+
+  const entries = Object.entries(obj);
+
+  if (entries.length === 0) {
+    tbody.innerHTML = "<tr><td colspan='2'>Nessun dato disponibile.</td></tr>";
+    return;
+  }
+
+  entries.sort((a, b) => b[1] - a[1]);
+
+  entries.forEach(([type, count]) => {
+    const tr = document.createElement("tr");
+
+    tr.innerHTML =
+      "<td>" + escapeHtml(type) + "</td>" +
+      "<td>" + formatNumber(count) + "</td>";
+
+    tbody.appendChild(tr);
+  });
+}
   </script>
 </body>
 </html>
