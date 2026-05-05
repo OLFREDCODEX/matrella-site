@@ -44,7 +44,8 @@
       margin-bottom: 28px;
     }
 
-    .box, .card {
+    .box,
+    .card {
       background: var(--paper);
       border-radius: 28px;
       padding: 28px;
@@ -126,7 +127,8 @@
       font-size: 0.95rem;
     }
 
-    th, td {
+    th,
+    td {
       text-align: left;
       padding: 10px;
       border-bottom: 1px solid var(--line);
@@ -213,6 +215,18 @@
       </div>
 
       <div class="card">
+        <div class="label">Utenti oggi</div>
+        <div id="usersToday" class="value">—</div>
+        <p id="usersTodayText" class="note">—</p>
+      </div>
+
+      <div class="card">
+        <div class="label">Returning complessivi</div>
+        <div id="usersAllTimeRate" class="value">—</div>
+        <p id="usersAllTimeText" class="note">—</p>
+      </div>
+
+      <div class="card">
         <div class="label">Quota analisi con codice ultimi 7 giorni</div>
         <div id="codeUsageRate" class="value">—</div>
         <div class="bar-track">
@@ -221,20 +235,20 @@
       </div>
 
       <div class="card wide">
-  <div class="label">Analisi per tipo prodotto (ultimi 7 giorni)</div>
+        <div class="label">Analisi per tipo prodotto (ultimi 7 giorni)</div>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Tipo</th>
-        <th>Analisi</th>
-      </tr>
-    </thead>
-    <tbody id="productTypeTable">
-    </tbody>
-  </table>
-</div>
-      
+        <table>
+          <thead>
+            <tr>
+              <th>Tipo</th>
+              <th>Analisi</th>
+            </tr>
+          </thead>
+          <tbody id="productTypeTable">
+          </tbody>
+        </table>
+      </div>
+
       <div class="card wide">
         <div class="label">Periodo ultimi 7 giorni</div>
         <div class="value" id="recentPeriodTotal">—</div>
@@ -295,6 +309,24 @@
         document.getElementById("uniqueIdentifiersToday").innerText = formatNumber(data.uniqueIdentifiersToday);
         document.getElementById("avgAnalysesPerIdentifierToday").innerText = formatNumber(data.avgAnalysesPerIdentifierToday);
 
+        const usersToday = data.usersToday || {};
+        const usersTodayTotal = (usersToday.new || 0) + (usersToday.returning || 0);
+
+        document.getElementById("usersToday").innerText = formatNumber(usersTodayTotal);
+        document.getElementById("usersTodayText").innerText =
+          "Nuovi: " + formatNumber(usersToday.new || 0) +
+          " | Returning: " + formatNumber(usersToday.returning || 0);
+
+        const usersAllTime = data.usersAllTime || {};
+
+        document.getElementById("usersAllTimeRate").innerText =
+          formatNumber(usersAllTime.returningRate || 0) + "%";
+
+        document.getElementById("usersAllTimeText").innerText =
+          "Totali: " + formatNumber(usersAllTime.totalIdentifiers || 0) +
+          " | Returning: " + formatNumber(usersAllTime.returningIdentifiers || 0) +
+          " | One-time: " + formatNumber(usersAllTime.oneTimeIdentifiers || 0);
+
         const recent = data.recentPeriod || {};
         const rate = typeof recent.codeUsageRate === "number" ? recent.codeUsageRate : 0;
 
@@ -308,8 +340,8 @@
           " | con codice: " + formatNumber(recent.analysesWithCode) +
           " | senza codice: " + formatNumber(recent.analysesWithoutCode);
 
-        renderTrendTable(data.last7Days || []);
         renderProductTypeTable(data.byProductType || {});
+        renderTrendTable(data.last7Days || []);
 
         dashboard.classList.remove("hidden");
         status.innerText = "Dati caricati correttamente.";
@@ -318,6 +350,30 @@
         status.innerHTML = '<span class="error">Errore di connessione.</span>';
         dashboard.classList.add("hidden");
       }
+    }
+
+    function renderProductTypeTable(obj) {
+      const tbody = document.getElementById("productTypeTable");
+      tbody.innerHTML = "";
+
+      const entries = Object.entries(obj);
+
+      if (entries.length === 0) {
+        tbody.innerHTML = "<tr><td colspan='2'>Nessun dato disponibile.</td></tr>";
+        return;
+      }
+
+      entries.sort((a, b) => b[1] - a[1]);
+
+      entries.forEach(([type, count]) => {
+        const tr = document.createElement("tr");
+
+        tr.innerHTML =
+          "<td>" + escapeHtml(type) + "</td>" +
+          "<td>" + formatNumber(count) + "</td>";
+
+        tbody.appendChild(tr);
+      });
     }
 
     function renderTrendTable(days) {
@@ -355,29 +411,6 @@
         .replaceAll('"', "&quot;")
         .replaceAll("'", "&#039;");
     }
-    function renderProductTypeTable(obj) {
-  const tbody = document.getElementById("productTypeTable");
-  tbody.innerHTML = "";
-
-  const entries = Object.entries(obj);
-
-  if (entries.length === 0) {
-    tbody.innerHTML = "<tr><td colspan='2'>Nessun dato disponibile.</td></tr>";
-    return;
-  }
-
-  entries.sort((a, b) => b[1] - a[1]);
-
-  entries.forEach(([type, count]) => {
-    const tr = document.createElement("tr");
-
-    tr.innerHTML =
-      "<td>" + escapeHtml(type) + "</td>" +
-      "<td>" + formatNumber(count) + "</td>";
-
-    tbody.appendChild(tr);
-  });
-}
   </script>
 </body>
 </html>
