@@ -6,6 +6,8 @@
 
   <title>Dashboard privata | Methods Guards AI</title>
 
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+
   <style>
     :root {
       --bg: #f7f5ef;
@@ -155,6 +157,12 @@
       border-radius: 999px;
     }
 
+    #countryMap {
+      width: 100%;
+      min-height: 420px;
+      margin-top: 16px;
+    }
+
     @media (max-width: 700px) {
       .grid {
         grid-template-columns: 1fr;
@@ -162,6 +170,10 @@
 
       table {
         font-size: 0.85rem;
+      }
+
+      #countryMap {
+        min-height: 320px;
       }
     }
   </style>
@@ -235,6 +247,27 @@
       </div>
 
       <div class="card wide">
+        <div class="label">Mappa analisi per paese</div>
+        <div id="countryMap"></div>
+        <p id="countryMapNote" class="note">—</p>
+      </div>
+
+      <div class="card wide">
+        <div class="label">Città più rappresentate</div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Città</th>
+              <th>Analisi</th>
+            </tr>
+          </thead>
+          <tbody id="cityTable">
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card wide">
         <div class="label">Analisi per tipo prodotto (ultimi 7 giorni)</div>
 
         <table>
@@ -275,6 +308,12 @@
   </main>
 
   <script>
+    google.charts.load("current", {
+      packages: ["geochart"]
+    });
+
+    let latestCountryData = null;
+
     async function loadAnalytics() {
       const secretInput = document.getElementById("secretInput");
       const status = document.getElementById("status");
@@ -340,6 +379,9 @@
           " | con codice: " + formatNumber(recent.analysesWithCode) +
           " | senza codice: " + formatNumber(recent.analysesWithoutCode);
 
+        latestCountryData = data.topCountries || [];
+        renderCountryMap(latestCountryData);
+        renderCityTable(data.topCities || []);
         renderProductTypeTable(data.byProductType || {});
         renderTrendTable(data.last7Days || []);
 
@@ -350,6 +392,73 @@
         status.innerHTML = '<span class="error">Errore di connessione.</span>';
         dashboard.classList.add("hidden");
       }
+    }
+
+    function renderCountryMap(countries) {
+      const note = document.getElementById("countryMapNote");
+      const filtered = countries.filter((item) => {
+        return item.label && item.label.toLowerCase() !== "unknown";
+      });
+
+      if (filtered.length === 0) {
+        document.getElementById("countryMap").innerHTML = "";
+        note.innerText = "Nessun dato geografico valido disponibile. Le analisi precedenti possono risultare come unknown.";
+        return;
+      }
+
+      note.innerText = "La mappa esclude i valori unknown. Colore più intenso = più analisi.";
+
+      google.charts.setOnLoadCallback(() => {
+        const rows = [["Country", "Analisi"]];
+
+        filtered.forEach((item) => {
+          rows.push([item.label, Number(item.count || 0)]);
+        });
+
+        const chartData = google.visualization.arrayToDataTable(rows);
+
+        const options = {
+          backgroundColor: "transparent",
+          colorAxis: {
+            colors: ["#d9e6f2", "#355c7d"]
+          },
+          legend: {
+            textStyle: {
+              color: "#6b7280",
+              fontSize: 12
+            }
+          },
+          datalessRegionColor: "#f1efe8",
+          defaultColor: "#f1efe8"
+        };
+
+        const chart = new google.visualization.GeoChart(document.getElementById("countryMap"));
+        chart.draw(chartData, options);
+      });
+    }
+
+    function renderCityTable(cities) {
+      const tbody = document.getElementById("cityTable");
+      tbody.innerHTML = "";
+
+      const filtered = cities.filter((item) => {
+        return item.label && item.label.toLowerCase() !== "unknown";
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = "<tr><td colspan='2'>Nessun dato città valido disponibile.</td></tr>";
+        return;
+      }
+
+      filtered.forEach((item) => {
+        const tr = document.createElement("tr");
+
+        tr.innerHTML =
+          "<td>" + escapeHtml(item.label) + "</td>" +
+          "<td>" + formatNumber(item.count) + "</td>";
+
+        tbody.appendChild(tr);
+      });
     }
 
     function renderProductTypeTable(obj) {
