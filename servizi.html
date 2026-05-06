@@ -47,6 +47,7 @@
       backdrop-filter: blur(10px);
       position: sticky;
       top: 0;
+      z-index: 20;
     }
 
     .nav {
@@ -85,10 +86,10 @@
       padding: 80px 0;
     }
 
-   .hero {
-  margin-bottom: 60px;
-  text-align: center;
-}
+    .hero {
+      margin-bottom: 60px;
+      text-align: center;
+    }
 
     .eyebrow {
       color: var(--accent);
@@ -106,15 +107,15 @@
       margin-bottom: 24px;
     }
 
-   .lead {
-  max-width: 950px;
-  margin: 0 auto;
-  text-align: center;
-  color: #355c7d;
-  font-size: 1.65rem;
-  line-height: 1.5;
-  font-weight: 500;
-}
+    .lead {
+      max-width: 950px;
+      margin: 0 auto;
+      text-align: center;
+      color: #355c7d;
+      font-size: 1.65rem;
+      line-height: 1.5;
+      font-weight: 500;
+    }
 
     .services-grid {
       display: grid;
@@ -131,33 +132,10 @@
     }
 
     .service-card h2 {
-  font-size: 1.4rem;
-  margin-bottom: 16px;
-  letter-spacing: -0.04em;
-}
-
-.service-card h2 a {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-
-  background: #355c7d;
-  color: white;
-
-  padding: 10px 16px;
-  border-radius: 999px;
-
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 700;
-
-  transition: 0.25s ease;
-}
-
-.service-card h2 a:hover {
-  background: #1f2933;
-  transform: translateY(-2px);
-}
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+      letter-spacing: -0.04em;
+    }
 
     .service-card p {
       color: var(--muted);
@@ -169,6 +147,35 @@
       gap: 10px;
       padding-left: 18px;
       color: #374151;
+    }
+
+    .methods-card {
+      border: 1px solid rgba(53, 92, 125, 0.35);
+      background: linear-gradient(180deg, #ffffff 0%, #f1f6fa 100%);
+    }
+
+    .methods-card h2 {
+      color: #355c7d;
+    }
+
+    .methods-card p {
+      color: #4b5563;
+    }
+
+    .service-link {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 24px;
+      font-weight: 800;
+      color: #355c7d;
+      border-bottom: 2px solid #355c7d;
+      padding-bottom: 3px;
+      transition: 0.2s ease;
+    }
+
+    .service-link:hover {
+      color: #1f2933;
+      border-bottom-color: #1f2933;
     }
 
     .contact-box {
@@ -198,6 +205,11 @@
       font-weight: 700;
       background: white;
       color: var(--ink);
+      transition: 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
     }
 
     footer {
@@ -212,6 +224,18 @@
     @media (max-width: 860px) {
       nav ul {
         display: none;
+      }
+
+      main {
+        padding: 60px 0;
+      }
+
+      h1 {
+        font-size: clamp(2.4rem, 12vw, 4rem);
+      }
+
+      .lead {
+        font-size: 1.25rem;
       }
 
       .services-grid {
@@ -309,12 +333,8 @@
       </ul>
     </article>
 
-    <article class="service-card">
-      <h2>
-  <a href="methods-guards.html">
-    Methods Guards AI →
-  </a>
-</h2>
+    <article class="service-card methods-card">
+      <h2>Methods Guards AI</h2>
 
       <p>
         Sistema sperimentale di supporto alla valutazione della robustezza
@@ -327,6 +347,10 @@
         <li>Report</li>
         <li>Progetti di ricerca</li>
       </ul>
+
+      <a class="service-link" href="methods-guards.html">
+        Apri Methods Guards AI →
+      </a>
     </article>
 
   </section>
