@@ -121,7 +121,50 @@
       color: #9f1239;
       font-weight: 700;
     }
+.maintenance-panel {
+  border: 2px solid var(--accent);
+}
 
+.maintenance-status {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-top: 8px;
+}
+
+.maintenance-status.active {
+  color: #9f1239;
+}
+
+.maintenance-status.inactive {
+  color: #166534;
+}
+
+textarea {
+  width: 100%;
+  min-height: 110px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--soft);
+  font: inherit;
+  box-sizing: border-box;
+  margin-top: 8px;
+  resize: vertical;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.button-danger {
+  background: #9f1239;
+}
+
+.button-safe {
+  background: #166534;
+}
     table {
       width: 100%;
       border-collapse: collapse;
@@ -199,7 +242,33 @@
 
       <p id="status" class="note"></p>
     </div>
+<div id="maintenanceBox" class="box maintenance-panel hidden">
+  <h2>Manutenzione / chiusura temporanea</h2>
 
+  <p class="note">
+    Da qui puoi mettere temporaneamente offline Methods Guards AI e mostrare un messaggio agli utenti.
+  </p>
+
+  <div id="maintenanceStatus" class="maintenance-status">Stato: —</div>
+
+  <label for="maintenanceMessage">
+    <strong>Messaggio da mostrare agli utenti</strong>
+  </label>
+
+  <textarea id="maintenanceMessage" placeholder="Esempio: Methods Guards AI è temporaneamente in manutenzione. Riprova più tardi."></textarea>
+
+  <div class="button-row">
+    <button type="button" class="button-danger" onclick="setMaintenance(true)">
+      Attiva manutenzione / OFF
+    </button>
+
+    <button type="button" class="button-safe" onclick="setMaintenance(false)">
+      Disattiva manutenzione / ON
+    </button>
+  </div>
+
+  <p id="maintenanceFeedback" class="note"></p>
+</div>
     <div id="dashboard" class="grid hidden">
       <div class="card">
         <div class="label">Data UTC</div>
@@ -386,7 +455,10 @@
         renderTrendTable(data.last7Days || []);
 
         dashboard.classList.remove("hidden");
-        status.innerText = "Dati caricati correttamente.";
+document.getElementById("maintenanceBox").classList.remove("hidden");
+status.innerText = "Dati caricati correttamente.";
+
+loadMaintenanceStatus(secret);
 
       } catch (error) {
         status.innerHTML = '<span class="error">Errore di connessione.</span>';
@@ -506,7 +578,105 @@
         tbody.appendChild(tr);
       });
     }
+async function loadMaintenanceStatus(secret) {
+  const maintenanceStatus = document.getElementById("maintenanceStatus");
+  const maintenanceMessage = document.getElementById("maintenanceMessage");
+  const maintenanceFeedback = document.getElementById("maintenanceFeedback");
 
+  maintenanceFeedback.innerText = "Lettura stato manutenzione...";
+
+  try {
+    const res = await fetch("https://methods-guards-backend.vercel.app/api/admin-maintenance", {
+      method: "GET",
+      headers: {
+        "x-admin-key": secret
+      }
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      maintenanceFeedback.innerHTML = '<span class="error">' + escapeHtml(data.error || "Errore lettura manutenzione") + '</span>';
+      return;
+    }
+
+    updateMaintenanceUI(data.maintenance, data.message);
+    maintenanceFeedback.innerText = "Stato manutenzione caricato.";
+
+  } catch (error) {
+    maintenanceFeedback.innerHTML = '<span class="error">Errore di connessione manutenzione.</span>';
+  }
+}
+
+async function setMaintenance(enabled) {
+  const secretInput = document.getElementById("secretInput");
+  const maintenanceMessage = document.getElementById("maintenanceMessage");
+  const maintenanceFeedback = document.getElementById("maintenanceFeedback");
+
+  const secret = secretInput.value.trim();
+  const message = maintenanceMessage.value.trim();
+
+  if (!secret) {
+    maintenanceFeedback.innerHTML = '<span class="error">Inserisci prima la chiave privata.</span>';
+    return;
+  }
+
+  if (enabled && !message) {
+    maintenanceFeedback.innerHTML = '<span class="error">Per attivare la manutenzione devi inserire un messaggio per gli utenti.</span>';
+    return;
+  }
+
+  maintenanceFeedback.innerText = enabled
+    ? "Attivazione manutenzione..."
+    : "Disattivazione manutenzione...";
+
+  try {
+    const res = await fetch("https://methods-guards-backend.vercel.app/api/admin-maintenance", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-admin-key": secret
+      },
+      body: JSON.stringify({
+        maintenance: enabled,
+        message: message || "Methods Guards AI è temporaneamente non disponibile. Riprova più tardi."
+      })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      maintenanceFeedback.innerHTML = '<span class="error">' + escapeHtml(data.error || "Errore aggiornamento manutenzione") + '</span>';
+      return;
+    }
+
+    updateMaintenanceUI(data.maintenance, data.message);
+
+    maintenanceFeedback.innerText = data.maintenance
+      ? "Manutenzione attivata. La pagina pubblica risulterà temporaneamente chiusa."
+      : "Manutenzione disattivata. Methods Guards AI è di nuovo attivo.";
+
+  } catch (error) {
+    maintenanceFeedback.innerHTML = '<span class="error">Errore di connessione durante aggiornamento manutenzione.</span>';
+  }
+}
+
+function updateMaintenanceUI(enabled, message) {
+  const maintenanceStatus = document.getElementById("maintenanceStatus");
+  const maintenanceMessage = document.getElementById("maintenanceMessage");
+
+  maintenanceMessage.value = message || "";
+
+  if (enabled) {
+    maintenanceStatus.innerText = "Stato: MANUTENZIONE ATTIVA / OFF";
+    maintenanceStatus.classList.add("active");
+    maintenanceStatus.classList.remove("inactive");
+  } else {
+    maintenanceStatus.innerText = "Stato: SERVIZIO ATTIVO / ON";
+    maintenanceStatus.classList.add("inactive");
+    maintenanceStatus.classList.remove("active");
+  }
+}
     function formatNumber(value) {
       if (typeof value !== "number") return "—";
       return value.toLocaleString("it-IT");
