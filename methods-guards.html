@@ -221,6 +221,27 @@
 .upload-file-input {
   display: none;
 }
+
+    .maintenance-alert {
+  background: #fff7ed;
+  border: 2px solid #f97316;
+  color: #7c2d12;
+  border-radius: 24px;
+  padding: 24px;
+  margin-top: 28px;
+  font-size: 1rem;
+}
+
+.maintenance-alert strong {
+  display: block;
+  font-size: 1.15rem;
+  margin-bottom: 8px;
+}
+
+.maintenance-icon {
+  font-size: 1.8rem;
+  margin-right: 6px;
+}
     .disclaimer {
       background: #fff8e6;
       border: 1px solid #f0d98c;
@@ -437,6 +458,12 @@
       </p>
     </div>
 
+    <div id="maintenanceAlert" class="maintenance-alert hidden">
+  <strong><span class="maintenance-icon">🛠️</span>Methods Guards AI temporaneamente non disponibile</strong>
+  <p id="maintenanceAlertText">
+    Il servizio è temporaneamente in manutenzione. Riprova più tardi.
+  </p>
+</div>
     <pre id="output" class="hidden"></pre>
 
     <div id="donationSection" class="donation-box hidden">
@@ -470,6 +497,8 @@
 
       const codeInput = document.getElementById("codeInput");
       const codeStatus = document.getElementById("codeStatus");
+      const maintenanceAlert = document.getElementById("maintenanceAlert");
+      const maintenanceAlertText = document.getElementById("maintenanceAlertText");
       const fileInput = document.getElementById("pdf");
       const fileNamePreview = document.getElementById("fileNamePreview");
       const uploadDropzone = document.getElementById("uploadDropzone");
@@ -629,6 +658,7 @@
       const codeStatus = document.getElementById("codeStatus");
 
       output.classList.remove("hidden");
+      maintenanceAlert.classList.add("hidden");
 
       const typedCode = codeInput.value.trim().toUpperCase();
       const code = activeCode && typedCode === activeCode ? activeCode : "";
@@ -701,16 +731,23 @@
           }
         }
 
-        if (!res.ok) {
-          if (res.status === 429) {
-            output.innerText = "Hai raggiunto il limite giornaliero. Riprova domani.";
-          } else {
-            output.innerText = data.error || "Errore server durante l'analisi.";
-          }
+       if (!res.ok) {
+  if (res.status === 503) {
+    output.classList.add("hidden");
+    maintenanceAlertText.innerText =
+      data.error || "Methods Guards AI è temporaneamente non disponibile. Riprova più tardi.";
+    maintenanceAlert.classList.remove("hidden");
+  } else if (res.status === 429) {
+    output.classList.remove("hidden");
+    output.innerText = "Hai raggiunto il limite giornaliero. Riprova domani.";
+  } else {
+    output.classList.remove("hidden");
+    output.innerText = data.error || "Errore server durante l'analisi.";
+  }
 
-          donationSection.classList.add("hidden");
-          return;
-        }
+  donationSection.classList.add("hidden");
+  return;
+}
 
         output.innerText = data.output || data.error || "Errore: risposta non valida dal server.";
 
