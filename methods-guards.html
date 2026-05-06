@@ -41,15 +41,7 @@
       font-size: clamp(2.5rem, 6vw, 4.5rem);
       line-height: 1;
       letter-spacing: -0.06em;
-      margin: 24px 0 10px;
-    }
-
-    .subtitle {
-      color: var(--muted);
-      font-size: 1rem;
-      max-width: 760px;
-      margin: 0 0 28px;
-      font-weight: 500;
+      margin: 24px 0;
     }
 
     .lead {
@@ -160,69 +152,6 @@
       margin-bottom: 8px;
     }
 
-    .upload-dropzone {
-      margin-top: 16px;
-      padding: 34px 22px;
-      border: 2px dashed var(--accent);
-      border-radius: 26px;
-      background: #f8fafc;
-      text-align: center;
-      cursor: pointer;
-      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-      outline: none;
-    }
-
-    .upload-dropzone:hover,
-    .upload-dropzone.dragover,
-    .upload-dropzone:focus {
-      background: #edf2f7;
-      border-color: var(--ink);
-      transform: translateY(-1px);
-    }
-
-    .upload-cloud-icon {
-      position: relative;
-      width: 82px;
-      height: 62px;
-      margin: 0 auto 12px;
-      color: var(--accent);
-    }
-
-    .upload-cloud-icon .cloud {
-      font-size: 4.2rem;
-      line-height: 1;
-    }
-
-    .upload-cloud-icon .arrow {
-      position: absolute;
-      left: 50%;
-      top: 18px;
-      transform: translateX(-50%);
-      font-size: 2rem;
-      font-weight: 900;
-      color: var(--ink);
-    }
-
-    .upload-main-text {
-      font-size: 1.08rem;
-      font-weight: 800;
-      margin: 6px 0 4px;
-    }
-
-    .upload-main-text span {
-      color: var(--accent);
-    }
-
-    .upload-secondary-text {
-      color: var(--muted);
-      font-size: 0.92rem;
-      margin: 0;
-    }
-
-    .upload-file-input {
-      display: none;
-    }
-
     .disclaimer {
       background: #fff8e6;
       border: 1px solid #f0d98c;
@@ -327,10 +256,6 @@
 
     <h1>Methods Guards AI</h1>
 
-    <p class="subtitle">
-      Guardians for Uncertainty Assessment in Research and Data Quality Systems
-    </p>
-
     <p class="lead">
       Carica un PDF e ricevi gratuitamente una diagnosi metodologica preliminare.
       Methods Guards AI aiuta a individuare criticità, punti di forza e azioni correttive.
@@ -394,22 +319,7 @@
         Formato PDF • massimo 19 MB • il documento viene analizzato solo per produrre la diagnosi metodologica richiesta.
       </p>
 
-      <div id="uploadDropzone" class="upload-dropzone" role="button" tabindex="0">
-        <div class="upload-cloud-icon" aria-hidden="true">
-          <span class="cloud">☁</span>
-          <span class="arrow">↑</span>
-        </div>
-
-        <p class="upload-main-text">
-          Trascina qui il PDF oppure <span>clicca per caricarlo</span>
-        </p>
-
-        <p class="upload-secondary-text">
-          PDF massimo 19 MB
-        </p>
-
-        <input id="pdf" class="upload-file-input" type="file" accept="application/pdf" />
-      </div>
+      <input id="pdf" type="file" accept="application/pdf" />
 
       <p id="fileNamePreview" class="note"></p>
 
@@ -476,7 +386,6 @@
       const codeStatus = document.getElementById("codeStatus");
       const fileInput = document.getElementById("pdf");
       const fileNamePreview = document.getElementById("fileNamePreview");
-      const uploadDropzone = document.getElementById("uploadDropzone");
 
       if (codeInput && codeStatus) {
         codeInput.addEventListener("input", () => {
@@ -495,38 +404,6 @@
             fileNamePreview.innerText = "📄 File selezionato: " + fileInput.files[0].name;
           } else {
             fileNamePreview.innerText = "";
-          }
-        });
-      }
-
-      if (uploadDropzone && fileInput) {
-        uploadDropzone.addEventListener("click", () => {
-          fileInput.click();
-        });
-
-        uploadDropzone.addEventListener("keydown", (event) => {
-          if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            fileInput.click();
-          }
-        });
-
-        uploadDropzone.addEventListener("dragover", (event) => {
-          event.preventDefault();
-          uploadDropzone.classList.add("dragover");
-        });
-
-        uploadDropzone.addEventListener("dragleave", () => {
-          uploadDropzone.classList.remove("dragover");
-        });
-
-        uploadDropzone.addEventListener("drop", (event) => {
-          event.preventDefault();
-          uploadDropzone.classList.remove("dragover");
-
-          if (event.dataTransfer.files && event.dataTransfer.files.length > 0) {
-            fileInput.files = event.dataTransfer.files;
-            fileInput.dispatchEvent(new Event("change"));
           }
         });
       }
