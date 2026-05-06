@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Pubblicazioni e convegni | Alfredo Matrella</title>
+
+  <meta
+    name="description"
+    content="Pubblicazioni scientifiche e partecipazioni a convegni di Alfredo Matrella su ricerca sociale, tecnologie digitali, qualità della vita, IA e metodologia."
+  />
+
+  <style>
+    :root {
+      --bg: #f7f5ef;
+      --paper: #ffffff;
+      --ink: #1f2933;
+      --muted: #6b7280;
+      --accent: #355c7d;
+      --accent-2: #b08968;
+      --line: #e5e0d8;
+      --soft: #edf2f7;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      border-bottom: 1px solid var(--line);
+      background: rgba(247,245,239,0.95);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .nav {
+      width: min(1120px, 92%);
+      margin: auto;
+      padding: 18px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    main {
+      width: min(1120px, 92%);
+      margin: auto;
+      padding: 80px 0;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      font-size: 0.85rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      margin-bottom: 24px;
+    }
+
+    .lead {
+      max-width: 900px;
+      margin: 0 auto;
+      color: #355c7d;
+      font-size: 1.4rem;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    .section-title {
+      margin: 70px 0 26px;
+      padding-top: 30px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-title h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1;
+      letter-spacing: -0.055em;
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 780px;
+    }
+
+    .publication-list,
+    .conference-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .publication,
+    .conference {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 26px 30px;
+    }
+
+    .year {
+      color: var(--accent-2);
+      font-weight: 800;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+
+    .publication p,
+    .conference p {
+      color: #4b5563;
+      font-size: 1.05rem;
+    }
+
+    .conference h3 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      letter-spacing: -0.03em;
+    }
+
+    .conference .place {
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .note-box {
+      margin-top: 70px;
+      background: var(--ink);
+      color: white;
+      border-radius: 30px;
+      padding: 42px;
+    }
+
+    .note-box h2 {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .note-box p {
+      color: #d1d5db;
+      margin-bottom: 22px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 13px 20px;
+      font-weight: 700;
+      background: white;
+      color: var(--ink);
+      transition: 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    footer {
+      width: min(1120px, 92%);
+      margin: auto;
+      padding: 32px 0 44px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 860px) {
+      nav ul {
+        display: none;
+      }
+
+      main {
+        padding: 60px 0;
+      }
+
+      h1 {
+        font-size: clamp(2.4rem, 12vw, 4rem);
+      }
+
+      .lead {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="index.html">
+      Alfredo <span>Matrella</span>
+    </a>
+
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="missione-ricerca.html">Missione e ricerca</a></li>
+        <li><a href="pubblicazioni.html">Pubblicazioni</a></li>
+        <li><a href="esperienze.html">Esperienze</a></li>
+        <li><a href="servizi.html">Servizi</a></li>
+        <li><a href="methods-guards.html">Methods Guards AI</a></li>
+        <li><a href="comunicazioni.html">Comunicazioni</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="eyebrow">
+      Pubblicazioni e convegni
+    </div>
+
+    <h1>
+      Ricerca sociale, metodo e trasformazioni digitali.
+    </h1>
+
+    <p class="lead">
+      Pubblicazioni scientifiche e partecipazioni a convegni su qualità della vita,
+      tecnologie digitali, scuola, intelligenza artificiale, lavoro e metodologia della ricerca sociale.
+    </p>
+  </section>
+
+  <section class="section-title">
+    <h2>Pubblicazioni</h2>
+    <p>
+      Una selezione di contributi scientifici, articoli, capitoli e volumi.
+    </p>
+  </section>
+
+  <section class="publication-list">
+
+    <article class="publication">
+      <div class="year">2025</div>
+      <p>
+        Roberti, G., & Matrella, A. (2025). Percorsi narrativi e pratiche di consumo digitale nel fast-fashion.
+        Analisi dell’usabilità e dell’esperienza utente della piattaforma SHEIN.
+        <i>Sociologia della Comunicazione, 69</i>. ISSN 1121-1733; ISSNe 1972-4926.
+        DOI: 10.3280/SC2025-069001.
+      </p>
+    </article>
+
+    <article class="publication">
+      <div class="year">2025</div>
+      <p>
+        Matrella, A., Cavagnuolo, M., & Capozza, V. (2025).
+        The use of artificial intelligence within social research: A classification proposal.
+        <i>The Lab’s Quarterly</i>.
+      </p>
+    </article>
+
+    <article class="publication">
+      <div class="year">2025</div>
+      <p>
+        Matrella, A. (2025). <i>Qualità della vita dei lavoratori universitari
+        e interdipendenza tra domini della vita esperienziale</i>.
+        Catania: Bonanno Editore. ISBN 978-88-6318-374-0.
+      </p>
+    </article>
+
+    <article class="publication">
+      <div class="year">2025</div>
+      <p>
+        Matrella, A. (2025). L’uso integrativo degli audio-diari nella survey research
+        per la rilevazione dei micro-eventi generativi. Il caso di studio sulla qualità
+        della vita dei lavoratori universitari della Sapienza.
+        <i>Sociologia e Ricerca Sociale, 135</i>(2024), 118–138.
+        DOI: 10.3280/SR2024-135006.
+      </p>
+    </article>
+
+    <article class="publication">
+      <div class="year">2024</div>
+      <p>
+        Matrella, A. (2024). Quality of life of academic actors. Career trajectories
+        and working conditions. <i>Italian Journal of Sociology of Education, 16</i>(2), 19–46.
+        DOI: 10.14658/PUPJ-IJSE-2024-2-2.
+      </p>
+    </article>
+
+    <article class="publication">
+      <div class="year">2024</div>
+      <p>
+        Parziale, F., Cavagnuolo, M., & Matrella, A. (2024).
+        The uses of digital technologies in schools. A Bourdieusian analysis of upper-secondary
+        school teachers and students in Rome.
+        <i>Italian Sociological Review</i>. ISSN 2239-8589.
+      </p>
+    </article>
+
+    <article class="publication">
+      <div class="year">2023</div>
+      <p>
+        Cavagnuolo, M., & Matrella, A. (2023).
+        La ricerca etnografica in quattro istituti secondari di secondo grado a Roma:
+        dotazione tecnologica, strumenti e pratiche nella realizzazione della lezione digitalizzata.
+        In F. Parziale (a cura di), <i>La mediazione digitale a scuola. Il caso degli studenti
+        e degli insegnanti negli istituti secondari di secondo grado a Roma</i>.
+        Broni: Edizioni Altravista.
+      </p>
+    </article>
+
+    <article class="publication">
+      <div class="year">2023</div>
+      <p>
+        Matrella, A., & Cavagnuolo, M. (2023).
+        From Marienthal to Digital Methods: Audio Diaries WhatsApp in Social Research.
+        In <i>Abstract Book, Resurgent Authoritarianism: Sociology of New Entanglements of Religion,
+        Politics and Economies</i>, XX ISA World Congress of Sociology, International Sociological Association,
+        Melbourne. ISSN 2522-7025.
+      </p>
+    </article>
+
+    <article class="publication">
+      <div class="year">2021</div>
+      <p>
+        Cavagnuolo, M., Capozza, V., & Matrella, A. (2021).
+        The walkthrough method: State of the art, innovative aspects and application fields.
+        In G. Punziano & A. Delli Paoli (Eds.),
+        <i>Handbook of Research on Advanced Research Methodologies for a Digital Society</i>.
+        IGI Global. DOI: 10.4018/978-1-7998-8473-6.ch028.
+      </p>
+    </article>
+
+  </section>
+
+  <section class="section-title">
+    <h2>Partecipazione a convegni</h2>
+    <p>
+      Interventi come relatore in conferenze, seminari e convegni nazionali e internazionali.
+    </p>
+  </section>
+
+  <section class="conference-list">
+
+    <article class="conference">
+      <div class="year">2025</div>
+      <h3>5° convegno annuale LLC</h3>
+      <div class="place">Cagliari, 14–15 novembre 2025</div>
+      <p>
+        Convegno: <i>I Confini del Diritto del Lavoro nella Transizione Digitale,
+        Ecologica e Geopolitica</i>. Presentazione del contributo:
+        <i>Competenze digitali: il divario tra esigenze manageriali e formazione erogata</i>,
+        nell’ambito di <i>Innovazione tecnologica come opportunità. Un caso studio di transizione
+        digitale in una grande pubblica amministrazione</i>.
+      </p>
+    </article>
+
+    <article class="conference">
+      <div class="year">2025</div>
+      <h3>Ciclo di seminari Area Economia, Lavoro e Organizzazione</h3>
+      <div class="place">Milano, 5 marzo 2025</div>
+      <p>
+        Presentazione del contributo:
+        <i>L’impatto della digitalizzazione sul lavoro nelle Pubbliche Amministrazioni:
+        riflessioni a partire dal case-study del personale tecnico-amministrativo
+        dell’Università degli Studi di Milano</i>.
+      </p>
+    </article>
+
+    <article class="conference">
+      <div class="year">2024</div>
+      <h3>5th International Conference ILIS</h3>
+      <div class="place">Salerno, 7–8 novembre 2024</div>
+      <p>
+        Conference theme: <i>Digital Social Research: Ethical Boundaries and Methodological Biases</i>.
+        Presentation: <i>The use of artificial intelligence within social research:
+        A Classification Proposal</i>.
+      </p>
+    </article>
+
+    <article class="conference">
+      <div class="year">2023</div>
+      <h3>XX ISA World Congress of Sociology</h3>
+      <div class="place">Melbourne, 25 giugno – 1 luglio 2023</div>
+      <p>
+        Session: <i>From Interviewing to Diaries: Data Quality in Quantitative and Qualitative
+        Social Research</i>. Paper: <i>From Marienthal to Digital Methods:
+        Audio Diaries by Using WhatsApp in Social Research</i>.
+      </p>
+    </article>
+
+    <article class="conference">
+      <div class="year">2023</div>
+      <h3>4th International Conference ILIS</h3>
+      <div class="place">Praga, 8–9 giugno 2023</div>
+      <p>
+        Presentation: <i>The uses of digital technologies in schools. A Bourdieusian analysis
+        of upper-secondary school teachers and students in Rome</i>.
+      </p>
+    </article>
+
+    <article class="conference">
+      <div class="year">2023</div>
+      <h3>Convegno AIS — Re-assembling the social. Re(i)stituire il sociale. 40 anni di AIS</h3>
+      <div class="place">Napoli, 18–21 gennaio 2023</div>
+      <p>
+        Panel: <i>Competenze digitali, prassi professionali e processi educativi</i>.
+        Presentazione: <i>L’istruzione ai tempi della società digitale tra significati
+        e pratiche educative: un’indagine etnografica negli istituti secondari di secondo grado a Roma</i>.
+      </p>
+    </article>
+
+  </section>
+
+  <section class="note-box">
+    <h2>
+      Vuoi discutere un lavoro scientifico o un progetto di ricerca?
+    </h2>
+
+    <p>
+      Posso supportare attività di progettazione, analisi, revisione metodologica
+      e valorizzazione dei risultati.
+    </p>
+
+    <a class="btn" href="index.html#contatti">
+      Contattami
+    </a>
+  </section>
+
+</main>
+
+<footer>
+  © <span id="year"></span> Alfredo Matrella
+</footer>
+
+<script>
+  document.getElementById('year').textContent =
+    new Date().getFullYear();
+</script>
+
+</body>
+</html>
