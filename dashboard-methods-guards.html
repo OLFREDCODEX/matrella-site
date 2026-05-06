@@ -391,7 +391,8 @@ textarea {
     });
 
     let latestCountryData = null;
-
+let inactivityTimer = null;
+const INACTIVITY_LIMIT_MS = 5 * 60 * 1000;
     async function loadAnalytics() {
       const secretInput = document.getElementById("secretInput");
       const status = document.getElementById("status");
@@ -468,6 +469,7 @@ document.getElementById("maintenanceBox").classList.remove("hidden");
 status.innerText = "Dati caricati correttamente.";
 
 loadMaintenanceStatus(secret);
+        startInactivityLogout();
 
       } catch (error) {
         status.innerHTML = '<span class="error">Errore di connessione.</span>';
@@ -684,6 +686,49 @@ function updateMaintenanceUI(enabled, message) {
     maintenanceStatus.innerText = "Stato: SERVIZIO ATTIVO / ON";
     maintenanceStatus.classList.add("inactive");
     maintenanceStatus.classList.remove("active");
+  }
+}
+    function startInactivityLogout() {
+  clearTimeout(inactivityTimer);
+
+  const resetTimer = () => {
+    clearTimeout(inactivityTimer);
+
+    inactivityTimer = setTimeout(() => {
+      logoutDashboard();
+    }, INACTIVITY_LIMIT_MS);
+  };
+
+  ["click", "keydown", "mousemove", "scroll", "touchstart"].forEach((eventName) => {
+    document.removeEventListener(eventName, resetTimer);
+    document.addEventListener(eventName, resetTimer);
+  });
+
+  resetTimer();
+}
+
+function logoutDashboard() {
+  const secretInput = document.getElementById("secretInput");
+  const status = document.getElementById("status");
+  const dashboard = document.getElementById("dashboard");
+  const maintenanceBox = document.getElementById("maintenanceBox");
+
+  clearTimeout(inactivityTimer);
+
+  if (secretInput) {
+    secretInput.value = "";
+  }
+
+  if (dashboard) {
+    dashboard.classList.add("hidden");
+  }
+
+  if (maintenanceBox) {
+    maintenanceBox.classList.add("hidden");
+  }
+
+  if (status) {
+    status.innerText = "Sessione scaduta per inattività. Inserisci di nuovo la chiave privata.";
   }
 }
     function formatNumber(value) {
