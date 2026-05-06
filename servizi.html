@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Servizi | Alfredo Matrella</title>
+
+  <meta
+    name="description"
+    content="Servizi di consulenza metodologica, ricerca sociale, analisi dei dati, formazione e supporto alla progettazione della ricerca."
+  />
+
+  <style>
+    :root {
+      --bg: #f7f5ef;
+      --paper: #ffffff;
+      --ink: #1f2933;
+      --muted: #6b7280;
+      --accent: #355c7d;
+      --accent-2: #b08968;
+      --line: #e5e0d8;
+      --soft: #edf2f7;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      border-bottom: 1px solid var(--line);
+      background: rgba(247,245,239,0.95);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+    }
+
+    .nav {
+      width: min(1120px, 92%);
+      margin: auto;
+      padding: 18px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    main {
+      width: min(1120px, 92%);
+      margin: auto;
+      padding: 80px 0;
+    }
+
+    .hero {
+      margin-bottom: 60px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      font-size: 0.85rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      margin-bottom: 24px;
+    }
+
+    .lead {
+      max-width: 760px;
+      color: #4b5563;
+      font-size: 1.1rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+      margin-top: 50px;
+    }
+
+    .service-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 32px;
+    }
+
+    .service-card h2 {
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+      letter-spacing: -0.04em;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .service-card ul {
+      display: grid;
+      gap: 10px;
+      padding-left: 18px;
+      color: #374151;
+    }
+
+    .contact-box {
+      margin-top: 70px;
+      background: var(--ink);
+      color: white;
+      border-radius: 30px;
+      padding: 42px;
+    }
+
+    .contact-box h2 {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .contact-box p {
+      color: #d1d5db;
+      margin-bottom: 22px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 13px 20px;
+      font-weight: 700;
+      background: white;
+      color: var(--ink);
+    }
+
+    footer {
+      width: min(1120px, 92%);
+      margin: auto;
+      padding: 32px 0 44px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 860px) {
+      nav ul {
+        display: none;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="index.html">
+      Alfredo <span>Matrella</span>
+    </a>
+
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="missione-ricerca.html">Missione e ricerca</a></li>
+        <li><a href="pubblicazioni.html">Pubblicazioni</a></li>
+        <li><a href="esperienze.html">Esperienze</a></li>
+        <li><a href="methods-guards.html">Methods Guards AI</a></li>
+        <li><a href="comunicazioni.html">Comunicazioni</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="eyebrow">
+      Servizi
+    </div>
+
+    <h1>
+      Metodo, ricerca e analisi al servizio delle decisioni.
+    </h1>
+
+    <p class="lead">
+      Supporto metodologico, consulenza, formazione e analisi dei dati
+      per ricerca sociale, università, enti, professionisti e organizzazioni.
+    </p>
+  </section>
+
+  <section class="services-grid">
+
+    <article class="service-card">
+      <h2>Consulenza metodologica</h2>
+
+      <p>
+        Supporto alla progettazione e alla revisione metodologica di studi,
+        tesi, paper, report e progetti di ricerca.
+      </p>
+
+      <ul>
+        <li>Disegno della ricerca</li>
+        <li>Costruzione strumenti</li>
+        <li>Strategie metodologiche</li>
+        <li>Revisione coerenza metodologica</li>
+      </ul>
+    </article>
+
+    <article class="service-card">
+      <h2>Analisi dei dati</h2>
+
+      <p>
+        Analisi quantitativa, qualitativa e mixed methods con attenzione
+        alla coerenza interpretativa e metodologica.
+      </p>
+
+      <ul>
+        <li>Analisi quantitative</li>
+        <li>Analisi qualitative</li>
+        <li>Mixed methods</li>
+        <li>Visualizzazione dati</li>
+      </ul>
+    </article>
+
+    <article class="service-card">
+      <h2>Formazione e corsi</h2>
+
+      <p>
+        Attività formative su metodologia della ricerca sociale,
+        analisi dei dati e uso critico dell'intelligenza artificiale.
+      </p>
+
+      <ul>
+        <li>Workshop</li>
+        <li>Seminari</li>
+        <li>Supporto studenti e ricercatori</li>
+        <li>Metodologia della ricerca</li>
+      </ul>
+    </article>
+
+    <article class="service-card">
+      <h2>Methods Guards AI</h2>
+
+      <p>
+        Sistema sperimentale di supporto alla valutazione della robustezza
+        metodologica di prodotti scientifici.
+      </p>
+
+      <ul>
+        <li>Paper</li>
+        <li>Tesi</li>
+        <li>Report</li>
+        <li>Progetti di ricerca</li>
+      </ul>
+    </article>
+
+  </section>
+
+  <section class="contact-box">
+
+    <h2>
+      Hai un progetto da discutere?
+    </h2>
+
+    <p>
+      Scrivimi per collaborazioni, consulenze metodologiche,
+      attività formative o progetti di ricerca.
+    </p>
+
+    <a class="btn" href="index.html#contatti">
+      Contattami
+    </a>
+
+  </section>
+
+</main>
+
+<footer>
+  © <span id="year"></span> Alfredo Matrella
+</footer>
+
+<script>
+  document.getElementById('year').textContent =
+    new Date().getFullYear();
+</script>
+
+</body>
+</html>
