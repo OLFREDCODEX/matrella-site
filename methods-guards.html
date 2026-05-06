@@ -471,6 +471,7 @@
       const codeStatus = document.getElementById("codeStatus");
       const fileInput = document.getElementById("pdf");
       const fileNamePreview = document.getElementById("fileNamePreview");
+      const uploadDropzone = document.getElementById("uploadDropzone");
 
       if (codeInput && codeStatus) {
         codeInput.addEventListener("input", () => {
@@ -492,6 +493,37 @@
           }
         });
       }
+      if (uploadDropzone && fileInput) {
+  uploadDropzone.addEventListener("click", () => {
+    fileInput.click();
+  });
+
+  uploadDropzone.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      fileInput.click();
+    }
+  });
+
+  uploadDropzone.addEventListener("dragover", (event) => {
+    event.preventDefault();
+    uploadDropzone.classList.add("dragover");
+  });
+
+  uploadDropzone.addEventListener("dragleave", () => {
+    uploadDropzone.classList.remove("dragover");
+  });
+
+  uploadDropzone.addEventListener("drop", (event) => {
+    event.preventDefault();
+    uploadDropzone.classList.remove("dragover");
+
+    if (event.dataTransfer.files && event.dataTransfer.files.length > 0) {
+      fileInput.files = event.dataTransfer.files;
+      fileInput.dispatchEvent(new Event("change"));
+    }
+  });
+}
     });
 
     async function activateCode() {
