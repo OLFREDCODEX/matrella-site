@@ -657,6 +657,12 @@
     }
 
     async function analyzePdf() {
+      
+  gtag('event', 'start_analysis', {
+    event_category: 'MethodsGuards',
+    event_label: 'Analisi Avviata'
+  });
+
       const fileInput = document.getElementById("pdf");
       const productType = document.getElementById("productType").value;
       const output = document.getElementById("output");
