@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Mission e ricerca | Alfredo Matrella</title>
+
+  <meta
+    name="description"
+    content="Mission e interessi di ricerca"
+  />
+
+  <style>
+    :root {
+      --bg: #f7f5ef;
+      --paper: #ffffff;
+      --ink: #1f2933;
+      --muted: #6b7280;
+      --accent: #355c7d;
+      --accent-2: #b08968;
+      --line: #e5e0d8;
+      --soft: #edf2f7;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      border-bottom: 1px solid var(--line);
+      background: rgba(247,245,239,0.95);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .nav {
+      width: min(1120px, 92%);
+      margin: auto;
+      padding: 18px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    main {
+      width: min(1120px, 92%);
+      margin: auto;
+      padding: 80px 0;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      font-size: 0.85rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      margin-bottom: 24px;
+    }
+
+    .lead {
+      max-width: 980px;
+      margin: 0 auto;
+      color: #355c7d;
+      font-size: 1.45rem;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    .section-title {
+      margin: 70px 0 26px;
+      padding-top: 30px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-title h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1;
+      letter-spacing: -0.055em;
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 840px;
+    }
+
+    .mission-box {
+      background: var(--ink);
+      color: white;
+      border-radius: 30px;
+      padding: 42px;
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 38px;
+      align-items: start;
+    }
+
+    .mission-box h2 {
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1;
+      letter-spacing: -0.06em;
+    }
+
+    .mission-box p {
+      color: #d1d5db;
+      font-size: 1.08rem;
+      margin-bottom: 16px;
+    }
+
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .research-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 26px;
+      min-height: 230px;
+    }
+
+    .research-card .num {
+      color: var(--accent-2);
+      font-weight: 800;
+      font-size: 0.85rem;
+      margin-bottom: 24px;
+    }
+
+    .research-card h3 {
+      font-size: 1.18rem;
+      margin-bottom: 10px;
+      letter-spacing: -0.03em;
+    }
+
+    .research-card p {
+      color: var(--muted);
+    }
+
+    .method-box {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 38px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+    }
+
+    .method-box h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      line-height: 1;
+      letter-spacing: -0.055em;
+      margin-bottom: 18px;
+    }
+
+    .method-box p {
+      color: #4b5563;
+      margin-bottom: 16px;
+    }
+
+    .method-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .method-list li {
+      list-style: none;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      color: #374151;
+    }
+
+    .methods-guards-box {
+      margin-top: 70px;
+      background: linear-gradient(180deg, #ffffff 0%, #f1f6fa 100%);
+      border: 1px solid rgba(53, 92, 125, 0.35);
+      border-radius: 30px;
+      padding: 42px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .methods-guards-box h2 {
+      color: var(--accent);
+      font-size: clamp(1.9rem, 4vw, 3.2rem);
+      line-height: 1;
+      letter-spacing: -0.055em;
+      margin-bottom: 16px;
+    }
+
+    .methods-guards-box p {
+      color: #4b5563;
+      margin-bottom: 20px;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 13px 20px;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .btn.primary {
+      background: var(--ink);
+      color: white;
+    }
+
+    .btn.secondary {
+      background: white;
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .contact-box {
+      margin-top: 70px;
+      background: var(--ink);
+      color: white;
+      border-radius: 30px;
+      padding: 42px;
+    }
+
+    .contact-box h2 {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .contact-box p {
+      color: #d1d5db;
+      margin-bottom: 22px;
+    }
+
+    footer {
+      width: min(1120px, 92%);
+      margin: auto;
+      padding: 32px 0 44px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 860px) {
+      nav ul {
+        display: none;
+      }
+
+      main {
+        padding: 60px 0;
+      }
+
+      h1 {
+        font-size: clamp(2.4rem, 12vw, 4rem);
+      }
+
+      .lead {
+        font-size: 1.2rem;
+      }
+
+      .mission-box,
+      .method-box,
+      .methods-guards-box {
+        grid-template-columns: 1fr;
+      }
+
+      .research-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="index.html">
+      Alfredo <span>Matrella</span>
+    </a>
+
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="missione-ricerca.html">Mission e ricerca</a></li>
+        <li><a href="pubblicazioni.html">Pubblicazioni</a></li>
+        <li><a href="esperienze.html">Esperienze</a></li>
+        <li><a href="servizi.html">Servizi</a></li>
+        <li><a href="methods-guards.html">Methods Guards AI</a></li>
+        <li><a href="comunicazioni.html">Comunicazioni</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="eyebrow">Mission e ricerca</div>
+
+    <h1>
+      Esplorare le frontiere della ricerca sociale.
+    </h1>
+
+    <p class="lead">
+      Sono un metodologo della ricerca sociale. Mi definisco anche un ricercatore di frontiera:
+      osservo con attenzione le innovazioni tecnologiche, teoriche e operative che trasformano
+      il dibattito metodologico e la produzione della conoscenza empirica.
+    </p>
+  </section>
+
+  <section class="mission-box">
+    <div>
+      <h2>
+        Mission
+      </h2>
+    </div>
+
+    <div>
+      <p>
+        Considero la metodologia della ricerca sociale non come un insieme statico di procedure,
+        ma come un campo vivo, esposto al cambiamento degli strumenti, dei dati, delle organizzazioni
+        e delle forme contemporanee di conoscenza.
+      </p>
+
+      <p>
+        Il mio lavoro si colloca in questa zona di confine: tra rigore metodologico, opportunità e innovazione,
+        tra tecniche consolidate e nuovi strumenti, tra ricerca empirica tradizionale e ambienti digitali.
+      </p>
+
+      <p>
+        Mi interessa capire come le innovazioni — tecnologiche o meno — possono modificare il modo
+        in cui: formuliamo domande; costruiamo dati; osserviamo fenomeni sociali; analizziamo risultati
+        e valutiamo la robustezza delle evidenze.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-title">
+    <h2>Interessi di ricerca</h2>
+    <p>
+      I miei interessi principali riguardano il benessere dei lavoratori, gli usi e gli effetti
+      delle tecnologie digitali, gli AI-powered tools nella ricerca sociale e le innovazioni
+      metodologiche legate a nuovi strumenti o a nuove combinazioni di strumenti esistenti.
+    </p>
+  </section>
+
+  <section class="research-grid">
+
+    <article class="research-card">
+      <div class="num">01</div>
+      <h3>Benessere dei lavoratori</h3>
+      <p>
+        Qualità della vita, condizioni lavorative, traiettorie professionali,
+        precarietà accademica, benessere organizzativo e interdipendenza tra domini della vita.
+      </p>
+    </article>
+
+    <article class="research-card">
+      <div class="num">02</div>
+      <h3>Usi ed effetti delle tecnologie digitali</h3>
+      <p>
+        Tecnologie digitali nei contesti educativi, organizzativi e lavorativi,
+        trasformazione digitale, competenze digitali e platform society.
+      </p>
+    </article>
+
+    <article class="research-card">
+      <div class="num">03</div>
+      <h3>AI-powered tools nella ricerca sociale</h3>
+      <p>
+        Uso critico dell’intelligenza artificiale nella ricerca sociale,
+        strumenti AI-powered, bias metodologici, opportunità e limiti nella produzione di conoscenza.
+      </p>
+    </article>
+
+    <article class="research-card">
+      <div class="num">04</div>
+      <h3>Innovazione metodologica</h3>
+      <p>
+        Riflessioni metodologiche sull’uso di nuovi strumenti di ricerca,
+        sulla sperimentazione empirica e sull’adattamento delle tecniche ai problemi conoscitivi.
+      </p>
+    </article>
+
+    <article class="research-card">
+      <div class="num">05</div>
+      <h3>Nuove combinazioni di strumenti esistenti</h3>
+      <p>
+        Integrazione tra strumenti tradizionali e digitali: survey, interviste,
+        audio-diari, osservazione, strumenti online e strategie mixed methods.
+      </p>
+    </article>
+
+    <article class="research-card">
+      <div class="num">06</div>
+      <h3>Qualità del dato e robustezza metodologica</h3>
+      <p>
+        Coerenza tra domanda di ricerca, strumenti, dati, analisi e interpretazione;
+        attenzione alle omissioni, ai bias e ai limiti delle evidenze empiriche.
+      </p>
+    </article>
+
+  </section>
+
+  <section class="section-title">
+    <h2>Approccio metodologico</h2>
+    <p>
+      Il mio approccio parte da una convinzione: ogni innovazione metodologica ha valore solo
+      se aumenta la qualità, la trasparenza e la controllabilità del processo di ricerca.
+    </p>
+  </section>
+
+  <section class="method-box">
+    <div>
+      <h2>
+        Rigore metodologico e ricerca di frontiera.
+      </h2>
+
+      <p>
+        Lavorare sulle frontiere della ricerca sociale non significa inseguire ogni novità.
+        Significa interrogare criticamente strumenti, tecniche e combinazioni metodologiche
+        per capire che cosa rendono visibile, che cosa lasciano fuori e quali rischi introducono.
+      </p>
+
+      <p>
+        Per questo il mio interesse per l’innovazione resta legato alla qualità del disegno
+        di ricerca, alla costruzione del dato, alla validità dell’interpretazione e alla responsabilità
+        con cui i risultati vengono comunicati.
+      </p>
+    </div>
+
+    <ul class="method-list">
+      <li>Progettazione del disegno di ricerca</li>
+      <li>Costruzione e revisione di questionari</li>
+      <li>Survey research e strumenti di rilevazione online</li>
+      <li>Interviste, osservazione, audio-diari e strumenti digitali</li>
+      <li>Mixed methods e integrazione tra dati quantitativi e qualitativi</li>
+      <li>Valutazione critica della robustezza metodologica</li>
+    </ul>
+  </section>
+
+  <section class="methods-guards-box">
+    <div>
+      <h2>
+        Methods Guards AI
+      </h2>
+
+      <p>
+        Methods Guards AI nasce esattamente da questa prospettiva: usare l’intelligenza artificiale
+        come supporto alla lettura metodologica critica, non come sostituto del giudizio scientifico.
+      </p>
+
+      <p>
+        Il progetto traduce l’interesse per gli AI-powered tools in uno strumento sperimentale
+        orientato a individuare fragilità, omissioni, incoerenze e punti di miglioramento
+        in paper, tesi, report e progetti di ricerca.
+      </p>
+    </div>
+
+    <div>
+      <p>
+        L’obiettivo è rendere più visibile ciò che spesso rimane implicito:
+        la struttura metodologica che sostiene — o indebolisce — una ricerca.
+      </p>
+
+      <div class="btn-row">
+        <a class="btn primary" href="methods-guards.html">
+          Apri Methods Guards AI
+        </a>
+
+        <a class="btn secondary" href="servizi.html">
+          Vedi i servizi
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-box">
+    <h2>
+      Parliamo di ricerca, metodo o innovazione?
+    </h2>
+
+    <p>
+      Scrivimi per collaborazioni scientifiche, consulenze metodologiche,
+      attività formative o progetti di ricerca empirica.
+    </p>
+
+    <a class="btn secondary" href="index.html#contatti">
+      Contattami
+    </a>
+  </section>
+
+</main>
+
+<footer>
+  © <span id="year"></span> Alfredo Matrella
+</footer>
+
+<script>
+  document.getElementById('year').textContent =
+    new Date().getFullYear();
+</script>
+
+</body>
+</html>
