@@ -2,18 +2,25 @@
 <html lang="it">
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FL9Z4EHSEL"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FL9Z4EHSEL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'G-FL9Z4EHSEL');
-</script>
+    gtag('config', 'G-FL9Z4EHSEL');
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alfredo Matrella | Valutatore e ricercatore sociale</title>
-  <meta name="description" content="Sito personale di Alfredo Matrella, valutatore e ricercatore sociale. Ricerca sociale, valutazione, metodologia e analisi dei dati." />
+
+  <title>Alfredo Matrella | Metodologo della ricerca sociale</title>
+
+  <meta
+    name="description"
+    content="Sito personale di Alfredo Matrella, metodologo della ricerca sociale, valutatore e ricercatore. Ricerca sociale, metodologia, valutazione, analisi dei dati, Methods Guards AI e bandi Area 14 / GSPS."
+  />
+
   <style>
     :root {
       --bg: #f7f5ef;
@@ -26,9 +33,15 @@
       --soft: #edf2f7;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -37,13 +50,16 @@
       line-height: 1.6;
     }
 
-    a { color: inherit; text-decoration: none; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
     header {
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(247, 245, 239, 0.9);
+      background: rgba(247, 245, 239, 0.92);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--line);
     }
@@ -63,24 +79,28 @@
       font-size: 1.15rem;
     }
 
-    .logo span { color: var(--accent); }
+    .logo span {
+      color: var(--accent);
+    }
 
     nav ul {
       display: flex;
-      gap: 22px;
+      gap: 18px;
       list-style: none;
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 0.92rem;
     }
 
-    nav a:hover { color: var(--accent); }
+    nav a:hover {
+      color: var(--accent);
+    }
 
     .hero {
       width: min(1120px, 92%);
       margin: auto;
       padding: 92px 0 70px;
       display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
+      grid-template-columns: 1.2fr 0.8fr;
       gap: 56px;
       align-items: center;
     }
@@ -115,7 +135,7 @@
     .lead {
       font-size: clamp(1.05rem, 2vw, 1.3rem);
       color: #4b5563;
-      max-width: 720px;
+      max-width: 740px;
       margin-bottom: 32px;
     }
 
@@ -141,15 +161,22 @@
       color: white;
     }
 
-    .btn.primary:hover { transform: translateY(-2px); background: var(--accent); }
+    .btn.primary:hover {
+      transform: translateY(-2px);
+      background: var(--accent);
+    }
 
     .btn.secondary {
       border-color: var(--line);
-      background: rgba(255,255,255,0.55);
+      background: rgba(255,255,255,0.62);
       color: var(--ink);
     }
 
-    .btn.secondary:hover { border-color: var(--accent); color: var(--accent); }
+    .btn.secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
 
     .profile-card {
       background: var(--paper);
@@ -178,7 +205,10 @@
       letter-spacing: -0.04em;
     }
 
-    .profile-card p { color: var(--muted); margin-bottom: 20px; }
+    .profile-card p {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
 
     .tags {
       display: flex;
@@ -231,6 +261,12 @@
       border-radius: 24px;
       padding: 24px;
       min-height: 210px;
+      transition: 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(53, 92, 125, 0.28);
     }
 
     .card .num {
@@ -246,7 +282,16 @@
       letter-spacing: -0.03em;
     }
 
-    .card p { color: var(--muted); }
+    .card p {
+      color: var(--muted);
+    }
+
+    .card a {
+      display: inline-flex;
+      margin-top: 18px;
+      color: var(--accent);
+      font-weight: 800;
+    }
 
     .wide-card {
       background: var(--ink);
@@ -265,7 +310,9 @@
       letter-spacing: -0.055em;
     }
 
-    .wide-card p { color: #d1d5db; }
+    .wide-card p {
+      color: #d1d5db;
+    }
 
     .list {
       display: grid;
@@ -280,39 +327,177 @@
       color: #f3f4f6;
     }
 
-    .items {
+    .methods-box {
+      background: linear-gradient(180deg, #ffffff 0%, #f1f6fa 100%);
+      border: 1px solid rgba(53, 92, 125, 0.35);
+      border-radius: 30px;
+      padding: 42px;
       display: grid;
-      gap: 16px;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: center;
     }
 
-    .item {
+    .methods-box h2 {
+      color: var(--accent);
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1;
+      letter-spacing: -0.06em;
+      margin-bottom: 18px;
+    }
+
+    .methods-box p {
+      color: #4b5563;
+      margin-bottom: 16px;
+    }
+
+    .communication-grid {
       display: grid;
-      grid-template-columns: 0.4fr 1.2fr 0.4fr;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .communication-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 24px;
+      min-height: 230px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .communication-card h3 {
+      font-size: 1.18rem;
+      line-height: 1.2;
+      letter-spacing: -0.035em;
+      margin-bottom: 10px;
+    }
+
+    .communication-card p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .communication-card a {
+      color: var(--accent);
+      font-weight: 800;
+      margin-top: auto;
+    }
+
+    .badge {
+      display: inline-flex;
+      width: fit-content;
+      background: rgba(53, 92, 125, 0.12);
+      color: var(--accent);
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .mur-box {
+      background: linear-gradient(180deg, #ffffff 0%, #f5f8fb 100%);
+      border: 1px solid rgba(53, 92, 125, 0.25);
+      border-radius: 30px;
+      padding: 42px;
+    }
+
+    .mur-box-top {
+      display: flex;
+      justify-content: space-between;
       gap: 20px;
-      align-items: start;
-      background: rgba(255,255,255,0.55);
+      align-items: flex-start;
+      margin-bottom: 28px;
+    }
+
+    .mur-box h2 {
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1;
+      letter-spacing: -0.06em;
+      margin-bottom: 18px;
+    }
+
+    .mur-box p {
+      color: #4b5563;
+      max-width: 850px;
+      margin-bottom: 14px;
+    }
+
+    .mur-badge {
+      background: rgba(53, 92, 125, 0.12);
+      color: var(--accent);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .mur-status {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-top: 18px;
+    }
+
+    .mur-bandi-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 30px;
+    }
+
+    .mur-bando {
+      background: white;
       border: 1px solid var(--line);
       border-radius: 22px;
-      padding: 22px;
+      padding: 18px;
     }
 
-    .item strong { color: var(--accent); }
-    .item p { color: var(--muted); }
-    .item .status { color: var(--accent-2); font-weight: 800; font-size: 0.85rem; }
-
-    .publication-list {
-      display: grid;
-      gap: 14px;
+    .mur-bando-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 10px;
     }
 
-    .publication {
-      background: rgba(255,255,255,0.55);
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      padding: 20px 22px;
+    .mur-bando-type {
+      color: var(--accent);
+      font-weight: 800;
+      font-size: 0.85rem;
     }
 
-    .publication p { color: var(--muted); }
+    .mur-bando-gsps {
+      color: var(--accent-2);
+      font-weight: 800;
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+
+    .mur-bando h3 {
+      font-size: 1rem;
+      line-height: 1.2;
+      margin-bottom: 8px;
+      letter-spacing: -0.03em;
+    }
+
+    .mur-bando p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .mur-bando a {
+      display: inline-flex;
+      margin-top: 10px;
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .mur-bando a:hover {
+      color: var(--ink);
+    }
 
     .contact-box {
       background: var(--paper);
@@ -332,120 +517,38 @@
       margin-bottom: 18px;
     }
 
-    .contact-box p { color: var(--muted); margin-bottom: 24px; }
+    .contact-box p {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
 
-    .contact-links {
+    form {
       display: grid;
       gap: 12px;
     }
 
-    .contact-links a {
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px 16px;
+      font: inherit;
       background: var(--soft);
-      border-radius: 16px;
-      padding: 15px 16px;
       color: var(--ink);
-      font-weight: 700;
     }
-.mur-box {
-  background: linear-gradient(180deg, #ffffff 0%, #f5f8fb 100%);
-  border: 1px solid rgba(53, 92, 125, 0.25);
-  border-radius: 30px;
-  padding: 42px;
-}
 
-.mur-box-top {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  align-items: flex-start;
-  margin-bottom: 28px;
-}
+    textarea {
+      resize: vertical;
+    }
 
-.mur-box h2 {
-  font-size: clamp(2rem, 4vw, 3.4rem);
-  line-height: 1;
-  letter-spacing: -0.06em;
-  margin-bottom: 18px;
-}
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: #ffffff;
+    }
 
-.mur-box p {
-  color: #4b5563;
-  max-width: 850px;
-  margin-bottom: 14px;
-}
-
-.mur-badge {
-  background: rgba(53, 92, 125, 0.12);
-  color: var(--accent);
-  padding: 10px 14px;
-  border-radius: 999px;
-  font-size: 0.82rem;
-  font-weight: 800;
-  white-space: nowrap;
-}
-
-.mur-status {
-  color: var(--muted);
-  font-size: 0.95rem;
-  margin-top: 18px;
-}
-
-.mur-bandi-list {
-  display: grid;
-  gap: 10px;
-  margin-top: 30px;
-}
-
-.mur-bando {
-  background: white;
-  border: 1px solid var(--line);
-  border-radius: 22px;
-  padding: 18px;
-}
-
-.mur-bando-top {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 10px;
-}
-
-.mur-bando-type {
-  color: var(--accent);
-  font-weight: 800;
-  font-size: 0.85rem;
-}
-
-.mur-bando-gsps {
-  color: var(--accent-2);
-  font-weight: 800;
-  font-size: 0.85rem;
-  white-space: nowrap;
-}
-
-.mur-bando h3 {
-  font-size: 1rem;
-  line-height: 1.2;
-  margin-bottom: 8px;
-  letter-spacing: -0.03em;
-}
-
-.mur-bando p {
-  font-size: 0.88rem;
-  color: var(--muted);
-  margin-bottom: 8px;
-}
-
-.mur-bando a {
-  display: inline-flex;
-  margin-top: 10px;
-  color: var(--accent);
-  font-weight: 800;
-}
-
-.mur-bando a:hover {
-  color: var(--ink);
-}
     footer {
       width: min(1120px, 92%);
       margin: auto;
@@ -459,54 +562,56 @@
     }
 
     @media (max-width: 860px) {
-  nav ul { display: none; }
-  .hero, .section-head, .wide-card, .contact-box { grid-template-columns: 1fr; }
-  .grid { grid-template-columns: 1fr; }
-  .item { grid-template-columns: 1fr; }
-  .hero { padding-top: 60px; }
-  .mur-box-top { flex-direction: column; }
-  .mur-links { grid-template-columns: 1fr; }
-  footer { flex-direction: column; }
-}
-    form {
-  display: grid;
-  gap: 12px;
-}
+      nav ul {
+        display: none;
+      }
 
-input,
-textarea {
-  width: 100%;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 14px 16px;
-  font: inherit;
-  background: var(--soft);
-  color: var(--ink);
-}
+      .hero,
+      .section-head,
+      .wide-card,
+      .methods-box,
+      .contact-box {
+        grid-template-columns: 1fr;
+      }
 
-textarea {
-  resize: vertical;
-}
+      .grid,
+      .communication-grid {
+        grid-template-columns: 1fr;
+      }
 
-input:focus,
-textarea:focus {
-  outline: none;
-  border-color: var(--accent);
-  background: #ffffff;
-}
+      .hero {
+        padding-top: 60px;
+      }
+
+      .mur-box-top {
+        flex-direction: column;
+      }
+
+      .mur-bando-top {
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      footer {
+        flex-direction: column;
+      }
+    }
   </style>
 </head>
+
 <body>
   <header>
     <div class="nav">
-      <a class="logo" href="#top">Alfredo <span>Matrella</span></a>
+      <a class="logo" href="index.html">Alfredo <span>Matrella</span></a>
+
       <nav aria-label="Navigazione principale">
         <ul>
-          <li><a href="#servizi">Servizi</a></li>
-          <li><a href="#metodo">Metodo</a></li>
-          <li><a href="#esperienze">Esperienze</a></li>
-          <li><a href="#formazione">Formazione</a></li>
-          <li><a href="#pubblicazioni">Pubblicazioni</a></li>
+          <li><a href="missione-ricerca.html">Mission</a></li>
+          <li><a href="servizi.html">Servizi</a></li>
+          <li><a href="methods-guards.html">Methods Guards AI</a></li>
+          <li><a href="pubblicazioni.html">Pubblicazioni</a></li>
+          <li><a href="esperienze.html">Esperienze</a></li>
+          <li><a href="comunicazioni.html">Comunicazioni</a></li>
           <li><a href="#opportunita">Opportunità</a></li>
           <li><a href="#contatti">Contatti</a></li>
         </ul>
@@ -515,58 +620,86 @@ textarea:focus {
   </header>
 
   <main id="top">
+
     <section class="hero" aria-labelledby="titolo-hero">
       <div>
-        <div class="eyebrow">Valutatore · Ricercatore sociale</div>
-        <h1 id="titolo-hero">Studiare il cambiamento osservando il metodo.</h1>
+        <div class="eyebrow">Metodologo della ricerca sociale</div>
+
+        <h1 id="titolo-hero">
+          Esplorare le frontiere della ricerca sociale.
+        </h1>
+
         <p class="lead">
-          Progetto e analizzo ricerche sociali con approcci quantitativi, qualitativi e mixed methods, raccogliendo dati per ottenere evidenze empiriche utili e interpretabili.
+          Mi occupo di metodologia, ricerca sociale, valutazione e analisi dei dati,
+          con attenzione alle innovazioni tecnologiche, agli strumenti emergenti
+          e alla qualità delle evidenze empiriche.
         </p>
+
         <div class="hero-actions">
           <a class="btn primary" href="#contatti">Parliamo di un progetto</a>
-          <a class="btn secondary" href="#servizi">Esplora i servizi</a>
+          <a class="btn secondary" href="servizi.html">Esplora i servizi</a>
         </div>
       </div>
 
       <aside class="profile-card" aria-label="Sintesi profilo">
         <div class="profile-mark">AM</div>
-        <h2>Valutazione e ricerca sociale</h2>
+
+        <h2>Metodo, dati e ricerca sociale</h2>
+
         <p>
-          Un approccio rigoroso ma accessibile: domande chiare, dati solidi, interpretazioni responsabili.
+          Un approccio rigoroso ma orientato alla frontiera: domande chiare,
+          strumenti adeguati, dati interpretabili e attenzione ai limiti del metodo.
         </p>
+
         <div class="tags">
-          <span class="tag">Quantitative data analysis</span>
-          <span class="tag">Qualitative data analysis</span>
-          <span class="tag">Mixed methods research</span>
-          <span class="tag">Social research</span>
+          <span class="tag">Survey research</span>
+          <span class="tag">Mixed methods</span>
+          <span class="tag">Qualitative analysis</span>
+          <span class="tag">Quantitative analysis</span>
           <span class="tag">Evaluation</span>
+          <span class="tag">AI-powered tools</span>
         </div>
       </aside>
     </section>
 
-    <section id="servizi">
+    <section id="cosa-faccio">
       <div class="section-head">
-        <h2>Servizi</h2>
+        <h2>Cosa faccio</h2>
         <p>
-          Supporto metodologico e analitico per enti, gruppi di ricerca, studenti, professionisti e organizzazioni che vogliono progettare, analizzare o comunicare meglio la propria ricerca.
+          Lavoro su ricerca sociale, valutazione, analisi dei dati e innovazione metodologica,
+          collegando progettazione empirica, qualità del dato e interpretazione responsabile dei risultati.
         </p>
       </div>
 
       <div class="grid">
         <article class="card">
-          <div class="num">A</div>
-          <h3>Disegno della ricerca</h3>
-          <p>Supporto nella formulazione di domande, ipotesi, obiettivi, strumenti e strategie di raccolta dati.</p>
+          <div class="num">01</div>
+          <h3>Ricerca sociale</h3>
+          <p>
+            Progettazione di ricerche empiriche, costruzione di strumenti, raccolta dati
+            e analisi di fenomeni sociali, organizzativi e digitali.
+          </p>
+          <a href="missione-ricerca.html">Scopri la mission →</a>
         </article>
+
         <article class="card">
-          <div class="num">B</div>
-          <h3>Analisi dei dati</h3>
-          <p>Analisi quantitativa, qualitativa e mixed methods, con attenzione alla coerenza tra domanda, dati, tecniche e interpretazione.</p>
+          <div class="num">02</div>
+          <h3>Consulenza metodologica</h3>
+          <p>
+            Supporto a tesi, paper, report, progetti di ricerca e attività di valutazione,
+            con attenzione alla coerenza tra domanda, dati, metodo e conclusioni.
+          </p>
+          <a href="servizi.html">Vedi i servizi →</a>
         </article>
+
         <article class="card">
-          <div class="num">C</div>
-          <h3>Methods Guards</h3>
-          <p>Revisione della robustezza metodologica di prodotti scientifici e accademici: paper, progetti di ricerca, tesi, libri e report.</p>
+          <div class="num">03</div>
+          <h3>Methods Guards AI</h3>
+          <p>
+            Sistema sperimentale di supporto alla valutazione della robustezza
+            metodologica di prodotti scientifici e accademici.
+          </p>
+          <a href="methods-guards.html">Apri il tool →</a>
         </article>
       </div>
     </section>
@@ -576,10 +709,15 @@ textarea:focus {
         <div>
           <h2>Dal problema conoscitivo alla decisione.</h2>
         </div>
+
         <div>
           <p>
-            Ogni progetto parte da una domanda: che cosa vogliamo capire, perché è importante e quali dati possono sostenerlo? Il metodo non è burocrazia scientifica: è la struttura che permette di distinguere un'intuizione da un'evidenza.
+            Ogni progetto parte da una domanda: che cosa vogliamo capire,
+            perché è importante e quali dati possono sostenerlo? Il metodo non è
+            burocrazia scientifica: è la struttura che permette di distinguere
+            un’intuizione da un’evidenza.
           </p>
+
           <ul class="list">
             <li>Definizione del problema e degli obiettivi conoscitivi</li>
             <li>Costruzione del disegno di ricerca</li>
@@ -590,119 +728,38 @@ textarea:focus {
       </div>
     </section>
 
-    <section id="esperienze">
-      <div class="section-head">
-        <h2>Esperienze di ricerca</h2>
-        <p>
-          Una selezione di alcune delle principali attività di ricerca.
-        </p>
-      </div>
+    <section id="methods-guards-home">
+      <div class="methods-box">
+        <div>
+          <h2>Methods Guards AI</h2>
 
-      <div class="items">
-        <article class="item">
-          <strong>Ricerca</strong>
-          <div>
-            <h3>Assegno di ricerca presso Università degli Studi di Milano</h3>
-            <p>Progetto I.TEC.O su innovazione tecnologica, competenze digitali, lavoro e organizzazioni.</p>
+          <p>
+            Methods Guards AI nasce per rendere più visibili fragilità,
+            omissioni e incoerenze metodologiche nei prodotti scientifici.
+          </p>
+
+          <p>
+            Non sostituisce la revisione umana esperta, ma può aiutare a leggere
+            paper, tesi, report e progetti di ricerca con maggiore attenzione
+            alla robustezza metodologica.
+          </p>
+        </div>
+
+        <div>
+          <p>
+            È uno strumento gratuito e sperimentale, pensato come supporto alla
+            consapevolezza metodologica e alla qualità della ricerca sociale.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="methods-guards.html">Prova Methods Guards AI</a>
+            <a class="btn secondary" href="trasparenza.html">Trasparenza dati</a>
           </div>
-          <div class="status">2024–2025</div>
-        </article>
-        <article class="item">
-          <strong>Ricerca</strong>
-          <div>
-            <h3>Qualità della vita dei lavoratori universitari</h3>
-            <p>Ricerca mixed methods su benessere, traiettorie di carriera e condizioni lavorative nel contesto universitario.</p>
-          </div>
-          <div class="status">2023–2024</div>
-        </article>
-        <article class="item">
-          <strong>Ricerca</strong>
-          <div>
-            <h3>Progetto SHEIN</h3>
-            <p>Analisi delle pratiche di consumo digitale e dell'esperienza utente nella piattaforma di fast fashion.</p>
-          </div>
-          <div class="status">2024–2025</div>
-        </article>
-        <article class="item">
-          <strong>Ricerca</strong>
-          <div>
-            <h3>Scuole secondarie di secondo grado a Roma</h3>
-            <p>Ricerca sull'uso delle tecnologie digitali nei contesti scolastici e sulle pratiche educative.</p>
-          </div>
-          <div class="status">2022–2024</div>
-        </article>
-        <article class="item">
-          <strong>Ricerca</strong>
-          <div>
-            <h3>Technology addiction</h3>
-            <p>Ricerca su nuove forme di dipendenza digitale, socializzazione e reti sociali.</p>
-          </div>
-          <div class="status">2018–2019</div>
-        </article>
+        </div>
       </div>
     </section>
 
-    <section id="formazione">
-      <div class="section-head">
-        <h2>Formazione</h2>
-        <p>
-          Percorso formativo e metodologico centrato sulla ricerca sociale, sulla valutazione e sull'analisi empirica dei dati.
-        </p>
-      </div>
-
-      <div class="items">
-        <article class="item">
-          <strong>Dottorato</strong>
-          <div>
-            <h3>Dottorato in Comunicazione, Ricerca Sociale e Marketing</h3>
-            <p>Indirizzo in Metodologia delle scienze sociali, Sapienza Università di Roma.</p>
-          </div>
-          <div class="status">2020–2024</div>
-        </article>
-        <article class="item">
-          <strong>Laurea magistrale</strong>
-          <div>
-            <h3>Comunicazione, Valutazione e Ricerca Sociale per le Organizzazioni</h3>
-            <p>Interclasse LM-88, curriculum Valutazione e Ricerca Sociale Applicata. Voto: 110 e lode.</p>
-          </div>
-          <div class="status">2020</div>
-        </article>
-        <article class="item">
-          <strong>Metodi</strong>
-          <div>
-            <h3>Formazione metodologica ed extra-curriculare</h3>
-            <p>SEM in R, metodi creativi, costruzione di questionari, ACP, ACM, R, etnografia e analisi dei dati.</p>
-          </div>
-          <div class="status">2018–2026</div>
-        </article>
-      </div>
-    </section>
-
-    <section id="pubblicazioni">
-      <div class="section-head">
-        <h2>Pubblicazioni</h2>
-        <p>
-          Alcune pubblicazioni.
-        </p>
-      </div>
-
-      <div class="publication-list">
-        <article class="publication">
-          <p>Matrella, A. (2025). <i>Qualità della vita dei lavoratori universitari e interdipendenza tra domini della vita esperienziale</i>. Bonanno Editore.</p>
-        </article>
-        <article class="publication">
-          <p>Matrella, A., Cavagnuolo, M., & Capozza, V. (2025). The use of artificial intelligence within social research: A classification proposal. <i>The Lab’s Quarterly</i>.</p>
-        </article>
-        <article class="publication">
-          <p>Matrella, A. (2024). Quality of life of academic actors. <i>Italian Journal of Sociology of Education, 16</i>(2), 19–46.</p>
-        </article>
-        <article class="publication">
-          <p>Parziale, F., Cavagnuolo, M., & Matrella, A. (2024). The uses of digital technologies in schools. A Bourdieusian analysis of upper-secondary school teachers and students in Rome. <i>Italian Sociological Review</i>.</p>
-        </article>
-      </div>
-    </section>
-
-            <section id="opportunita">
+    <section id="opportunita">
       <div class="mur-box">
 
         <div class="mur-box-top">
@@ -711,15 +768,13 @@ textarea:focus {
 
             <p>
               Ho creato questo spazio per monitorare periodicamente bandi MUR
-nell’Area 14 / GSPS relativi a contratti di ricerca,
-incarichi di ricerca e incarichi post-doc.
-
+              nell’Area 14 / GSPS relativi a contratti di ricerca, incarichi di ricerca
+              e incarichi post-doc.
             </p>
 
             <p>
-             
-L’obiettivo è offrire uno strumento utile a ricercatrici
-e ricercatori sociali in cerca di opportunità lavorative.
+              L’obiettivo è offrire uno strumento utile a ricercatrici
+              e ricercatori sociali in cerca di opportunità lavorative.
             </p>
 
             <p>
@@ -741,75 +796,129 @@ e ricercatori sociali in cerca di opportunità lavorative.
 
       </div>
     </section>
-    <section id="contatti">
-  <div class="contact-box">
-    <div>
-      <h2>Hai un progetto da discutere?</h2>
-      <p>
-        Scrivimi per collaborazioni, consulenze metodologiche, analisi dei dati o progetti di ricerca.
-      </p>
-    </div>
 
-    <form action="https://formspree.io/f/mdabnogw" method="POST">
-      <input type="text" name="name" placeholder="Il tuo nome" required>
-      <input type="email" name="email" placeholder="La tua email" required>
-      <textarea name="message" placeholder="Il tuo messaggio" rows="6" required></textarea>
-      <button class="btn primary" type="submit">Invia messaggio</button>
-    </form>
-  </div>
-</section>
+    <section id="ultime-comunicazioni">
+      <div class="section-head">
+        <h2>Ultime comunicazioni</h2>
+        <p>
+          Aggiornamenti, riflessioni e contenuti editoriali su ricerca sociale,
+          metodologia, tecnologie digitali, intelligenza artificiale e opportunità accademiche.
+        </p>
+      </div>
+
+      <div class="communication-grid">
+        <article class="communication-card">
+          <div>
+            <span class="badge">News</span>
+            <h3>Monitoraggio bandi MUR Area 14 / GSPS</h3>
+            <p>
+              In homepage è disponibile un box aggiornato automaticamente con opportunità
+              per ricercatrici e ricercatori sociali.
+            </p>
+          </div>
+
+          <a href="#opportunita">Vai ai bandi →</a>
+        </article>
+
+        <article class="communication-card">
+          <div>
+            <span class="badge">Progetto</span>
+            <h3>Methods Guards AI</h3>
+            <p>
+              Un sistema sperimentale per supportare la valutazione della robustezza
+              metodologica di paper, tesi, report e progetti.
+            </p>
+          </div>
+
+          <a href="methods-guards.html">Apri Methods Guards AI →</a>
+        </article>
+
+        <article class="communication-card">
+          <div>
+            <span class="badge">Comunicazioni</span>
+            <h3>Articoli, news e podcast</h3>
+            <p>
+              Uno spazio editoriale per raccogliere riflessioni metodologiche,
+              aggiornamenti e future conversazioni.
+            </p>
+          </div>
+
+          <a href="comunicazioni.html">Vai alle comunicazioni →</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="contatti">
+      <div class="contact-box">
+        <div>
+          <h2>Hai un progetto da discutere?</h2>
+          <p>
+            Scrivimi per collaborazioni, consulenze metodologiche,
+            analisi dei dati, attività formative o progetti di ricerca.
+          </p>
+        </div>
+
+        <form action="https://formspree.io/f/mdabnogw" method="POST">
+          <input type="text" name="name" placeholder="Il tuo nome" required>
+          <input type="email" name="email" placeholder="La tua email" required>
+          <textarea name="message" placeholder="Il tuo messaggio" rows="6" required></textarea>
+          <button class="btn primary" type="submit">Invia messaggio</button>
+        </form>
+      </div>
+    </section>
+
   </main>
 
   <footer>
     <span>© <span id="year"></span> Alfredo Matrella</span>
-    <span>Valutazione · Ricerca sociale · Metodi · Analisi dei dati</span>
+    <span>Metodologia · Ricerca sociale · Valutazione · Analisi dei dati</span>
   </footer>
 
   <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-  async function loadMurBandi() {
-    const status = document.getElementById('mur-status');
-    const list = document.getElementById('mur-bandi-list');
+    async function loadMurBandi() {
+      const status = document.getElementById('mur-status');
+      const list = document.getElementById('mur-bandi-list');
 
-    if (!status || !list) return;
+      if (!status || !list) return;
 
-    try {
-      const response = await fetch('https://methods-guards-backend.vercel.app/api/mur-bandi');
-      const data = await response.json();
+      try {
+        const response = await fetch('https://methods-guards-backend.vercel.app/api/mur-bandi');
+        const data = await response.json();
 
-      if (!data.items || data.items.length === 0) {
-        status.textContent = 'Nessun bando aperto rilevato automaticamente al momento. Consulta comunque il portale ufficiale MUR.';
-        return;
+        if (!data.items || data.items.length === 0) {
+          status.textContent = 'Nessun bando aperto rilevato automaticamente al momento. Consulta comunque il portale ufficiale MUR.';
+          return;
+        }
+
+        status.textContent =
+          `Bandi rilevati: ${data.count}. Ultimo controllo: ${new Date(data.updatedAt).toLocaleDateString('it-IT')}.`;
+
+        list.innerHTML = data.items.map(item => `
+          <article class="mur-bando">
+            <div class="mur-bando-top">
+              <span class="mur-bando-type">${item.type || 'Bando'}</span>
+              <span class="mur-bando-gsps">${item.gsps || 'Area 14'}</span>
+            </div>
+
+            <h3>${item.title || 'Bando MUR Area 14 / GSPS'}</h3>
+
+            <p><strong>Ente:</strong> ${item.institution || 'Da verificare sul portale MUR'}</p>
+            <p><strong>Scadenza:</strong> ${item.deadline || 'Da verificare sul portale MUR'}</p>
+
+            <a href="${item.sourceUrl || item.officialSearchUrl}" target="_blank" rel="noopener noreferrer">
+              Apri sul portale MUR →
+            </a>
+          </article>
+        `).join('');
+
+      } catch (error) {
+        status.textContent = 'Non è stato possibile caricare i bandi aggiornati. Riprova più tardi o consulta il portale MUR.';
       }
-
-      status.textContent =
-        `Bandi rilevati: ${data.count}. Ultimo controllo: ${new Date(data.updatedAt).toLocaleDateString('it-IT')}.`;
-
-     list.innerHTML = data.items.map(item => `
-        <article class="mur-bando">
-          <div class="mur-bando-top">
-            <span class="mur-bando-type">${item.type || 'Bando'}</span>
-            <span class="mur-bando-gsps">${item.gsps || 'Area 14'}</span>
-          </div>
-
-          <h3>${item.title || 'Bando MUR Area 14 / GSPS'}</h3>
-
-          <p><strong>Ente:</strong> ${item.institution || 'Da verificare sul portale MUR'}</p>
-          <p><strong>Scadenza:</strong> ${item.deadline || 'Da verificare sul portale MUR'}</p>
-
-          <a href="${item.sourceUrl || item.officialSearchUrl}" target="_blank" rel="noopener noreferrer">
-            Apri sul portale MUR →
-          </a>
-        </article>
-      `).join('');
-
-    } catch (error) {
-      status.textContent = 'Non è stato possibile caricare i bandi aggiornati. Riprova più tardi o consulta il portale MUR.';
     }
-  }
 
-  loadMurBandi();
-</script>
+    loadMurBandi();
+  </script>
 </body>
 </html>
