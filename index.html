@@ -346,7 +346,81 @@
       color: var(--ink);
       font-weight: 700;
     }
+.mur-box {
+  background: linear-gradient(180deg, #ffffff 0%, #f5f8fb 100%);
+  border: 1px solid rgba(53, 92, 125, 0.25);
+  border-radius: 30px;
+  padding: 42px;
+}
 
+.mur-box-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 28px;
+}
+
+.mur-box h2 {
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 1;
+  letter-spacing: -0.06em;
+  margin-bottom: 18px;
+}
+
+.mur-box p {
+  color: #4b5563;
+  max-width: 850px;
+  margin-bottom: 14px;
+}
+
+.mur-badge {
+  background: rgba(53, 92, 125, 0.12);
+  color: var(--accent);
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.mur-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 30px;
+}
+
+.mur-link {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 24px;
+  transition: 0.2s ease;
+}
+
+.mur-link:hover {
+  transform: translateY(-3px);
+  border-color: rgba(53, 92, 125, 0.35);
+}
+
+.mur-link h3 {
+  margin-bottom: 12px;
+  font-size: 1.05rem;
+  letter-spacing: -0.03em;
+}
+
+.mur-link p {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.mur-link span {
+  color: var(--accent);
+  font-weight: 800;
+  font-size: 0.92rem;
+}
     footer {
       width: min(1120px, 92%);
       margin: auto;
@@ -360,13 +434,15 @@
     }
 
     @media (max-width: 860px) {
-      nav ul { display: none; }
-      .hero, .section-head, .wide-card, .contact-box { grid-template-columns: 1fr; }
-      .grid { grid-template-columns: 1fr; }
-      .item { grid-template-columns: 1fr; }
-      .hero { padding-top: 60px; }
-      footer { flex-direction: column; }
-    }
+  nav ul { display: none; }
+  .hero, .section-head, .wide-card, .contact-box { grid-template-columns: 1fr; }
+  .grid { grid-template-columns: 1fr; }
+  .item { grid-template-columns: 1fr; }
+  .hero { padding-top: 60px; }
+  .mur-box-top { flex-direction: column; }
+  .mur-links { grid-template-columns: 1fr; }
+  footer { flex-direction: column; }
+}
     form {
   display: grid;
   gap: 12px;
@@ -406,6 +482,7 @@ textarea:focus {
           <li><a href="#esperienze">Esperienze</a></li>
           <li><a href="#formazione">Formazione</a></li>
           <li><a href="#pubblicazioni">Pubblicazioni</a></li>
+          <li><a href="#opportunita">Opportunità</a></li>
           <li><a href="#contatti">Contatti</a></li>
         </ul>
       </nav>
@@ -600,6 +677,80 @@ textarea:focus {
       </div>
     </section>
 
+        <section id="opportunita">
+      <div class="mur-box">
+
+        <div class="mur-box-top">
+          <div>
+            <h2>Opportunità per ricercatrici e ricercatori sociali</h2>
+
+            <p>
+              Nel dibattito pubblico si parla spesso di competitività accademica,
+              precarietà e scarsità di opportunità.
+            </p>
+
+            <p>
+              Per questo ho raccolto collegamenti ufficiali al portale MUR
+              per monitorare bandi aperti nell’Area 14 / GSPS relativi
+              a contratti di ricerca, incarichi di ricerca e incarichi post-doc.
+            </p>
+
+            <p>
+              La verifica finale dei requisiti e delle scadenze resta sempre
+              sul portale ufficiale del Ministero dell’Università e della Ricerca.
+            </p>
+          </div>
+
+          <div class="mur-badge">
+            Controllo automatico · 7 giorni
+          </div>
+        </div>
+
+        <div class="mur-links">
+
+          <a
+            class="mur-link"
+            href="https://bandi.mur.gov.it/contrattidiricerca.php/public/cercaFellowship"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <h3>Contratti di ricerca</h3>
+            <p>
+              Accesso al portale MUR per consultare i bandi aperti relativi ai contratti di ricerca.
+            </p>
+            <span>Apri il portale MUR →</span>
+          </a>
+
+          <a
+            class="mur-link"
+            href="https://bandi.mur.gov.it/incarichidiricerca.php/public/cercaFellowship"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <h3>Incarichi di ricerca</h3>
+            <p>
+              Accesso al portale MUR per consultare gli incarichi di ricerca disponibili.
+            </p>
+            <span>Apri il portale MUR →</span>
+          </a>
+
+          <a
+            class="mur-link"
+            href="https://bandi.mur.gov.it/incarichipostdoc.php/public/cercaFellowship"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <h3>Incarichi post-doc</h3>
+            <p>
+              Accesso al portale MUR per consultare gli incarichi post-doc aperti.
+            </p>
+            <span>Apri il portale MUR →</span>
+          </a>
+
+        </div>
+
+      </div>
+    </section>
     <section id="contatti">
   <div class="contact-box">
     <div>
