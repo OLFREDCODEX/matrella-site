@@ -384,42 +384,67 @@
   white-space: nowrap;
 }
 
-.mur-links {
+.mur-status {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-top: 18px;
+}
+
+.mur-bandi-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+  gap: 14px;
   margin-top: 30px;
 }
 
-.mur-link {
+.mur-bando {
   background: white;
   border: 1px solid var(--line);
   border-radius: 22px;
-  padding: 24px;
-  transition: 0.2s ease;
+  padding: 22px;
 }
 
-.mur-link:hover {
-  transform: translateY(-3px);
-  border-color: rgba(53, 92, 125, 0.35);
+.mur-bando-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 10px;
 }
 
-.mur-link h3 {
-  margin-bottom: 12px;
-  font-size: 1.05rem;
+.mur-bando-type {
+  color: var(--accent);
+  font-weight: 800;
+  font-size: 0.85rem;
+}
+
+.mur-bando-gsps {
+  color: var(--accent-2);
+  font-weight: 800;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.mur-bando h3 {
+  font-size: 1.12rem;
+  line-height: 1.25;
+  margin-bottom: 10px;
   letter-spacing: -0.03em;
 }
 
-.mur-link p {
+.mur-bando p {
   font-size: 0.95rem;
   color: var(--muted);
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 
-.mur-link span {
+.mur-bando a {
+  display: inline-flex;
+  margin-top: 10px;
   color: var(--accent);
   font-weight: 800;
-  font-size: 0.92rem;
+}
+
+.mur-bando a:hover {
+  color: var(--ink);
 }
     footer {
       width: min(1120px, 92%);
@@ -677,7 +702,7 @@ textarea:focus {
       </div>
     </section>
 
-        <section id="opportunita">
+            <section id="opportunita">
       <div class="mur-box">
 
         <div class="mur-box-top">
@@ -690,15 +715,19 @@ textarea:focus {
             </p>
 
             <p>
-              Per questo ho raccolto collegamenti ufficiali al portale MUR
-              per monitorare bandi aperti nell’Area 14 / GSPS relativi
-              a contratti di ricerca, incarichi di ricerca e incarichi post-doc.
+              Per questo ho creato un box che monitora periodicamente i bandi aperti
+              sul portale MUR per contratti di ricerca, incarichi di ricerca e incarichi post-doc
+              nell’Area 14 / GSPS.
             </p>
 
             <p>
               La verifica finale dei requisiti e delle scadenze resta sempre
               sul portale ufficiale del Ministero dell’Università e della Ricerca.
             </p>
+
+            <div id="mur-status" class="mur-status">
+              Caricamento bandi aggiornati...
+            </div>
           </div>
 
           <div class="mur-badge">
@@ -706,48 +735,7 @@ textarea:focus {
           </div>
         </div>
 
-        <div class="mur-links">
-
-          <a
-            class="mur-link"
-            href="https://bandi.mur.gov.it/contrattidiricerca.php/public/cercaFellowship"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h3>Contratti di ricerca</h3>
-            <p>
-              Accesso al portale MUR per consultare i bandi aperti relativi ai contratti di ricerca.
-            </p>
-            <span>Apri il portale MUR →</span>
-          </a>
-
-          <a
-            class="mur-link"
-            href="https://bandi.mur.gov.it/incarichidiricerca.php/public/cercaFellowship"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h3>Incarichi di ricerca</h3>
-            <p>
-              Accesso al portale MUR per consultare gli incarichi di ricerca disponibili.
-            </p>
-            <span>Apri il portale MUR →</span>
-          </a>
-
-          <a
-            class="mur-link"
-            href="https://bandi.mur.gov.it/incarichipostdoc.php/public/cercaFellowship"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h3>Incarichi post-doc</h3>
-            <p>
-              Accesso al portale MUR per consultare gli incarichi post-doc aperti.
-            </p>
-            <span>Apri il portale MUR →</span>
-          </a>
-
-        </div>
+        <div id="mur-bandi-list" class="mur-bandi-list"></div>
 
       </div>
     </section>
@@ -776,7 +764,50 @@ textarea:focus {
   </footer>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  async function loadMurBandi() {
+    const status = document.getElementById('mur-status');
+    const list = document.getElementById('mur-bandi-list');
+
+    if (!status || !list) return;
+
+    try {
+      const response = await fetch('https://methods-guards-backend.vercel.app/api/mur-bandi');
+      const data = await response.json();
+
+      if (!data.items || data.items.length === 0) {
+        status.textContent = 'Nessun bando aperto rilevato automaticamente al momento. Consulta comunque il portale ufficiale MUR.';
+        return;
+      }
+
+      status.textContent =
+        `Bandi rilevati: ${data.count}. Ultimo controllo: ${new Date(data.updatedAt).toLocaleDateString('it-IT')}.`;
+
+      list.innerHTML = data.items.slice(0, 6).map(item => `
+        <article class="mur-bando">
+          <div class="mur-bando-top">
+            <span class="mur-bando-type">${item.type || 'Bando'}</span>
+            <span class="mur-bando-gsps">${item.gsps || 'Area 14'}</span>
+          </div>
+
+          <h3>${item.title || 'Bando MUR Area 14 / GSPS'}</h3>
+
+          <p><strong>Ente:</strong> ${item.institution || 'Da verificare sul portale MUR'}</p>
+          <p><strong>Scadenza:</strong> ${item.deadline || 'Da verificare sul portale MUR'}</p>
+
+          <a href="${item.sourceUrl || item.officialSearchUrl}" target="_blank" rel="noopener noreferrer">
+            Apri sul portale MUR →
+          </a>
+        </article>
+      `).join('');
+
+    } catch (error) {
+      status.textContent = 'Non è stato possibile caricare i bandi aggiornati. Riprova più tardi o consulta il portale MUR.';
+    }
+  }
+
+  loadMurBandi();
+</script>
 </body>
 </html>
