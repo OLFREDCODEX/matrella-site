@@ -731,8 +731,21 @@
   });
 
       const fileInput = document.getElementById("pdf");
-      const productType = document.getElementById("productType").value;
-      const output = document.getElementById("output");
+const productType = document.getElementById("productType").value;
+const output = document.getElementById("output");
+
+const allowedProductTypes = [
+  "abstract",
+  "paper",
+  "book-chapter",
+  "research-project"
+];
+
+if (!allowedProductTypes.includes(productType)) {
+  output.classList.remove("hidden");
+  output.innerText = "Questo tipo di prodotto non è ancora disponibile.";
+  return;
+}
       const button = document.getElementById("analyzeButton");
       const donationSection = document.getElementById("donationSection");
       const adBanner = document.getElementById("adBanner");
