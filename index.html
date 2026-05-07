@@ -786,7 +786,7 @@ e ricercatori sociali in cerca di opportunità lavorative.
       status.textContent =
         `Bandi rilevati: ${data.count}. Ultimo controllo: ${new Date(data.updatedAt).toLocaleDateString('it-IT')}.`;
 
-      list.innerHTML = data.items.slice(0, 6).map(item => `
+      list.innerHTML = data.items.map(item => ``
         <article class="mur-bando">
           <div class="mur-bando-top">
             <span class="mur-bando-type">${item.type || 'Bando'}</span>
