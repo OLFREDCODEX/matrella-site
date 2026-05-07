@@ -151,10 +151,16 @@
       border: 1px solid var(--line);
       border-radius: 24px;
       padding: 26px;
-      min-height: 250px;
+      min-height: 280px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      transition: 0.2s ease;
+    }
+
+    .communication-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(53, 92, 125, 0.35);
     }
 
     .communication-card .meta {
@@ -191,6 +197,18 @@
     .communication-card p {
       color: var(--muted);
       margin-bottom: 20px;
+    }
+
+    .news-preview {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .news-full {
+      color: #4b5563;
+      font-size: 0.96rem;
+      line-height: 1.55;
+      margin-top: 10px;
     }
 
     .communication-card a {
@@ -438,9 +456,14 @@
   }
 
   function createNewsCard(item) {
-    const url = item.external_url || "";
+    const url = item.external_url || "comunicazioni.html";
     const safeUrl = escapeHtml(url);
-    const hasUrl = Boolean(url);
+    const hasExternalUrl = Boolean(item.external_url);
+
+    const previewText =
+      item.subtitle ||
+      item.content ||
+      "Comunicazione pubblicata sul sito.";
 
     return `
       <article class="communication-card">
@@ -452,16 +475,14 @@
 
           <h3>${escapeHtml(item.title || "Senza titolo")}</h3>
 
-          <p>
-            ${escapeHtml(item.subtitle || item.content || "")}
+          <p class="news-preview">
+            ${escapeHtml(previewText)}
           </p>
         </div>
 
-        ${
-          hasUrl
-            ? `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer">Leggi di più →</a>`
-            : `<a href="#">Comunicazione interna</a>`
-        }
+        <a href="${safeUrl}" ${hasExternalUrl ? 'target="_blank" rel="noopener noreferrer"' : ""}>
+          Leggi tutto →
+        </a>
       </article>
     `;
   }
