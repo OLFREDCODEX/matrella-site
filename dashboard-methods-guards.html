@@ -67,7 +67,8 @@
       margin-top: 24px;
     }
 
-    input {
+    input,
+    select {
       width: 100%;
       padding: 14px 16px;
       border-radius: 14px;
@@ -76,6 +77,11 @@
       font: inherit;
       box-sizing: border-box;
       margin-top: 8px;
+    }
+
+    input[type="checkbox"] {
+      width: auto;
+      margin-top: 0;
     }
 
     button {
@@ -130,6 +136,7 @@
       color: #9f1239;
       font-weight: 700;
     }
+
 .maintenance-panel {
   border: 2px solid var(--accent);
 }
@@ -174,6 +181,40 @@ textarea {
 .button-safe {
   background: #166534;
 }
+
+.news-panel {
+  border: 2px solid var(--accent);
+}
+
+.news-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.news-item {
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 16px;
+}
+
+.news-item h3 {
+  margin: 0 0 6px;
+}
+
+.news-item p {
+  margin: 6px 0;
+  color: var(--muted);
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+
     table {
       width: 100%;
       border-collapse: collapse;
@@ -251,6 +292,7 @@ textarea {
 
       <p id="status" class="note"></p>
     </div>
+
 <div id="maintenanceBox" class="box maintenance-panel hidden">
   <h2>Manutenzione / chiusura temporanea</h2>
 
@@ -278,6 +320,65 @@ textarea {
 
   <p id="maintenanceFeedback" class="note"></p>
 </div>
+
+<div id="newsBox" class="box news-panel hidden">
+  <h2>Gestione news</h2>
+
+  <p class="note">
+    Da qui puoi inserire news da mostrare nella pagina Comunicazioni.
+  </p>
+
+  <label for="newsSecretInput">
+    <strong>Chiave privata news</strong>
+  </label>
+  <input id="newsSecretInput" type="password" placeholder="Inserisci la chiave news" />
+
+  <label for="newsTitle">
+    <strong>Titolo news</strong>
+  </label>
+  <input id="newsTitle" type="text" placeholder="Titolo della news" />
+
+  <label for="newsSubtitle">
+    <strong>Sottotitolo</strong>
+  </label>
+  <input id="newsSubtitle" type="text" placeholder="Sottotitolo breve" />
+
+  <label for="newsCategory">
+    <strong>Categoria</strong>
+  </label>
+  <select id="newsCategory">
+    <option value="News">News</option>
+    <option value="Articolo">Articolo</option>
+    <option value="Podcast">Podcast</option>
+    <option value="Progetto">Progetto</option>
+    <option value="Comunicazione">Comunicazione</option>
+  </select>
+
+  <label for="newsContent">
+    <strong>Testo</strong>
+  </label>
+  <textarea id="newsContent" placeholder="Scrivi il contenuto della news"></textarea>
+
+  <label for="newsExternalUrl">
+    <strong>Link esterno opzionale</strong>
+  </label>
+  <input id="newsExternalUrl" type="url" placeholder="https://..." />
+
+  <div class="checkbox-row">
+    <input id="newsPublished" type="checkbox" checked />
+    <label for="newsPublished"><strong>Pubblica subito</strong></label>
+  </div>
+
+  <div class="button-row">
+    <button type="button" onclick="createNews()">Salva news</button>
+    <button type="button" onclick="loadAdminNews()">Ricarica news</button>
+  </div>
+
+  <p id="newsFeedback" class="note"></p>
+
+  <div id="newsList" class="news-list"></div>
+</div>
+
     <div id="dashboard" class="grid hidden">
       <div class="card">
         <div class="label">Data UTC</div>
@@ -466,6 +567,7 @@ const INACTIVITY_LIMIT_MS = 5 * 60 * 1000;
 
         dashboard.classList.remove("hidden");
 document.getElementById("maintenanceBox").classList.remove("hidden");
+document.getElementById("newsBox").classList.remove("hidden");
 status.innerText = "Dati caricati correttamente.";
 
 loadMaintenanceStatus(secret);
@@ -688,6 +790,129 @@ function updateMaintenanceUI(enabled, message) {
     maintenanceStatus.classList.remove("active");
   }
 }
+
+async function createNews() {
+  const newsSecretInput = document.getElementById("newsSecretInput");
+  const newsTitle = document.getElementById("newsTitle");
+  const newsSubtitle = document.getElementById("newsSubtitle");
+  const newsCategory = document.getElementById("newsCategory");
+  const newsContent = document.getElementById("newsContent");
+  const newsExternalUrl = document.getElementById("newsExternalUrl");
+  const newsPublished = document.getElementById("newsPublished");
+  const newsFeedback = document.getElementById("newsFeedback");
+
+  const secret = newsSecretInput.value.trim();
+
+  if (!secret) {
+    newsFeedback.innerHTML = '<span class="error">Inserisci la chiave privata news.</span>';
+    return;
+  }
+
+  if (!newsTitle.value.trim() || !newsContent.value.trim()) {
+    newsFeedback.innerHTML = '<span class="error">Titolo e testo sono obbligatori.</span>';
+    return;
+  }
+
+  newsFeedback.innerText = "Salvataggio news...";
+
+  try {
+    const res = await fetch("https://methods-guards-backend.vercel.app/api/admin-news", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-admin-key": secret
+      },
+      body: JSON.stringify({
+        title: newsTitle.value.trim(),
+        subtitle: newsSubtitle.value.trim(),
+        category: newsCategory.value,
+        content: newsContent.value.trim(),
+        external_url: newsExternalUrl.value.trim(),
+        published: newsPublished.checked
+      })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      newsFeedback.innerHTML = '<span class="error">' + escapeHtml(data.error || "Errore salvataggio news") + '</span>';
+      return;
+    }
+
+    newsFeedback.innerText = "News salvata correttamente.";
+
+    newsTitle.value = "";
+    newsSubtitle.value = "";
+    newsContent.value = "";
+    newsExternalUrl.value = "";
+    newsPublished.checked = true;
+
+    loadAdminNews();
+
+  } catch (error) {
+    newsFeedback.innerHTML = '<span class="error">Errore di connessione durante il salvataggio.</span>';
+  }
+}
+
+async function loadAdminNews() {
+  const newsSecretInput = document.getElementById("newsSecretInput");
+  const newsFeedback = document.getElementById("newsFeedback");
+
+  const secret = newsSecretInput.value.trim();
+
+  if (!secret) {
+    newsFeedback.innerHTML = '<span class="error">Inserisci la chiave privata news.</span>';
+    return;
+  }
+
+  newsFeedback.innerText = "Caricamento news...";
+
+  try {
+    const res = await fetch("https://methods-guards-backend.vercel.app/api/admin-news", {
+      method: "GET",
+      headers: {
+        "x-admin-key": secret
+      }
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      newsFeedback.innerHTML = '<span class="error">' + escapeHtml(data.error || "Errore caricamento news") + '</span>';
+      return;
+    }
+
+    renderAdminNews(data.items || []);
+    newsFeedback.innerText = "News caricate: " + formatNumber(data.count || 0);
+
+  } catch (error) {
+    newsFeedback.innerHTML = '<span class="error">Errore di connessione durante il caricamento news.</span>';
+  }
+}
+
+function renderAdminNews(items) {
+  const newsList = document.getElementById("newsList");
+  newsList.innerHTML = "";
+
+  if (!items.length) {
+    newsList.innerHTML = "<p class='note'>Nessuna news presente.</p>";
+    return;
+  }
+
+  items.forEach((item) => {
+    const div = document.createElement("div");
+    div.className = "news-item";
+
+    div.innerHTML =
+      "<h3>" + escapeHtml(item.title || "Senza titolo") + "</h3>" +
+      "<p><strong>Categoria:</strong> " + escapeHtml(item.category || "—") + "</p>" +
+      "<p><strong>Pubblicata:</strong> " + (item.published ? "Sì" : "No") + "</p>" +
+      "<p>" + escapeHtml(item.subtitle || "") + "</p>";
+
+    newsList.appendChild(div);
+  });
+}
+
     function startInactivityLogout() {
   clearTimeout(inactivityTimer);
 
@@ -712,6 +937,7 @@ function logoutDashboard() {
   const status = document.getElementById("status");
   const dashboard = document.getElementById("dashboard");
   const maintenanceBox = document.getElementById("maintenanceBox");
+  const newsBox = document.getElementById("newsBox");
 
   clearTimeout(inactivityTimer);
 
@@ -725,6 +951,10 @@ function logoutDashboard() {
 
   if (maintenanceBox) {
     maintenanceBox.classList.add("hidden");
+  }
+
+  if (newsBox) {
+    newsBox.classList.add("hidden");
   }
 
   if (status) {
