@@ -772,12 +772,11 @@
       logsFeedback.innerText = "Caricamento log...";
 
       try {
-        const res = await fetch("https://methods-guards-backend.vercel.app/api/admin-logs", {
-          method: "GET",
-          headers: {
-            "x-admin-key": secret
-          }
-        });
+        const url =
+  "https://methods-guards-backend.vercel.app/api/admin-logs?secret=" +
+  encodeURIComponent(secret);
+
+const res = await fetch(url);
 
         const data = await res.json();
 
