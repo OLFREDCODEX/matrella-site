@@ -378,42 +378,7 @@ textarea {
 
   <div id="newsList" class="news-list"></div>
 </div>
-<div id="logsBox" class="box hidden">
-  <h2>Log recenti / errori sistema</h2>
 
-  <p class="note">
-    Qui vengono mostrati gli ultimi eventi registrati dal backend: errori, warning, timeout e blocchi di sicurezza.
-  </p>
-
-  <div class="button-row">
-    <button type="button" onclick="loadAdminLogs()">Ricarica log</button>
-  </div>
-
-  <p id="logsFeedback" class="note">Log non ancora caricati.</p>
-
-  <div class="table-wrapper">
-    <table>
-      <thead>
-        <tr>
-          <th>Data</th>
-          <th>Livello</th>
-          <th>Fonte</th>
-          <th>Messaggio</th>
-          <th>File</th>
-          <th>Tipo</th>
-          <th>Luogo</th>
-        </tr>
-      </thead>
-
-      <tbody id="logsTable">
-        <tr>
-          <td colspan="7">Nessun log caricato.</td>
-        </tr>
-      </tbody>
-
-    </table>
-  </div>
-</div>
     <div id="dashboard" class="grid hidden">
       <div class="card">
         <div class="label">Data UTC</div>
@@ -606,7 +571,6 @@ document.getElementById("newsBox").classList.remove("hidden");
 status.innerText = "Dati caricati correttamente.";
 
 loadMaintenanceStatus(secret);
-loadAdminLogs(secret);
         startInactivityLogout();
 
       } catch (error) {
@@ -714,88 +678,7 @@ loadAdminLogs(secret);
         tbody.innerHTML = "<tr><td colspan='4'>Nessun dato disponibile.</td></tr>";
         return;
       }
-async function loadAdminLogs(secret) {
 
-  const logsFeedback = document.getElementById("logsFeedback");
-  const logsTable = document.getElementById("logsTable");
-  const logsBox = document.getElementById("logsBox");
-
-  logsFeedback.innerText = "Caricamento log...";
-
-  try {
-
-    const res = await fetch(
-      "https://methods-guards-backend.vercel.app/api/admin-logs",
-      {
-        method: "GET",
-        headers: {
-          "x-admin-key": secret
-        }
-      }
-    );
-
-    const data = await res.json();
-
-    if (!res.ok) {
-      logsFeedback.innerHTML =
-        '<span class="error">' +
-        escapeHtml(data.error || "Errore caricamento log") +
-        "</span>";
-
-      return;
-    }
-
-    logsBox.classList.remove("hidden");
-
-    renderLogsTable(data.items || []);
-
-    logsFeedback.innerText =
-      "Log caricati: " + formatNumber(data.count || 0);
-
-  } catch (error) {
-
-    logsFeedback.innerHTML =
-      '<span class="error">Errore di connessione caricamento log.</span>';
-
-  }
-}
-
-function renderLogsTable(items) {
-
-  const logsTable = document.getElementById("logsTable");
-
-  logsTable.innerHTML = "";
-
-  if (!items.length) {
-
-    logsTable.innerHTML =
-      "<tr><td colspan='7'>Nessun log disponibile.</td></tr>";
-
-    return;
-  }
-
-  items.forEach((item) => {
-
-    const tr = document.createElement("tr");
-
-    const location =
-      [item.city, item.country]
-        .filter(Boolean)
-        .join(", ") || "—";
-
-    tr.innerHTML =
-      "<td>" + escapeHtml(item.created_at || "—") + "</td>" +
-      "<td>" + escapeHtml(item.level || "—") + "</td>" +
-      "<td>" + escapeHtml(item.source || "—") + "</td>" +
-      "<td>" + escapeHtml(item.message || "—") + "</td>" +
-      "<td>" + escapeHtml(item.file_name || "—") + "</td>" +
-      "<td>" + escapeHtml(item.product_type || "—") + "</td>" +
-      "<td>" + escapeHtml(location) + "</td>";
-
-    logsTable.appendChild(tr);
-
-  });
-}
       days.forEach((day) => {
         const tr = document.createElement("tr");
 
@@ -1055,7 +938,6 @@ function logoutDashboard() {
   const dashboard = document.getElementById("dashboard");
   const maintenanceBox = document.getElementById("maintenanceBox");
   const newsBox = document.getElementById("newsBox");
-  const logsBox = document.getElementById("logsBox");
 
   clearTimeout(inactivityTimer);
 
@@ -1074,9 +956,6 @@ function logoutDashboard() {
   if (newsBox) {
     newsBox.classList.add("hidden");
   }
-  if (logsBox) {
-  logsBox.classList.add("hidden");
-}
 
   if (status) {
     status.innerText = "Sessione scaduta per inattività. Inserisci di nuovo la chiave privata.";
