@@ -2,14 +2,15 @@
 <html lang="it">
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FL9Z4EHSEL"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FL9Z4EHSEL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'G-FL9Z4EHSEL');
-</script>
+    gtag('config', 'G-FL9Z4EHSEL');
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -137,83 +138,92 @@
       font-weight: 700;
     }
 
-.maintenance-panel {
-  border: 2px solid var(--accent);
-}
+    .maintenance-panel {
+      border: 2px solid var(--accent);
+    }
 
-.maintenance-status {
-  font-size: 1.1rem;
-  font-weight: 800;
-  margin-top: 8px;
-}
+    .maintenance-status {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-top: 8px;
+    }
 
-.maintenance-status.active {
-  color: #9f1239;
-}
+    .maintenance-status.active {
+      color: #9f1239;
+    }
 
-.maintenance-status.inactive {
-  color: #166534;
-}
+    .maintenance-status.inactive {
+      color: #166534;
+    }
 
-textarea {
-  width: 100%;
-  min-height: 110px;
-  padding: 14px 16px;
-  border-radius: 14px;
-  border: 1px solid var(--line);
-  background: var(--soft);
-  font: inherit;
-  box-sizing: border-box;
-  margin-top: 8px;
-  resize: vertical;
-}
+    textarea {
+      width: 100%;
+      min-height: 110px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: var(--soft);
+      font: inherit;
+      box-sizing: border-box;
+      margin-top: 8px;
+      resize: vertical;
+    }
 
-.button-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
 
-.button-danger {
-  background: #9f1239;
-}
+    .button-danger {
+      background: #9f1239;
+    }
 
-.button-safe {
-  background: #166534;
-}
+    .button-safe {
+      background: #166534;
+    }
 
-.news-panel {
-  border: 2px solid var(--accent);
-}
+    .news-panel {
+      border: 2px solid var(--accent);
+    }
 
-.news-list {
-  display: grid;
-  gap: 12px;
-  margin-top: 18px;
-}
+    .logs-panel {
+      border: 2px solid var(--accent);
+    }
 
-.news-item {
-  background: var(--soft);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  padding: 16px;
-}
+    .news-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
 
-.news-item h3 {
-  margin: 0 0 6px;
-}
+    .news-item {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+    }
 
-.news-item p {
-  margin: 6px 0;
-  color: var(--muted);
-}
+    .news-item h3 {
+      margin: 0 0 6px;
+    }
 
-.checkbox-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 14px;
-}
+    .news-item p {
+      margin: 6px 0;
+      color: var(--muted);
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .table-scroll {
+      width: 100%;
+      overflow-x: auto;
+    }
 
     table {
       width: 100%;
@@ -227,6 +237,7 @@ textarea {
       text-align: left;
       padding: 10px;
       border-bottom: 1px solid var(--line);
+      vertical-align: top;
     }
 
     th {
@@ -293,91 +304,126 @@ textarea {
       <p id="status" class="note"></p>
     </div>
 
-<div id="maintenanceBox" class="box maintenance-panel hidden">
-  <h2>Manutenzione / chiusura temporanea</h2>
+    <div id="maintenanceBox" class="box maintenance-panel hidden">
+      <h2>Manutenzione / chiusura temporanea</h2>
 
-  <p class="note">
-    Da qui puoi mettere temporaneamente offline Methods Guards AI e mostrare un messaggio agli utenti.
-  </p>
+      <p class="note">
+        Da qui puoi mettere temporaneamente offline Methods Guards AI e mostrare un messaggio agli utenti.
+      </p>
 
-  <div id="maintenanceStatus" class="maintenance-status">Stato: —</div>
+      <div id="maintenanceStatus" class="maintenance-status">Stato: —</div>
 
-  <label for="maintenanceMessage">
-    <strong>Messaggio da mostrare agli utenti</strong>
-  </label>
+      <label for="maintenanceMessage">
+        <strong>Messaggio da mostrare agli utenti</strong>
+      </label>
 
-  <textarea id="maintenanceMessage" placeholder="Esempio: Methods Guards AI è temporaneamente in manutenzione. Riprova più tardi."></textarea>
+      <textarea id="maintenanceMessage" placeholder="Esempio: Methods Guards AI è temporaneamente in manutenzione. Riprova più tardi."></textarea>
 
-  <div class="button-row">
-    <button type="button" class="button-danger" onclick="setMaintenance(true)">
-      Attiva manutenzione / OFF
-    </button>
+      <div class="button-row">
+        <button type="button" class="button-danger" onclick="setMaintenance(true)">
+          Attiva manutenzione / OFF
+        </button>
 
-    <button type="button" class="button-safe" onclick="setMaintenance(false)">
-      Disattiva manutenzione / ON
-    </button>
-  </div>
+        <button type="button" class="button-safe" onclick="setMaintenance(false)">
+          Disattiva manutenzione / ON
+        </button>
+      </div>
 
-  <p id="maintenanceFeedback" class="note"></p>
-</div>
+      <p id="maintenanceFeedback" class="note"></p>
+    </div>
 
-<div id="newsBox" class="box news-panel hidden">
-  <h2>Gestione news</h2>
+    <div id="newsBox" class="box news-panel hidden">
+      <h2>Gestione news</h2>
 
-  <p class="note">
-    Da qui puoi inserire news da mostrare nella pagina Comunicazioni.
-  </p>
+      <p class="note">
+        Da qui puoi inserire news da mostrare nella pagina Comunicazioni.
+      </p>
 
-  <label for="newsSecretInput">
-    <strong>Chiave privata news</strong>
-  </label>
-  <input id="newsSecretInput" type="password" placeholder="Inserisci la chiave news" />
+      <label for="newsSecretInput">
+        <strong>Chiave privata news</strong>
+      </label>
+      <input id="newsSecretInput" type="password" placeholder="Inserisci la chiave news" />
 
-  <label for="newsTitle">
-    <strong>Titolo news</strong>
-  </label>
-  <input id="newsTitle" type="text" placeholder="Titolo della news" />
+      <label for="newsTitle">
+        <strong>Titolo news</strong>
+      </label>
+      <input id="newsTitle" type="text" placeholder="Titolo della news" />
 
-  <label for="newsSubtitle">
-    <strong>Sottotitolo</strong>
-  </label>
-  <input id="newsSubtitle" type="text" placeholder="Sottotitolo breve" />
+      <label for="newsSubtitle">
+        <strong>Sottotitolo</strong>
+      </label>
+      <input id="newsSubtitle" type="text" placeholder="Sottotitolo breve" />
 
-  <label for="newsCategory">
-    <strong>Categoria</strong>
-  </label>
-  <select id="newsCategory">
-    <option value="News">News</option>
-    <option value="Articolo">Articolo</option>
-    <option value="Podcast">Podcast</option>
-    <option value="Progetto">Progetto</option>
-    <option value="Comunicazione">Comunicazione</option>
-  </select>
+      <label for="newsCategory">
+        <strong>Categoria</strong>
+      </label>
+      <select id="newsCategory">
+        <option value="News">News</option>
+        <option value="Articolo">Articolo</option>
+        <option value="Podcast">Podcast</option>
+        <option value="Progetto">Progetto</option>
+        <option value="Comunicazione">Comunicazione</option>
+      </select>
 
-  <label for="newsContent">
-    <strong>Testo</strong>
-  </label>
-  <textarea id="newsContent" placeholder="Scrivi il contenuto della news"></textarea>
+      <label for="newsContent">
+        <strong>Testo</strong>
+      </label>
+      <textarea id="newsContent" placeholder="Scrivi il contenuto della news"></textarea>
 
-  <label for="newsExternalUrl">
-    <strong>Link esterno opzionale</strong>
-  </label>
-  <input id="newsExternalUrl" type="url" placeholder="https://..." />
+      <label for="newsExternalUrl">
+        <strong>Link esterno opzionale</strong>
+      </label>
+      <input id="newsExternalUrl" type="url" placeholder="https://..." />
 
-  <div class="checkbox-row">
-    <input id="newsPublished" type="checkbox" checked />
-    <label for="newsPublished"><strong>Pubblica subito</strong></label>
-  </div>
+      <div class="checkbox-row">
+        <input id="newsPublished" type="checkbox" checked />
+        <label for="newsPublished"><strong>Pubblica subito</strong></label>
+      </div>
 
-  <div class="button-row">
-    <button type="button" onclick="createNews()">Salva news</button>
-    <button type="button" onclick="loadAdminNews()">Ricarica news</button>
-  </div>
+      <div class="button-row">
+        <button type="button" onclick="createNews()">Salva news</button>
+        <button type="button" onclick="loadAdminNews()">Ricarica news</button>
+      </div>
 
-  <p id="newsFeedback" class="note"></p>
+      <p id="newsFeedback" class="note"></p>
 
-  <div id="newsList" class="news-list"></div>
-</div>
+      <div id="newsList" class="news-list"></div>
+    </div>
+
+    <div id="logsBox" class="box logs-panel hidden">
+      <h2>Log recenti / errori sistema</h2>
+
+      <p class="note">
+        Qui vengono mostrati gli ultimi eventi registrati dal backend: errori, warning, timeout e blocchi di sicurezza.
+      </p>
+
+      <div class="button-row">
+        <button type="button" onclick="loadAdminLogs()">Ricarica log</button>
+      </div>
+
+      <p id="logsFeedback" class="note">Log non ancora caricati.</p>
+
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Livello</th>
+              <th>Fonte</th>
+              <th>Messaggio</th>
+              <th>File</th>
+              <th>Tipo</th>
+              <th>Luogo</th>
+            </tr>
+          </thead>
+          <tbody id="logsTable">
+            <tr>
+              <td colspan="7">Nessun log caricato.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
     <div id="dashboard" class="grid hidden">
       <div class="card">
@@ -492,23 +538,33 @@ textarea {
     });
 
     let latestCountryData = null;
-let inactivityTimer = null;
-const INACTIVITY_LIMIT_MS = 5 * 60 * 1000;
+    let inactivityTimer = null;
+    const INACTIVITY_LIMIT_MS = 5 * 60 * 1000;
+
     async function loadAnalytics() {
       const secretInput = document.getElementById("secretInput");
       const status = document.getElementById("status");
       const dashboard = document.getElementById("dashboard");
+      const maintenanceBox = document.getElementById("maintenanceBox");
+      const newsBox = document.getElementById("newsBox");
+      const logsBox = document.getElementById("logsBox");
 
       const secret = secretInput.value.trim();
 
       if (!secret) {
         status.innerHTML = '<span class="error">Inserisci la chiave analytics.</span>';
         dashboard.classList.add("hidden");
+        maintenanceBox.classList.add("hidden");
+        newsBox.classList.add("hidden");
+        logsBox.classList.add("hidden");
         return;
       }
 
       status.innerText = "Caricamento dati...";
       dashboard.classList.add("hidden");
+      maintenanceBox.classList.add("hidden");
+      newsBox.classList.add("hidden");
+      logsBox.classList.add("hidden");
 
       try {
         const url = "https://methods-guards-backend.vercel.app/api/analytics?secret=" + encodeURIComponent(secret);
@@ -517,8 +573,11 @@ const INACTIVITY_LIMIT_MS = 5 * 60 * 1000;
         const data = await res.json();
 
         if (!res.ok) {
-          status.innerHTML = '<span class="error">' + (data.error || "Accesso non autorizzato") + '</span>';
+          status.innerHTML = '<span class="error">' + escapeHtml(data.error || "Accesso non autorizzato") + '</span>';
           dashboard.classList.add("hidden");
+          maintenanceBox.classList.add("hidden");
+          newsBox.classList.add("hidden");
+          logsBox.classList.add("hidden");
           return;
         }
 
@@ -566,16 +625,22 @@ const INACTIVITY_LIMIT_MS = 5 * 60 * 1000;
         renderTrendTable(data.last7Days || []);
 
         dashboard.classList.remove("hidden");
-document.getElementById("maintenanceBox").classList.remove("hidden");
-document.getElementById("newsBox").classList.remove("hidden");
-status.innerText = "Dati caricati correttamente.";
+        maintenanceBox.classList.remove("hidden");
+        newsBox.classList.remove("hidden");
+        logsBox.classList.remove("hidden");
 
-loadMaintenanceStatus(secret);
+        status.innerText = "Dati caricati correttamente.";
+
+        loadMaintenanceStatus(secret);
+        loadAdminLogs(secret);
         startInactivityLogout();
 
       } catch (error) {
         status.innerHTML = '<span class="error">Errore di connessione.</span>';
         dashboard.classList.add("hidden");
+        maintenanceBox.classList.add("hidden");
+        newsBox.classList.add("hidden");
+        logsBox.classList.add("hidden");
       }
     }
 
@@ -691,279 +756,375 @@ loadMaintenanceStatus(secret);
         tbody.appendChild(tr);
       });
     }
-async function loadMaintenanceStatus(secret) {
-  const maintenanceStatus = document.getElementById("maintenanceStatus");
-  const maintenanceMessage = document.getElementById("maintenanceMessage");
-  const maintenanceFeedback = document.getElementById("maintenanceFeedback");
 
-  maintenanceFeedback.innerText = "Lettura stato manutenzione...";
+    async function loadAdminLogs(secretOverride) {
+      const secretInput = document.getElementById("secretInput");
+      const logsFeedback = document.getElementById("logsFeedback");
+      const logsTable = document.getElementById("logsTable");
 
-  try {
-    const res = await fetch("https://methods-guards-backend.vercel.app/api/admin-maintenance", {
-      method: "GET",
-      headers: {
-        "x-admin-key": secret
+      const secret = secretOverride || secretInput.value.trim();
+
+      if (!secret) {
+        logsFeedback.innerHTML = '<span class="error">Inserisci prima la chiave privata.</span>';
+        return;
       }
-    });
 
-    const data = await res.json();
+      logsFeedback.innerText = "Caricamento log...";
 
-    if (!res.ok) {
-      maintenanceFeedback.innerHTML = '<span class="error">' + escapeHtml(data.error || "Errore lettura manutenzione") + '</span>';
-      return;
-    }
+      try {
+        const res = await fetch("https://methods-guards-backend.vercel.app/api/admin-logs", {
+          method: "GET",
+          headers: {
+            "x-admin-key": secret
+          }
+        });
 
-    updateMaintenanceUI(data.maintenance, data.message);
-    maintenanceFeedback.innerText = "Stato manutenzione caricato.";
+        const data = await res.json();
 
-  } catch (error) {
-    maintenanceFeedback.innerHTML = '<span class="error">Errore di connessione manutenzione.</span>';
-  }
-}
+        if (!res.ok) {
+          logsFeedback.innerHTML = '<span class="error">' + escapeHtml(data.error || "Errore caricamento log") + '</span>';
+          return;
+        }
 
-async function setMaintenance(enabled) {
-  const secretInput = document.getElementById("secretInput");
-  const maintenanceMessage = document.getElementById("maintenanceMessage");
-  const maintenanceFeedback = document.getElementById("maintenanceFeedback");
+        renderLogsTable(data.items || []);
 
-  const secret = secretInput.value.trim();
-  const message = maintenanceMessage.value.trim();
+        logsFeedback.innerText = "Log caricati: " + formatNumber(data.count || 0);
 
-  if (!secret) {
-    maintenanceFeedback.innerHTML = '<span class="error">Inserisci prima la chiave privata.</span>';
-    return;
-  }
-
-  if (enabled && !message) {
-    maintenanceFeedback.innerHTML = '<span class="error">Per attivare la manutenzione devi inserire un messaggio per gli utenti.</span>';
-    return;
-  }
-
-  maintenanceFeedback.innerText = enabled
-    ? "Attivazione manutenzione..."
-    : "Disattivazione manutenzione...";
-
-  try {
-    const res = await fetch("https://methods-guards-backend.vercel.app/api/admin-maintenance", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-admin-key": secret
-      },
-      body: JSON.stringify({
-        maintenance: enabled,
-        message: message || "Methods Guards AI è temporaneamente non disponibile. Riprova più tardi."
-      })
-    });
-
-    const data = await res.json();
-
-    if (!res.ok) {
-      maintenanceFeedback.innerHTML = '<span class="error">' + escapeHtml(data.error || "Errore aggiornamento manutenzione") + '</span>';
-      return;
-    }
-
-    updateMaintenanceUI(data.maintenance, data.message);
-
-    maintenanceFeedback.innerText = data.maintenance
-      ? "Manutenzione attivata. La pagina pubblica risulterà temporaneamente chiusa."
-      : "Manutenzione disattivata. Methods Guards AI è di nuovo attivo.";
-
-  } catch (error) {
-    maintenanceFeedback.innerHTML = '<span class="error">Errore di connessione durante aggiornamento manutenzione.</span>';
-  }
-}
-
-function updateMaintenanceUI(enabled, message) {
-  const maintenanceStatus = document.getElementById("maintenanceStatus");
-  const maintenanceMessage = document.getElementById("maintenanceMessage");
-
-  maintenanceMessage.value = message || "";
-
-  if (enabled) {
-    maintenanceStatus.innerText = "Stato: MANUTENZIONE ATTIVA / OFF";
-    maintenanceStatus.classList.add("active");
-    maintenanceStatus.classList.remove("inactive");
-  } else {
-    maintenanceStatus.innerText = "Stato: SERVIZIO ATTIVO / ON";
-    maintenanceStatus.classList.add("inactive");
-    maintenanceStatus.classList.remove("active");
-  }
-}
-
-async function createNews() {
-  const newsSecretInput = document.getElementById("newsSecretInput");
-  const newsTitle = document.getElementById("newsTitle");
-  const newsSubtitle = document.getElementById("newsSubtitle");
-  const newsCategory = document.getElementById("newsCategory");
-  const newsContent = document.getElementById("newsContent");
-  const newsExternalUrl = document.getElementById("newsExternalUrl");
-  const newsPublished = document.getElementById("newsPublished");
-  const newsFeedback = document.getElementById("newsFeedback");
-
-  const secret = newsSecretInput.value.trim();
-
-  if (!secret) {
-    newsFeedback.innerHTML = '<span class="error">Inserisci la chiave privata news.</span>';
-    return;
-  }
-
-  if (!newsTitle.value.trim() || !newsContent.value.trim()) {
-    newsFeedback.innerHTML = '<span class="error">Titolo e testo sono obbligatori.</span>';
-    return;
-  }
-
-  newsFeedback.innerText = "Salvataggio news...";
-
-  try {
-    const res = await fetch("https://methods-guards-backend.vercel.app/api/admin-news", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-admin-key": secret
-      },
-      body: JSON.stringify({
-        title: newsTitle.value.trim(),
-        subtitle: newsSubtitle.value.trim(),
-        category: newsCategory.value,
-        content: newsContent.value.trim(),
-        external_url: newsExternalUrl.value.trim(),
-        published: newsPublished.checked
-      })
-    });
-
-    const data = await res.json();
-
-    if (!res.ok) {
-      newsFeedback.innerHTML = '<span class="error">' + escapeHtml(data.error || "Errore salvataggio news") + '</span>';
-      return;
-    }
-
-    newsFeedback.innerText = "News salvata correttamente.";
-
-    newsTitle.value = "";
-    newsSubtitle.value = "";
-    newsContent.value = "";
-    newsExternalUrl.value = "";
-    newsPublished.checked = true;
-
-    loadAdminNews();
-
-  } catch (error) {
-    newsFeedback.innerHTML = '<span class="error">Errore di connessione durante il salvataggio.</span>';
-  }
-}
-
-async function loadAdminNews() {
-  const newsSecretInput = document.getElementById("newsSecretInput");
-  const newsFeedback = document.getElementById("newsFeedback");
-
-  const secret = newsSecretInput.value.trim();
-
-  if (!secret) {
-    newsFeedback.innerHTML = '<span class="error">Inserisci la chiave privata news.</span>';
-    return;
-  }
-
-  newsFeedback.innerText = "Caricamento news...";
-
-  try {
-    const res = await fetch("https://methods-guards-backend.vercel.app/api/admin-news", {
-      method: "GET",
-      headers: {
-        "x-admin-key": secret
+      } catch (error) {
+        logsFeedback.innerHTML = '<span class="error">Errore di connessione caricamento log.</span>';
       }
-    });
-
-    const data = await res.json();
-
-    if (!res.ok) {
-      newsFeedback.innerHTML = '<span class="error">' + escapeHtml(data.error || "Errore caricamento news") + '</span>';
-      return;
     }
 
-    renderAdminNews(data.items || []);
-    newsFeedback.innerText = "News caricate: " + formatNumber(data.count || 0);
+    function renderLogsTable(items) {
+      const logsTable = document.getElementById("logsTable");
+      logsTable.innerHTML = "";
 
-  } catch (error) {
-    newsFeedback.innerHTML = '<span class="error">Errore di connessione durante il caricamento news.</span>';
-  }
-}
+      if (!Array.isArray(items) || items.length === 0) {
+        logsTable.innerHTML = "<tr><td colspan='7'>Nessun log disponibile.</td></tr>";
+        return;
+      }
 
-function renderAdminNews(items) {
-  const newsList = document.getElementById("newsList");
-  newsList.innerHTML = "";
+      items.forEach((item) => {
+        const tr = document.createElement("tr");
 
-  if (!items.length) {
-    newsList.innerHTML = "<p class='note'>Nessuna news presente.</p>";
-    return;
-  }
+        const location = [item.city, item.country]
+          .filter(Boolean)
+          .join(", ") || "—";
 
-  items.forEach((item) => {
-    const div = document.createElement("div");
-    div.className = "news-item";
+        tr.innerHTML =
+          "<td>" + escapeHtml(formatDateTime(item.created_at)) + "</td>" +
+          "<td>" + escapeHtml(item.level || "—") + "</td>" +
+          "<td>" + escapeHtml(item.source || "—") + "</td>" +
+          "<td>" + escapeHtml(item.message || "—") + "</td>" +
+          "<td>" + escapeHtml(item.file_name || "—") + "</td>" +
+          "<td>" + escapeHtml(item.product_type || "—") + "</td>" +
+          "<td>" + escapeHtml(location) + "</td>";
 
-    div.innerHTML =
-      "<h3>" + escapeHtml(item.title || "Senza titolo") + "</h3>" +
-      "<p><strong>Categoria:</strong> " + escapeHtml(item.category || "—") + "</p>" +
-      "<p><strong>Pubblicata:</strong> " + (item.published ? "Sì" : "No") + "</p>" +
-      "<p>" + escapeHtml(item.subtitle || "") + "</p>";
+        logsTable.appendChild(tr);
+      });
+    }
 
-    newsList.appendChild(div);
-  });
-}
+    async function loadMaintenanceStatus(secret) {
+      const maintenanceStatus = document.getElementById("maintenanceStatus");
+      const maintenanceMessage = document.getElementById("maintenanceMessage");
+      const maintenanceFeedback = document.getElementById("maintenanceFeedback");
+
+      maintenanceFeedback.innerText = "Lettura stato manutenzione...";
+
+      try {
+        const res = await fetch("https://methods-guards-backend.vercel.app/api/admin-maintenance", {
+          method: "GET",
+          headers: {
+            "x-admin-key": secret
+          }
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          maintenanceFeedback.innerHTML = '<span class="error">' + escapeHtml(data.error || "Errore lettura manutenzione") + '</span>';
+          return;
+        }
+
+        updateMaintenanceUI(data.maintenance, data.message);
+        maintenanceFeedback.innerText = "Stato manutenzione caricato.";
+
+      } catch (error) {
+        maintenanceFeedback.innerHTML = '<span class="error">Errore di connessione manutenzione.</span>';
+      }
+    }
+
+    async function setMaintenance(enabled) {
+      const secretInput = document.getElementById("secretInput");
+      const maintenanceMessage = document.getElementById("maintenanceMessage");
+      const maintenanceFeedback = document.getElementById("maintenanceFeedback");
+
+      const secret = secretInput.value.trim();
+      const message = maintenanceMessage.value.trim();
+
+      if (!secret) {
+        maintenanceFeedback.innerHTML = '<span class="error">Inserisci prima la chiave privata.</span>';
+        return;
+      }
+
+      if (enabled && !message) {
+        maintenanceFeedback.innerHTML = '<span class="error">Per attivare la manutenzione devi inserire un messaggio per gli utenti.</span>';
+        return;
+      }
+
+      maintenanceFeedback.innerText = enabled
+        ? "Attivazione manutenzione..."
+        : "Disattivazione manutenzione...";
+
+      try {
+        const res = await fetch("https://methods-guards-backend.vercel.app/api/admin-maintenance", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-admin-key": secret
+          },
+          body: JSON.stringify({
+            maintenance: enabled,
+            message: message || "Methods Guards AI è temporaneamente non disponibile. Riprova più tardi."
+          })
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          maintenanceFeedback.innerHTML = '<span class="error">' + escapeHtml(data.error || "Errore aggiornamento manutenzione") + '</span>';
+          return;
+        }
+
+        updateMaintenanceUI(data.maintenance, data.message);
+
+        maintenanceFeedback.innerText = data.maintenance
+          ? "Manutenzione attivata. La pagina pubblica risulterà temporaneamente chiusa."
+          : "Manutenzione disattivata. Methods Guards AI è di nuovo attivo.";
+
+      } catch (error) {
+        maintenanceFeedback.innerHTML = '<span class="error">Errore di connessione durante aggiornamento manutenzione.</span>';
+      }
+    }
+
+    function updateMaintenanceUI(enabled, message) {
+      const maintenanceStatus = document.getElementById("maintenanceStatus");
+      const maintenanceMessage = document.getElementById("maintenanceMessage");
+
+      maintenanceMessage.value = message || "";
+
+      if (enabled) {
+        maintenanceStatus.innerText = "Stato: MANUTENZIONE ATTIVA / OFF";
+        maintenanceStatus.classList.add("active");
+        maintenanceStatus.classList.remove("inactive");
+      } else {
+        maintenanceStatus.innerText = "Stato: SERVIZIO ATTIVO / ON";
+        maintenanceStatus.classList.add("inactive");
+        maintenanceStatus.classList.remove("active");
+      }
+    }
+
+    async function createNews() {
+      const newsSecretInput = document.getElementById("newsSecretInput");
+      const newsTitle = document.getElementById("newsTitle");
+      const newsSubtitle = document.getElementById("newsSubtitle");
+      const newsCategory = document.getElementById("newsCategory");
+      const newsContent = document.getElementById("newsContent");
+      const newsExternalUrl = document.getElementById("newsExternalUrl");
+      const newsPublished = document.getElementById("newsPublished");
+      const newsFeedback = document.getElementById("newsFeedback");
+
+      const secret = newsSecretInput.value.trim();
+
+      if (!secret) {
+        newsFeedback.innerHTML = '<span class="error">Inserisci la chiave privata news.</span>';
+        return;
+      }
+
+      if (!newsTitle.value.trim() || !newsContent.value.trim()) {
+        newsFeedback.innerHTML = '<span class="error">Titolo e testo sono obbligatori.</span>';
+        return;
+      }
+
+      newsFeedback.innerText = "Salvataggio news...";
+
+      try {
+        const res = await fetch("https://methods-guards-backend.vercel.app/api/admin-news", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-admin-key": secret
+          },
+          body: JSON.stringify({
+            title: newsTitle.value.trim(),
+            subtitle: newsSubtitle.value.trim(),
+            category: newsCategory.value,
+            content: newsContent.value.trim(),
+            external_url: newsExternalUrl.value.trim(),
+            published: newsPublished.checked
+          })
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          newsFeedback.innerHTML = '<span class="error">' + escapeHtml(data.error || "Errore salvataggio news") + '</span>';
+          return;
+        }
+
+        newsFeedback.innerText = "News salvata correttamente.";
+
+        newsTitle.value = "";
+        newsSubtitle.value = "";
+        newsContent.value = "";
+        newsExternalUrl.value = "";
+        newsPublished.checked = true;
+
+        loadAdminNews();
+
+      } catch (error) {
+        newsFeedback.innerHTML = '<span class="error">Errore di connessione durante il salvataggio.</span>';
+      }
+    }
+
+    async function loadAdminNews() {
+      const newsSecretInput = document.getElementById("newsSecretInput");
+      const newsFeedback = document.getElementById("newsFeedback");
+
+      const secret = newsSecretInput.value.trim();
+
+      if (!secret) {
+        newsFeedback.innerHTML = '<span class="error">Inserisci la chiave privata news.</span>';
+        return;
+      }
+
+      newsFeedback.innerText = "Caricamento news...";
+
+      try {
+        const res = await fetch("https://methods-guards-backend.vercel.app/api/admin-news", {
+          method: "GET",
+          headers: {
+            "x-admin-key": secret
+          }
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          newsFeedback.innerHTML = '<span class="error">' + escapeHtml(data.error || "Errore caricamento news") + '</span>';
+          return;
+        }
+
+        renderAdminNews(data.items || []);
+        newsFeedback.innerText = "News caricate: " + formatNumber(data.count || 0);
+
+      } catch (error) {
+        newsFeedback.innerHTML = '<span class="error">Errore di connessione durante il caricamento news.</span>';
+      }
+    }
+
+    function renderAdminNews(items) {
+      const newsList = document.getElementById("newsList");
+      newsList.innerHTML = "";
+
+      if (!items.length) {
+        newsList.innerHTML = "<p class='note'>Nessuna news presente.</p>";
+        return;
+      }
+
+      items.forEach((item) => {
+        const div = document.createElement("div");
+        div.className = "news-item";
+
+        div.innerHTML =
+          "<h3>" + escapeHtml(item.title || "Senza titolo") + "</h3>" +
+          "<p><strong>Categoria:</strong> " + escapeHtml(item.category || "—") + "</p>" +
+          "<p><strong>Pubblicata:</strong> " + (item.published ? "Sì" : "No") + "</p>" +
+          "<p>" + escapeHtml(item.subtitle || "") + "</p>";
+
+        newsList.appendChild(div);
+      });
+    }
 
     function startInactivityLogout() {
-  clearTimeout(inactivityTimer);
+      clearTimeout(inactivityTimer);
 
-  const resetTimer = () => {
-    clearTimeout(inactivityTimer);
+      const resetTimer = () => {
+        clearTimeout(inactivityTimer);
 
-    inactivityTimer = setTimeout(() => {
-      logoutDashboard();
-    }, INACTIVITY_LIMIT_MS);
-  };
+        inactivityTimer = setTimeout(() => {
+          logoutDashboard();
+        }, INACTIVITY_LIMIT_MS);
+      };
 
-  ["click", "keydown", "mousemove", "scroll", "touchstart"].forEach((eventName) => {
-    document.removeEventListener(eventName, resetTimer);
-    document.addEventListener(eventName, resetTimer);
-  });
+      ["click", "keydown", "mousemove", "scroll", "touchstart"].forEach((eventName) => {
+        document.removeEventListener(eventName, resetTimer);
+        document.addEventListener(eventName, resetTimer);
+      });
 
-  resetTimer();
-}
+      resetTimer();
+    }
 
-function logoutDashboard() {
-  const secretInput = document.getElementById("secretInput");
-  const status = document.getElementById("status");
-  const dashboard = document.getElementById("dashboard");
-  const maintenanceBox = document.getElementById("maintenanceBox");
-  const newsBox = document.getElementById("newsBox");
+    function logoutDashboard() {
+      const secretInput = document.getElementById("secretInput");
+      const status = document.getElementById("status");
+      const dashboard = document.getElementById("dashboard");
+      const maintenanceBox = document.getElementById("maintenanceBox");
+      const newsBox = document.getElementById("newsBox");
+      const logsBox = document.getElementById("logsBox");
+      const logsTable = document.getElementById("logsTable");
+      const logsFeedback = document.getElementById("logsFeedback");
 
-  clearTimeout(inactivityTimer);
+      clearTimeout(inactivityTimer);
 
-  if (secretInput) {
-    secretInput.value = "";
-  }
+      if (secretInput) {
+        secretInput.value = "";
+      }
 
-  if (dashboard) {
-    dashboard.classList.add("hidden");
-  }
+      if (dashboard) {
+        dashboard.classList.add("hidden");
+      }
 
-  if (maintenanceBox) {
-    maintenanceBox.classList.add("hidden");
-  }
+      if (maintenanceBox) {
+        maintenanceBox.classList.add("hidden");
+      }
 
-  if (newsBox) {
-    newsBox.classList.add("hidden");
-  }
+      if (newsBox) {
+        newsBox.classList.add("hidden");
+      }
 
-  if (status) {
-    status.innerText = "Sessione scaduta per inattività. Inserisci di nuovo la chiave privata.";
-  }
-}
+      if (logsBox) {
+        logsBox.classList.add("hidden");
+      }
+
+      if (logsTable) {
+        logsTable.innerHTML = "<tr><td colspan='7'>Nessun log caricato.</td></tr>";
+      }
+
+      if (logsFeedback) {
+        logsFeedback.innerText = "Log non ancora caricati.";
+      }
+
+      if (status) {
+        status.innerText = "Sessione scaduta per inattività. Inserisci di nuovo la chiave privata.";
+      }
+    }
+
     function formatNumber(value) {
       if (typeof value !== "number") return "—";
       return value.toLocaleString("it-IT");
+    }
+
+    function formatDateTime(value) {
+      if (!value) return "—";
+
+      const date = new Date(value);
+
+      if (Number.isNaN(date.getTime())) {
+        return value;
+      }
+
+      return date.toLocaleString("it-IT");
     }
 
     function escapeHtml(value) {
