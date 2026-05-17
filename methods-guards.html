@@ -1358,7 +1358,25 @@ if (!allowedProductTypes.includes(productType)) {
   return;
 }
 
-        output.innerText = data.output || data.error || "Errore: risposta non valida dal server.";
+        const rawOutput = data.output || data.error || "Errore: risposta non valida dal server.";
+
+let visibleReport = rawOutput;
+let hiddenJson = null;
+
+const jsonStart = rawOutput.lastIndexOf('\n{');
+
+if (jsonStart !== -1) {
+  visibleReport = rawOutput.slice(0, jsonStart).trim();
+
+  try {
+    hiddenJson = JSON.parse(rawOutput.slice(jsonStart).trim());
+    console.log("JSON Methods Guards:", hiddenJson);
+  } catch (e) {
+    console.warn("JSON non valido:", e);
+  }
+}
+
+output.innerText = visibleReport;
 
        if (data.output && !data.output.includes("ANALISI NON ESEGUITA")) {
   donationSection.classList.remove("hidden");
