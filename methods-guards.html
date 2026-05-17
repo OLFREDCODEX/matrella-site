@@ -1683,6 +1683,40 @@ function renderMethodsGuardsDashboard(data) {
         <div class="final-label">
           ${data.valutazione_complessiva?.classificazione || ""}
         </div>
+        </div>
+
+<div class="report-card">
+  <div class="report-section-title">
+    🔧 Azioni correttive prioritarie
+  </div>
+
+  <ol style="padding-left:22px; line-height:1.8;">
+    ${(data.azioni_correttive || [])
+      .map(a => `<li>${a}</li>`)
+      .join("")}
+  </ol>
+</div>
+
+<div class="report-card">
+  <div class="report-section-title">
+    ⚠️ Nota metodologica finale
+  </div>
+
+  <p style="color:var(--muted); line-height:1.8;">
+    Analisi preliminare, orientativa e document-bound.<br><br>
+
+    Methods Guards AI valuta esclusivamente gli elementi metodologici osservabili nel materiale fornito e non utilizza informazioni esterne non presenti nel documento.<br><br>
+
+    Il report non sostituisce:
+    <br>
+    - revisione umana esperta;
+    <br>
+    - peer review;
+    <br>
+    - supervisione metodologica;
+    <br>
+    - responsabilità scientifica dell’autore.
+  </p>
       </div>
 
     </div>
