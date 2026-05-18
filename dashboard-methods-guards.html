@@ -530,6 +530,34 @@
         </table>
       </div>
     </div>
+    <div id="memoryBox" class="box">
+  <h2>Memoria metodologica</h2>
+
+  <p class="note">
+    Ultimi documenti analizzati da Methods Guards AI.
+  </p>
+
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Titolo</th>
+          <th>Anno</th>
+          <th>Tipo</th>
+          <th>Score</th>
+          <th>Classe</th>
+        </tr>
+      </thead>
+
+      <tbody id="memoryTable">
+        <tr>
+          <td colspan="6">Nessun dato caricato.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
   </main>
 
   <script>
@@ -633,6 +661,7 @@
 
         loadMaintenanceStatus(secret);
         loadAdminLogs(secret);
+        loadMethodologyMemory(secret);
         startInactivityLogout();
 
       } catch (error) {
@@ -643,7 +672,61 @@
         logsBox.classList.add("hidden");
       }
     }
+async function loadMethodologyMemory(secret) {
 
+  try {
+
+    const response = await fetch(
+      `https://methods-guards-backend.vercel.app/api/analytics?mode=memory&secret=${secret}`
+    );
+
+    const data = await response.json();
+
+    const table = document.getElementById("memoryTable");
+
+    const box = document.getElementById("memoryBox");
+
+    if (!data.items || !Array.isArray(data.items)) {
+
+      table.innerHTML = `
+        <tr>
+          <td colspan="6">Errore caricamento memoria.</td>
+        </tr>
+      `;
+
+      return;
+    }
+
+    box.classList.remove("hidden");
+
+    table.innerHTML = "";
+
+    data.items.forEach((item) => {
+
+      const row = document.createElement("tr");
+
+      row.innerHTML = `
+        <td>${new Date(item.created_at).toLocaleDateString()}</td>
+        <td>${item.title || "n.d."}</td>
+        <td>${item.year || "n.d."}</td>
+        <td>${item.contribution_type || "n.d."}</td>
+        <td>${item.final_score || "n.d."}</td>
+        <td>${item.final_classification || "n.d."}</td>
+      `;
+
+      table.appendChild(row);
+
+    });
+
+  } catch (error) {
+
+    console.error(
+      "Errore caricamento memoria:",
+      error
+    );
+
+  }
+}
     function renderCountryMap(countries) {
       const note = document.getElementById("countryMapNote");
       const filtered = countries.filter((item) => {

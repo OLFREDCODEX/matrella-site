@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FL9Z4EHSEL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FL9Z4EHSEL');
+</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Dashboard privata | Methods Guards AI</title>
+
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <style>
+    :root {
+      --bg: #f7f5ef;
+      --paper: #ffffff;
+      --ink: #1f2933;
+      --muted: #6b7280;
+      --accent: #355c7d;
+      --line: #e5e0d8;
+      --soft: #edf2f7;
+    }
+
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    main {
+      width: min(1000px, 92%);
+      margin: auto;
+      padding: 70px 0;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      margin-bottom: 16px;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 28px;
+    }
+
+    .box,
+    .card {
+      background: var(--paper);
+      border-radius: 28px;
+      padding: 28px;
+    }
+
+    .box {
+      border: 1px solid var(--line);
+      margin-top: 24px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: var(--soft);
+      font: inherit;
+      box-sizing: border-box;
+      margin-top: 8px;
+    }
+
+    input[type="checkbox"] {
+      width: auto;
+      margin-top: 0;
+    }
+
+    button {
+      margin-top: 16px;
+      padding: 13px 20px;
+      border-radius: 999px;
+      border: none;
+      background: var(--ink);
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 12px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .card {
+      border: 2px solid var(--accent);
+    }
+
+    .label {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+
+    .value {
+      font-size: 2.1rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .wide {
+      grid-column: 1 / -1;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .error {
+      color: #9f1239;
+      font-weight: 700;
+    }
+
+.maintenance-panel {
+  border: 2px solid var(--accent);
+}
+
+.maintenance-status {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-top: 8px;
+}
+
+.maintenance-status.active {
+  color: #9f1239;
+}
+
+.maintenance-status.inactive {
+  color: #166534;
+}
+
+textarea {
+  width: 100%;
+  min-height: 110px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--soft);
+  font: inherit;
+  box-sizing: border-box;
+  margin-top: 8px;
+  resize: vertical;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.button-danger {
+  background: #9f1239;
+}
+
+.button-safe {
+  background: #166534;
+}
+
+.news-panel {
+  border: 2px solid var(--accent);
+}
+
+.news-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.news-item {
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 16px;
+}
+
+.news-item h3 {
+  margin: 0 0 6px;
+}
+
+.news-item p {
+  margin: 6px 0;
+  color: var(--muted);
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      font-size: 0.95rem;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 10px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .bar-track {
+      width: 100%;
+      height: 10px;
+      background: var(--line);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .bar-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      border-radius: 999px;
+    }
+
+    #countryMap {
+      width: 100%;
+      min-height: 420px;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 700px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      table {
+        font-size: 0.85rem;
+      }
+
+      #countryMap {
+        min-height: 320px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <h1>Dashboard privata</h1>
+
+    <p class="lead">
+      Area privata per controllare gli analytics essenziali di Methods Guards AI.
+    </p>
+
+    <div class="box">
+      <label for="secretInput"><strong>Chiave privata analytics</strong></label>
+      <input id="secretInput" type="password" placeholder="Inserisci la chiave analytics" />
+
+      <button type="button" onclick="loadAnalytics()">Mostra dashboard</button>
+
+      <p class="note">
+        La chiave non viene salvata nel sito. Viene usata solo per interrogare l’endpoint analytics.
+      </p>
+
+      <p id="status" class="note"></p>
+    </div>
+
+<div id="maintenanceBox" class="box maintenance-panel hidden">
+  <h2>Manutenzione / chiusura temporanea</h2>
+
+  <p class="note">
+    Da qui puoi mettere temporaneamente offline Methods Guards AI e mostrare un messaggio agli utenti.
+  </p>
+
+  <div id="maintenanceStatus" class="maintenance-status">Stato: —</div>
+
+  <label for="maintenanceMessage">
+    <strong>Messaggio da mostrare agli utenti</strong>
+  </label>
+
+  <textarea id="maintenanceMessage" placeholder="Esempio: Methods Guards AI è temporaneamente in manutenzione. Riprova più tardi."></textarea>
+
+  <div class="button-row">
+    <button type="button" class="button-danger" onclick="setMaintenance(true)">
+      Attiva manutenzione / OFF
+    </button>
+
+    <button type="button" class="button-safe" onclick="setMaintenance(false)">
+      Disattiva manutenzione / ON
+    </button>
+  </div>
+
+  <p id="maintenanceFeedback" class="note"></p>
+</div>
+
+<div id="newsBox" class="box news-panel hidden">
+  <h2>Gestione news</h2>
+
+  <p class="note">
+    Da qui puoi inserire news da mostrare nella pagina Comunicazioni.
+  </p>
+
+  <label for="newsSecretInput">
+    <strong>Chiave privata news</strong>
+  </label>
+  <input id="newsSecretInput" type="password" placeholder="Inserisci la chiave news" />
+
+  <label for="newsTitle">
+    <strong>Titolo news</strong>
+  </label>
+  <input id="newsTitle" type="text" placeholder="Titolo della news" />
+
+  <label for="newsSubtitle">
+    <strong>Sottotitolo</strong>
+  </label>
+  <input id="newsSubtitle" type="text" placeholder="Sottotitolo breve" />
+
+  <label for="newsCategory">
+    <strong>Categoria</strong>
+  </label>
+  <select id="newsCategory">
+    <option value="News">News</option>
+    <option value="Articolo">Articolo</option>
+    <option value="Podcast">Podcast</option>
+    <option value="Progetto">Progetto</option>
+    <option value="Comunicazione">Comunicazione</option>
+  </select>
+
+  <label for="newsContent">
+    <strong>Testo</strong>
+  </label>
+  <textarea id="newsContent" placeholder="Scrivi il contenuto della news"></textarea>
+
+  <label for="newsExternalUrl">
+    <strong>Link esterno opzionale</strong>
+  </label>
+  <input id="newsExternalUrl" type="url" placeholder="https://..." />
+
+  <div class="checkbox-row">
+    <input id="newsPublished" type="checkbox" checked />
+    <label for="newsPublished"><strong>Pubblica subito</strong></label>
+  </div>
+
+  <div class="button-row">
+    <button type="button" onclick="createNews()">Salva news</button>
+    <button type="button" onclick="loadAdminNews()">Ricarica news</button>
+  </div>
+
+  <p id="newsFeedback" class="note"></p>
+
+  <div id="newsList" class="news-list"></div>
+</div>
+
+    <div id="dashboard" class="grid hidden">
+      <div class="card">
+        <div class="label">Data UTC</div>
+        <div id="dateUTC" class="value">—</div>
+      </div>
+
+      <div class="card">
+        <div class="label">Analisi totali</div>
+        <div id="totalAnalyses" class="value">—</div>
+      </div>
+
+      <div class="card">
+        <div class="label">Analisi oggi</div>
+        <div id="todayAnalyses" class="value">—</div>
+      </div>
+
+      <div class="card">
+        <div class="label">Identificativi oggi</div>
+        <div id="uniqueIdentifiersToday" class="value">—</div>
+      </div>
+
+      <div class="card">
+        <div class="label">Media analisi per identificativo oggi</div>
+        <div id="avgAnalysesPerIdentifierToday" class="value">—</div>
+      </div>
+
+      <div class="card">
+        <div class="label">Utenti oggi</div>
+        <div id="usersToday" class="value">—</div>
+        <p id="usersTodayText" class="note">—</p>
+      </div>
+
+      <div class="card">
+        <div class="label">Returning complessivi</div>
+        <div id="usersAllTimeRate" class="value">—</div>
+        <p id="usersAllTimeText" class="note">—</p>
+      </div>
+
+      <div class="card">
+        <div class="label">Quota analisi con codice ultimi 7 giorni</div>
+        <div id="codeUsageRate" class="value">—</div>
+        <div class="bar-track">
+          <div id="codeUsageBar" class="bar-fill"></div>
+        </div>
+      </div>
+
+      <div class="card wide">
+        <div class="label">Mappa analisi per paese</div>
+        <div id="countryMap"></div>
+        <p id="countryMapNote" class="note">—</p>
+      </div>
+
+      <div class="card wide">
+        <div class="label">Città più rappresentate</div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Città</th>
+              <th>Analisi</th>
+            </tr>
+          </thead>
+          <tbody id="cityTable">
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card wide">
+        <div class="label">Analisi per tipo prodotto (ultimi 7 giorni)</div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Tipo</th>
+              <th>Analisi</th>
+            </tr>
+          </thead>
+          <tbody id="productTypeTable">
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card wide">
+        <div class="label">Periodo ultimi 7 giorni</div>
+        <div class="value" id="recentPeriodTotal">—</div>
+        <p class="note" id="recentPeriodText">—</p>
+      </div>
+
+      <div class="card wide">
+        <div class="label">Trend ultimi 7 giorni</div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Analisi</th>
+              <th>Con codice</th>
+              <th>Senza codice</th>
+            </tr>
+          </thead>
+          <tbody id="trendTable">
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    google.charts.load("current", {
+      packages: ["geochart"]
+    });
+
+    let latestCountryData = null;
+let inactivityTimer = null;
+const INACTIVITY_LIMIT_MS = 5 * 60 * 1000;
+    async function loadAnalytics() {
+      const secretInput = document.getElementById("secretInput");
+      const status = document.getElementById("status");
+      const dashboard = document.getElementById("dashboard");
+
+      const secret = secretInput.value.trim();
+
+      if (!secret) {
+        status.innerHTML = '<span class="error">Inserisci la chiave analytics.</span>';
+        dashboard.classList.add("hidden");
+        return;
+      }
+
+      status.innerText = "Caricamento dati...";
+      dashboard.classList.add("hidden");
+
+      try {
+        const url = "https://methods-guards-backend.vercel.app/api/analytics?secret=" + encodeURIComponent(secret);
+
+        const res = await fetch(url);
+        const data = await res.json();
+
+        if (!res.ok) {
+          status.innerHTML = '<span class="error">' + (data.error || "Accesso non autorizzato") + '</span>';
+          dashboard.classList.add("hidden");
+          return;
+        }
+
+        document.getElementById("dateUTC").innerText = data.dateUTC || "—";
+        document.getElementById("totalAnalyses").innerText = formatNumber(data.totalAnalyses);
+        document.getElementById("todayAnalyses").innerText = formatNumber(data.todayAnalyses);
+        document.getElementById("uniqueIdentifiersToday").innerText = formatNumber(data.uniqueIdentifiersToday);
+        document.getElementById("avgAnalysesPerIdentifierToday").innerText = formatNumber(data.avgAnalysesPerIdentifierToday);
+
+        const usersToday = data.usersToday || {};
+        const usersTodayTotal = (usersToday.new || 0) + (usersToday.returning || 0);
+
+        document.getElementById("usersToday").innerText = formatNumber(usersTodayTotal);
+        document.getElementById("usersTodayText").innerText =
+          "Nuovi: " + formatNumber(usersToday.new || 0) +
+          " | Returning: " + formatNumber(usersToday.returning || 0);
+
+        const usersAllTime = data.usersAllTime || {};
+
+        document.getElementById("usersAllTimeRate").innerText =
+          formatNumber(usersAllTime.returningRate || 0) + "%";
+
+        document.getElementById("usersAllTimeText").innerText =
+          "Totali: " + formatNumber(usersAllTime.totalIdentifiers || 0) +
+          " | Returning: " + formatNumber(usersAllTime.returningIdentifiers || 0) +
+          " | One-time: " + formatNumber(usersAllTime.oneTimeIdentifiers || 0);
+
+        const recent = data.recentPeriod || {};
+        const rate = typeof recent.codeUsageRate === "number" ? recent.codeUsageRate : 0;
+
+        document.getElementById("codeUsageRate").innerText = rate.toLocaleString("it-IT") + "%";
+        document.getElementById("codeUsageBar").style.width = Math.min(rate, 100) + "%";
+
+        document.getElementById("recentPeriodTotal").innerText = formatNumber(recent.analyses) + " analisi";
+        document.getElementById("recentPeriodText").innerText =
+          "Dal " + (recent.fromUTC || "—") +
+          " al " + (recent.toUTC || "—") +
+          " | con codice: " + formatNumber(recent.analysesWithCode) +
+          " | senza codice: " + formatNumber(recent.analysesWithoutCode);
+
+        latestCountryData = data.topCountries || [];
+        renderCountryMap(latestCountryData);
+        renderCityTable(data.topCities || []);
+        renderProductTypeTable(data.byProductType || {});
+        renderTrendTable(data.last7Days || []);
+
+        dashboard.classList.remove("hidden");
+document.getElementById("maintenanceBox").classList.remove("hidden");
+document.getElementById("newsBox").classList.remove("hidden");
+status.innerText = "Dati caricati correttamente.";
+
+loadMaintenanceStatus(secret);
+        startInactivityLogout();
+
+      } catch (error) {
+        status.innerHTML = '<span class="error">Errore di connessione.</span>';
+        dashboard.classList.add("hidden");
+      }
+    }
+
+    function renderCountryMap(countries) {
+      const note = document.getElementById("countryMapNote");
+      const filtered = countries.filter((item) => {
+        return item.label && item.label.toLowerCase() !== "unknown";
+      });
+
+      if (filtered.length === 0) {
+        document.getElementById("countryMap").innerHTML = "";
+        note.innerText = "Nessun dato geografico valido disponibile. Le analisi precedenti possono risultare come unknown.";
+        return;
+      }
+
+      note.innerText = "La mappa esclude i valori unknown. Colore più intenso = più analisi.";
+
+      google.charts.setOnLoadCallback(() => {
+        const rows = [["Country", "Analisi"]];
+
+        filtered.forEach((item) => {
+          rows.push([item.label, Number(item.count || 0)]);
+        });
+
+        const chartData = google.visualization.arrayToDataTable(rows);
+
+        const options = {
+          backgroundColor: "transparent",
+          colorAxis: {
+            colors: ["#d9e6f2", "#355c7d"]
+          },
+          legend: {
+            textStyle: {
+              color: "#6b7280",
+              fontSize: 12
+            }
+          },
+          datalessRegionColor: "#f1efe8",
+          defaultColor: "#f1efe8"
+        };
+
+        const chart = new google.visualization.GeoChart(document.getElementById("countryMap"));
+        chart.draw(chartData, options);
+      });
+    }
+
+    function renderCityTable(cities) {
+      const tbody = document.getElementById("cityTable");
+      tbody.innerHTML = "";
+
+      const filtered = cities.filter((item) => {
+        return item.label && item.label.toLowerCase() !== "unknown";
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = "<tr><td colspan='2'>Nessun dato città valido disponibile.</td></tr>";
+        return;
+      }
+
+      filtered.forEach((item) => {
+        const tr = document.createElement("tr");
+
+        tr.innerHTML =
+          "<td>" + escapeHtml(item.label) + "</td>" +
+          "<td>" + formatNumber(item.count) + "</td>";
+
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderProductTypeTable(obj) {
+      const tbody = document.getElementById("productTypeTable");
+      tbody.innerHTML = "";
+
+      const entries = Object.entries(obj);
+
+      if (entries.length === 0) {
+        tbody.innerHTML = "<tr><td colspan='2'>Nessun dato disponibile.</td></tr>";
+        return;
+      }
+
+      entries.sort((a, b) => b[1] - a[1]);
+
+      entries.forEach(([type, count]) => {
+        const tr = document.createElement("tr");
+
+        tr.innerHTML =
+          "<td>" + escapeHtml(type) + "</td>" +
+          "<td>" + formatNumber(count) + "</td>";
+
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderTrendTable(days) {
+      const tbody = document.getElementById("trendTable");
+      tbody.innerHTML = "";
+
+      if (!Array.isArray(days) || days.length === 0) {
+        tbody.innerHTML = "<tr><td colspan='4'>Nessun dato disponibile.</td></tr>";
+        return;
+      }
+
+      days.forEach((day) => {
+        const tr = document.createElement("tr");
+
+        tr.innerHTML =
+          "<td>" + escapeHtml(day.date || "—") + "</td>" +
+          "<td>" + formatNumber(day.analyses) + "</td>" +
+          "<td>" + formatNumber(day.withCode) + "</td>" +
+          "<td>" + formatNumber(day.withoutCode) + "</td>";
+
+        tbody.appendChild(tr);
+      });
+    }
+async function loadMaintenanceStatus(secret) {
+  const maintenanceStatus = document.getElementById("maintenanceStatus");
+  const maintenanceMessage = document.getElementById("maintenanceMessage");
+  const maintenanceFeedback = document.getElementById("maintenanceFeedback");
+
+  maintenanceFeedback.innerText = "Lettura stato manutenzione...";
+
+  try {
+    const res = await fetch("https://methods-guards-backend.vercel.app/api/admin-maintenance", {
+      method: "GET",
+      headers: {
+        "x-admin-key": secret
+      }
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      maintenanceFeedback.innerHTML = '<span class="error">' + escapeHtml(data.error || "Errore lettura manutenzione") + '</span>';
+      return;
+    }
+
+    updateMaintenanceUI(data.maintenance, data.message);
+    maintenanceFeedback.innerText = "Stato manutenzione caricato.";
+
+  } catch (error) {
+    maintenanceFeedback.innerHTML = '<span class="error">Errore di connessione manutenzione.</span>';
+  }
+}
+
+async function setMaintenance(enabled) {
+  const secretInput = document.getElementById("secretInput");
+  const maintenanceMessage = document.getElementById("maintenanceMessage");
+  const maintenanceFeedback = document.getElementById("maintenanceFeedback");
+
+  const secret = secretInput.value.trim();
+  const message = maintenanceMessage.value.trim();
+
+  if (!secret) {
+    maintenanceFeedback.innerHTML = '<span class="error">Inserisci prima la chiave privata.</span>';
+    return;
+  }
+
+  if (enabled && !message) {
+    maintenanceFeedback.innerHTML = '<span class="error">Per attivare la manutenzione devi inserire un messaggio per gli utenti.</span>';
+    return;
+  }
+
+  maintenanceFeedback.innerText = enabled
+    ? "Attivazione manutenzione..."
+    : "Disattivazione manutenzione...";
+
+  try {
+    const res = await fetch("https://methods-guards-backend.vercel.app/api/admin-maintenance", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-admin-key": secret
+      },
+      body: JSON.stringify({
+        maintenance: enabled,
+        message: message || "Methods Guards AI è temporaneamente non disponibile. Riprova più tardi."
+      })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      maintenanceFeedback.innerHTML = '<span class="error">' + escapeHtml(data.error || "Errore aggiornamento manutenzione") + '</span>';
+      return;
+    }
+
+    updateMaintenanceUI(data.maintenance, data.message);
+
+    maintenanceFeedback.innerText = data.maintenance
+      ? "Manutenzione attivata. La pagina pubblica risulterà temporaneamente chiusa."
+      : "Manutenzione disattivata. Methods Guards AI è di nuovo attivo.";
+
+  } catch (error) {
+    maintenanceFeedback.innerHTML = '<span class="error">Errore di connessione durante aggiornamento manutenzione.</span>';
+  }
+}
+
+function updateMaintenanceUI(enabled, message) {
+  const maintenanceStatus = document.getElementById("maintenanceStatus");
+  const maintenanceMessage = document.getElementById("maintenanceMessage");
+
+  maintenanceMessage.value = message || "";
+
+  if (enabled) {
+    maintenanceStatus.innerText = "Stato: MANUTENZIONE ATTIVA / OFF";
+    maintenanceStatus.classList.add("active");
+    maintenanceStatus.classList.remove("inactive");
+  } else {
+    maintenanceStatus.innerText = "Stato: SERVIZIO ATTIVO / ON";
+    maintenanceStatus.classList.add("inactive");
+    maintenanceStatus.classList.remove("active");
+  }
+}
+
+async function createNews() {
+  const newsSecretInput = document.getElementById("newsSecretInput");
+  const newsTitle = document.getElementById("newsTitle");
+  const newsSubtitle = document.getElementById("newsSubtitle");
+  const newsCategory = document.getElementById("newsCategory");
+  const newsContent = document.getElementById("newsContent");
+  const newsExternalUrl = document.getElementById("newsExternalUrl");
+  const newsPublished = document.getElementById("newsPublished");
+  const newsFeedback = document.getElementById("newsFeedback");
+
+  const secret = newsSecretInput.value.trim();
+
+  if (!secret) {
+    newsFeedback.innerHTML = '<span class="error">Inserisci la chiave privata news.</span>';
+    return;
+  }
+
+  if (!newsTitle.value.trim() || !newsContent.value.trim()) {
+    newsFeedback.innerHTML = '<span class="error">Titolo e testo sono obbligatori.</span>';
+    return;
+  }
+
+  newsFeedback.innerText = "Salvataggio news...";
+
+  try {
+    const res = await fetch("https://methods-guards-backend.vercel.app/api/admin-news", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-admin-key": secret
+      },
+      body: JSON.stringify({
+        title: newsTitle.value.trim(),
+        subtitle: newsSubtitle.value.trim(),
+        category: newsCategory.value,
+        content: newsContent.value.trim(),
+        external_url: newsExternalUrl.value.trim(),
+        published: newsPublished.checked
+      })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      newsFeedback.innerHTML = '<span class="error">' + escapeHtml(data.error || "Errore salvataggio news") + '</span>';
+      return;
+    }
+
+    newsFeedback.innerText = "News salvata correttamente.";
+
+    newsTitle.value = "";
+    newsSubtitle.value = "";
+    newsContent.value = "";
+    newsExternalUrl.value = "";
+    newsPublished.checked = true;
+
+    loadAdminNews();
+
+  } catch (error) {
+    newsFeedback.innerHTML = '<span class="error">Errore di connessione durante il salvataggio.</span>';
+  }
+}
+
+async function loadAdminNews() {
+  const newsSecretInput = document.getElementById("newsSecretInput");
+  const newsFeedback = document.getElementById("newsFeedback");
+
+  const secret = newsSecretInput.value.trim();
+
+  if (!secret) {
+    newsFeedback.innerHTML = '<span class="error">Inserisci la chiave privata news.</span>';
+    return;
+  }
+
+  newsFeedback.innerText = "Caricamento news...";
+
+  try {
+    const res = await fetch("https://methods-guards-backend.vercel.app/api/admin-news", {
+      method: "GET",
+      headers: {
+        "x-admin-key": secret
+      }
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      newsFeedback.innerHTML = '<span class="error">' + escapeHtml(data.error || "Errore caricamento news") + '</span>';
+      return;
+    }
+
+    renderAdminNews(data.items || []);
+    newsFeedback.innerText = "News caricate: " + formatNumber(data.count || 0);
+
+  } catch (error) {
+    newsFeedback.innerHTML = '<span class="error">Errore di connessione durante il caricamento news.</span>';
+  }
+}
+
+function renderAdminNews(items) {
+  const newsList = document.getElementById("newsList");
+  newsList.innerHTML = "";
+
+  if (!items.length) {
+    newsList.innerHTML = "<p class='note'>Nessuna news presente.</p>";
+    return;
+  }
+
+  items.forEach((item) => {
+    const div = document.createElement("div");
+    div.className = "news-item";
+
+    div.innerHTML =
+      "<h3>" + escapeHtml(item.title || "Senza titolo") + "</h3>" +
+      "<p><strong>Categoria:</strong> " + escapeHtml(item.category || "—") + "</p>" +
+      "<p><strong>Pubblicata:</strong> " + (item.published ? "Sì" : "No") + "</p>" +
+      "<p>" + escapeHtml(item.subtitle || "") + "</p>";
+
+    newsList.appendChild(div);
+  });
+}
+
+    function startInactivityLogout() {
+  clearTimeout(inactivityTimer);
+
+  const resetTimer = () => {
+    clearTimeout(inactivityTimer);
+
+    inactivityTimer = setTimeout(() => {
+      logoutDashboard();
+    }, INACTIVITY_LIMIT_MS);
+  };
+
+  ["click", "keydown", "mousemove", "scroll", "touchstart"].forEach((eventName) => {
+    document.removeEventListener(eventName, resetTimer);
+    document.addEventListener(eventName, resetTimer);
+  });
+
+  resetTimer();
+}
+
+function logoutDashboard() {
+  const secretInput = document.getElementById("secretInput");
+  const status = document.getElementById("status");
+  const dashboard = document.getElementById("dashboard");
+  const maintenanceBox = document.getElementById("maintenanceBox");
+  const newsBox = document.getElementById("newsBox");
+
+  clearTimeout(inactivityTimer);
+
+  if (secretInput) {
+    secretInput.value = "";
+  }
+
+  if (dashboard) {
+    dashboard.classList.add("hidden");
+  }
+
+  if (maintenanceBox) {
+    maintenanceBox.classList.add("hidden");
+  }
+
+  if (newsBox) {
+    newsBox.classList.add("hidden");
+  }
+
+  if (status) {
+    status.innerText = "Sessione scaduta per inattività. Inserisci di nuovo la chiave privata.";
+  }
+}
+    function formatNumber(value) {
+      if (typeof value !== "number") return "—";
+      return value.toLocaleString("it-IT");
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+  </script>
+</body>
+</html>
