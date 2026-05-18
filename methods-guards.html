@@ -525,6 +525,17 @@
   font-size: 1.2rem;
   flex-shrink: 0;
 }
+.guardian-avatar {
+  width: 86px;
+  height: 86px;
+  object-fit: contain;
+  margin-top: 10px;
+  border-radius: 16px;
+  background: #f8fafc;
+  border: 1px solid var(--line);
+  padding: 6px;
+  display: block;
+}
 
 .guardian-list {
   margin: 0;
@@ -1574,6 +1585,36 @@ if (hiddenJson) {
         stopLoadingState();
       }
     }
+    function getGuardianImage(name) {
+
+  const value = String(name || "").toLowerCase();
+
+  if (value.includes("refuto")) {
+    return "images/popper.jpeg";
+  }
+
+  if (value.includes("empirico")) {
+    return "images/lazar.jpeg";
+  }
+
+  if (value.includes("random")) {
+    return "images/fisher.jpeg";
+  }
+
+  if (value.includes("valid")) {
+    return "images/cohen.jpeg";
+  }
+
+  if (value.includes("power")) {
+    return "images/fisher.jpeg";
+  }
+
+  if (value.includes("generalizer")) {
+    return "images/lazar.jpeg";
+  }
+
+  return "images/popper.jpeg";
+}
 function getBadgeClass(level) {
   const value = String(level || "").toLowerCase();
 
@@ -1606,17 +1647,23 @@ function renderMethodsGuardsDashboard(data) {
     ${(data.guardiani || []).map(g => `
       <div class="guardian-row">
 
-        <div class="guardian-cell guardian-info">
-          <div class="guardian-icon">
-            🛡️
-          </div>
+       <div class="guardian-cell guardian-info">
 
-          <div>
-            <div class="guardian-name">
-              ${g.nome}
-            </div>
-          </div>
-        </div>
+  <div>
+
+    <div class="guardian-name">
+      ${g.nome}
+    </div>
+
+    <img
+      class="guardian-avatar"
+      src="${getGuardianImage(g.nome)}"
+      alt="${g.nome}"
+    />
+
+  </div>
+
+</div>
 
         <div class="guardian-cell">
           <span class="${getBadgeClass(g.robustezza)}">
