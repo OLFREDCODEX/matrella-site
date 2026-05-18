@@ -461,7 +461,21 @@
   font-size: 1.15rem;
   margin-bottom: 14px;
 }
+.formal-quality-box {
+  margin-top: 12px;
+  padding: 14px;
+  border-radius: 14px;
+  background: #f8fafc;
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
+.formal-badge {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
 .final-score {
   font-size: 3rem;
   font-weight: 800;
@@ -1717,7 +1731,33 @@ function renderMethodsGuardsDashboard(data) {
           ${guardiansHtml}
         </div>
       </div>
+${data.qualita_formale ? `
 
+<div class="report-card">
+
+  <div class="report-section-title">
+    📝 Qualità formale del testo
+  </div>
+
+  <div class="formal-quality-box">
+
+    <span class="formal-badge">
+      ${data.qualita_formale.livello === "verde"
+        ? "🟢"
+        : data.qualita_formale.livello === "giallo"
+        ? "🟡"
+        : "🔴"}
+    </span>
+
+    <span>
+      ${data.qualita_formale.nota || ""}
+    </span>
+
+  </div>
+
+</div>
+
+` : ""}
       <div class="report-card">
         <div class="report-section-title">
           📈 Valutazione complessiva
