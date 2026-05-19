@@ -92,16 +92,25 @@
     }
 
     nav ul {
-      display: flex;
-      gap: 18px;
-      list-style: none;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
+  display: flex;
+  gap: 22px;
+  list-style: none;
 
-    nav a:hover {
-      color: var(--accent);
-    }
+  color: #475569;
+
+  font-size: 0.96rem;
+  font-weight: 600;
+
+  letter-spacing: -0.01em;
+}
+
+    nav a {
+  transition: 0.18s ease;
+}
+
+nav a:hover {
+  color: var(--accent);
+}
 
     .hero {
       width: min(1120px, 92%);
@@ -744,7 +753,24 @@ section::before {
   </header>
 
   <main id="top">
+<div class="live-strip" aria-label="Aggiornamenti dinamici">
+      <div id="liveTrack" class="live-track">
+        <a class="live-item" href="comunicazioni.html">
+          <span class="live-label">Ultima news</span>
+          <span class="live-text">Caricamento...</span>
+        </a>
 
+        <a class="live-item" href="#opportunita">
+          <span class="live-label">Ultimo bando</span>
+          <span class="live-text">Caricamento...</span>
+        </a>
+
+        <a class="live-item" href="methods-guards.html">
+          <span class="live-label">Methods Guards AI</span>
+          <span class="live-text">Caricamento...</span>
+        </a>
+      </div>
+    </div>
   <div class="hero-wrap">
 
     <section class="hero" aria-labelledby="titolo-hero">
@@ -811,25 +837,7 @@ alla produzione e all’interpretazione della conoscenza empirica.
       </section>
       </div>
 
-    <div class="live-strip" aria-label="Aggiornamenti dinamici">
-      <div id="liveTrack" class="live-track">
-        <a class="live-item" href="comunicazioni.html">
-          <span class="live-label">Ultima news</span>
-          <span class="live-text">Caricamento...</span>
-        </a>
-
-        <a class="live-item" href="#opportunita">
-          <span class="live-label">Ultimo bando</span>
-          <span class="live-text">Caricamento...</span>
-        </a>
-
-        <a class="live-item" href="methods-guards.html">
-          <span class="live-label">Methods Guards AI</span>
-          <span class="live-text">Caricamento...</span>
-        </a>
-      </div>
-    </div>
-
+    
     <section id="ultime-comunicazioni">
       <div class="section-head">
         <h2>Ultime comunicazioni</h2>
