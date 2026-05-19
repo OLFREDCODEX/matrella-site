@@ -1763,13 +1763,16 @@ ${data.qualita_formale ? `
           📈 Valutazione complessiva
         </div>
 
-        <div class="final-score">
-          ${data.valutazione_complessiva?.indice_robustezza || "-"}
-        </div>
+       <p style="line-height:1.8; margin:0;">
 
-        <div class="final-label">
-          ${data.valutazione_complessiva?.classificazione || ""}
-        </div>
+  <strong>Sicurezza della valutazione:</strong>
+  ${data.valutazione_complessiva?.sicurezza_valutazione || "-"}
+
+  <br><br>
+
+  ${data.valutazione_complessiva?.spiegazione_sicurezza || ""}
+
+</p>
         </div>
 
 <div class="report-card">
