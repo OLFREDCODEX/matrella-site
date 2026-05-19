@@ -49,6 +49,14 @@
       color: var(--ink);
       line-height: 1.6;
     }
+    .hero-wrap {
+  background: linear-gradient(
+    180deg,
+    #f1ede4 0%,
+    #f7f5ef 100%
+  );
+  border-bottom: 1px solid #e9e2d8;
+}
 
     a {
       color: inherit;
@@ -210,19 +218,56 @@
       margin-bottom: 20px;
     }
 
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
+    .profile-links {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 26px;
+}
 
-    .tag {
-      font-size: 0.82rem;
-      background: var(--soft);
-      color: #374151;
-      padding: 7px 10px;
-      border-radius: 999px;
-    }
+.profile-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  border-radius: 18px;
+  background: #f8fafc;
+  border: 1px solid #e7ebf0;
+  transition: 0.18s ease;
+}
+
+.profile-link:hover {
+  transform: translateY(-2px);
+  border-color: rgba(53, 92, 125, 0.35);
+  background: white;
+}
+
+.profile-link-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(
+    135deg,
+    var(--accent),
+    #16213e
+  );
+  color: white;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.profile-link strong {
+  display: block;
+  font-size: 0.96rem;
+  margin-bottom: 2px;
+}
+
+.profile-link span {
+  color: var(--muted);
+  font-size: 0.84rem;
+}
 
     section {
   width: min(1120px, 92%);
@@ -676,6 +721,8 @@
 
   <main id="top">
 
+  <div class="hero-wrap">
+
     <section class="hero" aria-labelledby="titolo-hero">
       <div>
         <div class="eyebrow">Metodologo della ricerca sociale</div>
@@ -697,26 +744,48 @@ alla produzione e all’interpretazione della conoscenza empirica.
       </div>
 
       <aside class="profile-card" aria-label="Sintesi profilo">
-        <div class="profile-mark">AM</div>
+       <div class="profile-mark">AM</div>
 
-        <h2>Strategia, rilevazione, analisi e interpretazione</h2>
+<h2>Ricerca, metodologia e strumenti digitali</h2>
 
-        <p>
-          Un approccio orientato alla chiarezza metodologica,
-alla costruzione di strategie di ricerca coerenti
-e alla produzione di dati interpretabili.
-        </p>
+<p>
+  Uno spazio dedicato a metodologia della ricerca sociale,
+  valutazione, analisi dei dati e sperimentazione metodologica.
+</p>
 
-        <div class="tags">
-          <span class="tag">Survey research</span>
-          <span class="tag">Mixed methods</span>
-          <span class="tag">Qualitative analysis</span>
-          <span class="tag">Quantitative analysis</span>
-          <span class="tag">Evaluation</span>
-          <span class="tag">AI-powered tools</span>
-        </div>
+<div class="profile-links">
+
+  <a class="profile-link" href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+    <div class="profile-link-icon">in</div>
+
+    <div>
+      <strong>LinkedIn</strong>
+      <span>Rete professionale e aggiornamenti</span>
+    </div>
+  </a>
+
+  <a class="profile-link" href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
+    <div class="profile-link-icon">▶</div>
+
+    <div>
+      <strong>YouTube</strong>
+      <span>Podcast, analisi e contenuti metodologici</span>
+    </div>
+  </a>
+
+  <a class="profile-link" href="methods-guards.html">
+    <div class="profile-link-icon">MG</div>
+
+    <div>
+      <strong>Methods Guards AI</strong>
+      <span>Strumento sperimentale di valutazione metodologica</span>
+    </div>
+  </a>
+
+</div>
       </aside>
       </section>
+      </div>
 
     <div class="live-strip" aria-label="Aggiornamenti dinamici">
       <div id="liveTrack" class="live-track">
