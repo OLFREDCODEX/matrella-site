@@ -370,6 +370,27 @@
       </label>
       <textarea id="newsContent" placeholder="Scrivi il contenuto della news"></textarea>
 
+      <label for="newsImage">
+  <strong>Immagine cover</strong>
+</label>
+
+<input
+  id="newsImage"
+  type="file"
+  accept="image/png,image/jpeg,image/webp"
+/>
+
+<img
+  id="newsImagePreview"
+  style="
+    display:none;
+    width:100%;
+    max-width:320px;
+    margin-top:14px;
+    border-radius:18px;
+    border:1px solid var(--line);
+  "
+/>
       <label for="newsExternalUrl">
         <strong>Link esterno opzionale</strong>
       </label>
@@ -656,6 +677,51 @@
         maintenanceBox.classList.remove("hidden");
         newsBox.classList.remove("hidden");
         logsBox.classList.remove("hidden");
+
+        const newsImageInput = document.getElementById("newsImage");
+const newsImagePreview = document.getElementById("newsImagePreview");
+
+if (newsImageInput && !newsImageInput.dataset.listenerAttached) {
+
+  newsImageInput.dataset.listenerAttached = "true";
+
+  newsImageInput.addEventListener("change", () => {
+
+    const file = newsImageInput.files[0];
+
+    if (!file) {
+      newsImagePreview.style.display = "none";
+      return;
+    }
+
+    const allowedTypes = [
+      "image/jpeg",
+      "image/png",
+      "image/webp"
+    ];
+
+    if (!allowedTypes.includes(file.type)) {
+      alert("Formato immagine non supportato.");
+      newsImageInput.value = "";
+      newsImagePreview.style.display = "none";
+      return;
+    }
+
+    if (file.size > 3 * 1024 * 1024) {
+      alert("Immagine troppo grande. Max 3MB.");
+      newsImageInput.value = "";
+      newsImagePreview.style.display = "none";
+      return;
+    }
+
+    const imageUrl = URL.createObjectURL(file);
+
+    newsImagePreview.src = imageUrl;
+    newsImagePreview.style.display = "block";
+
+  });
+
+}
 
         status.innerText = "Dati caricati correttamente.";
 
