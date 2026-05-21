@@ -162,7 +162,15 @@
       transform: translateY(-3px);
       border-color: rgba(53, 92, 125, 0.35);
     }
-
+.communication-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 18px;
+  margin-bottom: 18px;
+  border: 1px solid rgba(53, 92, 125, 0.18);
+  background: #edf2f7;
+}
     .communication-card .meta {
       display: flex;
       justify-content: space-between;
@@ -456,36 +464,46 @@
   }
 
   function createNewsCard(item) {
-    const url = item.external_url || "comunicazioni.html";
-    const safeUrl = escapeHtml(url);
-    const hasExternalUrl = Boolean(item.external_url);
+  const url = item.external_url || "comunicazioni.html";
+  const safeUrl = escapeHtml(url);
+  const hasExternalUrl = Boolean(item.external_url);
+  const imageUrl = item.cover_image_url || "";
 
-    const previewText =
-      item.subtitle ||
-      item.content ||
-      "Comunicazione pubblicata sul sito.";
+  const previewText =
+    item.subtitle ||
+    item.content ||
+    "Comunicazione pubblicata sul sito.";
 
-    return `
-      <article class="communication-card">
-        <div>
-          <div class="meta">
-            <span class="badge">${escapeHtml(item.category || "News")}</span>
-            <span class="date">${formatDate(item.created_at)}</span>
-          </div>
+  return `
+    <article class="communication-card">
+      ${imageUrl ? `
+        <img
+          class="communication-image"
+          src="${escapeHtml(imageUrl)}"
+          alt="${escapeHtml(item.title || "Immagine news")}"
+          loading="lazy"
+        />
+      ` : ""}
 
-          <h3>${escapeHtml(item.title || "Senza titolo")}</h3>
-
-          <p class="news-preview">
-            ${escapeHtml(previewText)}
-          </p>
+      <div>
+        <div class="meta">
+          <span class="badge">${escapeHtml(item.category || "News")}</span>
+          <span class="date">${formatDate(item.created_at)}</span>
         </div>
 
-        <a href="${safeUrl}" ${hasExternalUrl ? 'target="_blank" rel="noopener noreferrer"' : ""}>
-          Leggi tutto →
-        </a>
-      </article>
-    `;
-  }
+        <h3>${escapeHtml(item.title || "Senza titolo")}</h3>
+
+        <p class="news-preview">
+          ${escapeHtml(previewText)}
+        </p>
+      </div>
+
+      <a href="${safeUrl}" ${hasExternalUrl ? 'target="_blank" rel="noopener noreferrer"' : ""}>
+        Leggi tutto &rarr;
+      </a>
+    </article>
+  `;
+}
 
   async function loadNews() {
     const latestNewsStatus = document.getElementById("latestNewsStatus");
