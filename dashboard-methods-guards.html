@@ -1079,6 +1079,7 @@ const res = await fetch(url);
       const newsCategory = document.getElementById("newsCategory");
       const newsContent = document.getElementById("newsContent");
       const newsExternalUrl = document.getElementById("newsExternalUrl");
+      const newsImage = document.getElementById("newsImage");
       const newsPublished = document.getElementById("newsPublished");
       const newsFeedback = document.getElementById("newsFeedback");
 
@@ -1100,17 +1101,32 @@ const res = await fetch(url);
         const res = await fetch("https://methods-guards-backend.vercel.app/api/admin-news", {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
-            "x-admin-key": secret
-          },
-          body: JSON.stringify({
-            title: newsTitle.value.trim(),
-            subtitle: newsSubtitle.value.trim(),
-            category: newsCategory.value,
-            content: newsContent.value.trim(),
-            external_url: newsExternalUrl.value.trim(),
-            published: newsPublished.checked
-          })
+  "x-admin-key": secret
+},
+body: (() => {
+  const formData = new FormData();
+
+  const selectedFile = newsImage.files && newsImage.files[0];
+
+  console.log("FILE SELEZIONATO:", selectedFile);
+
+  formData.append("title", newsTitle.value.trim());
+  formData.append("subtitle", newsSubtitle.value.trim());
+  formData.append("category", newsCategory.value);
+  formData.append("content", newsContent.value.trim());
+  formData.append("external_url", newsExternalUrl.value.trim());
+  formData.append("published", newsPublished.checked ? "true" : "false");
+
+  if (selectedFile) {
+    formData.append("image", selectedFile, selectedFile.name);
+  }
+
+  for (const [key, value] of formData.entries()) {
+    console.log("FORMDATA:", key, value);
+  }
+
+  return formData;
+})()
         });
 
         const data = await res.json();
