@@ -499,6 +499,15 @@ section::before {
       justify-content: space-between;
     }
 
+.communication-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 18px;
+  margin-bottom: 18px;
+  border: 1px solid rgba(53, 92, 125, 0.18);
+  background: #edf2f7;
+}
     .communication-card h3 {
       font-size: 1.18rem;
       line-height: 1.2;
@@ -840,51 +849,22 @@ alla produzione e all’interpretazione della conoscenza empirica.
 
     
     <section id="ultime-comunicazioni">
-      <div class="section-head">
-        <h2>Ultime comunicazioni</h2>
-              </div>
+  <div class="section-head">
+    <h2>Ultime comunicazioni</h2>
+  </div>
 
-      <div class="communication-grid">
-        <article class="communication-card">
-          <div>
-            <span class="badge">News</span>
-            <h3>Monitoraggio bandi MUR Area 14 / GSPS</h3>
-            <p>
-              In homepage è disponibile un box aggiornato automaticamente con opportunità
-              per ricercatrici e ricercatori sociali.
-            </p>
-          </div>
-
-          <a href="#opportunita">Vai ai bandi →</a>
-        </article>
-
-        <article class="communication-card">
-          <div>
-            <span class="badge">Progetto</span>
-            <h3>Methods Guards AI</h3>
-            <p>
-              Un sistema sperimentale per supportare la valutazione della robustezza
-              metodologica di paper, tesi, report e progetti.
-            </p>
-          </div>
-
-          <a href="methods-guards.html">Apri Methods Guards AI →</a>
-        </article>
-
-        <article class="communication-card">
-          <div>
-            <span class="badge">Comunicazioni</span>
-            <h3>Articoli, news e podcast</h3>
-            <p>
-              Uno spazio editoriale per raccogliere riflessioni metodologiche,
-              aggiornamenti e future conversazioni.
-            </p>
-          </div>
-
-          <a href="comunicazioni.html">Vai alle comunicazioni →</a>
-        </article>
+  <div id="homeNewsGrid" class="communication-grid">
+    <article class="communication-card">
+      <div>
+        <span class="badge">News</span>
+        <h3>Caricamento comunicazioni...</h3>
+        <p>Sto recuperando gli ultimi aggiornamenti pubblicati.</p>
       </div>
-    </section>
+
+      <a href="comunicazioni.html">Vai alle comunicazioni &rarr;</a>
+    </article>
+  </div>
+</section>
     
     <section id="cosa-faccio">
       <div class="section-head">
@@ -1011,6 +991,60 @@ alla produzione e all’interpretazione della conoscenza empirica.
 
     return text.slice(0, maxLength).trim() + "...";
   }
+function createHomeNewsCard(item) {
+  const url = item.external_url || "comunicazioni.html";
+  const imageUrl = item.cover_image_url || "";
+
+  const previewText =
+    item.subtitle ||
+    item.content ||
+    "Comunicazione pubblicata sul sito.";
+
+  return `
+    <article class="communication-card">
+      ${imageUrl ? `
+        <img
+          class="communication-image"
+          src="${escapeHtml(imageUrl)}"
+          alt="${escapeHtml(item.title || "Immagine news")}"
+          loading="lazy"
+        />
+      ` : ""}
+
+      <div>
+        <span class="badge">${escapeHtml(item.category || "News")}</span>
+        <h3>${escapeHtml(item.title || "Senza titolo")}</h3>
+        <p>${escapeHtml(truncateText(previewText, 130))}</p>
+      </div>
+
+      <a href="${escapeHtml(url)}" ${url.startsWith("http") ? 'target="_blank" rel="noopener noreferrer"' : ""}>
+        Leggi tutto &rarr;
+      </a>
+    </article>
+  `;
+}
+
+async function loadHomeNews() {
+  const homeNewsGrid = document.getElementById("homeNewsGrid");
+
+  if (!homeNewsGrid) return;
+
+  try {
+    const response = await fetch("https://methods-guards-backend.vercel.app/api/news");
+    const data = await response.json();
+
+    const items = Array.isArray(data.items) ? data.items.slice(0, 3) : [];
+
+    if (!items.length) {
+      homeNewsGrid.innerHTML = "";
+      return;
+    }
+
+    homeNewsGrid.innerHTML = items.map(createHomeNewsCard).join("");
+  } catch (error) {
+    homeNewsGrid.innerHTML = "";
+  }
+}
 
   async function loadLiveStrip() {
     const liveTrack = document.getElementById("liveTrack");
@@ -1124,8 +1158,9 @@ alla produzione e all’interpretazione della conoscenza empirica.
     }
   }
 
-  loadLiveStrip();
-  loadMurBandi();
+  loadHomeNews();
+loadLiveStrip();
+loadMurBandi();
 </script>
 </body>
 </html>
