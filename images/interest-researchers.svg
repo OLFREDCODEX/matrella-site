@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-labelledby="title desc">
+  <title id="title">Quality of life of researchers</title>
+  <desc id="desc">Abstract researcher profile with wellbeing indicators.</desc>
+  <rect width="180" height="180" rx="34" fill="#f7f0f4"/>
+  <circle cx="74" cy="64" r="27" fill="#366589"/>
+  <path d="M38 142c8-28 27-43 57-43s49 15 57 43" fill="#1f2a34"/>
+  <path d="M118 44h30M118 64h20M118 84h34" stroke="#b44d75" stroke-width="8" stroke-linecap="round"/>
+  <path d="M48 64c16 12 36 12 52 0" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".85"/>
+</svg>

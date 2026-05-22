@@ -206,6 +206,8 @@
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 26px;
       padding: 30px;
+      display: flex;
+      flex-direction: column;
     }
 
     .mission-kicker {
@@ -227,15 +229,29 @@
 
     .interest-list {
       display: grid;
-      gap: 14px;
+      gap: 18px;
       list-style: none;
+      flex: 1;
     }
 
     .interest-list li {
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.09);
       border-radius: 18px;
-      padding: 18px;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 20px;
+      align-items: center;
+      min-height: 180px;
+    }
+
+    .interest-list img {
+      width: 92px;
+      height: 92px;
+      border-radius: 24px;
+      object-fit: cover;
+      box-shadow: 0 16px 26px rgba(0,0,0,0.18);
     }
 
     .interest-list strong {
@@ -248,6 +264,10 @@
     .interest-list span,
     .mission-panel p {
       color: #d8dee7;
+    }
+
+    .interest-list span {
+      line-height: 1.65;
     }
 
     .mission-grid,
@@ -333,6 +353,17 @@
         grid-template-columns: 1fr;
       }
 
+      .interest-list li {
+        grid-template-columns: 72px 1fr;
+        min-height: auto;
+      }
+
+      .interest-list img {
+        width: 72px;
+        height: 72px;
+        border-radius: 18px;
+      }
+
       .cta {
         flex-direction: column;
         align-items: flex-start;
@@ -385,16 +416,31 @@
 
         <ul class="interest-list">
           <li>
-            <strong>Methodological innovation</strong>
-            <span>New tools, combinations of techniques and attention to data quality.</span>
+            <img src="../images/interest-methodology.svg" alt="">
+            <span>
+              <strong>Methodological innovation</strong>
+              New tools, combinations of techniques, hybrid research designs and attention
+              to data quality, with a focus on procedural transparency and the robustness
+              of empirical inference.
+            </span>
           </li>
           <li>
-            <strong>Quality of life of researchers</strong>
-            <span>Working conditions, academic trajectories, precarity and organizational well-being.</span>
+            <img src="../images/interest-researchers.svg" alt="">
+            <span>
+              <strong>Quality of life of researchers</strong>
+              Working conditions, academic trajectories, precarity, organizational well-being
+              and the relationship between professional life, scientific recognition and the
+              sustainability of research work.
+            </span>
           </li>
           <li>
-            <strong>Uses and impacts of digital technologies</strong>
-            <span>Digital transformation, research environments, platforms, AI and knowledge production.</span>
+            <img src="../images/interest-digital.svg" alt="">
+            <span>
+              <strong>Uses and impacts of digital technologies</strong>
+              Digital transformation, research environments, platforms, AI and information
+              systems as forces that reshape empirical practices, work organization and
+              knowledge production.
+            </span>
           </li>
         </ul>
       </div>

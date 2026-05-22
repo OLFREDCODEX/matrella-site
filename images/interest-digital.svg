@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-labelledby="title desc">
+  <title id="title">Digital technologies</title>
+  <desc id="desc">Digital interface and connected data points.</desc>
+  <rect width="180" height="180" rx="34" fill="#edf6f5"/>
+  <rect x="38" y="42" width="104" height="78" rx="16" fill="#1f2a34"/>
+  <path d="M62 142h56M90 120v22" stroke="#366589" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="68" cy="72" r="8" fill="#d79b3b"/>
+  <circle cx="92" cy="72" r="8" fill="#b44d75"/>
+  <circle cx="116" cy="72" r="8" fill="#eef5fb"/>
+  <path d="M68 94h48" stroke="#eef5fb" stroke-width="7" stroke-linecap="round" opacity=".85"/>
+</svg>

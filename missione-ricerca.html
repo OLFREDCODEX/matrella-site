@@ -216,6 +216,8 @@
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 26px;
   padding: 30px;
+  display: flex;
+  flex-direction: column;
 }
 
 .mission-kicker {
@@ -237,15 +239,29 @@
 
 .interest-list {
   display: grid;
-  gap: 14px;
+  gap: 18px;
   list-style: none;
+  flex: 1;
 }
 
 .interest-list li {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.09);
   border-radius: 18px;
-  padding: 18px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 20px;
+  align-items: center;
+  min-height: 180px;
+}
+
+.interest-list img {
+  width: 92px;
+  height: 92px;
+  border-radius: 24px;
+  object-fit: cover;
+  box-shadow: 0 16px 26px rgba(0,0,0,0.18);
 }
 
 .interest-list strong {
@@ -258,6 +274,10 @@
 .interest-list span,
 .mission-panel p {
   color: #d8dee7;
+}
+
+.interest-list span {
+  line-height: 1.65;
 }
 
 .legacy-mission,
@@ -453,6 +473,17 @@ main > .methods-guards-box {
         grid-template-columns: 1fr;
       }
 
+      .interest-list li {
+        grid-template-columns: 72px 1fr;
+        min-height: auto;
+      }
+
+      .interest-list img {
+        width: 72px;
+        height: 72px;
+        border-radius: 18px;
+      }
+
       .research-grid {
         grid-template-columns: 1fr;
       }
@@ -602,16 +633,31 @@ main > .methods-guards-box {
 
       <ul class="interest-list">
         <li>
-          <strong>Innovazione metodologica</strong>
-          <span>Nuovi strumenti, combinazioni di tecniche e attenzione alla qualit&agrave; del dato.</span>
+          <img src="images/interest-methodology.svg" alt="">
+          <span>
+            <strong>Innovazione metodologica</strong>
+            Nuovi strumenti, combinazioni di tecniche, disegni di ricerca ibridi e attenzione
+            alla qualit&agrave; del dato, con particolare interesse per la trasparenza delle
+            procedure e la solidit&agrave; delle inferenze.
+          </span>
         </li>
         <li>
-          <strong>Qualit&agrave; della vita dei ricercatori</strong>
-          <span>Condizioni di lavoro, traiettorie accademiche, precariet&agrave; e benessere organizzativo.</span>
+          <img src="images/interest-researchers.svg" alt="">
+          <span>
+            <strong>Qualit&agrave; della vita dei ricercatori</strong>
+            Condizioni di lavoro, traiettorie accademiche, precariet&agrave;, benessere
+            organizzativo e rapporto tra vita professionale, riconoscimento scientifico
+            e sostenibilit&agrave; del lavoro di ricerca.
+          </span>
         </li>
         <li>
-          <strong>Usi e impatti delle tecnologie digitali</strong>
-          <span>Trasformazione digitale, ambienti di ricerca, piattaforme, IA e produzione della conoscenza.</span>
+          <img src="images/interest-digital.svg" alt="">
+          <span>
+            <strong>Usi e impatti delle tecnologie digitali</strong>
+            Trasformazione digitale, ambienti di ricerca, piattaforme, IA e sistemi
+            informativi come elementi che modificano pratiche empiriche, organizzazione
+            del lavoro e produzione della conoscenza.
+          </span>
         </li>
       </ul>
     </div>

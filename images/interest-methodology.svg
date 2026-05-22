@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-labelledby="title desc">
+  <title id="title">Methodological innovation</title>
+  <desc id="desc">Abstract grid and connected research nodes.</desc>
+  <rect width="180" height="180" rx="34" fill="#eef5fb"/>
+  <circle cx="52" cy="54" r="16" fill="#366589"/>
+  <circle cx="128" cy="58" r="12" fill="#d79b3b"/>
+  <circle cx="70" cy="128" r="13" fill="#b44d75"/>
+  <circle cx="130" cy="124" r="17" fill="#1f2a34"/>
+  <path d="M52 54 128 58 130 124 70 128 52 54" fill="none" stroke="#366589" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity=".68"/>
+  <path d="M62 89h56M75 104h30" stroke="#1f2a34" stroke-width="6" stroke-linecap="round" opacity=".72"/>
+</svg>
