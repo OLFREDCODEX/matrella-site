@@ -276,6 +276,47 @@
       margin-top: 14px;
     }
 
+    .seo-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .seo-panel h2 {
+      margin: 0 0 12px;
+      font-size: 1.45rem;
+      letter-spacing: -0.04em;
+    }
+
+    .seo-panel p {
+      color: var(--muted);
+      margin: 0 0 12px;
+    }
+
+    .seo-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .seo-list li {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: white;
+      padding: 12px 14px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    @media (max-width: 760px) {
+      .seo-panel {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .engine-note {
       margin-top: 12px;
       padding: 14px 16px;
@@ -1104,6 +1145,30 @@
         Per alcune donazioni superiori a 1€, MG AI può assegnare automaticamente codici omaggio condivisibili per analisi senza pubblicità. I codici valgono solo per il numero di utilizzi assegnato e poi scadono.
       </p>
     </div>
+
+    <section class="box seo-panel" aria-labelledby="seo-methods-guards-title">
+      <div>
+        <h2 id="seo-methods-guards-title">Valutazione metodologica preliminare per testi di ricerca</h2>
+        <p>
+          Methods Guards AI è uno strumento gratuito per leggere documenti scientifici e
+          restituire una diagnosi metodologica orientativa. È pensato per paper, abstract,
+          capitoli, review e progetti di ricerca in formato PDF.
+        </p>
+        <p>
+          Il report aiuta a individuare punti solidi, criticità, limiti dichiarati,
+          vulnerabilità metodologiche e azioni correttive prioritarie. Non sostituisce
+          peer review, supervisione scientifica o valutazione esperta: serve come primo
+          controllo strutturato prima di una revisione umana.
+        </p>
+      </div>
+
+      <ul class="seo-list" aria-label="Cosa valuta Methods Guards AI">
+        <li><strong>Struttura metodologica:</strong> obiettivi, disegno, campione, strumenti, analisi e conclusioni.</li>
+        <li><strong>Robustezza:</strong> coerenza interna, trasparenza, validità, trasferibilità e limiti.</li>
+        <li><strong>Motori v1 e v2:</strong> v1 privilegia sintesi rapida; v2 offre una lettura più analitica e sperimentale.</li>
+      </ul>
+    </section>
+
     <section class="box" style="
   margin-top:24px;
   padding:22px;

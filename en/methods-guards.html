@@ -276,6 +276,47 @@
       margin-top: 14px;
     }
 
+    .seo-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .seo-panel h2 {
+      margin: 0 0 12px;
+      font-size: 1.45rem;
+      letter-spacing: -0.04em;
+    }
+
+    .seo-panel p {
+      color: var(--muted);
+      margin: 0 0 12px;
+    }
+
+    .seo-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .seo-list li {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: white;
+      padding: 12px 14px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    @media (max-width: 760px) {
+      .seo-panel {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .engine-note {
       margin-top: 12px;
       padding: 14px 16px;
@@ -1105,6 +1146,30 @@
         For some donations above 1 EUR, MG AI may automatically assign shareable complimentary codes for ad-free analyses. Codes work only for their assigned number of uses, then expire.
       </p>
     </div>
+
+    <section class="box seo-panel" aria-labelledby="seo-methods-guards-title">
+      <div>
+        <h2 id="seo-methods-guards-title">Preliminary methodological assessment for research texts</h2>
+        <p>
+          Methods Guards AI is a free tool for reading scientific documents and producing
+          an orientative methodological diagnosis. It is designed for papers, abstracts,
+          book chapters, reviews and research projects uploaded as PDF files.
+        </p>
+        <p>
+          The report helps identify strengths, weaknesses, declared limitations,
+          methodological vulnerabilities and priority corrective actions. It does not
+          replace peer review, scientific supervision or expert judgement: it provides
+          a structured first check before human review.
+        </p>
+      </div>
+
+      <ul class="seo-list" aria-label="What Methods Guards AI assesses">
+        <li><strong>Methodological structure:</strong> objectives, design, sample, instruments, analysis and conclusions.</li>
+        <li><strong>Robustness:</strong> internal coherence, transparency, validity, transferability and limits.</li>
+        <li><strong>v1 and v2 engines:</strong> v1 favours quick synthesis; v2 provides a more analytical experimental reading.</li>
+      </ul>
+    </section>
+
     <section class="box" style="
   margin-top:24px;
   padding:22px;
