@@ -730,6 +730,12 @@
 <option value="book" disabled>Libro / monografia 🔒</option>
       </select>
 
+      <label for="engine"><strong>Motore Methods Guards</strong></label>
+      <select id="engine">
+        <option value="v1">MG AI v1 - stabile</option>
+        <option value="v2">MG AI v2 - laboratorio</option>
+      </select>
+
       <p class="upload-title">Carica il tuo documento PDF</p>
       <p class="upload-helper">
         Formato PDF • massimo 19 MB • il documento viene analizzato solo per produrre la diagnosi metodologica richiesta.
@@ -1446,6 +1452,7 @@
 
       const fileInput = document.getElementById("pdf");
 const productType = document.getElementById("productType").value;
+const selectedEngine = document.getElementById("engine")?.value || "v1";
 const output = document.getElementById("output");
 
 const allowedProductTypes = [
@@ -1523,6 +1530,7 @@ if (!allowedProductTypes.includes(productType)) {
             fileBase64: base64,
             fileName: file.name,
             productType: productType,
+            engine: selectedEngine,
             code: code
           })
         });
