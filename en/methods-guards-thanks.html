@@ -121,6 +121,39 @@
       color: #24435f;
     }
 
+    .code-result {
+      margin-top: 24px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--soft);
+    }
+
+    .code-value {
+      display: inline-flex;
+      margin: 10px 0;
+      padding: 10px 14px;
+      border: 1px dashed var(--accent);
+      border-radius: 10px;
+      background: white;
+      color: var(--accent);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .small-button {
+      margin-left: 10px;
+      padding: 8px 12px;
+      border: 1px solid var(--accent);
+      border-radius: 999px;
+      background: var(--accent);
+      color: white;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
     .bonus-grid {
       margin-top: 28px;
       display: grid;
@@ -217,39 +250,42 @@
       </p>
 
       <div class="notice">
-        If your donation includes a bonus, the code is issued after verification of the Stripe receipt.
-        Please keep the receipt and use the contact form to request your code.
+        Methods Guards AI remains free. For some donations above 1 EUR, the system may automatically assign
+        complimentary codes for ad-free analyses. This is an optional courtesy and is not a purchase of the service.
+      </div>
+
+      <div id="codeResult" class="code-result" aria-live="polite">
+        Checking donation status...
       </div>
 
       <div class="bonus-grid" aria-label="Donation bonus rules">
         <div class="bonus-row">
           <div class="amount">1 EUR</div>
-          <div>Support donation. No bonus code.</div>
+          <div>Support donation. No complimentary code.</div>
         </div>
 
         <div class="bonus-row">
-          <div class="amount">3 EUR</div>
-          <div>Bonus code for 4 ad-free analyses.</div>
+          <div class="amount">Above 1 EUR</div>
+          <div>Complimentary codes may be assigned using this rule: floor(donation amount x 1.5).</div>
         </div>
 
         <div class="bonus-row">
-          <div class="amount">5 EUR</div>
-          <div>Bonus code for 7 ad-free analyses.</div>
+          <div class="amount">Examples</div>
+          <div>2 EUR = 3 analyses, 3 EUR = 4 analyses, 5 EUR = 7 analyses, 10 EUR = 15 analyses.</div>
         </div>
 
         <div class="bonus-row">
-          <div class="amount">10 EUR or more</div>
-          <div>Bonus code for 15 ad-free analyses.</div>
+          <div class="amount">Sharing</div>
+          <div>Complimentary codes can be shared. They work only for the total number of assigned uses, then expire.</div>
         </div>
       </div>
 
       <p class="muted">
-        To receive a bonus code, send the Stripe receipt through the contact form and include the email used for the donation.
-        Codes are currently generated manually after verification.
+        If the code does not appear immediately, wait a few seconds and refresh this page. The donation must be confirmed by Stripe first.
       </p>
 
       <div class="actions">
-        <a class="btn primary" href="index.html#contatti">Request your bonus code</a>
+        <a class="btn primary" href="methods-guards.html">Use Methods Guards AI</a>
         <a class="btn" href="methods-guards.html">Back to Methods Guards AI</a>
       </div>
     </section>
@@ -261,6 +297,102 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    const codeResult = document.getElementById("codeResult");
+    const params = new URLSearchParams(window.location.search);
+    const sessionId = params.get("session_id");
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function renderMessage(title, text) {
+      codeResult.innerHTML = `
+        <strong>${escapeHtml(title)}</strong>
+        <p class="muted">${escapeHtml(text)}</p>
+      `;
+    }
+
+    function renderCode(data) {
+      const code = escapeHtml(data.code);
+      const remaining = Number(data.remaining || data.bonusUses || 0);
+
+      codeResult.innerHTML = `
+        <strong>Complimentary code assigned</strong>
+        <p class="muted">
+          This code can be shared. It works for ${remaining} ad-free analyses in total; after those uses it expires.
+        </p>
+        <span id="bonusCode" class="code-value">${code}</span>
+        <button class="small-button" type="button" onclick="copyBonusCode()">Copy</button>
+      `;
+    }
+
+    async function loadDonationCode() {
+      if (!sessionId) {
+        renderMessage(
+          "Donation received",
+          "No Stripe session was found in the page URL, so no automatic complimentary code can be displayed."
+        );
+        return;
+      }
+
+      try {
+        const response = await fetch("https://methods-guards-backend.vercel.app/api/donation-code", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ sessionId })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          renderMessage(
+            "Donation verification pending",
+            data.error || "The donation could not be verified yet. Please refresh this page in a few seconds."
+          );
+          return;
+        }
+
+        if (data.status === "no_code") {
+          renderMessage(
+            "Thank you for your support",
+            "This donation does not include a complimentary code, but it still helps keep Methods Guards AI free."
+          );
+          return;
+        }
+
+        if (data.code) {
+          renderCode(data);
+          return;
+        }
+
+        renderMessage(
+          "Donation verified",
+          "No complimentary code was assigned for this donation."
+        );
+
+      } catch (error) {
+        renderMessage(
+          "Connection issue",
+          "The donation was completed, but the code check could not connect right now. Please refresh this page."
+        );
+      }
+    }
+
+    function copyBonusCode() {
+      const code = document.getElementById("bonusCode")?.innerText || "";
+      navigator.clipboard.writeText(code);
+      alert("Code copied.");
+    }
+
+    loadDonationCode();
   </script>
 </body>
 </html>
