@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard-methods-guards.html
+Disallow: /dashboard-methods-guards-backup.html
+Disallow: /methods-guards-success.html
+Disallow: /en/methods-guards-thanks.html
+
+Sitemap: https://www.matrella.it/sitemap.xml
