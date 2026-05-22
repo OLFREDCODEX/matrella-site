@@ -55,6 +55,18 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://www.matrella.it/en/mission.html</loc>
+    <lastmod>2026-05-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.matrella.it/en/services.html</loc>
+    <lastmod>2026-05-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.matrella.it/en/methods-guards.html</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
