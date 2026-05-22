@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FL9Z4EHSEL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FL9Z4EHSEL');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Publications and Conferences | Alfredo Matrella</title>
+  <meta name="description" content="Publications, scientific contributions and conference presentations by Alfredo Matrella on social research methodology, digital society, AI and data quality." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.matrella.it/en/publications.html" />
+  <link rel="alternate" hreflang="it" href="https://www.matrella.it/pubblicazioni.html" />
+  <link rel="alternate" hreflang="en" href="https://www.matrella.it/en/publications.html" />
+  <link rel="alternate" hreflang="x-default" href="https://www.matrella.it/pubblicazioni.html" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Alfredo Matrella" />
+  <meta property="og:title" content="Publications and Conferences | Alfredo Matrella" />
+  <meta property="og:description" content="Scientific publications and conference activity on social research methodology, digital transformation, AI and data quality." />
+  <meta property="og:url" content="https://www.matrella.it/en/publications.html" />
+  <meta name="twitter:card" content="summary" />
+
+  <style>
+    :root {
+      --bg: #f7f5ef;
+      --paper: #ffffff;
+      --ink: #1f2933;
+      --muted: #6b7280;
+      --accent: #355c7d;
+      --accent-2: #b08968;
+      --line: #e5e0d8;
+      --soft: #edf2f7;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(247, 245, 239, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      width: min(1120px, 92%);
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      padding: 18px 0;
+    }
+
+    .logo {
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      font-size: 1.15rem;
+    }
+
+    .logo span { color: var(--accent); }
+
+    nav ul {
+      display: flex;
+      gap: 22px;
+      list-style: none;
+      color: #475569;
+      font-size: 0.96rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    nav a:hover { color: var(--accent); }
+
+    .language-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.62);
+      color: #475569;
+      font-size: 0.82rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .language-switch a,
+    .language-switch span {
+      color: inherit;
+      padding: 2px 6px;
+      border-radius: 999px;
+    }
+
+    .language-switch .active {
+      background: var(--ink);
+      color: white;
+    }
+
+    main {
+      width: min(1120px, 92%);
+      margin: auto;
+      padding: 80px 0;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      font-size: 0.85rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      margin-bottom: 24px;
+    }
+
+    .lead {
+      max-width: 900px;
+      margin: 0 auto;
+      color: var(--accent);
+      font-size: 1.35rem;
+      line-height: 1.55;
+      font-weight: 500;
+    }
+
+    .section-title {
+      margin: 70px 0 26px;
+      padding-top: 30px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-title h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1;
+      letter-spacing: -0.055em;
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 780px;
+    }
+
+    .publication-list,
+    .conference-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .publication,
+    .conference {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 26px 30px;
+    }
+
+    .year {
+      color: var(--accent-2);
+      font-weight: 800;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+
+    .publication p,
+    .conference p {
+      color: #4b5563;
+      font-size: 1.05rem;
+    }
+
+    .conference h3 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      letter-spacing: -0.03em;
+    }
+
+    .place {
+      color: var(--accent);
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .publication-link,
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 16px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--accent);
+      transition: 0.2s ease;
+    }
+
+    .publication-link:hover,
+    .btn:hover {
+      background: white;
+      transform: translateY(-1px);
+    }
+
+    .note-box {
+      margin-top: 70px;
+      background: var(--ink);
+      color: white;
+      border-radius: 30px;
+      padding: 42px;
+    }
+
+    .note-box h2 {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .note-box p {
+      color: #d1d5db;
+      margin-bottom: 22px;
+    }
+
+    .note-box .btn {
+      background: white;
+      color: var(--ink);
+    }
+
+    footer {
+      width: min(1120px, 92%);
+      margin: auto;
+      padding: 32px 0 44px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 980px) {
+      nav ul { display: none; }
+    }
+
+    @media (max-width: 860px) {
+      main { padding: 60px 0; }
+      h1 { font-size: clamp(2.4rem, 12vw, 4rem); }
+      .lead { font-size: 1.18rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="nav">
+      <a class="logo" href="index.html">Alfredo <span>Matrella</span></a>
+
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="mission.html">Mission</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="methods-guards.html">Methods Guards AI</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="experience.html">Experience</a></li>
+          <li><a href="updates.html">Updates</a></li>
+          <li><a href="index.html#opportunita">Opportunities</a></li>
+          <li><a href="index.html#contatti">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="language-switch" aria-label="Language selection">
+        <a href="../pubblicazioni.html">IT</a>
+        <span class="active">EN</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">Publications and conferences</div>
+      <h1>Social research, method and digital transformations.</h1>
+      <p class="lead">
+        Scientific publications and conference presentations on quality of life,
+        digital technologies, school, artificial intelligence, work and social research methodology.
+      </p>
+    </section>
+
+    <section class="section-title">
+      <h2>Publications</h2>
+      <p>A selected list of scientific articles, chapters and books.</p>
+    </section>
+
+    <section class="publication-list">
+      <article class="publication">
+        <div class="year">2025</div>
+        <p>Roberti, G., &amp; Matrella, A. (2025). Percorsi narrativi e pratiche di consumo digitale nel fast-fashion. Analisi dell'usabilita e dell'esperienza utente della piattaforma SHEIN. <i>Sociologia della Comunicazione, 69</i>.</p>
+        <a class="publication-link" href="https://www.francoangeli.it/riviste/articolo/citazione/?doi=10.3280/SC2025-069003" target="_blank" rel="noopener noreferrer">Open publication &rarr;</a>
+      </article>
+
+      <article class="publication">
+        <div class="year">2025</div>
+        <p>Matrella, A., Cavagnuolo, M., &amp; Capozza, V. (2025). The use of artificial intelligence within social research: A classification proposal. <i>The Lab's Quarterly</i>.</p>
+        <a class="publication-link" href="https://www.thelabs.sp.unipi.it/matrella-a-cavagnuolo-m-capozza-v-the-use-of-artificial-intelligence-within-social-research/" target="_blank" rel="noopener noreferrer">Open publication &rarr;</a>
+      </article>
+
+      <article class="publication">
+        <div class="year">2025</div>
+        <p>Matrella, A. (2025). <i>Qualita della vita dei lavoratori universitari e interdipendenza tra domini della vita esperienziale</i>. Catania: Bonanno Editore.</p>
+        <a class="publication-link" href="https://www.gebonanno.com/product/qualita-della-vita-dei-lavoratori-universitari/" target="_blank" rel="noopener noreferrer">Open publication &rarr;</a>
+      </article>
+
+      <article class="publication">
+        <div class="year">2025</div>
+        <p>Matrella, A. (2025). L'uso integrativo degli audio-diari nella survey research per la rilevazione dei micro-eventi generativi. <i>Sociologia e Ricerca Sociale, 135</i>(2024), 118-138.</p>
+        <a class="publication-link" href="https://www.torrossa.com/it/resources/an/6039024" target="_blank" rel="noopener noreferrer">Open publication &rarr;</a>
+      </article>
+
+      <article class="publication">
+        <div class="year">2024</div>
+        <p>Matrella, A. (2024). Quality of life of academic actors. Career trajectories and working conditions. <i>Italian Journal of Sociology of Education, 16</i>(2), 19-46.</p>
+        <a class="publication-link" href="https://ijse.padovauniversitypress.it/2024/2/2" target="_blank" rel="noopener noreferrer">Open publication &rarr;</a>
+      </article>
+
+      <article class="publication">
+        <div class="year">2024</div>
+        <p>Parziale, F., Cavagnuolo, M., &amp; Matrella, A. (2024). Schools and digital technologies: a Bourdieusian analysis of practices and inequalities.</p>
+        <a class="publication-link" href="https://italiansociologicalreview.com/ojs/index.php/ISR/article/view/726" target="_blank" rel="noopener noreferrer">Open publication &rarr;</a>
+      </article>
+
+      <article class="publication">
+        <div class="year">2023</div>
+        <p>Cavagnuolo, M., &amp; Matrella, A. (2023). Ethnographic research in four upper-secondary schools in Rome: digital equipment, tools and practices in digitized teaching. In F. Parziale (Ed.), <i>La mediazione digitale a scuola</i>.</p>
+        <a class="publication-link" href="https://www.edizionialtravista.com/la-mediazione-digitale-a-scuola-fiorenzo-parziale.html" target="_blank" rel="noopener noreferrer">Open publication &rarr;</a>
+      </article>
+
+      <article class="publication">
+        <div class="year">2023</div>
+        <p>Matrella, A., &amp; Cavagnuolo, M. (2023). From Marienthal to Digital Methods: Audio Diaries WhatsApp in Social Research. XX ISA World Congress of Sociology, Melbourne.</p>
+        <a class="publication-link" href="https://iris.uniroma1.it/handle/11573/1683903" target="_blank" rel="noopener noreferrer">Open record &rarr;</a>
+      </article>
+
+      <article class="publication">
+        <div class="year">2021</div>
+        <p>Cavagnuolo, M., Capozza, V., &amp; Matrella, A. (2021). The walkthrough method: State of the art, innovative aspects and application fields. In <i>Handbook of Research on Advanced Research Methodologies for a Digital Society</i>. IGI Global.</p>
+        <a class="publication-link" href="https://www.igi-global.com/chapter/the-walkthrough-method/287477" target="_blank" rel="noopener noreferrer">Open publication &rarr;</a>
+      </article>
+    </section>
+
+    <section class="section-title">
+      <h2>Conference activity</h2>
+      <p>Selected presentations in national and international conferences and seminars.</p>
+    </section>
+
+    <section class="conference-list">
+      <article class="conference">
+        <div class="year">2025</div>
+        <h3>5th LLC Annual Conference</h3>
+        <div class="place">Cagliari, 14-15 November 2025</div>
+        <p>Presentation on digital skills and the gap between managerial needs and training provision in a large public administration.</p>
+      </article>
+
+      <article class="conference">
+        <div class="year">2025</div>
+        <h3>Economy, Work and Organization seminar series</h3>
+        <div class="place">Milan, 5 March 2025</div>
+        <p>Presentation on the impact of digitalization on work in public administrations, starting from a case study on technical-administrative staff at the University of Milan.</p>
+      </article>
+
+      <article class="conference">
+        <div class="year">2024</div>
+        <h3>5th International Conference ILIS</h3>
+        <div class="place">Salerno, 7-8 November 2024</div>
+        <p>Presentation: <i>The use of artificial intelligence within social research: A Classification Proposal</i>.</p>
+      </article>
+
+      <article class="conference">
+        <div class="year">2023</div>
+        <h3>XX ISA World Congress of Sociology</h3>
+        <div class="place">Melbourne, 25 June - 1 July 2023</div>
+        <p>Paper: <i>From Marienthal to Digital Methods: Audio Diaries by Using WhatsApp in Social Research</i>.</p>
+      </article>
+
+      <article class="conference">
+        <div class="year">2023</div>
+        <h3>4th International Conference ILIS</h3>
+        <div class="place">Prague, 8-9 June 2023</div>
+        <p>Presentation on the uses of digital technologies in schools from a Bourdieusian perspective.</p>
+      </article>
+
+      <article class="conference">
+        <div class="year">2023</div>
+        <h3>AIS Conference</h3>
+        <div class="place">Naples, 18-21 January 2023</div>
+        <p>Presentation on education in digital society, educational practices and digital skills.</p>
+      </article>
+    </section>
+
+    <section class="note-box">
+      <h2>Would you like to discuss a paper or a research project?</h2>
+      <p>I can support research design, methodological revision, data analysis and the communication of results.</p>
+      <a class="btn" href="index.html#contatti">Contact me</a>
+    </section>
+  </main>
+
+  <footer>
+    &copy; <span id="year"></span> Alfredo Matrella
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

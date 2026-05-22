@@ -903,9 +903,9 @@ section::before {
           <li><a href="mission.html">Mission</a></li>
           <li><a href="services.html">Services</a></li>
           <li><a href="methods-guards.html">Methods Guards AI</a></li>
-          <li><a href="../pubblicazioni.html">Publications</a></li>
-          <li><a href="../esperienze.html">Experience</a></li>
-          <li><a href="../comunicazioni.html">Updates</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="experience.html">Experience</a></li>
+          <li><a href="updates.html">Updates</a></li>
           <li><a href="index.html#opportunita">Opportunities</a></li>
           <li><a href="index.html#contatti">Contact</a></li>
         </ul>
@@ -921,7 +921,7 @@ section::before {
   <main id="top">
 <div class="live-strip" aria-label="Live updates">
       <div id="liveTrack" class="live-track">
-        <a class="live-item" href="../comunicazioni.html">
+        <a class="live-item" href="updates.html">
           <span class="live-label">Latest update</span>
           <span class="live-text">Loading...</span>
         </a>
@@ -931,7 +931,7 @@ section::before {
           <span class="live-text">Loading...</span>
         </a>
 
-        <a class="live-item" href="../methods-guards.html">
+        <a class="live-item" href="methods-guards.html">
           <span class="live-label">Methods Guards AI</span>
           <span class="live-text">Loading...</span>
         </a>
@@ -989,7 +989,7 @@ section::before {
     </div>
   </a>
 
-  <a class="profile-link" href="../methods-guards.html">
+  <a class="profile-link" href="methods-guards.html">
     <div class="profile-link-icon">MG</div>
 
     <div>
@@ -1017,7 +1017,7 @@ section::before {
         <p>Retrieving the latest published updates.</p>
       </div>
 
-      <a href="../comunicazioni.html">View updates &rarr;</a>
+      <a href="updates.html">View updates &rarr;</a>
     </article>
   </div>
 </section>
@@ -1056,7 +1056,7 @@ section::before {
     I produce content, lessons, reflections and materials designed to make
     methods, social research, evaluation and data quality more accessible.
   </p>
-  <a href="../comunicazioni.html">View updates &rarr;</a>
+  <a href="updates.html">View updates &rarr;</a>
 </article>
       </div>
     </section>
@@ -1148,7 +1148,7 @@ section::before {
     return text.slice(0, maxLength).trim() + "...";
   }
 function createHomeNewsCard(item) {
-  const url = item.external_url || "../comunicazioni.html";
+  const url = item.external_url || "updates.html";
   const imageUrl = item.cover_image_url || "";
 
   const previewText =
@@ -1208,13 +1208,13 @@ async function loadHomeNews() {
     if (!liveTrack) return;
 
     let newsTitle = "No updates available";
-    let newsUrl = "../comunicazioni.html";
+    let newsUrl = "updates.html";
 
     let bandoTitle = "Area 14 / GSPS calls";
     let bandoUrl = "#opportunita";
 
     let analysesText = "Methods Guards AI is active";
-    let analysesUrl = "../methods-guards.html";
+    let analysesUrl = "methods-guards.html";
 
     try {
       const newsResponse = await fetch("https://methods-guards-backend.vercel.app/api/news");
@@ -1222,7 +1222,7 @@ async function loadHomeNews() {
 
       if (newsData.items && newsData.items.length > 0) {
         newsTitle = newsData.items[0].title || newsTitle;
-        newsUrl = newsData.items[0].external_url || "../comunicazioni.html";
+        newsUrl = newsData.items[0].external_url || "updates.html";
       }
     } catch (error) {}
 
