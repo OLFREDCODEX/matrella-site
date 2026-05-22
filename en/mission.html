@@ -176,10 +176,12 @@
     }
 
     .mission-box {
-      background: var(--ink);
-      color: white;
+      background: linear-gradient(135deg, var(--paper) 0%, #edf4fa 100%);
+      color: var(--ink);
+      border: 1px solid var(--line);
       border-radius: 34px;
       padding: 46px;
+      box-shadow: 0 22px 60px rgba(31,41,51,0.08);
     }
 
     .mission-box h2,
@@ -191,7 +193,7 @@
     }
 
     .mission-box p {
-      color: #d8dee7;
+      color: var(--muted);
     }
 
     .mission-split {
@@ -202,16 +204,20 @@
     }
 
     .mission-panel {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(53,92,125,0.14);
       border-radius: 26px;
       padding: 30px;
       display: flex;
       flex-direction: column;
     }
 
+    .mission-panel:nth-child(2) {
+      background: rgba(255,255,255,0.94);
+    }
+
     .mission-kicker {
-      color: #aeb9c7;
+      color: var(--accent);
       font-size: 0.78rem;
       font-weight: 800;
       letter-spacing: 0.08em;
@@ -225,6 +231,7 @@
       line-height: 0.98;
       letter-spacing: -0.06em;
       margin-bottom: 18px;
+      color: var(--accent);
     }
 
     .interest-list {
@@ -235,8 +242,8 @@
     }
 
     .interest-list li {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.09);
+      background: #f4f8fb;
+      border: 1px solid rgba(53,92,125,0.16);
       border-radius: 18px;
       padding: 20px;
       display: grid;
@@ -244,6 +251,16 @@
       gap: 20px;
       align-items: center;
       min-height: 180px;
+    }
+
+    .interest-list li:nth-child(2) {
+      background: #fbf6ef;
+      border-color: rgba(176,137,104,0.24);
+    }
+
+    .interest-list li:nth-child(3) {
+      background: #f1f7f6;
+      border-color: rgba(53,92,125,0.14);
     }
 
     .interest-list img {
@@ -256,14 +273,14 @@
 
     .interest-list strong {
       display: block;
-      color: #ffffff;
+      color: var(--ink);
       font-size: 1.08rem;
       margin-bottom: 6px;
     }
 
     .interest-list span,
     .mission-panel p {
-      color: #d8dee7;
+      color: #435263;
     }
 
     .interest-list span {
