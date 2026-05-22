@@ -1338,8 +1338,7 @@
 
   <script>
     let activeCode = "";
-    let loadingTimerOne = null;
-    let loadingTimerTwo = null;
+    let loadingTimers = [];
 
     document.addEventListener("DOMContentLoaded", () => {
       localStorage.removeItem("mg_code");
@@ -1452,29 +1451,47 @@
       }
     }
 
-    function startLoadingState() {
+    function clearLoadingTimers() {
+      loadingTimers.forEach((timer) => clearTimeout(timer));
+      loadingTimers = [];
+    }
+
+    function scheduleLoadingStep(delay, width, text, loadingBar, loadingText) {
+      const timer = setTimeout(() => {
+        loadingBar.style.width = width;
+        loadingText.innerText = text;
+      }, delay);
+
+      loadingTimers.push(timer);
+    }
+
+    function startLoadingState(engine = "v1") {
       const loadingBox = document.getElementById("loadingBox");
       const loadingBar = document.getElementById("loadingBar");
       const loadingText = document.getElementById("loadingText");
 
       if (!loadingBox || !loadingBar || !loadingText) return;
 
-      clearTimeout(loadingTimerOne);
-      clearTimeout(loadingTimerTwo);
+      clearLoadingTimers();
 
       loadingBox.classList.remove("hidden");
+
+      if (engine === "v2") {
+        loadingBar.style.width = "12%";
+        loadingText.innerText = "Preparazione PDF...";
+
+        scheduleLoadingStep(900, "30%", "Controllo metodologico...", loadingBar, loadingText);
+        scheduleLoadingStep(1800, "52%", "Analisi in corso...", loadingBar, loadingText);
+        scheduleLoadingStep(3300, "76%", "Analisi completata.", loadingBar, loadingText);
+        scheduleLoadingStep(4600, "92%", "Preparazione report...", loadingBar, loadingText);
+        return;
+      }
+
       loadingBar.style.width = "18%";
       loadingText.innerText = "Preparazione file...";
 
-      loadingTimerOne = setTimeout(() => {
-        loadingBar.style.width = "55%";
-        loadingText.innerText = "Analisi metodologica in corso...";
-      }, 800);
-
-      loadingTimerTwo = setTimeout(() => {
-        loadingBar.style.width = "82%";
-        loadingText.innerText = "Finalizzazione del risultato...";
-      }, 2200);
+      scheduleLoadingStep(800, "55%", "Analisi metodologica in corso...", loadingBar, loadingText);
+      scheduleLoadingStep(2200, "82%", "Finalizzazione del risultato...", loadingBar, loadingText);
     }
 
     function stopLoadingState() {
@@ -1484,8 +1501,7 @@
 
       if (!loadingBox || !loadingBar || !loadingText) return;
 
-      clearTimeout(loadingTimerOne);
-      clearTimeout(loadingTimerTwo);
+      clearLoadingTimers();
 
       loadingBar.style.width = "100%";
       loadingText.innerText = "Analisi completata.";
@@ -1562,7 +1578,7 @@ if (!allowedProductTypes.includes(productType)) {
 
       output.innerText = "";
       donationSection.classList.add("hidden");
-      startLoadingState();
+      startLoadingState(selectedEngine);
 
       if (!code) {
         adBanner.classList.remove("hidden");
