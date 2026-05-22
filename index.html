@@ -766,6 +766,95 @@ section::before {
         flex-direction: column;
       }
     }
+
+
+    /* Shared site navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(247, 245, 239, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      width: min(1120px, 92%);
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      padding: 18px 0;
+    }
+
+    .logo {
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      font-size: 1.15rem;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    nav ul {
+      display: flex;
+      gap: 22px;
+      list-style: none;
+      color: #475569;
+      font-size: 0.96rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      color: inherit;
+      text-decoration: none;
+      transition: 0.18s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .language-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.62);
+      color: #475569;
+      font-size: 0.82rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .language-switch a,
+    .language-switch span {
+      color: inherit;
+      padding: 2px 6px;
+      border-radius: 999px;
+      text-decoration: none;
+    }
+
+    .language-switch .active {
+      background: var(--ink);
+      color: white;
+    }
+
+    @media (max-width: 980px) {
+      nav ul {
+        display: none;
+      }
+    }
+
   </style>
 </head>
 
@@ -782,7 +871,7 @@ section::before {
           <li><a href="pubblicazioni.html">Pubblicazioni</a></li>
           <li><a href="esperienze.html">Esperienze</a></li>
           <li><a href="comunicazioni.html">Comunicazioni</a></li>
-          <li><a href="#opportunita">Opportunità</a></li>
+          <li><a href="#opportunita">Opportunit&agrave;</a></li>
           <li><a href="#contatti">Contatti</a></li>
         </ul>
       </nav>
@@ -879,7 +968,7 @@ alla produzione e all’interpretazione della conoscenza empirica.
       </section>
       </div>
 
-    
+
     <section id="ultime-comunicazioni">
   <div class="section-head">
     <h2>Ultime comunicazioni</h2>
@@ -897,11 +986,11 @@ alla produzione e all’interpretazione della conoscenza empirica.
     </article>
   </div>
 </section>
-    
+
     <section id="cosa-faccio">
       <div class="section-head">
         <h2>Cosa faccio</h2>
-        
+
       </div>
 
       <div class="grid">
@@ -937,7 +1026,7 @@ alla produzione e all’interpretazione della conoscenza empirica.
       </div>
     </section>
 
-    
+
     <section id="opportunita">
       <div class="mur-box">
 
@@ -975,7 +1064,7 @@ alla produzione e all’interpretazione della conoscenza empirica.
 
       </div>
     </section>
-    
+
     <section id="contatti">
       <div class="contact-box">
         <div>
