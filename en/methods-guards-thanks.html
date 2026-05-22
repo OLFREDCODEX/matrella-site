@@ -250,39 +250,12 @@
       </p>
 
       <div class="notice">
-        Methods Guards AI remains free. For some donations above 1 EUR, the system may automatically assign
-        complimentary codes for ad-free analyses. This is an optional courtesy and is not a purchase of the service.
+        If available, your complimentary code will appear here automatically.
       </div>
 
       <div id="codeResult" class="code-result" aria-live="polite">
         Checking donation status...
       </div>
-
-      <div class="bonus-grid" aria-label="Donation bonus rules">
-        <div class="bonus-row">
-          <div class="amount">1 EUR</div>
-          <div>Support donation. No complimentary code.</div>
-        </div>
-
-        <div class="bonus-row">
-          <div class="amount">Above 1 EUR</div>
-          <div>Complimentary codes may be assigned using this rule: floor(donation amount x 1.5).</div>
-        </div>
-
-        <div class="bonus-row">
-          <div class="amount">Examples</div>
-          <div>2 EUR = 3 analyses, 3 EUR = 4 analyses, 5 EUR = 7 analyses, 10 EUR = 15 analyses.</div>
-        </div>
-
-        <div class="bonus-row">
-          <div class="amount">Sharing</div>
-          <div>Complimentary codes can be shared. They work only for the total number of assigned uses, then expire.</div>
-        </div>
-      </div>
-
-      <p class="muted">
-        If the code does not appear immediately, wait a few seconds and refresh this page. The donation must be confirmed by Stripe first.
-      </p>
 
       <div class="actions">
         <a class="btn primary" href="methods-guards.html">Use Methods Guards AI</a>
@@ -325,7 +298,7 @@
       codeResult.innerHTML = `
         <strong>Complimentary code assigned</strong>
         <p class="muted">
-          This code can be shared. It works for ${remaining} ad-free analyses in total; after those uses it expires.
+          Available uses: ${remaining}
         </p>
         <span id="bonusCode" class="code-value">${code}</span>
         <button class="small-button" type="button" onclick="copyBonusCode()">Copy</button>
@@ -336,7 +309,7 @@
       if (!sessionId) {
         renderMessage(
           "Donation received",
-          "No Stripe session was found in the page URL, so no automatic complimentary code can be displayed."
+          "No automatic code is available on this page."
         );
         return;
       }
@@ -363,7 +336,7 @@
         if (data.status === "no_code") {
           renderMessage(
             "Thank you for your support",
-            "This donation does not include a complimentary code, but it still helps keep Methods Guards AI free."
+            "No complimentary code is available for this donation."
           );
           return;
         }
