@@ -289,7 +289,7 @@
       <button type="button" onclick="loadAnalytics()">Mostra dashboard</button>
 
       <p class="note">
-        La chiave non viene salvata nel sito. Viene usata solo per interrogare l?endpoint analytics.
+        La chiave non viene salvata nel sito. Viene usata solo per interrogare l’endpoint analytics.
       </p>
 
       <p id="status" class="note"></p>
@@ -440,44 +440,44 @@
     <div id="dashboard" class="grid hidden">
       <div class="card">
         <div class="label">Data UTC</div>
-        <div id="dateUTC" class="value">?</div>
+        <div id="dateUTC" class="value">&mdash;</div>
       </div>
 
       <div class="card">
         <div class="label">Analisi totali</div>
-        <div id="totalAnalyses" class="value">?</div>
+        <div id="totalAnalyses" class="value">&mdash;</div>
       </div>
 
       <div class="card">
         <div class="label">Analisi oggi</div>
-        <div id="todayAnalyses" class="value">?</div>
+        <div id="todayAnalyses" class="value">&mdash;</div>
       </div>
 
       <div class="card">
         <div class="label">Identificativi oggi</div>
-        <div id="uniqueIdentifiersToday" class="value">?</div>
+        <div id="uniqueIdentifiersToday" class="value">&mdash;</div>
       </div>
 
       <div class="card">
         <div class="label">Media analisi per identificativo oggi</div>
-        <div id="avgAnalysesPerIdentifierToday" class="value">?</div>
+        <div id="avgAnalysesPerIdentifierToday" class="value">&mdash;</div>
       </div>
 
       <div class="card">
         <div class="label">Utenti oggi</div>
-        <div id="usersToday" class="value">?</div>
-        <p id="usersTodayText" class="note">?</p>
+        <div id="usersToday" class="value">&mdash;</div>
+        <p id="usersTodayText" class="note">&mdash;</p>
       </div>
 
       <div class="card">
         <div class="label">Returning complessivi</div>
-        <div id="usersAllTimeRate" class="value">?</div>
-        <p id="usersAllTimeText" class="note">?</p>
+        <div id="usersAllTimeRate" class="value">&mdash;</div>
+        <p id="usersAllTimeText" class="note">&mdash;</p>
       </div>
 
       <div class="card">
         <div class="label">Quota analisi con codice ultimi 7 giorni</div>
-        <div id="codeUsageRate" class="value">?</div>
+        <div id="codeUsageRate" class="value">&mdash;</div>
         <div class="bar-track">
           <div id="codeUsageBar" class="bar-fill"></div>
         </div>
@@ -486,7 +486,7 @@
       <div class="card wide">
         <div class="label">Mappa analisi per paese</div>
         <div id="countryMap"></div>
-        <p id="countryMapNote" class="note">?</p>
+        <p id="countryMapNote" class="note">&mdash;</p>
       </div>
 
       <div class="card wide">
@@ -521,8 +521,8 @@
 
       <div class="card wide">
         <div class="label">Periodo ultimi 7 giorni</div>
-        <div class="value" id="recentPeriodTotal">?</div>
-        <p class="note" id="recentPeriodText">?</p>
+        <div class="value" id="recentPeriodTotal">&mdash;</div>
+        <p class="note" id="recentPeriodText">&mdash;</p>
       </div>
 
       <div class="card wide">
@@ -621,7 +621,7 @@
           return;
         }
 
-        document.getElementById("dateUTC").innerText = data.dateUTC || "?";
+        document.getElementById("dateUTC").innerText = data.dateUTC || "—";
         document.getElementById("totalAnalyses").innerText = formatNumber(data.totalAnalyses);
         document.getElementById("todayAnalyses").innerText = formatNumber(data.todayAnalyses);
         document.getElementById("uniqueIdentifiersToday").innerText = formatNumber(data.uniqueIdentifiersToday);
@@ -653,8 +653,8 @@
 
         document.getElementById("recentPeriodTotal").innerText = formatNumber(recent.analyses) + " analisi";
         document.getElementById("recentPeriodText").innerText =
-          "Dal " + (recent.fromUTC || "?") +
-          " al " + (recent.toUTC || "?") +
+          "Dal " + (recent.fromUTC || "—") +
+          " al " + (recent.toUTC || "—") +
           " | con codice: " + formatNumber(recent.analysesWithCode) +
           " | senza codice: " + formatNumber(recent.analysesWithoutCode);
 
@@ -888,7 +888,7 @@ async function loadMethodologyMemory(secret) {
         const tr = document.createElement("tr");
 
         tr.innerHTML =
-          "<td>" + escapeHtml(day.date || "?") + "</td>" +
+          "<td>" + escapeHtml(day.date || "—") + "</td>" +
           "<td>" + formatNumber(day.analyses) + "</td>" +
           "<td>" + formatNumber(day.withCode) + "</td>" +
           "<td>" + formatNumber(day.withoutCode) + "</td>";
@@ -948,15 +948,15 @@ const res = await fetch(url);
 
         const location = [item.city, item.country]
           .filter(Boolean)
-          .join(", ") || "?";
+          .join(", ") || "—";
 
         tr.innerHTML =
           "<td>" + escapeHtml(formatDateTime(item.created_at)) + "</td>" +
-          "<td>" + escapeHtml(item.level || "?") + "</td>" +
-          "<td>" + escapeHtml(item.source || "?") + "</td>" +
-          "<td>" + escapeHtml(item.message || "?") + "</td>" +
-          "<td>" + escapeHtml(item.file_name || "?") + "</td>" +
-          "<td>" + escapeHtml(item.product_type || "?") + "</td>" +
+          "<td>" + escapeHtml(item.level || "—") + "</td>" +
+          "<td>" + escapeHtml(item.source || "—") + "</td>" +
+          "<td>" + escapeHtml(item.message || "—") + "</td>" +
+          "<td>" + escapeHtml(item.file_name || "—") + "</td>" +
+          "<td>" + escapeHtml(item.product_type || "—") + "</td>" +
           "<td>" + escapeHtml(location) + "</td>";
 
         logsTable.appendChild(tr);
@@ -1193,7 +1193,7 @@ body: (() => {
 
         div.innerHTML =
           "<h3>" + escapeHtml(item.title || "Senza titolo") + "</h3>" +
-          "<p><strong>Categoria:</strong> " + escapeHtml(item.category || "?") + "</p>" +
+          "<p><strong>Categoria:</strong> " + escapeHtml(item.category || "—") + "</p>" +
           "<p><strong>Pubblicata:</strong> " + (item.published ? "Sì" : "No") + "</p>" +
           "<p>" + escapeHtml(item.subtitle || "") + "</p>";
 
@@ -1266,12 +1266,12 @@ body: (() => {
     }
 
     function formatNumber(value) {
-      if (typeof value !== "number") return "?";
+      if (typeof value !== "number") return "—";
       return value.toLocaleString("it-IT");
     }
 
     function formatDateTime(value) {
-      if (!value) return "?";
+      if (!value) return "—";
 
       const date = new Date(value);
 

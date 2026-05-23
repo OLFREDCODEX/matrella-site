@@ -650,12 +650,12 @@
   }
 
   function formatDate(value) {
-    if (!value) return "?";
+    if (!value) return "—";
 
     try {
       return new Date(value).toLocaleDateString("it-IT");
     } catch (error) {
-      return "?";
+      return "—";
     }
   }
 
