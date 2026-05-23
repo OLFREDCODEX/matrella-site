@@ -1,17 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="it">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FL9Z4EHSEL"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-FL9Z4EHSEL');
-  </script>
-
-  <meta charset="UTF-8" />
+  <script defer src="cookie-consent.js"></script>
+<meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Dashboard privata | Methods Guards AI</title>
@@ -298,7 +289,7 @@
       <button type="button" onclick="loadAnalytics()">Mostra dashboard</button>
 
       <p class="note">
-        La chiave non viene salvata nel sito. Viene usata solo per interrogare l’endpoint analytics.
+        La chiave non viene salvata nel sito. Viene usata solo per interrogare lâ€™endpoint analytics.
       </p>
 
       <p id="status" class="note"></p>
@@ -311,13 +302,13 @@
         Da qui puoi mettere temporaneamente offline Methods Guards AI e mostrare un messaggio agli utenti.
       </p>
 
-      <div id="maintenanceStatus" class="maintenance-status">Stato: —</div>
+      <div id="maintenanceStatus" class="maintenance-status">Stato: â€”</div>
 
       <label for="maintenanceMessage">
         <strong>Messaggio da mostrare agli utenti</strong>
       </label>
 
-      <textarea id="maintenanceMessage" placeholder="Esempio: Methods Guards AI è temporaneamente in manutenzione. Riprova più tardi."></textarea>
+      <textarea id="maintenanceMessage" placeholder="Esempio: Methods Guards AI Ã¨ temporaneamente in manutenzione. Riprova piÃ¹ tardi."></textarea>
 
       <div class="button-row">
         <button type="button" class="button-danger" onclick="setMaintenance(true)">
@@ -449,44 +440,44 @@
     <div id="dashboard" class="grid hidden">
       <div class="card">
         <div class="label">Data UTC</div>
-        <div id="dateUTC" class="value">—</div>
+        <div id="dateUTC" class="value">â€”</div>
       </div>
 
       <div class="card">
         <div class="label">Analisi totali</div>
-        <div id="totalAnalyses" class="value">—</div>
+        <div id="totalAnalyses" class="value">â€”</div>
       </div>
 
       <div class="card">
         <div class="label">Analisi oggi</div>
-        <div id="todayAnalyses" class="value">—</div>
+        <div id="todayAnalyses" class="value">â€”</div>
       </div>
 
       <div class="card">
         <div class="label">Identificativi oggi</div>
-        <div id="uniqueIdentifiersToday" class="value">—</div>
+        <div id="uniqueIdentifiersToday" class="value">â€”</div>
       </div>
 
       <div class="card">
         <div class="label">Media analisi per identificativo oggi</div>
-        <div id="avgAnalysesPerIdentifierToday" class="value">—</div>
+        <div id="avgAnalysesPerIdentifierToday" class="value">â€”</div>
       </div>
 
       <div class="card">
         <div class="label">Utenti oggi</div>
-        <div id="usersToday" class="value">—</div>
-        <p id="usersTodayText" class="note">—</p>
+        <div id="usersToday" class="value">â€”</div>
+        <p id="usersTodayText" class="note">â€”</p>
       </div>
 
       <div class="card">
         <div class="label">Returning complessivi</div>
-        <div id="usersAllTimeRate" class="value">—</div>
-        <p id="usersAllTimeText" class="note">—</p>
+        <div id="usersAllTimeRate" class="value">â€”</div>
+        <p id="usersAllTimeText" class="note">â€”</p>
       </div>
 
       <div class="card">
         <div class="label">Quota analisi con codice ultimi 7 giorni</div>
-        <div id="codeUsageRate" class="value">—</div>
+        <div id="codeUsageRate" class="value">â€”</div>
         <div class="bar-track">
           <div id="codeUsageBar" class="bar-fill"></div>
         </div>
@@ -495,16 +486,16 @@
       <div class="card wide">
         <div class="label">Mappa analisi per paese</div>
         <div id="countryMap"></div>
-        <p id="countryMapNote" class="note">—</p>
+        <p id="countryMapNote" class="note">â€”</p>
       </div>
 
       <div class="card wide">
-        <div class="label">Città più rappresentate</div>
+        <div class="label">CittÃ  piÃ¹ rappresentate</div>
 
         <table>
           <thead>
             <tr>
-              <th>Città</th>
+              <th>CittÃ </th>
               <th>Analisi</th>
             </tr>
           </thead>
@@ -530,8 +521,8 @@
 
       <div class="card wide">
         <div class="label">Periodo ultimi 7 giorni</div>
-        <div class="value" id="recentPeriodTotal">—</div>
-        <p class="note" id="recentPeriodText">—</p>
+        <div class="value" id="recentPeriodTotal">â€”</div>
+        <p class="note" id="recentPeriodText">â€”</p>
       </div>
 
       <div class="card wide">
@@ -630,7 +621,7 @@
           return;
         }
 
-        document.getElementById("dateUTC").innerText = data.dateUTC || "—";
+        document.getElementById("dateUTC").innerText = data.dateUTC || "â€”";
         document.getElementById("totalAnalyses").innerText = formatNumber(data.totalAnalyses);
         document.getElementById("todayAnalyses").innerText = formatNumber(data.todayAnalyses);
         document.getElementById("uniqueIdentifiersToday").innerText = formatNumber(data.uniqueIdentifiersToday);
@@ -662,8 +653,8 @@
 
         document.getElementById("recentPeriodTotal").innerText = formatNumber(recent.analyses) + " analisi";
         document.getElementById("recentPeriodText").innerText =
-          "Dal " + (recent.fromUTC || "—") +
-          " al " + (recent.toUTC || "—") +
+          "Dal " + (recent.fromUTC || "â€”") +
+          " al " + (recent.toUTC || "â€”") +
           " | con codice: " + formatNumber(recent.analysesWithCode) +
           " | senza codice: " + formatNumber(recent.analysesWithoutCode);
 
@@ -805,7 +796,7 @@ async function loadMethodologyMemory(secret) {
         return;
       }
 
-      note.innerText = "La mappa esclude i valori unknown. Colore più intenso = più analisi.";
+      note.innerText = "La mappa esclude i valori unknown. Colore piÃ¹ intenso = piÃ¹ analisi.";
 
       google.charts.setOnLoadCallback(() => {
         const rows = [["Country", "Analisi"]];
@@ -845,7 +836,7 @@ async function loadMethodologyMemory(secret) {
       });
 
       if (filtered.length === 0) {
-        tbody.innerHTML = "<tr><td colspan='2'>Nessun dato città valido disponibile.</td></tr>";
+        tbody.innerHTML = "<tr><td colspan='2'>Nessun dato cittÃ  valido disponibile.</td></tr>";
         return;
       }
 
@@ -897,7 +888,7 @@ async function loadMethodologyMemory(secret) {
         const tr = document.createElement("tr");
 
         tr.innerHTML =
-          "<td>" + escapeHtml(day.date || "—") + "</td>" +
+          "<td>" + escapeHtml(day.date || "â€”") + "</td>" +
           "<td>" + formatNumber(day.analyses) + "</td>" +
           "<td>" + formatNumber(day.withCode) + "</td>" +
           "<td>" + formatNumber(day.withoutCode) + "</td>";
@@ -957,15 +948,15 @@ const res = await fetch(url);
 
         const location = [item.city, item.country]
           .filter(Boolean)
-          .join(", ") || "—";
+          .join(", ") || "â€”";
 
         tr.innerHTML =
           "<td>" + escapeHtml(formatDateTime(item.created_at)) + "</td>" +
-          "<td>" + escapeHtml(item.level || "—") + "</td>" +
-          "<td>" + escapeHtml(item.source || "—") + "</td>" +
-          "<td>" + escapeHtml(item.message || "—") + "</td>" +
-          "<td>" + escapeHtml(item.file_name || "—") + "</td>" +
-          "<td>" + escapeHtml(item.product_type || "—") + "</td>" +
+          "<td>" + escapeHtml(item.level || "â€”") + "</td>" +
+          "<td>" + escapeHtml(item.source || "â€”") + "</td>" +
+          "<td>" + escapeHtml(item.message || "â€”") + "</td>" +
+          "<td>" + escapeHtml(item.file_name || "â€”") + "</td>" +
+          "<td>" + escapeHtml(item.product_type || "â€”") + "</td>" +
           "<td>" + escapeHtml(location) + "</td>";
 
         logsTable.appendChild(tr);
@@ -1033,7 +1024,7 @@ const res = await fetch(url);
           },
           body: JSON.stringify({
             maintenance: enabled,
-            message: message || "Methods Guards AI è temporaneamente non disponibile. Riprova più tardi."
+            message: message || "Methods Guards AI Ã¨ temporaneamente non disponibile. Riprova piÃ¹ tardi."
           })
         });
 
@@ -1047,8 +1038,8 @@ const res = await fetch(url);
         updateMaintenanceUI(data.maintenance, data.message);
 
         maintenanceFeedback.innerText = data.maintenance
-          ? "Manutenzione attivata. La pagina pubblica risulterà temporaneamente chiusa."
-          : "Manutenzione disattivata. Methods Guards AI è di nuovo attivo.";
+          ? "Manutenzione attivata. La pagina pubblica risulterÃ  temporaneamente chiusa."
+          : "Manutenzione disattivata. Methods Guards AI Ã¨ di nuovo attivo.";
 
       } catch (error) {
         maintenanceFeedback.innerHTML = '<span class="error">Errore di connessione durante aggiornamento manutenzione.</span>';
@@ -1202,8 +1193,8 @@ body: (() => {
 
         div.innerHTML =
           "<h3>" + escapeHtml(item.title || "Senza titolo") + "</h3>" +
-          "<p><strong>Categoria:</strong> " + escapeHtml(item.category || "—") + "</p>" +
-          "<p><strong>Pubblicata:</strong> " + (item.published ? "Sì" : "No") + "</p>" +
+          "<p><strong>Categoria:</strong> " + escapeHtml(item.category || "â€”") + "</p>" +
+          "<p><strong>Pubblicata:</strong> " + (item.published ? "SÃ¬" : "No") + "</p>" +
           "<p>" + escapeHtml(item.subtitle || "") + "</p>";
 
         newsList.appendChild(div);
@@ -1270,17 +1261,17 @@ body: (() => {
       }
 
       if (status) {
-        status.innerText = "Sessione scaduta per inattività. Inserisci di nuovo la chiave privata.";
+        status.innerText = "Sessione scaduta per inattivitÃ . Inserisci di nuovo la chiave privata.";
       }
     }
 
     function formatNumber(value) {
-      if (typeof value !== "number") return "—";
+      if (typeof value !== "number") return "â€”";
       return value.toLocaleString("it-IT");
     }
 
     function formatDateTime(value) {
-      if (!value) return "—";
+      if (!value) return "â€”";
 
       const date = new Date(value);
 
