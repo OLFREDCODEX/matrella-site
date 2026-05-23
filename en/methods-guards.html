@@ -2152,6 +2152,44 @@ ${data.qualita_formale ? `
 </div>
 
 ` : ""}
+${data.ai_trace_check ? `
+
+<div class="report-card">
+
+  <div class="report-section-title">
+    AI Trace Check
+  </div>
+
+  <div class="formal-quality-box">
+
+    <span class="formal-badge">
+      ${getAiTraceSignal(data.ai_trace_check.semaforo)}
+    </span>
+
+    <span>
+      <strong>${data.ai_trace_check.livello || "not assessable"}</strong><br>
+      ${data.ai_trace_check.nota || "Indicative and non-probative check: human review is always required."}
+    </span>
+
+  </div>
+
+  ${(data.ai_trace_check.segnali || []).length ? `
+    <p style="margin:14px 0 6px; font-weight:800;">Observed signals</p>
+    <ul class="guardian-list">
+      ${data.ai_trace_check.segnali.map(s => `<li>${s}</li>`).join("")}
+    </ul>
+  ` : ""}
+
+  ${(data.ai_trace_check.elementi_di_cautela || []).length ? `
+    <p style="margin:14px 0 6px; font-weight:800;">Caution elements</p>
+    <ul class="guardian-list">
+      ${data.ai_trace_check.elementi_di_cautela.map(s => `<li>${s}</li>`).join("")}
+    </ul>
+  ` : ""}
+
+</div>
+
+` : ""}
       <div class="report-card">
         <div class="report-section-title">
           Overall assessment
@@ -2207,6 +2245,12 @@ ${data.qualita_formale ? `
   `;
 
   dashboard.classList.remove("hidden");
+}
+
+function getAiTraceSignal(semaforo) {
+  if (semaforo === "verde") return "Green";
+  if (semaforo === "rosso") return "Red";
+  return "Yellow";
 }
     function fileToBase64(file) {
       return new Promise((resolve, reject) => {

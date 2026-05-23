@@ -2151,6 +2151,44 @@ ${data.qualita_formale ? `
 </div>
 
 ` : ""}
+${data.ai_trace_check ? `
+
+<div class="report-card">
+
+  <div class="report-section-title">
+    AI Trace Check
+  </div>
+
+  <div class="formal-quality-box">
+
+    <span class="formal-badge">
+      ${getAiTraceSignal(data.ai_trace_check.semaforo)}
+    </span>
+
+    <span>
+      <strong>${data.ai_trace_check.livello || "non valutabile"}</strong><br>
+      ${data.ai_trace_check.nota || "Controllo indicativo e non probatorio: richiede sempre verifica umana."}
+    </span>
+
+  </div>
+
+  ${(data.ai_trace_check.segnali || []).length ? `
+    <p style="margin:14px 0 6px; font-weight:800;">Segnali osservati</p>
+    <ul class="guardian-list">
+      ${data.ai_trace_check.segnali.map(s => `<li>${s}</li>`).join("")}
+    </ul>
+  ` : ""}
+
+  ${(data.ai_trace_check.elementi_di_cautela || []).length ? `
+    <p style="margin:14px 0 6px; font-weight:800;">Elementi di cautela</p>
+    <ul class="guardian-list">
+      ${data.ai_trace_check.elementi_di_cautela.map(s => `<li>${s}</li>`).join("")}
+    </ul>
+  ` : ""}
+
+</div>
+
+` : ""}
       <div class="report-card">
         <div class="report-section-title">
           &#128200; Valutazione complessiva
@@ -2206,6 +2244,12 @@ ${data.qualita_formale ? `
   `;
 
   dashboard.classList.remove("hidden");
+}
+
+function getAiTraceSignal(semaforo) {
+  if (semaforo === "verde") return "&#128994;";
+  if (semaforo === "rosso") return "&#128308;";
+  return "&#128993;";
 }
     function fileToBase64(file) {
       return new Promise((resolve, reject) => {
