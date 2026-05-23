@@ -12,7 +12,7 @@
         analytics: "Analytics",
         analyticsText: "Optional. Anonymous aggregate statistics via Google Analytics, with IP anonymization.",
         save: "Save preferences",
-        accept: "Accept analytics",
+        accept: "Accept",
         reject: "Reject",
         manage: "Cookie settings",
         info: "Privacy and data notice",
@@ -26,7 +26,7 @@
         analytics: "Analytics",
         analyticsText: "Facoltativo. Statistiche aggregate anonime tramite Google Analytics, con IP anonimizzato.",
         save: "Salva preferenze",
-        accept: "Accetta analytics",
+        accept: "Accetta",
         reject: "Rifiuta",
         manage: "Impostazioni cookie",
         info: "Informativa dati e privacy",
@@ -354,3 +354,4 @@
     }
   });
 })();
+
