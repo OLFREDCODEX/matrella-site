@@ -7,6 +7,11 @@
     ? {
         title: "Privacy preferences",
         text: "This site uses only technical storage by default. With your consent, Google Analytics is used to understand aggregate visits and improve the site.",
+        necessary: "Necessary technical functions",
+        necessaryText: "Always active. They keep the site working and remember your privacy choice.",
+        analytics: "Analytics",
+        analyticsText: "Optional. Anonymous aggregate statistics via Google Analytics, with IP anonymization.",
+        save: "Save preferences",
         accept: "Accept analytics",
         reject: "Reject",
         manage: "Cookie settings",
@@ -16,6 +21,11 @@
     : {
         title: "Preferenze privacy",
         text: "Questo sito usa solo funzioni tecniche di base. Con il tuo consenso, Google Analytics viene usato per statistiche aggregate e per migliorare il sito.",
+        necessary: "Funzioni tecniche necessarie",
+        necessaryText: "Sempre attive. Servono al funzionamento del sito e a ricordare la tua scelta privacy.",
+        analytics: "Analytics",
+        analyticsText: "Facoltativo. Statistiche aggregate anonime tramite Google Analytics, con IP anonimizzato.",
+        save: "Salva preferenze",
         accept: "Accetta analytics",
         reject: "Rifiuta",
         manage: "Impostazioni cookie",
@@ -26,7 +36,7 @@
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function () {
     const command = arguments[0];
-    const canTrack = localStorage.getItem(STORAGE_KEY) === "accepted";
+    const canTrack = getConsent().analytics === true;
     if (command === "consent" || canTrack) {
       window.dataLayer.push(arguments);
     }
@@ -40,6 +50,30 @@
   });
 
   let analyticsLoaded = false;
+
+  function getConsent() {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw === "accepted") return { necessary: true, analytics: true };
+    if (raw === "rejected") return { necessary: true, analytics: false };
+
+    try {
+      const parsed = JSON.parse(raw || "{}");
+      return {
+        necessary: true,
+        analytics: parsed.analytics === true
+      };
+    } catch (error) {
+      return { necessary: true, analytics: false };
+    }
+  }
+
+  function saveConsent(analytics) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      necessary: true,
+      analytics: analytics === true,
+      updatedAt: new Date().toISOString()
+    }));
+  }
 
   function loadAnalytics() {
     if (analyticsLoaded) return;
@@ -129,6 +163,12 @@
         color: #ffffff;
       }
 
+      .mg-cookie-save {
+        background: #1f2933;
+        color: #ffffff;
+        border-color: #1f2933;
+      }
+
       .mg-cookie-reject,
       .mg-cookie-manage {
         background: #ffffff;
@@ -143,6 +183,41 @@
 
       .mg-cookie-link:hover {
         text-decoration: underline;
+      }
+
+      .mg-cookie-preferences {
+        display: grid;
+        gap: 10px;
+        margin-top: 14px;
+      }
+
+      .mg-cookie-row {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 10px;
+        align-items: center;
+        padding: 12px;
+        border: 1px solid rgba(42, 91, 132, 0.16);
+        border-radius: 12px;
+        background: #f8fafc;
+      }
+
+      .mg-cookie-row strong {
+        display: block;
+        margin-bottom: 2px;
+        color: #1f2933;
+      }
+
+      .mg-cookie-row small {
+        display: block;
+        color: #516173;
+        line-height: 1.45;
+      }
+
+      .mg-cookie-row input {
+        width: 18px;
+        height: 18px;
+        accent-color: #2a5b84;
       }
 
       .mg-cookie-manage {
@@ -195,6 +270,7 @@
   function showBanner() {
     injectStyles();
     removeBanner();
+    const consent = getConsent();
 
     const manage = document.getElementById("mg-cookie-manage");
     if (manage) manage.remove();
@@ -206,15 +282,45 @@
     banner.innerHTML = `
       <h2>${copy.title}</h2>
       <p>${copy.text}</p>
+      <div class="mg-cookie-preferences">
+        <label class="mg-cookie-row">
+          <input type="checkbox" checked disabled>
+          <span>
+            <strong>${copy.necessary}</strong>
+            <small>${copy.necessaryText}</small>
+          </span>
+        </label>
+        <label class="mg-cookie-row">
+          <input id="mg-cookie-analytics" type="checkbox" ${consent.analytics ? "checked" : ""}>
+          <span>
+            <strong>${copy.analytics}</strong>
+            <small>${copy.analyticsText}</small>
+          </span>
+        </label>
+      </div>
       <div class="mg-cookie-actions">
+        <button class="mg-cookie-save" type="button">${copy.save}</button>
         <button class="mg-cookie-accept" type="button">${copy.accept}</button>
         <button class="mg-cookie-reject" type="button">${copy.reject}</button>
         <a class="mg-cookie-link" href="${copy.link}">${copy.info}</a>
       </div>
     `;
 
+    banner.querySelector(".mg-cookie-save").addEventListener("click", () => {
+      const analytics = banner.querySelector("#mg-cookie-analytics").checked;
+      saveConsent(analytics);
+      if (analytics) {
+        loadAnalytics();
+        window.gtag("event", "cookie_consent_update", { consent_choice: "analytics_enabled" });
+      } else {
+        denyAnalytics();
+      }
+      removeBanner();
+      showManageButton();
+    });
+
     banner.querySelector(".mg-cookie-accept").addEventListener("click", () => {
-      localStorage.setItem(STORAGE_KEY, "accepted");
+      saveConsent(true);
       loadAnalytics();
       removeBanner();
       showManageButton();
@@ -222,7 +328,7 @@
     });
 
     banner.querySelector(".mg-cookie-reject").addEventListener("click", () => {
-      localStorage.setItem(STORAGE_KEY, "rejected");
+      saveConsent(false);
       denyAnalytics();
       removeBanner();
       showManageButton();
@@ -232,15 +338,16 @@
   }
 
   const savedChoice = localStorage.getItem(STORAGE_KEY);
-  if (savedChoice === "accepted") {
+  const savedConsent = getConsent();
+  if (savedConsent.analytics === true) {
     loadAnalytics();
-  } else if (savedChoice === "rejected") {
+  } else if (savedChoice) {
     denyAnalytics();
   }
 
   document.addEventListener("DOMContentLoaded", () => {
     injectStyles();
-    if (savedChoice === "accepted" || savedChoice === "rejected") {
+    if (savedChoice) {
       showManageButton();
     } else {
       showBanner();

@@ -279,7 +279,7 @@ textarea {
       <button type="button" onclick="loadAnalytics()">Mostra dashboard</button>
 
       <p class="note">
-        La chiave non viene salvata nel sito. Viene usata solo per interrogare lâ€™endpoint analytics.
+        La chiave non viene salvata nel sito. Viene usata solo per interrogare l?endpoint analytics.
       </p>
 
       <p id="status" class="note"></p>
@@ -292,13 +292,13 @@ textarea {
     Da qui puoi mettere temporaneamente offline Methods Guards AI e mostrare un messaggio agli utenti.
   </p>
 
-  <div id="maintenanceStatus" class="maintenance-status">Stato: â€”</div>
+  <div id="maintenanceStatus" class="maintenance-status">Stato: ?</div>
 
   <label for="maintenanceMessage">
     <strong>Messaggio da mostrare agli utenti</strong>
   </label>
 
-  <textarea id="maintenanceMessage" placeholder="Esempio: Methods Guards AI Ã¨ temporaneamente in manutenzione. Riprova piÃ¹ tardi."></textarea>
+  <textarea id="maintenanceMessage" placeholder="Esempio: Methods Guards AI è temporaneamente in manutenzione. Riprova più tardi."></textarea>
 
   <div class="button-row">
     <button type="button" class="button-danger" onclick="setMaintenance(true)">
@@ -374,44 +374,44 @@ textarea {
     <div id="dashboard" class="grid hidden">
       <div class="card">
         <div class="label">Data UTC</div>
-        <div id="dateUTC" class="value">â€”</div>
+        <div id="dateUTC" class="value">?</div>
       </div>
 
       <div class="card">
         <div class="label">Analisi totali</div>
-        <div id="totalAnalyses" class="value">â€”</div>
+        <div id="totalAnalyses" class="value">?</div>
       </div>
 
       <div class="card">
         <div class="label">Analisi oggi</div>
-        <div id="todayAnalyses" class="value">â€”</div>
+        <div id="todayAnalyses" class="value">?</div>
       </div>
 
       <div class="card">
         <div class="label">Identificativi oggi</div>
-        <div id="uniqueIdentifiersToday" class="value">â€”</div>
+        <div id="uniqueIdentifiersToday" class="value">?</div>
       </div>
 
       <div class="card">
         <div class="label">Media analisi per identificativo oggi</div>
-        <div id="avgAnalysesPerIdentifierToday" class="value">â€”</div>
+        <div id="avgAnalysesPerIdentifierToday" class="value">?</div>
       </div>
 
       <div class="card">
         <div class="label">Utenti oggi</div>
-        <div id="usersToday" class="value">â€”</div>
-        <p id="usersTodayText" class="note">â€”</p>
+        <div id="usersToday" class="value">?</div>
+        <p id="usersTodayText" class="note">?</p>
       </div>
 
       <div class="card">
         <div class="label">Returning complessivi</div>
-        <div id="usersAllTimeRate" class="value">â€”</div>
-        <p id="usersAllTimeText" class="note">â€”</p>
+        <div id="usersAllTimeRate" class="value">?</div>
+        <p id="usersAllTimeText" class="note">?</p>
       </div>
 
       <div class="card">
         <div class="label">Quota analisi con codice ultimi 7 giorni</div>
-        <div id="codeUsageRate" class="value">â€”</div>
+        <div id="codeUsageRate" class="value">?</div>
         <div class="bar-track">
           <div id="codeUsageBar" class="bar-fill"></div>
         </div>
@@ -420,16 +420,16 @@ textarea {
       <div class="card wide">
         <div class="label">Mappa analisi per paese</div>
         <div id="countryMap"></div>
-        <p id="countryMapNote" class="note">â€”</p>
+        <p id="countryMapNote" class="note">?</p>
       </div>
 
       <div class="card wide">
-        <div class="label">CittÃ  piÃ¹ rappresentate</div>
+        <div class="label">Città più rappresentate</div>
 
         <table>
           <thead>
             <tr>
-              <th>CittÃ </th>
+              <th>Città</th>
               <th>Analisi</th>
             </tr>
           </thead>
@@ -455,8 +455,8 @@ textarea {
 
       <div class="card wide">
         <div class="label">Periodo ultimi 7 giorni</div>
-        <div class="value" id="recentPeriodTotal">â€”</div>
-        <p class="note" id="recentPeriodText">â€”</p>
+        <div class="value" id="recentPeriodTotal">?</div>
+        <p class="note" id="recentPeriodText">?</p>
       </div>
 
       <div class="card wide">
@@ -514,7 +514,7 @@ const INACTIVITY_LIMIT_MS = 5 * 60 * 1000;
           return;
         }
 
-        document.getElementById("dateUTC").innerText = data.dateUTC || "â€”";
+        document.getElementById("dateUTC").innerText = data.dateUTC || "?";
         document.getElementById("totalAnalyses").innerText = formatNumber(data.totalAnalyses);
         document.getElementById("todayAnalyses").innerText = formatNumber(data.todayAnalyses);
         document.getElementById("uniqueIdentifiersToday").innerText = formatNumber(data.uniqueIdentifiersToday);
@@ -546,8 +546,8 @@ const INACTIVITY_LIMIT_MS = 5 * 60 * 1000;
 
         document.getElementById("recentPeriodTotal").innerText = formatNumber(recent.analyses) + " analisi";
         document.getElementById("recentPeriodText").innerText =
-          "Dal " + (recent.fromUTC || "â€”") +
-          " al " + (recent.toUTC || "â€”") +
+          "Dal " + (recent.fromUTC || "?") +
+          " al " + (recent.toUTC || "?") +
           " | con codice: " + formatNumber(recent.analysesWithCode) +
           " | senza codice: " + formatNumber(recent.analysesWithoutCode);
 
@@ -583,7 +583,7 @@ loadMaintenanceStatus(secret);
         return;
       }
 
-      note.innerText = "La mappa esclude i valori unknown. Colore piÃ¹ intenso = piÃ¹ analisi.";
+      note.innerText = "La mappa esclude i valori unknown. Colore più intenso = più analisi.";
 
       google.charts.setOnLoadCallback(() => {
         const rows = [["Country", "Analisi"]];
@@ -623,7 +623,7 @@ loadMaintenanceStatus(secret);
       });
 
       if (filtered.length === 0) {
-        tbody.innerHTML = "<tr><td colspan='2'>Nessun dato cittÃ  valido disponibile.</td></tr>";
+        tbody.innerHTML = "<tr><td colspan='2'>Nessun dato città valido disponibile.</td></tr>";
         return;
       }
 
@@ -675,7 +675,7 @@ loadMaintenanceStatus(secret);
         const tr = document.createElement("tr");
 
         tr.innerHTML =
-          "<td>" + escapeHtml(day.date || "â€”") + "</td>" +
+          "<td>" + escapeHtml(day.date || "?") + "</td>" +
           "<td>" + formatNumber(day.analyses) + "</td>" +
           "<td>" + formatNumber(day.withCode) + "</td>" +
           "<td>" + formatNumber(day.withoutCode) + "</td>";
@@ -744,7 +744,7 @@ async function setMaintenance(enabled) {
       },
       body: JSON.stringify({
         maintenance: enabled,
-        message: message || "Methods Guards AI Ã¨ temporaneamente non disponibile. Riprova piÃ¹ tardi."
+        message: message || "Methods Guards AI è temporaneamente non disponibile. Riprova più tardi."
       })
     });
 
@@ -758,8 +758,8 @@ async function setMaintenance(enabled) {
     updateMaintenanceUI(data.maintenance, data.message);
 
     maintenanceFeedback.innerText = data.maintenance
-      ? "Manutenzione attivata. La pagina pubblica risulterÃ  temporaneamente chiusa."
-      : "Manutenzione disattivata. Methods Guards AI Ã¨ di nuovo attivo.";
+      ? "Manutenzione attivata. La pagina pubblica risulterà temporaneamente chiusa."
+      : "Manutenzione disattivata. Methods Guards AI è di nuovo attivo.";
 
   } catch (error) {
     maintenanceFeedback.innerHTML = '<span class="error">Errore di connessione durante aggiornamento manutenzione.</span>';
@@ -897,8 +897,8 @@ function renderAdminNews(items) {
 
     div.innerHTML =
       "<h3>" + escapeHtml(item.title || "Senza titolo") + "</h3>" +
-      "<p><strong>Categoria:</strong> " + escapeHtml(item.category || "â€”") + "</p>" +
-      "<p><strong>Pubblicata:</strong> " + (item.published ? "SÃ¬" : "No") + "</p>" +
+      "<p><strong>Categoria:</strong> " + escapeHtml(item.category || "?") + "</p>" +
+      "<p><strong>Pubblicata:</strong> " + (item.published ? "Sì" : "No") + "</p>" +
       "<p>" + escapeHtml(item.subtitle || "") + "</p>";
 
     newsList.appendChild(div);
@@ -950,11 +950,11 @@ function logoutDashboard() {
   }
 
   if (status) {
-    status.innerText = "Sessione scaduta per inattivitÃ . Inserisci di nuovo la chiave privata.";
+    status.innerText = "Sessione scaduta per inattività. Inserisci di nuovo la chiave privata.";
   }
 }
     function formatNumber(value) {
-      if (typeof value !== "number") return "â€”";
+      if (typeof value !== "number") return "?";
       return value.toLocaleString("it-IT");
     }
 

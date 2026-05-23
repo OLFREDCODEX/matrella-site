@@ -559,7 +559,7 @@
   <section class="section-title">
     <h2>Ultime comunicazioni</h2>
     <p>
-      Aggiornamenti su attivitÃ  scientifiche, progetti, pubblicazioni, eventi e iniziative.
+      Aggiornamenti su attività scientifiche, progetti, pubblicazioni, eventi e iniziative.
     </p>
   </section>
 
@@ -572,7 +572,7 @@
   <section id="news" class="section-title">
     <h2>News</h2>
     <p>
-      Aggiornamenti brevi su attivitÃ , eventi, strumenti, collaborazioni e iniziative.
+      Aggiornamenti brevi su attività, eventi, strumenti, collaborazioni e iniziative.
     </p>
   </section>
 
@@ -586,7 +586,7 @@
     <h2>Articoli e riflessioni</h2>
     <p>
       Spazio per testi brevi, commenti e riflessioni su metodologia della ricerca sociale,
-      innovazione metodologica, intelligenza artificiale e qualitÃ  del dato.
+      innovazione metodologica, intelligenza artificiale e qualità del dato.
     </p>
   </section>
 
@@ -603,14 +603,14 @@
     <h2>Podcast e conversazioni</h2>
     <p>
       Una sezione pensata per ospitare conversazioni con ricercatori, metodologi,
-      esperti di valutazione e studiosi interessati al rapporto tra metodo, societÃ  e innovazione.
+      esperti di valutazione e studiosi interessati al rapporto tra metodo, società e innovazione.
     </p>
   </section>
 
   <section class="empty-box">
     <h3>Podcast in costruzione</h3>
     <p>
-      Questo spazio potrÃ  raccogliere episodi, interviste e dialoghi pubblicati su piattaforme
+      Questo spazio potrà raccogliere episodi, interviste e dialoghi pubblicati su piattaforme
       esterne come Spotify, YouTube o Spreaker, con link e descrizioni sintetiche.
     </p>
   </section>
@@ -633,7 +633,7 @@
 </main>
 
 <footer>
-  Â© <span id="year"></span> Alfredo Matrella
+  © <span id="year"></span> Alfredo Matrella
 </footer>
 
 <script>
@@ -650,12 +650,12 @@
   }
 
   function formatDate(value) {
-    if (!value) return "â€”";
+    if (!value) return "?";
 
     try {
       return new Date(value).toLocaleDateString("it-IT");
     } catch (error) {
-      return "â€”";
+      return "?";
     }
   }
 
@@ -726,8 +726,8 @@
       allNewsGrid.innerHTML = items.map(createNewsCard).join("");
 
     } catch (error) {
-      latestNewsStatus.textContent = "Non Ã¨ stato possibile caricare le comunicazioni.";
-      allNewsStatus.textContent = "Non Ã¨ stato possibile caricare le news.";
+      latestNewsStatus.textContent = "Non è stato possibile caricare le comunicazioni.";
+      allNewsStatus.textContent = "Non è stato possibile caricare le news.";
     }
   }
 
