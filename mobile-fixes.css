@@ -17,6 +17,12 @@ canvas {
     -webkit-text-size-adjust: 100%;
   }
 
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
   input,
   select,
   textarea,
@@ -59,7 +65,7 @@ canvas {
   }
 
   .live-item {
-    min-width: 82vw;
+    min-width: min(82vw, 360px);
     padding: 10px 16px;
   }
 
@@ -133,17 +139,47 @@ canvas {
     padding: 18px;
   }
 
+  .card,
+  .profile-card,
+  .live-item,
+  .publication-card,
+  .communication-card,
+  .service-card,
+  .experience-card,
+  .method-card,
+  .research-card,
+  .update-card {
+    min-width: 0 !important;
+  }
+
   .grid,
+  .hero,
+  .hero-grid,
   .communication-grid,
   .support-row,
   .report-dashboard,
   .interests-shell,
   .mission-grid,
   .services-grid,
+  .simple-grid,
+  .research-grid,
+  .updates-grid,
+  .profile-links,
+  .donation-panel,
+  .thanks-grid,
   .contact-box,
   .methods-box,
   .wide-card {
     grid-template-columns: 1fr !important;
+  }
+
+  .hero,
+  .hero-grid,
+  .support-row,
+  .profile-links,
+  .donation-panel,
+  .thanks-grid {
+    align-items: stretch;
   }
 
   .profile-link {
@@ -165,12 +201,23 @@ canvas {
     padding: 28px 16px;
   }
 
+  .upload-icon {
+    font-size: 2.2rem;
+    line-height: 1;
+  }
+
   .upload-main-text {
     font-size: 1rem;
   }
 
   .guardian-table {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .guardian-header,
+  .guardian-row {
+    min-width: 760px;
   }
 
   .guardian-row {
@@ -184,6 +231,18 @@ canvas {
   .report-title h2 {
     font-size: 1.6rem;
     line-height: 1.1;
+  }
+
+  .report-card,
+  .report-section,
+  .diagnostic-card,
+  .formal-quality,
+  .overall-evaluation,
+  .corrective-actions,
+  .donation-section,
+  .code-box,
+  .support-card {
+    overflow-wrap: anywhere;
   }
 
   .report-section-title {
@@ -200,6 +259,14 @@ canvas {
     display: block;
     max-width: 100%;
     overflow-x: auto;
+  }
+
+  .btn,
+  button,
+  input,
+  select,
+  textarea {
+    max-width: 100%;
   }
 }
 
@@ -223,6 +290,12 @@ canvas {
     font-size: 2.55rem;
   }
 
+  .hero p,
+  .lead,
+  .section-head p {
+    font-size: 0.98rem;
+  }
+
   .eyebrow {
     font-size: 0.75rem;
   }
@@ -238,7 +311,11 @@ canvas {
   .card,
   .profile-card,
   .box,
-  .report-card {
+  .report-card,
+  .contact-box,
+  .methods-box,
+  .wide-card,
+  .mur-box {
     padding: 16px;
   }
 
@@ -253,6 +330,16 @@ canvas {
   .guardian-portrait img,
   .guardian-image {
     max-width: 88px;
+  }
+
+  .guardian-header,
+  .guardian-row {
+    min-width: 680px;
+  }
+
+  .language-switch {
+    transform: scale(0.95);
+    transform-origin: right center;
   }
 
   .mg-cookie-banner {
