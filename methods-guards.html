@@ -1979,7 +1979,11 @@ if (hiddenJson) {
         }
 
       } catch (error) {
-        output.innerText = "Errore di connessione con Methods Guards AI: " + error.message;
+        const technicalDetail = error.message === "Failed to fetch" ? "failed_to_fetch" : error.message;
+        output.innerText =
+          "Non è stato possibile completare la connessione con Methods Guards AI.\n" +
+          "Riprova tra qualche minuto. Se il problema continua, prova con un PDF più leggero.\n" +
+          "Dettaglio tecnico: " + technicalDetail;
         donationSection.classList.add("hidden");
         adBanner.classList.add("hidden");
         console.error(error);
