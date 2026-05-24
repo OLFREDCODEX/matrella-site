@@ -477,7 +477,7 @@
       background: var(--accent);
     }
 
-    .ad-banner {
+    .resource-banner {
       background: #ffffff;
       border: 1px dashed var(--accent);
       border-radius: 24px;
@@ -1111,7 +1111,7 @@
       </div>
     </div>
 
-    <div id="adBanner" class="ad-banner hidden" style="text-align:left;">
+    <div id="resourceBanner" class="resource-banner hidden" style="text-align:left;">
       <div style="display:flex; gap:18px; align-items:center; flex-wrap:wrap; justify-content:center;">
         <img src="../images/quality-life-book-cover.jpg" alt="Book cover: Quality of life of university workers" style="width:96px; max-width:28vw; border-radius:10px; border:1px solid var(--line); box-shadow:0 10px 24px rgba(15,23,42,0.12);">
         <div style="flex:1; min-width:240px; text-align:left;">
@@ -1761,7 +1761,7 @@ if (!allowedProductTypes.includes(productType)) {
 }
       const button = document.getElementById("analyzeButton");
       const donationSection = document.getElementById("donationSection");
-      const adBanner = document.getElementById("adBanner");
+      const resourceBanner = document.getElementById("resourceBanner");
       const codeInput = document.getElementById("codeInput");
       const codeStatus = document.getElementById("codeStatus");
 
@@ -1778,7 +1778,7 @@ if (!allowedProductTypes.includes(productType)) {
       if (!fileInput.files.length) {
         output.innerText = "Upload a PDF before starting the analysis.";
         donationSection.classList.add("hidden");
-        adBanner.classList.add("hidden");
+        resourceBanner.classList.add("hidden");
         return;
       }
 
@@ -1787,25 +1787,26 @@ if (!allowedProductTypes.includes(productType)) {
       if (file.type !== "application/pdf") {
         output.innerText = "The file must be a PDF.";
         donationSection.classList.add("hidden");
-        adBanner.classList.add("hidden");
+        resourceBanner.classList.add("hidden");
         return;
       }
 
       if (file.size > 19 * 1024 * 1024) {
         output.innerText = "PDF too large. Use a file under 19 MB.";
         donationSection.classList.add("hidden");
-        adBanner.classList.add("hidden");
+        resourceBanner.classList.add("hidden");
         return;
       }
 
       output.innerText = "";
+      output.classList.add("hidden");
       donationSection.classList.add("hidden");
       startLoadingState(selectedEngine);
 
       if (!code) {
-        adBanner.classList.remove("hidden");
+        resourceBanner.classList.remove("hidden");
       } else {
-        adBanner.classList.add("hidden");
+        resourceBanner.classList.add("hidden");
       }
 
       button.disabled = true;
@@ -1829,7 +1830,7 @@ if (!allowedProductTypes.includes(productType)) {
 
         const data = await res.json();
 
-        adBanner.classList.add("hidden");
+        resourceBanner.classList.add("hidden");
 
         if (data.remaining !== undefined) {
           if (data.remaining > 0 && code) {
@@ -1903,7 +1904,7 @@ if (hiddenJson) {
           "Please try again in a few minutes. If the problem continues, try a lighter PDF.\n" +
           "Technical detail: " + technicalDetail;
         donationSection.classList.add("hidden");
-        adBanner.classList.add("hidden");
+        resourceBanner.classList.add("hidden");
         console.error(error);
       } finally {
         button.disabled = false;
@@ -2272,5 +2273,7 @@ function copySiteLink() {
   </script>
 </body>
 </html>
+
+
 
 
