@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <script defer src="cookie-consent.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Come usare Methods Guards AI | Guida rapida</title>
+  <meta name="description" content="Guida rapida per usare Methods Guards AI: preparare il PDF, scegliere il motore di analisi, leggere il report e interpretarne i limiti." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.matrella.it/guida-methods-guards.html" />
+  <link rel="alternate" hreflang="it" href="https://www.matrella.it/guida-methods-guards.html" />
+  <link rel="alternate" hreflang="en" href="https://www.matrella.it/en/methods-guards-guide.html" />
+  <link rel="alternate" hreflang="x-default" href="https://www.matrella.it/guida-methods-guards.html" />
+  <meta property="og:locale" content="it_IT" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Alfredo Matrella" />
+  <meta property="og:title" content="Come usare Methods Guards AI" />
+  <meta property="og:description" content="Una guida pratica per caricare un PDF, scegliere il motore di analisi e leggere correttamente il report metodologico." />
+  <meta property="og:url" content="https://www.matrella.it/guida-methods-guards.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Come usare Methods Guards AI" />
+  <meta name="twitter:description" content="Una guida pratica per caricare un PDF, scegliere il motore di analisi e leggere correttamente il report metodologico." />
+  <style>
+    :root {
+      --bg: #f7f5ef;
+      --paper: #ffffff;
+      --ink: #1f2933;
+      --muted: #6b7280;
+      --accent: #355c7d;
+      --blue: #27496d;
+      --line: #e5e0d8;
+      --soft: #edf2f7;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(247, 245, 239, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      width: min(1120px, 92%);
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      padding: 18px 0;
+    }
+
+    .logo {
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      font-size: 1.15rem;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    nav ul {
+      display: flex;
+      gap: 22px;
+      list-style: none;
+      color: #475569;
+      font-size: 0.96rem;
+      font-weight: 600;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      color: inherit;
+    }
+
+    .language-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.62);
+      color: #475569;
+      font-size: 0.82rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .language-switch a,
+    .language-switch span {
+      color: inherit;
+      padding: 2px 6px;
+      border-radius: 999px;
+      text-decoration: none;
+    }
+
+    .language-switch .active {
+      background: var(--ink);
+      color: white;
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.78);
+      color: var(--ink);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: currentColor;
+      position: relative;
+    }
+
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: currentColor;
+    }
+
+    .nav-toggle span::before {
+      top: -6px;
+    }
+
+    .nav-toggle span::after {
+      top: 6px;
+    }
+
+    .nav.nav-open .nav-toggle span {
+      background: transparent;
+    }
+
+    .nav.nav-open .nav-toggle span::before {
+      top: 0;
+      transform: rotate(45deg);
+    }
+
+    .nav.nav-open .nav-toggle span::after {
+      top: 0;
+      transform: rotate(-45deg);
+    }
+
+    main {
+      width: min(960px, 92%);
+      margin: auto;
+      padding: 64px 0 80px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 7vw, 4.6rem);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+      margin: 0 0 22px;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      margin: 0 0 14px;
+    }
+
+    p {
+      margin: 0 0 14px;
+    }
+
+    .lead {
+      color: #526173;
+      font-size: 1.08rem;
+      max-width: 760px;
+    }
+
+    .box {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 28px;
+      margin-top: 28px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .card {
+      background: #fbfcfd;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+    }
+
+    .step {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--accent);
+      display: inline-grid;
+      place-items: center;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .warning {
+      background: #fff8e6;
+      border: 1px solid #f0d98c;
+      border-radius: 18px;
+      padding: 16px;
+      color: #5f4b16;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: white;
+      font-weight: 800;
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 980px) {
+      .nav {
+        position: relative;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+        order: 2;
+      }
+
+      .language-switch {
+        order: 3;
+      }
+
+      .nav nav {
+        order: 4;
+        width: 100%;
+      }
+
+      nav ul {
+        display: none;
+      }
+
+      .nav.nav-open nav ul {
+        display: flex;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: calc(100% + 10px);
+        flex-direction: column;
+        gap: 0;
+        padding: 12px;
+        background: rgba(255, 255, 255, 0.97);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        box-shadow: 0 18px 40px rgba(31, 41, 51, 0.12);
+        color: var(--ink);
+        z-index: 50;
+      }
+
+      .nav.nav-open nav li + li {
+        border-top: 1px solid var(--line);
+      }
+
+      .nav.nav-open nav a {
+        display: block;
+        padding: 12px 10px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="mobile-fixes.css" />
+</head>
+
+<body>
+  <header>
+    <div class="nav">
+      <a class="logo" href="index.html">Alfredo <span>Matrella</span></a>
+      <button class="nav-toggle" type="button" aria-label="Apri menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+      </button>
+      <nav aria-label="Navigazione principale">
+        <ul>
+          <li><a href="missione-ricerca.html">Mission</a></li>
+          <li><a href="servizi.html">Servizi</a></li>
+          <li><a href="methods-guards.html">Methods Guards AI</a></li>
+          <li><a href="pubblicazioni.html">Pubblicazioni</a></li>
+          <li><a href="esperienze.html">Esperienze</a></li>
+          <li><a href="comunicazioni.html">Comunicazioni</a></li>
+          <li><a href="index.html#opportunita">Opportunit&agrave;</a></li>
+          <li><a href="index.html#contatti">Contatti</a></li>
+        </ul>
+      </nav>
+      <div class="language-switch" aria-label="Selezione lingua">
+        <span class="active">IT</span>
+        <a href="en/methods-guards-guide.html">EN</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <p class="eyebrow">Guida rapida</p>
+    <h1>Come usare Methods Guards AI</h1>
+    <p class="lead">
+      Methods Guards AI aiuta a leggere un documento scientifico dal punto di vista metodologico.
+      Il report non &egrave; una peer review: &egrave; una diagnosi preliminare per individuare punti solidi,
+      criticit&agrave; e azioni correttive.
+    </p>
+
+    <section class="box" aria-labelledby="steps-title">
+      <h2 id="steps-title">Uso consigliato</h2>
+      <div class="grid">
+        <article class="card">
+          <span class="step">1</span>
+          <h2>Prepara il PDF</h2>
+          <p class="note">
+            Usa un PDF testuale, leggibile e sotto i 19 MB. I PDF scansionati o composti solo da immagini
+            possono produrre risultati incompleti.
+          </p>
+        </article>
+        <article class="card">
+          <span class="step">2</span>
+          <h2>Scegli il motore</h2>
+          <p class="note">
+            MG AI v1 &egrave; indicato per una diagnosi rapida e compatta. MG AI v2 &egrave; pi&ugrave; analitico
+            e pi&ugrave; attento al tipo di contributo.
+          </p>
+        </article>
+        <article class="card">
+          <span class="step">3</span>
+          <h2>Leggi il report</h2>
+          <p class="note">
+            Concentrati su diagnosi, robustezza, criticit&agrave; principali e azioni correttive. Il punteggio
+            serve come orientamento, non come giudizio definitivo.
+          </p>
+        </article>
+        <article class="card">
+          <span class="step">4</span>
+          <h2>Verifica criticamente</h2>
+          <p class="note">
+            Confronta sempre il report con il documento originale. Se una voce risulta dubbia, usala come
+            traccia di revisione e non come conclusione automatica.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="box" aria-labelledby="interpret-title">
+      <h2 id="interpret-title">Come interpretare il risultato</h2>
+      <p>
+        Il report valuta solo gli elementi osservabili nel documento caricato: disegno, campione,
+        strumenti, analisi, risultati, limiti e coerenza delle inferenze. Se una informazione non &egrave;
+        presente nel PDF, Methods Guards AI dovrebbe segnalarla come non valutabile.
+      </p>
+      <p>
+        Una valutazione bassa non significa automaticamente che il lavoro sia privo di valore. Spesso indica
+        che alcune informazioni metodologiche non sono documentate in modo sufficiente. Una valutazione alta,
+        allo stesso modo, non garantisce accettazione editoriale o validit&agrave; scientifica definitiva.
+      </p>
+      <div class="warning">
+        Usa il report come supporto alla revisione del testo: chiarire procedure, esplicitare criteri,
+        documentare limiti e rendere pi&ugrave; trasparente la catena tra dati, analisi e conclusioni.
+      </div>
+    </section>
+
+    <section class="box" aria-labelledby="limits-title">
+      <h2 id="limits-title">Cosa non fa</h2>
+      <ul>
+        <li>non sostituisce revisione umana esperta, peer review o supervisione scientifica;</li>
+        <li>non certifica la qualit&agrave; complessiva del contributo;</li>
+        <li>non garantisce pubblicabilit&agrave;, originalit&agrave; o assenza di errori;</li>
+        <li>non dovrebbe essere usato come unico criterio di valutazione accademica;</li>
+        <li>non interpreta informazioni esterne non presenti nel documento caricato.</li>
+      </ul>
+    </section>
+
+    <section class="box" aria-labelledby="next-title">
+      <h2 id="next-title">Dopo il report</h2>
+      <p>
+        Il modo migliore per usare Methods Guards AI &egrave; trasformare le criticit&agrave; in una checklist di revisione:
+        cosa chiarire, cosa documentare, quali limiti esplicitare e quali inferenze rendere pi&ugrave; prudenti.
+      </p>
+      <div class="cta-row">
+        <a class="button" href="methods-guards.html">Apri Methods Guards AI</a>
+        <a class="button secondary" href="trasparenza.html">Trasparenza e dati</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.querySelectorAll(".nav").forEach((nav) => {
+      const toggle = nav.querySelector(".nav-toggle");
+      if (!toggle) return;
+      toggle.addEventListener("click", () => {
+        const isOpen = nav.classList.toggle("nav-open");
+        toggle.setAttribute("aria-expanded", String(isOpen));
+      });
+      nav.querySelectorAll("nav a").forEach((link) => {
+        link.addEventListener("click", () => {
+          nav.classList.remove("nav-open");
+          toggle.setAttribute("aria-expanded", "false");
+        });
+      });
+    });
+  </script>
+</body>
+</html>
