@@ -500,6 +500,20 @@
       box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
     }
 
+    .resource-placeholder {
+      width: 92px;
+      min-height: 118px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, #eef4f8, #ffffff);
+      color: var(--blue);
+      font-weight: 800;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    }
+
     .resource-copy {
       min-width: 0;
       text-align: left;
@@ -546,6 +560,12 @@
 
       .resource-cover {
         width: 72px;
+      }
+
+      .resource-placeholder {
+        width: 72px;
+        min-height: 92px;
+        font-size: 0.8rem;
       }
 
       .resource-title {
@@ -1186,14 +1206,16 @@
 
     <div id="resourceBanner" class="resource-banner hidden">
       <div class="resource-banner-inner">
-        <img class="resource-cover" src="../images/quality-life-book-cover.jpg" alt="Book cover: Quality of life of university workers">
+        <div id="resourceVisual">
+          <img class="resource-cover" src="../images/quality-life-book-cover.jpg" alt="Book cover: Quality of life of university workers">
+        </div>
         <div class="resource-copy">
-          <span class="resource-label">Editorial resource</span>
-          <p class="resource-title"><strong>Quality of life of university workers</strong></p>
-          <p class="note" style="margin:0;">
+          <span id="resourceLabel" class="resource-label">Editorial resource</span>
+          <p id="resourceTitle" class="resource-title"><strong>Quality of life of university workers</strong></p>
+          <p id="resourceDescription" class="note" style="margin:0;">
             A book on academic work, organizational well-being and interdependence between domains of experiential life.
           </p>
-          <a class="resource-button" href="https://www.gebonanno.com/product/qualita-della-vita-dei-lavoratori-universitari/" target="_blank" rel="noopener">Open Bonanno page</a>
+          <a id="resourceLink" class="resource-button" href="https://www.gebonanno.com/product/qualita-della-vita-dei-lavoratori-universitari/" target="_blank" rel="noopener">Open Bonanno page</a>
         </div>
       </div>
     </div>
@@ -1625,6 +1647,88 @@
   <script>
     let activeCode = "";
     let loadingTimers = [];
+    let resourceRotationTimer = null;
+    let resourceRotationIndex = 0;
+
+    const resourceItems = [
+      {
+        label: "Editorial resource",
+        title: "Quality of life of university workers",
+        description: "A book on academic work, organizational well-being and interdependence between domains of experiential life.",
+        url: "https://www.gebonanno.com/product/qualita-della-vita-dei-lavoratori-universitari/",
+        cta: "Open Bonanno page",
+        image: "../images/quality-life-book-cover.jpg",
+        alt: "Book cover: Quality of life of university workers"
+      },
+      {
+        label: "Recommended reading",
+        title: "Homo Academicus",
+        description: "Pierre Bourdieu's classic work on the academic field, hierarchies and knowledge production.",
+        url: "https://amzlink.to/az0ZJIyksN9ra",
+        cta: "Open on Amazon",
+        placeholder: "Book"
+      },
+      {
+        label: "Recommended reading",
+        title: "Paul Lazarsfeld's Research Methodology",
+        description: "A useful reference for method, empirical research and the quantitative sociological tradition.",
+        url: "https://amzn.to/3RiOJ1g",
+        cta: "Open on Amazon",
+        placeholder: "Book"
+      },
+      {
+        label: "Recommended reading",
+        title: "Travels and Adventures of Serendipity",
+        description: "Merton and Barber on unexpected discovery in scientific and sociological research.",
+        url: "https://amzn.to/3PILCyZ",
+        cta: "Open on Amazon",
+        placeholder: "Book"
+      },
+      {
+        label: "Recommended reading",
+        title: "Elements of epidemiological methodology",
+        description: "A methodological resource for thinking about designs, measures and inference in applied research.",
+        url: "https://amzn.to/4uYfqqg",
+        cta: "Open on Amazon",
+        placeholder: "Book"
+      }
+    ];
+
+    function renderResourceItem(index) {
+      const item = resourceItems[index % resourceItems.length];
+      const visual = document.getElementById("resourceVisual");
+      const label = document.getElementById("resourceLabel");
+      const title = document.getElementById("resourceTitle");
+      const description = document.getElementById("resourceDescription");
+      const link = document.getElementById("resourceLink");
+
+      if (!visual || !label || !title || !description || !link) return;
+
+      visual.innerHTML = item.image
+        ? `<img class="resource-cover" src="${item.image}" alt="${item.alt || item.title}">`
+        : `<div class="resource-placeholder">${item.placeholder || "Resource"}</div>`;
+      label.innerHTML = item.label;
+      title.innerHTML = `<strong>${item.title}</strong>`;
+      description.innerHTML = item.description;
+      link.href = item.url;
+      link.innerText = item.cta;
+    }
+
+    function startResourceRotation() {
+      stopResourceRotation();
+      renderResourceItem(resourceRotationIndex);
+      resourceRotationTimer = setInterval(() => {
+        resourceRotationIndex = (resourceRotationIndex + 1) % resourceItems.length;
+        renderResourceItem(resourceRotationIndex);
+      }, 4500);
+    }
+
+    function stopResourceRotation() {
+      if (resourceRotationTimer) {
+        clearInterval(resourceRotationTimer);
+        resourceRotationTimer = null;
+      }
+    }
 
     document.addEventListener("DOMContentLoaded", () => {
       localStorage.removeItem("mg_code");
@@ -1842,6 +1946,7 @@ if (!allowedProductTypes.includes(productType)) {
       if (!fileInput.files.length) {
         output.innerText = "Upload a PDF before starting the analysis.";
         donationSection.classList.add("hidden");
+        stopResourceRotation();
         resourceBanner.classList.add("hidden");
         return;
       }
@@ -1851,6 +1956,7 @@ if (!allowedProductTypes.includes(productType)) {
       if (file.type !== "application/pdf") {
         output.innerText = "The file must be a PDF.";
         donationSection.classList.add("hidden");
+        stopResourceRotation();
         resourceBanner.classList.add("hidden");
         return;
       }
@@ -1858,6 +1964,7 @@ if (!allowedProductTypes.includes(productType)) {
       if (file.size > 19 * 1024 * 1024) {
         output.innerText = "PDF too large. Use a file under 19 MB.";
         donationSection.classList.add("hidden");
+        stopResourceRotation();
         resourceBanner.classList.add("hidden");
         return;
       }
@@ -1868,8 +1975,10 @@ if (!allowedProductTypes.includes(productType)) {
       startLoadingState(selectedEngine);
 
       if (!code) {
+        startResourceRotation();
         resourceBanner.classList.remove("hidden");
       } else {
+        stopResourceRotation();
         resourceBanner.classList.add("hidden");
       }
 
@@ -1920,6 +2029,8 @@ if (!allowedProductTypes.includes(productType)) {
   }
 
   donationSection.classList.add("hidden");
+  stopResourceRotation();
+  resourceBanner.classList.add("hidden");
   return;
 }
 
@@ -1972,6 +2083,7 @@ if (hiddenJson) {
         console.error(error);
       } finally {
         button.disabled = false;
+        stopResourceRotation();
         stopLoadingState();
       }
     }
@@ -2337,6 +2449,7 @@ function copySiteLink() {
   </script>
 </body>
 </html>
+
 
 
 
