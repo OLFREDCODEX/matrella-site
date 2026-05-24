@@ -740,6 +740,74 @@
   background: white;
 }
 
+.guardian-accordion {
+  display: none;
+}
+
+.guardian-accordion-item {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.guardian-accordion-item + .guardian-accordion-item {
+  margin-top: 12px;
+}
+
+.guardian-accordion-summary {
+  display: grid;
+  grid-template-columns: 58px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.guardian-accordion-summary::-webkit-details-marker {
+  display: none;
+}
+
+.guardian-accordion-summary::after {
+  content: "+";
+  color: var(--accent);
+  font-weight: 900;
+  font-size: 1.2rem;
+}
+
+.guardian-accordion-item[open] .guardian-accordion-summary::after {
+  content: "-";
+}
+
+.guardian-accordion-avatar {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #f8fafc;
+  padding: 6px;
+}
+
+.guardian-accordion-body {
+  border-top: 1px solid var(--line);
+  padding: 14px;
+}
+
+.guardian-accordion-block + .guardian-accordion-block {
+  margin-top: 16px;
+}
+
+.guardian-accordion-label {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
 .guardian-table-header {
   display: grid;
   grid-template-columns: 220px 120px 1fr 1fr;
@@ -816,6 +884,14 @@
 
 @media (max-width: 980px) {
 
+  .guardian-table {
+    display: none;
+  }
+
+  .guardian-accordion {
+    display: block;
+  }
+
   .guardian-table-header {
     display: none;
   }
@@ -866,6 +942,28 @@
 
       .report-section-title {
         font-size: 1rem;
+      }
+
+      .guardian-table {
+        display: none;
+      }
+
+      .guardian-accordion {
+        display: block;
+      }
+
+      .guardian-accordion-summary {
+        grid-template-columns: 54px 1fr auto;
+        padding: 12px;
+      }
+
+      .guardian-accordion-avatar {
+        width: 54px;
+        height: 54px;
+      }
+
+      .guardian-accordion-body {
+        padding: 12px;
       }
 
       .guardian-cell {
@@ -2289,6 +2387,43 @@ function renderMethodsGuardsDashboard(data) {
   </div>
 `;
 
+  const guardiansAccordionHtml = `
+  <div class="guardian-accordion">
+    ${(data.guardiani || []).map(g => `
+      <details class="guardian-accordion-item">
+        <summary class="guardian-accordion-summary">
+          <img
+            class="guardian-accordion-avatar"
+            src="${getGuardianImage(g.nome)}"
+            alt="${g.nome}"
+          />
+
+          <div>
+            <div class="guardian-name">${g.nome}</div>
+            <span class="${getBadgeClass(g.robustezza)}">${g.robustezza}</span>
+          </div>
+        </summary>
+
+        <div class="guardian-accordion-body">
+          <div class="guardian-accordion-block">
+            <div class="guardian-accordion-label">Main criticisms</div>
+            <ul class="guardian-list">
+              ${(g.criticita_principali || [])
+                .map(c => `<li>${c}</li>`)
+                .join("")}
+            </ul>
+          </div>
+
+          <div class="guardian-accordion-block">
+            <div class="guardian-accordion-label">Diagnosis</div>
+            <p style="margin:0; line-height:1.7;">${g.diagnosi || ""}</p>
+          </div>
+        </div>
+      </details>
+    `).join("")}
+  </div>
+`;
+
   dashboard.innerHTML = `
     <div class="report-dashboard">
 
@@ -2322,6 +2457,7 @@ function renderMethodsGuardsDashboard(data) {
 
         <div class="guardian-grid">
           ${guardiansHtml}
+          ${guardiansAccordionHtml}
         </div>
       </div>
 ${data.qualita_formale ? `
