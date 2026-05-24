@@ -613,6 +613,7 @@
     }
 .report-dashboard {
   margin-top: 30px;
+  scroll-margin-top: 90px;
 }
 
 .report-card {
@@ -685,6 +686,27 @@
   font-weight: 800;
   font-size: 1.15rem;
   margin-bottom: 14px;
+}
+
+.report-quick-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 16px 0 6px;
+}
+
+.report-quick-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: #f8fafc;
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-decoration: none;
 }
 .formal-quality-box {
   margin-top: 12px;
@@ -804,6 +826,18 @@
 
   .guardian-cell {
     border-bottom: 1px solid var(--line);
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .guardian-cell:not(.guardian-info)::before {
+    content: attr(data-label);
+    display: block;
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 
   .guardian-cell:last-child {
@@ -814,6 +848,65 @@
     @media (max-width: 760px) {
       .support-row {
         grid-template-columns: 1fr;
+      }
+
+      .report-dashboard {
+        margin-top: 18px;
+      }
+
+      .report-card {
+        border-radius: 18px;
+        padding: 16px;
+        margin-bottom: 16px;
+      }
+
+      .report-title {
+        font-size: 1.45rem;
+      }
+
+      .report-section-title {
+        font-size: 1rem;
+      }
+
+      .guardian-cell {
+        padding: 14px;
+        font-size: 0.9rem;
+        line-height: 1.55;
+      }
+
+      .guardian-info {
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .guardian-avatar {
+        width: 78px;
+        height: 78px;
+        border-radius: 14px;
+      }
+
+      .guardian-list {
+        padding-left: 18px;
+      }
+
+      .guardian-list li {
+        margin-bottom: 7px;
+      }
+
+      .report-quick-links {
+        position: sticky;
+        top: 74px;
+        z-index: 8;
+        background: rgba(247, 245, 239, 0.94);
+        backdrop-filter: blur(12px);
+        padding: 8px 0;
+        margin: 12px 0 8px;
+      }
+
+      .report-quick-links a {
+        font-size: 0.82rem;
+        padding: 7px 10px;
       }
     }
 
@@ -2061,9 +2154,13 @@ if (hiddenJson) {
   output.classList.remove("hidden");
 }
 
+const reportTarget = hiddenJson
+  ? document.getElementById("reportDashboard")
+  : output;
+
        if (data.output && !data.output.includes("ANALISI NON ESEGUITA")) {
   donationSection.classList.remove("hidden");
-  donationSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  reportTarget.scrollIntoView({ behavior: "smooth", block: "start" });
 
   setTimeout(() => {
     openShareBanner();
@@ -2150,7 +2247,7 @@ function renderMethodsGuardsDashboard(data) {
     ${(data.guardiani || []).map(g => `
       <div class="guardian-row">
 
-       <div class="guardian-cell guardian-info">
+       <div class="guardian-cell guardian-info" data-label="Guardian">
 
   <div>
 
@@ -2168,13 +2265,13 @@ function renderMethodsGuardsDashboard(data) {
 
 </div>
 
-        <div class="guardian-cell">
+        <div class="guardian-cell" data-label="Robustness">
           <span class="${getBadgeClass(g.robustezza)}">
             ${g.robustezza}
           </span>
         </div>
 
-        <div class="guardian-cell">
+        <div class="guardian-cell" data-label="Main criticisms">
           <ul class="guardian-list">
             ${(g.criticita_principali || [])
               .map(c => `<li>${c}</li>`)
@@ -2182,7 +2279,7 @@ function renderMethodsGuardsDashboard(data) {
           </ul>
         </div>
 
-        <div class="guardian-cell">
+        <div class="guardian-cell" data-label="Diagnosis">
           ${g.diagnosi || ""}
         </div>
 
@@ -2195,7 +2292,7 @@ function renderMethodsGuardsDashboard(data) {
   dashboard.innerHTML = `
     <div class="report-dashboard">
 
-      <div class="report-card">
+      <div id="reportSummary" class="report-card">
         <div class="report-title">
           METHODS GUARDS REPORT
         </div>
@@ -2211,7 +2308,14 @@ function renderMethodsGuardsDashboard(data) {
         <p>${data.sintesi_diagnostica || ""}</p>
       </div>
 
-      <div class="report-card">
+      <nav class="report-quick-links" aria-label="Report sections">
+        <a href="#reportGuardians">Guardians</a>
+        <a href="#reportEvaluation">Evaluation</a>
+        <a href="#reportActions">Actions</a>
+        <a href="#donationSection">Support</a>
+      </nav>
+
+      <div id="reportGuardians" class="report-card">
         <div class="report-section-title">
           Guardians diagnosis
         </div>
@@ -2285,7 +2389,7 @@ ${data.ai_trace_check ? `
 </div>
 
 ` : ""}
-      <div class="report-card">
+      <div id="reportEvaluation" class="report-card">
         <div class="report-section-title">
           Overall assessment
         </div>
@@ -2302,7 +2406,7 @@ ${data.ai_trace_check ? `
 </p>
         </div>
 
-<div class="report-card">
+<div id="reportActions" class="report-card">
   <div class="report-section-title">
     Priority corrective actions
   </div>
