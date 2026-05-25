@@ -76,7 +76,7 @@
       color: var(--ink);
       line-height: 1.6;
     }
-    .hero-wrap {
+.hero-wrap {
   background: linear-gradient(
     180deg,
     #f1ede4 0%,
@@ -84,6 +84,29 @@
   );
   border-bottom: 1px solid #e9e2d8;
 }
+
+    .home-visual-band {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+      padding: 34px 0 0;
+    }
+
+    .home-visual-frame {
+      border-radius: 30px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      box-shadow: 0 24px 60px rgba(31, 41, 51, 0.10);
+      background: #f1ede4;
+      aspect-ratio: 16 / 7;
+    }
+
+    .home-visual-frame img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+    }
 
     a {
       color: inherit;
@@ -985,10 +1008,7 @@ section::before {
           <li><a href="missione-ricerca.html">Mission</a></li>
           <li><a href="servizi.html">Servizi</a></li>
           <li><a href="methods-guards.html">Methods Guards AI</a></li>
-          <li><a href="pubblicazioni.html">Pubblicazioni</a></li>
-          <li><a href="esperienze.html">Esperienze</a></li>
           <li><a href="comunicazioni.html">Comunicazioni</a></li>
-          <li><a href="#opportunita">Opportunit&agrave;</a></li>
           <li><a href="contatti.html">Contatti</a></li>
         </ul>
       </nav>
@@ -1019,6 +1039,12 @@ section::before {
         </a>
       </div>
     </div>
+  <section class="home-visual-band" aria-label="Alfredo Matrella, ricerca sociale e metodi">
+    <div class="home-visual-frame">
+      <img src="images/home-methodology-portrait.jpg" alt="Illustrazione di Alfredo Matrella al lavoro su ricerca sociale, metodi e dati" loading="eager" />
+    </div>
+  </section>
+
   <div class="hero-wrap">
 
     <section class="hero" aria-labelledby="titolo-hero">
@@ -1036,8 +1062,8 @@ alla produzione e all’interpretazione della conoscenza empirica.
         </p>
 
         <div class="hero-actions">
-          <a class="btn primary" href="contatti.html">Parliamo di un progetto</a>
-          <a class="btn secondary" href="servizi.html">Esplora i servizi</a>
+          <a class="btn primary" href="pubblicazioni.html">Pubblicazioni</a>
+          <a class="btn secondary" href="esperienze.html">Esperienze</a>
         </div>
       </div>
 
