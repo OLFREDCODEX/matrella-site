@@ -177,6 +177,7 @@
       display: grid;
       grid-template-columns: 1fr;
       align-items: start;
+      text-align: center;
     }
 
     .service-visual {
@@ -208,7 +209,7 @@
     .service-card .service-note {
       display: inline-flex;
       width: fit-content;
-      margin-bottom: 16px;
+      margin: 0 auto 16px;
       padding: 6px 10px;
       border-radius: 999px;
       background: var(--soft);
@@ -226,14 +227,18 @@
     .service-card p {
       color: var(--muted);
       margin-bottom: 20px;
-      text-align: left;
+      text-align: center;
     }
 
     .service-card ul {
       display: grid;
       gap: 10px;
+      width: fit-content;
+      max-width: 100%;
+      margin: 0 auto;
       padding-left: 18px;
       color: #374151;
+      text-align: left;
     }
 
     .methods-card {
