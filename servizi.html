@@ -4,8 +4,8 @@
   <script defer src="cookie-consent.js"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Servizi | Alfredo Matrella</title>
-  <meta name="description" content="Servizi di consulenza metodologica, progettazione della ricerca, analisi dei dati, valutazione, formazione e supporto a ricerca sociale e organizzazioni." />
+  <title>Servizi metodologici, analisi dati e strumenti web | Alfredo Matrella</title>
+  <meta name="description" content="Consulenza metodologica, analisi dati, formazione, valutazione e strumenti web per ricerca sociale, questionari, survey e progetti scientifici." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.matrella.it/servizi.html" />
   <link rel="alternate" hreflang="it" href="https://www.matrella.it/servizi.html" />
@@ -14,12 +14,12 @@
   <meta property="og:locale" content="it_IT" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Alfredo Matrella" />
-  <meta property="og:title" content="Servizi | Alfredo Matrella" />
-  <meta property="og:description" content="Servizi di consulenza metodologica, progettazione della ricerca, analisi dei dati, valutazione, formazione e supporto a ricerca sociale e organizzazioni." />
+  <meta property="og:title" content="Servizi metodologici, analisi dati e strumenti web | Alfredo Matrella" />
+  <meta property="og:description" content="Consulenza metodologica, analisi dati, formazione, valutazione e strumenti web per ricerca sociale, questionari, survey e progetti scientifici." />
   <meta property="og:url" content="https://www.matrella.it/servizi.html" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Servizi | Alfredo Matrella" />
-  <meta name="twitter:description" content="Servizi di consulenza metodologica, progettazione della ricerca, analisi dei dati, valutazione, formazione e supporto a ricerca sociale e organizzazioni." />
+  <meta name="twitter:title" content="Servizi metodologici, analisi dati e strumenti web | Alfredo Matrella" />
+  <meta name="twitter:description" content="Consulenza metodologica, analisi dati, formazione, valutazione e strumenti web per ricerca sociale, questionari, survey e progetti scientifici." />
 
 
 
@@ -136,11 +136,61 @@
       margin-top: 50px;
     }
 
+    .service-summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin: 46px 0 12px;
+    }
+
+    .summary-card {
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 24px;
+    }
+
+    .summary-label {
+      color: var(--accent-2);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .summary-card h2 {
+      font-size: 1.25rem;
+      letter-spacing: -0.04em;
+      margin-bottom: 10px;
+    }
+
+    .summary-card p {
+      color: var(--muted);
+    }
+
     .service-card {
       background: var(--paper);
       border: 1px solid var(--line);
       border-radius: 28px;
       padding: 32px;
+    }
+
+    .service-card.featured-service {
+      background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+      border-color: rgba(53, 92, 125, 0.3);
+    }
+
+    .service-card .service-note {
+      display: inline-flex;
+      width: fit-content;
+      margin-bottom: 16px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 800;
     }
 
     .service-card h2 {
@@ -208,6 +258,12 @@
       margin-bottom: 22px;
     }
 
+    .service-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
     .btn {
       display: inline-flex;
       align-items: center;
@@ -218,6 +274,12 @@
       background: white;
       color: var(--ink);
       transition: 0.2s ease;
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.42);
     }
 
     .btn:hover {
@@ -252,6 +314,18 @@
 
       .services-grid {
         grid-template-columns: 1fr;
+      }
+
+      .service-summary {
+        grid-template-columns: 1fr;
+      }
+
+      .service-actions {
+        flex-direction: column;
+      }
+
+      .service-actions .btn {
+        width: 100%;
       }
     }
 
@@ -481,62 +555,98 @@
     </p>
   </section>
 
+  <section class="service-summary" aria-label="Sintesi dei servizi">
+    <article class="summary-card">
+      <div class="summary-label">Per chi</div>
+      <h2>Ricercatori, studenti, enti e professionisti</h2>
+      <p>
+        Supporto utile quando un'idea, una survey, un report o un progetto
+        devono diventare più chiari, solidi e comunicabili.
+      </p>
+    </article>
+
+    <article class="summary-card">
+      <div class="summary-label">Cosa offro</div>
+      <h2>Revisioni, strumenti e output utilizzabili</h2>
+      <p>
+        Tracce, questionari, griglie, sintesi, report, moduli digitali
+        e indicazioni operative pensate per essere applicate davvero.
+      </p>
+    </article>
+
+    <article class="summary-card">
+      <div class="summary-label">Come lavoro</div>
+      <h2>Metodo, trasparenza e qualità del dato</h2>
+      <p>
+        L'obiettivo è rendere esplicite le scelte di ricerca:
+        domanda, disegno, campione, strumenti, analisi, limiti e interpretazione.
+      </p>
+    </article>
+  </section>
+
   <section class="services-grid">
 
     <article class="service-card">
+      <span class="service-note">Ricerca e progettazione</span>
       <h2>Consulenza metodologica</h2>
 
       <p>
-        Supporto alla progettazione e alla revisione metodologica di studi,
-        tesi, paper, report e progetti di ricerca.
+        Supporto per rafforzare la coerenza tra domanda, disegno,
+        campione, strumenti, analisi e conclusioni.
       </p>
 
       <ul>
-        <li>Disegno della ricerca</li>
-        <li>Costruzione strumenti</li>
-        <li>Strategie metodologiche</li>
-        <li>Revisione coerenza metodologica</li>
+        <li>Revisione di tesi, paper, report e progetti</li>
+        <li>Definizione di domande e obiettivi</li>
+        <li>Disegno della ricerca e strategia di campionamento</li>
+        <li>Costruzione di questionari, tracce e griglie</li>
+        <li>Lettura critica di limiti e robustezza</li>
       </ul>
     </article>
 
     <article class="service-card">
+      <span class="service-note">Dati e interpretazione</span>
       <h2>Analisi dei dati</h2>
 
       <p>
-        Analisi quantitativa, qualitativa e mixed methods con attenzione
-        alla coerenza interpretativa e metodologica.
+        Supporto nell'organizzazione, nella lettura e nella restituzione
+        di dati quantitativi, qualitativi e mixed methods.
       </p>
 
       <ul>
-        <li>Analisi quantitative</li>
-        <li>Analisi qualitative</li>
-        <li>Mixed methods</li>
-        <li>Visualizzazione dati</li>
+        <li>Analisi descrittive ed esplorative</li>
+        <li>Pulizia e organizzazione di dataset</li>
+        <li>Interpretazione di risultati e limiti</li>
+        <li>Tabelle, grafici e sintesi operative</li>
+        <li>Report orientati alla decisione</li>
       </ul>
     </article>
 
     <article class="service-card">
+      <span class="service-note">Competenze e metodo</span>
       <h2>Formazione e corsi</h2>
 
       <p>
-        Attività formative su metodologia della ricerca sociale,
+        Percorsi brevi e materiali formativi su metodologia, valutazione,
         analisi dei dati e uso critico dell'intelligenza artificiale.
       </p>
 
       <ul>
-        <li>Workshop</li>
-        <li>Seminari</li>
-        <li>Supporto studenti e ricercatori</li>
+        <li>Workshop e seminari</li>
+        <li>Supporto a studenti e giovani ricercatori</li>
         <li>Metodologia della ricerca</li>
+        <li>Lettura critica di strumenti AI</li>
+        <li>Qualità del dato e trasparenza</li>
       </ul>
     </article>
 
-    <article class="service-card">
+    <article class="service-card featured-service">
+      <span class="service-note">Survey e pagine web</span>
       <h2>Strumenti web per ricerca e valutazione</h2>
 
       <p>
-        Sviluppo di strumenti digitali leggeri per raccogliere dati,
-        presentare progetti e organizzare output utili alla ricerca.
+        Progettazione di pagine, questionari e moduli digitali leggeri
+        per raccogliere informazioni e produrre output ordinati.
       </p>
 
       <ul>
@@ -548,18 +658,20 @@
     </article>
 
     <article class="service-card methods-card">
+      <span class="service-note">Strumento gratuito</span>
       <h2>Methods Guards AI</h2>
 
       <p>
-        Sistema sperimentale di supporto alla valutazione della robustezza
-        metodologica di prodotti scientifici.
+        Strumento gratuito e sperimentale per una prima diagnosi
+        metodologica di documenti scientifici.
       </p>
 
       <ul>
-        <li>Paper</li>
-        <li>Tesi</li>
-        <li>Report</li>
-        <li>Progetti di ricerca</li>
+        <li>Paper, tesi, report e progetti</li>
+        <li>Lettura di punti di forza e criticità</li>
+        <li>Azioni correttive prioritarie</li>
+        <li>Motori v1 stabile e v2 laboratorio</li>
+        <li>AI Trace Check indicativo</li>
       </ul>
 
       <a class="service-link" href="methods-guards.html">
@@ -571,18 +683,28 @@
 
   <section class="contact-box">
 
+    <div class="eyebrow">
+      Prossimo passo
+    </div>
+
     <h2>
-      Hai un progetto da discutere?
+      Hai un progetto, una survey o un documento da rendere più solido?
     </h2>
 
     <p>
-      Scrivimi per collaborazioni, consulenze metodologiche,
-      attività formative o progetti di ricerca.
+      Scrivimi indicando obiettivo, stato del lavoro e tipo di supporto
+      richiesto. Posso aiutarti a capire quale percorso è più adatto.
     </p>
 
-    <a class="btn" href="contatti.html">
-      Contattami
-    </a>
+    <div class="service-actions">
+      <a class="btn" href="contatti.html">
+        Apri pagina contatti
+      </a>
+
+      <a class="btn secondary" href="methods-guards.html">
+        Prova Methods Guards AI
+      </a>
+    </div>
 
   </section>
 

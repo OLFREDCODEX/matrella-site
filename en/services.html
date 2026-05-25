@@ -4,8 +4,8 @@
   <script defer src="../cookie-consent.js"></script>
 <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Services | Alfredo Matrella</title>
-  <meta name="description" content="Methodological consulting, research design, data analysis, evaluation, training and methodological support for social research, universities and organizations." />
+  <title>Methodological services, data analysis and research web tools | Alfredo Matrella</title>
+  <meta name="description" content="Methodological consulting, data analysis, training, research web tools, online questionnaires and support for social research, evaluation and scientific projects." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.matrella.it/en/services.html" />
   <link rel="alternate" hreflang="it" href="https://www.matrella.it/servizi.html" />
@@ -14,12 +14,12 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Alfredo Matrella" />
-  <meta property="og:title" content="Services | Alfredo Matrella" />
-  <meta property="og:description" content="Methodological consulting, research design, data analysis, evaluation, training and methodological support for social research, universities and organizations." />
+  <meta property="og:title" content="Methodological services, data analysis and research web tools | Alfredo Matrella" />
+  <meta property="og:description" content="Methodological consulting, data analysis, training, research web tools, online questionnaires and support for social research, evaluation and scientific projects." />
   <meta property="og:url" content="https://www.matrella.it/en/services.html" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Services | Alfredo Matrella" />
-  <meta name="twitter:description" content="Methodological consulting, research design, data analysis, evaluation, training and methodological support for social research, universities and organizations." />
+  <meta name="twitter:title" content="Methodological services, data analysis and research web tools | Alfredo Matrella" />
+  <meta name="twitter:description" content="Methodological consulting, data analysis, training, research web tools, online questionnaires and support for social research, evaluation and scientific projects." />
 
   <style>
     :root {
@@ -28,6 +28,7 @@
       --ink: #1f2933;
       --muted: #6b7280;
       --accent: #355c7d;
+      --accent-2: #b08968;
       --line: #e5e0d8;
       --soft: #edf2f7;
     }
@@ -164,11 +165,61 @@
       margin-top: 50px;
     }
 
+    .service-summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin: 46px 0 12px;
+    }
+
+    .summary-card {
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 24px;
+    }
+
+    .summary-label {
+      color: var(--accent-2);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .summary-card h2 {
+      font-size: 1.25rem;
+      letter-spacing: -0.04em;
+      margin-bottom: 10px;
+    }
+
+    .summary-card p {
+      color: var(--muted);
+    }
+
     .service-card {
       background: var(--paper);
       border: 1px solid var(--line);
       border-radius: 28px;
       padding: 32px;
+    }
+
+    .service-card.featured-service {
+      background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+      border-color: rgba(53, 92, 125, 0.3);
+    }
+
+    .service-card .service-note {
+      display: inline-flex;
+      width: fit-content;
+      margin-bottom: 16px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 800;
     }
 
     .service-card h2 {
@@ -217,6 +268,17 @@
       max-width: 780px;
     }
 
+    .contact-box .eyebrow {
+      color: #dbeafe;
+      margin-bottom: 14px;
+    }
+
+    .service-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
     .btn {
       display: inline-flex;
       align-items: center;
@@ -226,6 +288,12 @@
       font-weight: 700;
       background: white;
       color: var(--ink);
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.42);
     }
 
     footer {
@@ -243,6 +311,18 @@
 
       .services-grid {
         grid-template-columns: 1fr;
+      }
+
+      .service-summary {
+        grid-template-columns: 1fr;
+      }
+
+      .service-actions {
+        flex-direction: column;
+      }
+
+      .service-actions .btn {
+        width: 100%;
       }
     }
     .nav-toggle {
@@ -377,40 +457,91 @@
       </p>
     </section>
 
+    <section class="service-summary" aria-label="Service overview">
+      <article class="summary-card">
+        <div class="summary-label">For whom</div>
+        <h2>Researchers, students, institutions and professionals</h2>
+        <p>
+          Useful when an idea, survey, report or project needs to become
+          clearer, stronger and easier to communicate.
+        </p>
+      </article>
+
+      <article class="summary-card">
+        <div class="summary-label">What I offer</div>
+        <h2>Reviews, tools and usable outputs</h2>
+        <p>
+          Interview guides, questionnaires, grids, summaries, reports,
+          digital forms and practical recommendations.
+        </p>
+      </article>
+
+      <article class="summary-card">
+        <div class="summary-label">How I work</div>
+        <h2>Method, transparency and data quality</h2>
+        <p>
+          The goal is to make research choices explicit: question, design,
+          sample, tools, analysis, limits and interpretation.
+        </p>
+      </article>
+    </section>
+
     <section class="services-grid">
       <article class="service-card">
+        <span class="service-note">Research design</span>
         <h2>Methodological consulting</h2>
-        <p>Support for designing, reviewing and strengthening empirical research projects.</p>
+        <p>
+          Support for strengthening coherence between research question,
+          design, sample, tools, analysis and conclusions.
+        </p>
         <ul>
-          <li>Research questions and design coherence</li>
-          <li>Indicators, variables and operationalization</li>
-          <li>Questionnaires, interview guides and evaluation tools</li>
+          <li>Review of theses, papers, reports and projects</li>
+          <li>Definition of research questions and objectives</li>
+          <li>Research design and sampling strategy</li>
+          <li>Questionnaires, interview guides and coding grids</li>
+          <li>Critical reading of limits and robustness</li>
         </ul>
       </article>
 
       <article class="service-card">
+        <span class="service-note">Data and interpretation</span>
         <h2>Data analysis and reporting</h2>
-        <p>Analysis, interpretation and communication of research results in clear, usable formats.</p>
+        <p>
+          Support for organizing, reading and presenting quantitative,
+          qualitative and mixed-methods data.
+        </p>
         <ul>
           <li>Descriptive and exploratory analysis</li>
-          <li>Qualitative and mixed-methods reading</li>
-          <li>Reports, dashboards and evidence summaries</li>
+          <li>Dataset cleaning and organization</li>
+          <li>Interpretation of results and limitations</li>
+          <li>Tables, charts and operational summaries</li>
+          <li>Decision-oriented reports</li>
         </ul>
       </article>
 
       <article class="service-card">
-        <h2>Evaluation and quality</h2>
-        <p>Design of evaluation frameworks and support for methodological quality assessment.</p>
+        <span class="service-note">Skills and method</span>
+        <h2>Training and workshops</h2>
+        <p>
+          Short training paths and materials on methodology, evaluation,
+          data analysis and critical use of artificial intelligence.
+        </p>
         <ul>
-          <li>Evaluation criteria and indicators</li>
-          <li>Robustness and transparency checks</li>
-          <li>Interpretation of findings and limitations</li>
+          <li>Workshops and seminars</li>
+          <li>Support for students and early-career researchers</li>
+          <li>Social research methodology</li>
+          <li>Critical reading of AI tools</li>
+          <li>Data quality and transparency</li>
         </ul>
       </article>
 
-      <article class="service-card">
+      <article class="service-card featured-service">
+        <span class="service-note">Surveys and web pages</span>
         <h2>Web tools for research and evaluation</h2>
-        <p>Lightweight digital tools to collect data, present projects and organize outputs for research work.</p>
+        <p>
+          Lightweight pages, questionnaires and digital forms to collect
+          information and produce structured outputs.
+        </p>
         <ul>
           <li>Online questionnaires for social research, evaluation and customer/user experience</li>
           <li>Landing pages for research projects, calls, surveys or scientific initiatives</li>
@@ -420,24 +551,34 @@
       </article>
 
       <article class="service-card methods-card">
+        <span class="service-note">Free tool</span>
         <h2>Methods Guards AI</h2>
-        <p>A free AI-supported tool for preliminary methodological diagnosis of research documents.</p>
+        <p>
+          A free experimental tool for a first methodological diagnosis
+          of scientific documents.
+        </p>
         <ul>
-          <li>Paper, abstract, book chapter and project analysis</li>
-          <li>Strengths, weaknesses and corrective actions</li>
+          <li>Papers, theses, reports and projects</li>
+          <li>Reading of strengths and methodological weaknesses</li>
+          <li>Priority corrective actions</li>
           <li>v1 stable engine and v2 laboratory engine</li>
+          <li>Indicative AI Trace Check</li>
         </ul>
         <a class="service-link" href="methods-guards.html">Open Methods Guards AI</a>
       </article>
     </section>
 
     <section class="contact-box">
-      <h2>Do you have a research or evaluation project to discuss?</h2>
+      <div class="eyebrow">Next step</div>
+      <h2>Do you have a project, survey or document to strengthen?</h2>
       <p>
-        I can support methodological design, data analysis, evaluation frameworks and
-        the review of research materials before submission or publication.
+        Write to me with your objective, current stage and the type of
+        support you need. I can help identify the most suitable path.
       </p>
-      <a class="btn" href="contact.html">Contact me</a>
+      <div class="service-actions">
+        <a class="btn" href="contact.html">Open contact page</a>
+        <a class="btn secondary" href="methods-guards.html">Try Methods Guards AI</a>
+      </div>
     </section>
   </main>
 
