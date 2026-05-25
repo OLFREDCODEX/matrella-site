@@ -4,8 +4,8 @@
   <script defer src="../cookie-consent.js"></script>
 <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Data and Document Notice | Methods Guards AI</title>
-  <meta name="description" content="Information about data processing, uploaded documents and the limits of the Methods Guards AI service." />
+  <title>Transparency, data and documents | Methods Guards AI</title>
+  <meta name="description" content="What happens to PDFs uploaded to Methods Guards AI: processed data, retention, cookies, analytics, security and service limits." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.matrella.it/en/transparency.html" />
   <link rel="alternate" hreflang="it" href="https://www.matrella.it/trasparenza.html" />
@@ -14,12 +14,12 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Alfredo Matrella" />
-  <meta property="og:title" content="Data and Document Notice | Methods Guards AI" />
-  <meta property="og:description" content="Information about data processing, uploaded documents and the limits of the Methods Guards AI service." />
+  <meta property="og:title" content="Transparency, data and documents | Methods Guards AI" />
+  <meta property="og:description" content="What happens to PDFs uploaded to Methods Guards AI: processed data, retention, cookies, analytics, security and service limits." />
   <meta property="og:url" content="https://www.matrella.it/en/transparency.html" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Data and Document Notice | Methods Guards AI" />
-  <meta name="twitter:description" content="Information about data processing, uploaded documents and the limits of the Methods Guards AI service." />
+  <meta name="twitter:title" content="Transparency, data and documents | Methods Guards AI" />
+  <meta name="twitter:description" content="What happens to PDFs uploaded to Methods Guards AI: processed data, retention, cookies, analytics, security and service limits." />
 
   <style>
     :root {
@@ -99,6 +99,46 @@
       margin-top: 40px;
       color: var(--muted);
       font-size: 0.9rem;
+    }
+
+    .intro {
+      color: var(--accent);
+      font-size: 1.18rem;
+      max-width: 760px;
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .info-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 24px;
+    }
+
+    .info-card h2 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .info-card p {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    .section-label {
+      color: var(--accent);
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
     }
 
     header {
@@ -184,6 +224,12 @@
     @media (max-width: 980px) {
       nav ul {
         display: none;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .quick-grid {
+        grid-template-columns: 1fr;
       }
     }
     .nav-toggle {
@@ -308,7 +354,69 @@
   </header>
 
   <main>
-    <h1>Notice on data processing and uploaded documents</h1>
+    <h1>Transparency, data and uploaded documents</h1>
+
+    <p class="intro">
+      This page explains, in plain language, what happens when you use Methods Guards AI:
+      which documents are uploaded, which technical data may be recorded, how cookies and
+      analytics work, and what the limits of automated analysis are.
+    </p>
+
+    <section class="quick-grid" aria-label="Transparency summary">
+      <article class="info-card">
+        <div class="section-label">What is uploaded</div>
+        <h2>The PDF you choose to analyze</h2>
+        <p>
+          The document is sent to the service to produce the requested methodological diagnosis.
+          It may include scientific text, bibliographic data, tables, figures and information contained in the PDF.
+        </p>
+      </article>
+
+      <article class="info-card">
+        <div class="section-label">What to avoid</div>
+        <h2>No unnecessary confidential data</h2>
+        <p>
+          Do not upload materials containing sensitive personal data, identifiable health data,
+          trade secrets or confidential information unless they are strictly necessary for the analysis.
+        </p>
+      </article>
+
+      <article class="info-card">
+        <div class="section-label">What is tracked</div>
+        <h2>Technical service use</h2>
+        <p>
+          Minimal technical data may be recorded: number of analyses, date and time,
+          access codes used, errors, service logs and information needed to prevent abuse.
+        </p>
+      </article>
+
+      <article class="info-card">
+        <div class="section-label">Cookies and analytics</div>
+        <h2>Analytics only with consent</h2>
+        <p>
+          Basic technical functions are needed for the site. Google Analytics is loaded only
+          if you consent through the privacy banner; you can change your choice through the Cookie button.
+        </p>
+      </article>
+
+      <article class="info-card">
+        <div class="section-label">Retention</div>
+        <h2>Limited and functional retention</h2>
+        <p>
+          Documents, logs and technical data may be retained only for the time needed
+          to generate the analysis, manage errors, ensure security and improve the service.
+        </p>
+      </article>
+
+      <article class="info-card">
+        <div class="section-label">Service limits</div>
+        <h2>Support, not peer review</h2>
+        <p>
+          Methods Guards AI provides a preliminary methodological reading. Outputs may contain errors
+          and do not replace human review, peer review or the author’s scientific responsibility.
+        </p>
+      </article>
+    </section>
 
     <div class="box">
       <p>
