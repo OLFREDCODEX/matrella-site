@@ -23,31 +23,72 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Methods Guards AI",
-      "applicationCategory": "EducationalApplication",
-      "operatingSystem": "Web",
-      "url": "https://www.matrella.it/methods-guards.html",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "EUR"
-      },
-      "description": "Methods Guards AI offre una diagnosi metodologica preliminare gratuita di paper, report, abstract e progetti di ricerca caricati in PDF.",
-      "creator": {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Alfredo Matrella",
-        "url": "https://www.matrella.it/",
-        "jobTitle": "Metodologo della ricerca sociale",
-        "knowsAbout": [
-          "Metodologia della ricerca sociale",
-          "Valutazione",
-          "Analisi dei dati",
-          "Trasformazione digitale",
-          "Methods Guards AI"
-        ]
-      }
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://www.matrella.it/methods-guards.html#webpage",
+          "url": "https://www.matrella.it/methods-guards.html",
+          "name": "Methods Guards AI | Valutazione metodologica preliminare",
+          "description": "Methods Guards AI offre una diagnosi metodologica preliminare gratuita di paper, report, abstract e progetti di ricerca caricati in PDF.",
+          "inLanguage": "it",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Alfredo Matrella",
+            "url": "https://www.matrella.it/"
+          },
+          "mainEntity": {
+            "@id": "https://www.matrella.it/methods-guards.html#app"
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://www.matrella.it/methods-guards.html#app",
+          "name": "Methods Guards AI",
+          "alternateName": "MG AI",
+          "applicationCategory": "EducationalApplication",
+          "applicationSubCategory": "Research methodology assessment tool",
+          "operatingSystem": "Web",
+          "url": "https://www.matrella.it/methods-guards.html",
+          "inLanguage": ["it", "en"],
+          "isAccessibleForFree": true,
+          "browserRequirements": "Requires a modern web browser and PDF upload support.",
+          "description": "Strumento web gratuito per una diagnosi metodologica preliminare di paper, report, abstract e progetti di ricerca caricati in PDF.",
+          "featureList": [
+            "Valutazione metodologica preliminare di documenti scientifici",
+            "Analisi di struttura, disegno, campione, strumenti, analisi e conclusioni",
+            "Report con criticità, punti di forza e azioni correttive",
+            "AI Trace Check indicativo e non probatorio",
+            "Supporto a paper, abstract, report, review e progetti di ricerca"
+          ],
+          "audience": {
+            "@type": "Audience",
+            "audienceType": "Ricercatori, studenti, docenti, valutatori e professionisti della ricerca"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock"
+          },
+          "creator": {
+            "@id": "https://www.matrella.it/#alfredo-matrella"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://www.matrella.it/#alfredo-matrella",
+          "name": "Alfredo Matrella",
+          "url": "https://www.matrella.it/",
+          "jobTitle": "Metodologo della ricerca sociale",
+          "knowsAbout": [
+            "Metodologia della ricerca sociale",
+            "Valutazione",
+            "Analisi dei dati",
+            "Trasformazione digitale",
+            "Methods Guards AI"
+          ]
+        }
+      ]
     }
   </script>
 
