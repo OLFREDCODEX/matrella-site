@@ -18,6 +18,121 @@
   <meta property="og:description" content="Scientific publications and conference activity on social research methodology, digital transformation, AI and data quality." />
   <meta property="og:url" content="https://www.matrella.it/en/publications.html" />
   <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Publications and Conferences | Alfredo Matrella" />
+  <meta name="twitter:description" content="Scientific publications and conference activity on social research methodology, digital transformation, AI and data quality." />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://www.matrella.it/en/publications.html#webpage",
+          "url": "https://www.matrella.it/en/publications.html",
+          "name": "Publications and Conferences | Alfredo Matrella",
+          "description": "Scientific publications and conference activity by Alfredo Matrella on social research methodology, digital technologies, artificial intelligence, school, work and quality of life.",
+          "inLanguage": "en",
+          "about": [
+            "Social research methodology",
+            "Artificial intelligence in social research",
+            "Quality of life of university workers",
+            "Digital technologies and education",
+            "Digital methods"
+          ],
+          "mainEntity": {
+            "@id": "https://www.matrella.it/en/publications.html#publications"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://www.matrella.it/#alfredo-matrella",
+          "name": "Alfredo Matrella",
+          "url": "https://www.matrella.it/",
+          "jobTitle": "Social research methodologist",
+          "knowsAbout": [
+            "Social research methodology",
+            "Evaluation",
+            "Data analysis",
+            "Digital methods",
+            "Artificial intelligence in social research"
+          ]
+        },
+        {
+          "@type": "ItemList",
+          "@id": "https://www.matrella.it/en/publications.html#publications",
+          "name": "Scientific publications by Alfredo Matrella",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "item": {
+                "@type": "ScholarlyArticle",
+                "name": "Percorsi narrativi e pratiche di consumo digitale nel fast-fashion. Analisi dell'usabilita e dell'esperienza utente della piattaforma SHEIN",
+                "datePublished": "2025",
+                "author": [
+                  { "@type": "Person", "name": "G. Roberti" },
+                  { "@id": "https://www.matrella.it/#alfredo-matrella" }
+                ],
+                "isPartOf": { "@type": "Periodical", "name": "Sociologia della Comunicazione" },
+                "url": "https://www.francoangeli.it/riviste/articolo/citazione/?doi=10.3280/SC2025-069003"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "item": {
+                "@type": "ScholarlyArticle",
+                "name": "The use of artificial intelligence within social research: A classification proposal",
+                "datePublished": "2025",
+                "author": [
+                  { "@id": "https://www.matrella.it/#alfredo-matrella" },
+                  { "@type": "Person", "name": "M. Cavagnuolo" },
+                  { "@type": "Person", "name": "V. Capozza" }
+                ],
+                "isPartOf": { "@type": "Periodical", "name": "The Lab's Quarterly" },
+                "url": "https://www.thelabs.sp.unipi.it/matrella-a-cavagnuolo-m-capozza-v-the-use-of-artificial-intelligence-within-social-research/"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "item": {
+                "@type": "Book",
+                "name": "Qualita della vita dei lavoratori universitari e interdipendenza tra domini della vita esperienziale",
+                "datePublished": "2025",
+                "author": { "@id": "https://www.matrella.it/#alfredo-matrella" },
+                "publisher": { "@type": "Organization", "name": "Bonanno Editore" },
+                "url": "https://www.gebonanno.com/product/qualita-della-vita-dei-lavoratori-universitari/"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "item": {
+                "@type": "ScholarlyArticle",
+                "name": "L'uso integrativo degli audio-diari nella survey research per la rilevazione dei micro-eventi generativi",
+                "datePublished": "2025",
+                "author": { "@id": "https://www.matrella.it/#alfredo-matrella" },
+                "isPartOf": { "@type": "Periodical", "name": "Sociologia e Ricerca Sociale" },
+                "url": "https://www.torrossa.com/it/resources/an/6039024"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "item": {
+                "@type": "ScholarlyArticle",
+                "name": "Quality of life of academic actors. Career trajectories and working conditions",
+                "datePublished": "2024",
+                "author": { "@id": "https://www.matrella.it/#alfredo-matrella" },
+                "isPartOf": { "@type": "Periodical", "name": "Italian Journal of Sociology of Education" },
+                "url": "https://ijse.padovauniversitypress.it/2024/2/2"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  </script>
 
   <style>
     :root {
@@ -160,6 +275,25 @@
       color: var(--muted);
       font-size: 1.05rem;
       max-width: 780px;
+    }
+
+    .topic-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      max-width: 920px;
+      margin: -28px auto 54px;
+    }
+
+    .topic-pill {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 9px 14px;
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 800;
     }
 
     .publication-list,
@@ -393,6 +527,14 @@
         Scientific publications and conference presentations on quality of life,
         digital technologies, school, artificial intelligence, work and social research methodology.
       </p>
+    </section>
+
+    <section class="topic-strip" aria-label="Main publication topics">
+      <span class="topic-pill">Social research methodology</span>
+      <span class="topic-pill">Artificial intelligence and social research</span>
+      <span class="topic-pill">Academic quality of life</span>
+      <span class="topic-pill">Digital technologies and education</span>
+      <span class="topic-pill">Digital methods</span>
     </section>
 
     <section class="section-title">
