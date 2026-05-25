@@ -715,8 +715,46 @@
   background: #f8fafc;
   border: 1px solid var(--line);
   display: flex;
-  align-items: center;
-  gap: 10px;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.formal-quality-box.status-positive {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+.formal-quality-box.status-warning {
+  background: #fffbeb;
+  border-color: #fde68a;
+}
+
+.formal-quality-box.status-critical {
+  background: #fef2f2;
+  border-color: #fecaca;
+}
+
+.status-summary {
+  display: grid;
+  gap: 5px;
+}
+
+.status-label {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.status-title {
+  font-weight: 900;
+  color: var(--ink);
+}
+
+.status-note {
+  color: #475569;
+  line-height: 1.65;
 }
 
 .formal-badge {
@@ -2467,18 +2505,16 @@ ${data.qualita_formale ? `
     &#128221; Qualità formale del testo
   </div>
 
-  <div class="formal-quality-box">
+  <div class="formal-quality-box ${getStatusClass(data.qualita_formale.livello)}">
 
     <span class="formal-badge">
-      ${data.qualita_formale.livello === "verde"
-        ? "&#128994;"
-        : data.qualita_formale.livello === "giallo"
-        ? "&#128993;"
-        : "&#128308;"}
+      ${getFormalQualitySignal(data.qualita_formale.livello)}
     </span>
 
-    <span>
-      ${data.qualita_formale.nota || ""}
+    <span class="status-summary">
+      <span class="status-label">Esito qualità formale</span>
+      <span class="status-title">${getFormalQualityTitle(data.qualita_formale.livello)}</span>
+      <span class="status-note">${data.qualita_formale.nota || ""}</span>
     </span>
 
   </div>
@@ -2494,15 +2530,16 @@ ${data.ai_trace_check ? `
     AI Trace Check
   </div>
 
-  <div class="formal-quality-box">
+  <div class="formal-quality-box ${getStatusClass(data.ai_trace_check.semaforo)}">
 
     <span class="formal-badge">
       ${getAiTraceSignal(data.ai_trace_check.semaforo)}
     </span>
 
-    <span>
-      <strong>${data.ai_trace_check.livello || "non valutabile"}</strong><br>
-      ${data.ai_trace_check.nota || "Controllo indicativo e non probatorio: richiede sempre verifica umana."}
+    <span class="status-summary">
+      <span class="status-label">Esito AI Trace Check</span>
+      <span class="status-title">${getAiTraceTitle(data.ai_trace_check.semaforo, data.ai_trace_check.livello)}</span>
+      <span class="status-note">${data.ai_trace_check.nota || "Controllo indicativo e non probatorio: richiede sempre verifica umana."}</span>
     </span>
 
   </div>
@@ -2585,6 +2622,48 @@ function getAiTraceSignal(semaforo) {
   if (semaforo === "verde") return "&#128994;";
   if (semaforo === "rosso") return "&#128308;";
   return "&#128993;";
+}
+
+function normalizeSignal(value) {
+  return String(value || "").trim().toLowerCase();
+}
+
+function getStatusClass(value) {
+  const signal = normalizeSignal(value);
+  if (signal === "verde" || signal === "green") return "status-positive";
+  if (signal === "rosso" || signal === "red") return "status-critical";
+  return "status-warning";
+}
+
+function getFormalQualitySignal(value) {
+  const signal = normalizeSignal(value);
+  if (signal === "verde" || signal === "green") return "&#128994;";
+  if (signal === "rosso" || signal === "red") return "&#128308;";
+  return "&#128993;";
+}
+
+function getFormalQualityTitle(value) {
+  const signal = normalizeSignal(value);
+  if (signal === "verde" || signal === "green") {
+    return "Esito positivo: nessuna criticità formale rilevante";
+  }
+  if (signal === "rosso" || signal === "red") {
+    return "Criticità: possibili problemi formali da controllare";
+  }
+  return "Attenzione: qualità formale parziale o non pienamente valutabile";
+}
+
+function getAiTraceTitle(semaforo, livello) {
+  const signal = normalizeSignal(semaforo);
+  const level = livello ? ` (${livello})` : "";
+
+  if (signal === "verde" || signal === "green") {
+    return `Esito rassicurante: nessun segnale rilevante${level}`;
+  }
+  if (signal === "rosso" || signal === "red") {
+    return `Criticità: segnali compatibili con possibile assistenza AI${level}`;
+  }
+  return `Attenzione: segnali deboli o non conclusivi${level}`;
 }
     function fileToBase64(file) {
       return new Promise((resolve, reject) => {
