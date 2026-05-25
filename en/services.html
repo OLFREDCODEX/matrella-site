@@ -162,7 +162,7 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 22px;
-      margin-top: 50px;
+      margin-top: 28px;
     }
 
     .service-summary {
@@ -203,6 +203,38 @@
       border: 1px solid var(--line);
       border-radius: 28px;
       padding: 32px;
+      display: grid;
+      grid-template-columns: 154px 1fr;
+      column-gap: 24px;
+      align-items: start;
+    }
+
+    .service-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      grid-row: 1 / span 4;
+      width: 154px;
+      height: 154px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid rgba(53, 92, 125, 0.18);
+      box-shadow: 0 16px 32px rgba(31, 41, 51, 0.08);
+      overflow: hidden;
+    }
+
+    .service-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .service-card .service-note,
+    .service-card h2,
+    .service-card p,
+    .service-card ul,
+    .service-card .service-link {
+      grid-column: 2;
     }
 
     .service-card.featured-service {
@@ -252,6 +284,36 @@
       color: var(--accent);
       border-bottom: 2px solid var(--accent);
       padding-bottom: 3px;
+    }
+
+    .methods-strip {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: center;
+      margin: 24px 0 8px;
+      padding: 18px 22px;
+      border: 1px solid rgba(53, 92, 125, 0.26);
+      border-radius: 22px;
+      background: linear-gradient(90deg, #f7fbff 0%, #ffffff 100%);
+    }
+
+    .methods-strip h2 {
+      color: var(--accent);
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+
+    .methods-strip p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    .methods-strip .service-link {
+      margin-top: 0;
+      white-space: nowrap;
     }
 
     .contact-box {
@@ -315,6 +377,33 @@
 
       .service-summary {
         grid-template-columns: 1fr;
+      }
+
+      .methods-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .methods-strip .service-link {
+        width: fit-content;
+      }
+
+      .service-card {
+        grid-template-columns: 1fr;
+      }
+
+      .service-visual {
+        grid-row: auto;
+        width: min(210px, 72vw);
+        height: min(210px, 72vw);
+        margin: 0 auto 22px;
+      }
+
+      .service-card .service-note,
+      .service-card h2,
+      .service-card p,
+      .service-card ul,
+      .service-card .service-link {
+        grid-column: 1;
       }
 
       .service-actions {
@@ -486,8 +575,22 @@
       </article>
     </section>
 
+    <section class="methods-strip" aria-label="Methods Guards AI">
+      <div>
+        <h2>Methods Guards AI</h2>
+        <p>
+          A free experimental tool for a first methodological diagnosis
+          of papers, theses, reports and research projects.
+        </p>
+      </div>
+      <a class="service-link" href="methods-guards.html">Open the dedicated page</a>
+    </section>
+
     <section class="services-grid">
       <article class="service-card">
+        <div class="service-visual">
+          <img src="../images/service-consulting.jpg" alt="" loading="lazy">
+        </div>
         <span class="service-note">Research design</span>
         <h2>Methodological consulting</h2>
         <p>
@@ -504,6 +607,9 @@
       </article>
 
       <article class="service-card">
+        <div class="service-visual">
+          <img src="../images/service-analysis.jpg" alt="" loading="lazy">
+        </div>
         <span class="service-note">Data and interpretation</span>
         <h2>Data analysis and reporting</h2>
         <p>
@@ -520,6 +626,9 @@
       </article>
 
       <article class="service-card">
+        <div class="service-visual">
+          <img src="../images/service-training.jpg" alt="" loading="lazy">
+        </div>
         <span class="service-note">Skills and method</span>
         <h2>Training and workshops</h2>
         <p>
@@ -536,6 +645,9 @@
       </article>
 
       <article class="service-card featured-service">
+        <div class="service-visual">
+          <img src="../images/service-web-tools.jpg" alt="" loading="lazy">
+        </div>
         <span class="service-note">Surveys and web pages</span>
         <h2>Web tools for research and evaluation</h2>
         <p>
@@ -550,22 +662,6 @@
         </ul>
       </article>
 
-      <article class="service-card methods-card">
-        <span class="service-note">Free tool</span>
-        <h2>Methods Guards AI</h2>
-        <p>
-          A free experimental tool for a first methodological diagnosis
-          of scientific documents.
-        </p>
-        <ul>
-          <li>Papers, theses, reports and projects</li>
-          <li>Reading of strengths and methodological weaknesses</li>
-          <li>Priority corrective actions</li>
-          <li>v1 stable engine and v2 laboratory engine</li>
-          <li>Indicative AI Trace Check</li>
-        </ul>
-        <a class="service-link" href="methods-guards.html">Open Methods Guards AI</a>
-      </article>
     </section>
 
     <section class="contact-box">

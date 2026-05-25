@@ -133,7 +133,7 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 22px;
-      margin-top: 50px;
+      margin-top: 28px;
     }
 
     .service-summary {
@@ -174,6 +174,38 @@
       border: 1px solid var(--line);
       border-radius: 28px;
       padding: 32px;
+      display: grid;
+      grid-template-columns: 154px 1fr;
+      column-gap: 24px;
+      align-items: start;
+    }
+
+    .service-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      grid-row: 1 / span 4;
+      width: 154px;
+      height: 154px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid rgba(53, 92, 125, 0.18);
+      box-shadow: 0 16px 32px rgba(31, 41, 51, 0.08);
+      overflow: hidden;
+    }
+
+    .service-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .service-card .service-note,
+    .service-card h2,
+    .service-card p,
+    .service-card ul,
+    .service-card .service-link {
+      grid-column: 2;
     }
 
     .service-card.featured-service {
@@ -222,6 +254,36 @@
 
     .methods-card p {
       color: #4b5563;
+    }
+
+    .methods-strip {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: center;
+      margin: 24px 0 8px;
+      padding: 18px 22px;
+      border: 1px solid rgba(53, 92, 125, 0.26);
+      border-radius: 22px;
+      background: linear-gradient(90deg, #f7fbff 0%, #ffffff 100%);
+    }
+
+    .methods-strip h2 {
+      color: var(--accent);
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+
+    .methods-strip p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    .methods-strip .service-link {
+      margin-top: 0;
+      white-space: nowrap;
     }
 
     .service-link {
@@ -318,6 +380,33 @@
 
       .service-summary {
         grid-template-columns: 1fr;
+      }
+
+      .methods-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .methods-strip .service-link {
+        width: fit-content;
+      }
+
+      .service-card {
+        grid-template-columns: 1fr;
+      }
+
+      .service-visual {
+        grid-row: auto;
+        width: min(210px, 72vw);
+        height: min(210px, 72vw);
+        margin: 0 auto 22px;
+      }
+
+      .service-card .service-note,
+      .service-card h2,
+      .service-card p,
+      .service-card ul,
+      .service-card .service-link {
+        grid-column: 1;
       }
 
       .service-actions {
@@ -584,9 +673,25 @@
     </article>
   </section>
 
+  <section class="methods-strip" aria-label="Methods Guards AI">
+    <div>
+      <h2>Methods Guards AI</h2>
+      <p>
+        Strumento gratuito e sperimentale per una prima diagnosi metodologica
+        di paper, tesi, report e progetti di ricerca.
+      </p>
+    </div>
+    <a class="service-link" href="methods-guards.html">
+      Apri la pagina dedicata &rarr;
+    </a>
+  </section>
+
   <section class="services-grid">
 
     <article class="service-card">
+      <div class="service-visual">
+        <img src="images/service-consulting.jpg" alt="" loading="lazy">
+      </div>
       <span class="service-note">Ricerca e progettazione</span>
       <h2>Consulenza metodologica</h2>
 
@@ -605,6 +710,9 @@
     </article>
 
     <article class="service-card">
+      <div class="service-visual">
+        <img src="images/service-analysis.jpg" alt="" loading="lazy">
+      </div>
       <span class="service-note">Dati e interpretazione</span>
       <h2>Analisi dei dati</h2>
 
@@ -623,6 +731,9 @@
     </article>
 
     <article class="service-card">
+      <div class="service-visual">
+        <img src="images/service-training.jpg" alt="" loading="lazy">
+      </div>
       <span class="service-note">Competenze e metodo</span>
       <h2>Formazione e corsi</h2>
 
@@ -641,6 +752,9 @@
     </article>
 
     <article class="service-card featured-service">
+      <div class="service-visual">
+        <img src="images/service-web-tools.jpg" alt="" loading="lazy">
+      </div>
       <span class="service-note">Survey e pagine web</span>
       <h2>Strumenti web per ricerca e valutazione</h2>
 
@@ -655,28 +769,6 @@
         <li>Pagine informative per report, pubblicazioni, eventi e strumenti metodologici</li>
         <li>Moduli con output ordinato in Google Sheets / Excel</li>
       </ul>
-    </article>
-
-    <article class="service-card methods-card">
-      <span class="service-note">Strumento gratuito</span>
-      <h2>Methods Guards AI</h2>
-
-      <p>
-        Strumento gratuito e sperimentale per una prima diagnosi
-        metodologica di documenti scientifici.
-      </p>
-
-      <ul>
-        <li>Paper, tesi, report e progetti</li>
-        <li>Lettura di punti di forza e criticità</li>
-        <li>Azioni correttive prioritarie</li>
-        <li>Motori v1 stabile e v2 laboratorio</li>
-        <li>AI Trace Check indicativo</li>
-      </ul>
-
-      <a class="service-link" href="methods-guards.html">
-        Apri Methods Guards AI &rarr;
-      </a>
     </article>
 
   </section>
