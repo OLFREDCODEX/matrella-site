@@ -1390,7 +1390,8 @@
       <div class="donation-box">
         <p class="donation-title"><strong>Supporta Methods Guards AI</strong></p>
         <p class="note">
-          Il servizio è gratuito, ma ha costi reali di mantenimento. Puoi sostenerlo con una donazione volontaria.
+          Methods Guards AI resta gratuito. Le donazioni aiutano a sostenere i costi tecnici e a mantenere attivo il servizio nel tempo.
+          In alcuni casi, come forma di ringraziamento, il sistema può assegnare codici omaggio che consentono analisi giornaliere aggiuntive e la rimozione degli spazi pubblicitari durante l'utilizzo.
         </p>
 
         <div class="donation-buttons">
@@ -1401,7 +1402,7 @@
         </div>
 
         <p class="note">
-          Per alcune donazioni superiori a 1&euro;, MG AI può assegnare automaticamente codici omaggio condivisibili per analisi senza pubblicità. I codici valgono solo per il numero di utilizzi assegnato e poi scadono.
+          I codici omaggio sono condivisibili, valgono solo per il numero di utilizzi assegnato e poi scadono.
         </p>
       </div>
 
@@ -1622,8 +1623,8 @@
     <div id="donationSection" class="donation-box hidden">
       <p class="donation-title"><strong>Ti è stato utile Methods Guards AI?</strong></p>
       <p class="note">
-        Methods Guards AI è gratuito, ma ogni analisi ha costi reali di infrastruttura, AI e sviluppo.
-        Se questo report ti è stato utile, una donazione aiuta a mantenere il servizio attivo, accessibile e migliorarlo nel tempo.
+        Methods Guards AI resta gratuito. Le donazioni aiutano a sostenere i costi tecnici e a mantenere attivo il servizio nel tempo.
+        In alcuni casi, come forma di ringraziamento, il sistema può assegnare codici omaggio che consentono analisi giornaliere aggiuntive e la rimozione degli spazi pubblicitari durante l'utilizzo.
       </p>
 
       <p style="margin-top:16px; font-weight:600;">
@@ -1638,7 +1639,7 @@
       </div>
 
       <p class="note">
-        Per alcune donazioni superiori a 1&euro;, MG AI può assegnare automaticamente codici omaggio condivisibili per analisi senza pubblicità. I codici valgono solo per il numero di utilizzi assegnato e poi scadono.
+        I codici omaggio sono condivisibili, valgono solo per il numero di utilizzi assegnato e poi scadono.
       </p>
     </div>
 
@@ -2128,7 +2129,7 @@
         if (data.code && data.remaining !== undefined && data.remaining > 0) {
           activeCode = String(data.code).trim().toUpperCase();
           input.value = activeCode;
-          status.innerText = "Codice attivato. Analisi senza pubblicità residue: " + data.remaining;
+          status.innerText = "Codice attivato. Analisi giornaliere aggiuntive residue: " + data.remaining;
           return;
         }
 
@@ -2313,10 +2314,10 @@ if (!allowedProductTypes.includes(productType)) {
 
         if (data.remaining !== undefined) {
           if (data.remaining > 0 && code) {
-            codeStatus.innerText = "Codice attivo. Analisi senza pubblicità residue: " + data.remaining;
+            codeStatus.innerText = "Codice attivo. Analisi giornaliere aggiuntive residue: " + data.remaining;
           } else if (data.remaining === 0 && code) {
             activeCode = "";
-            codeStatus.innerText = "Codice esaurito. Dalla prossima analisi verrà mostrata la pubblicità.";
+            codeStatus.innerText = "Codice esaurito. Dalla prossima analisi verrà applicato il limite giornaliero gratuito.";
           }
         }
 

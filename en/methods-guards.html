@@ -1391,7 +1391,8 @@
       <div class="donation-box">
         <p class="donation-title"><strong>Support Methods Guards AI</strong></p>
         <p class="note">
-          The service is free, but it has real maintenance costs. You can support it with a voluntary donation.
+          Methods Guards AI remains free. Donations help support technical costs and keep the service active over time.
+          In some cases, as a thank-you, the system may assign complimentary codes for additional daily analyses and removal of advertising spaces during use.
         </p>
 
         <div class="donation-buttons">
@@ -1402,7 +1403,7 @@
         </div>
 
         <p class="note">
-          For some donations above 1 EUR, MG AI may automatically assign shareable complimentary codes for ad-free analyses. Codes work only for their assigned number of uses, then expire.
+          Complimentary codes can be shared, work only for their assigned number of uses, and then expire.
         </p>
       </div>
 
@@ -1623,8 +1624,8 @@
     <div id="donationSection" class="donation-box hidden">
       <p class="donation-title"><strong>Was Methods Guards AI useful?</strong></p>
       <p class="note">
-        Methods Guards AI is free, but every analysis has real infrastructure, AI and development costs.
-        If this report was useful, a donation helps keep the service active, accessible and improving over time.
+        Methods Guards AI remains free. Donations help support technical costs and keep the service active over time.
+        In some cases, as a thank-you, the system may assign complimentary codes for additional daily analyses and removal of advertising spaces during use.
       </p>
 
       <p style="margin-top:16px; font-weight:600;">
@@ -1639,7 +1640,7 @@
       </div>
 
       <p class="note">
-        For some donations above 1 EUR, MG AI may automatically assign shareable complimentary codes for ad-free analyses. Codes work only for their assigned number of uses, then expire.
+        Complimentary codes can be shared, work only for their assigned number of uses, and then expire.
       </p>
     </div>
 
@@ -2129,7 +2130,7 @@
         if (data.code && data.remaining !== undefined && data.remaining > 0) {
           activeCode = String(data.code).trim().toUpperCase();
           input.value = activeCode;
-          status.innerText = "Code activated. Ad-free analyses remaining: " + data.remaining;
+          status.innerText = "Code activated. Additional daily analyses remaining: " + data.remaining;
           return;
         }
 
@@ -2314,10 +2315,10 @@ if (!allowedProductTypes.includes(productType)) {
 
         if (data.remaining !== undefined) {
           if (data.remaining > 0 && code) {
-            codeStatus.innerText = "Code active. Ad-free analyses remaining: " + data.remaining;
+            codeStatus.innerText = "Code active. Additional daily analyses remaining: " + data.remaining;
           } else if (data.remaining === 0 && code) {
             activeCode = "";
-            codeStatus.innerText = "Code exhausted. From the next analysis, advertising will be shown.";
+            codeStatus.innerText = "Code exhausted. From the next analysis, the free daily limit will apply.";
           }
         }
 
