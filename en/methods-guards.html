@@ -1425,11 +1425,11 @@
 
       <p class="upload-title">Upload your PDF document</p>
       <p class="upload-helper">
-        PDF format &middot; maximum 19 MB &middot; the document is analyzed only to produce the requested methodological diagnosis.
+        PDF format &middot; maximum 13 MB &middot; the document is analyzed only to produce the requested methodological diagnosis.
       </p>
 
       <p class="pdf-readability-note">
-        For better results, upload readable text-based PDFs. Scanned PDFs, image-only documents or files without selectable text may not be analyzed correctly.
+        For better results, upload readable text-based PDFs. Online-compressed PDFs, scanned PDFs, image-only documents or files without selectable text may not be analyzed correctly. When possible, use a text-based or OCR version.
       </p>
 
       <div id="uploadDropzone" class="upload-dropzone" role="button" tabindex="0">
@@ -1443,7 +1443,7 @@
   </p>
 
   <p class="upload-secondary-text">
-    PDF maximum 19 MB
+    PDF maximum 13 MB
   </p>
 
   <input id="pdf" class="upload-file-input" type="file" accept="application/pdf" />
@@ -2233,8 +2233,8 @@ if (!allowedProductTypes.includes(productType)) {
         return;
       }
 
-      if (file.size > 19 * 1024 * 1024) {
-        output.innerText = "PDF too large. Use a file under 19 MB.";
+      if (file.size > 13 * 1024 * 1024) {
+        output.innerText = "PDF too large. Use a file under 13 MB, preferably text-based or OCR.";
         donationSection.classList.add("hidden");
         stopResourceRotation();
         resourceBanner.classList.add("hidden");

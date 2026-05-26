@@ -1424,11 +1424,11 @@
 
       <p class="upload-title">Carica il tuo documento PDF</p>
       <p class="upload-helper">
-        Formato PDF ⬢ massimo 19 MB ⬢ il documento viene analizzato solo per produrre la diagnosi metodologica richiesta.
+        Formato PDF &middot; massimo 13 MB &middot; il documento viene analizzato solo per produrre la diagnosi metodologica richiesta.
       </p>
 
       <p class="pdf-readability-note">
-        Per risultati migliori carica PDF testuali e leggibili. I PDF scansionati, composti da immagini o privi di testo selezionabile possono non essere analizzabili correttamente.
+        Per risultati migliori carica PDF testuali e leggibili. I PDF compressi online, scansionati, composti da immagini o privi di testo selezionabile possono non essere analizzabili correttamente. Quando possibile, usa una versione testuale o OCR.
       </p>
 
       <div id="uploadDropzone" class="upload-dropzone" role="button" tabindex="0">
@@ -1442,7 +1442,7 @@
   </p>
 
   <p class="upload-secondary-text">
-    PDF massimo 19 MB
+    PDF massimo 13 MB
   </p>
 
   <input id="pdf" class="upload-file-input" type="file" accept="application/pdf" />
@@ -2232,8 +2232,8 @@ if (!allowedProductTypes.includes(productType)) {
         return;
       }
 
-      if (file.size > 19 * 1024 * 1024) {
-        output.innerText = "PDF troppo grande. Usa un file sotto 19 MB.";
+      if (file.size > 13 * 1024 * 1024) {
+        output.innerText = "PDF troppo grande. Usa un file sotto 13 MB, preferibilmente testuale o OCR.";
         donationSection.classList.add("hidden");
         stopResourceRotation();
         resourceBanner.classList.add("hidden");
