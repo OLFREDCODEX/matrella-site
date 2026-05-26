@@ -182,6 +182,27 @@
       border: 2px solid var(--accent);
     }
 
+    .logs-summary {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .logs-summary-card {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px;
+    }
+
+    .logs-summary-card strong {
+      display: block;
+      font-size: 1.6rem;
+      line-height: 1;
+      margin-top: 4px;
+    }
+
     .news-list {
       display: grid;
       gap: 12px;
@@ -265,6 +286,10 @@
 
       table {
         font-size: 0.85rem;
+      }
+
+      .logs-summary {
+        grid-template-columns: 1fr;
       }
 
       #countryMap {
@@ -415,6 +440,7 @@
       </div>
 
       <p id="logsFeedback" class="note">Log non ancora caricati.</p>
+      <div id="logsSummary" class="logs-summary hidden"></div>
 
       <div class="table-scroll">
         <table>
@@ -426,12 +452,14 @@
               <th>Messaggio</th>
               <th>File</th>
               <th>Tipo</th>
+              <th>Engine</th>
+              <th>Stato</th>
               <th>Luogo</th>
             </tr>
           </thead>
           <tbody id="logsTable">
             <tr>
-              <td colspan="7">Nessun log caricato.</td>
+              <td colspan="9">Nessun log caricato.</td>
             </tr>
           </tbody>
         </table>
@@ -915,7 +943,8 @@ async function loadMethodologyMemory(secret) {
       try {
         const url =
   "https://methods-guards-backend.vercel.app/api/admin-logs?secret=" +
-  encodeURIComponent(secret);
+  encodeURIComponent(secret) +
+  "&limit=120";
 
 const res = await fetch(url);
 
@@ -926,6 +955,7 @@ const res = await fetch(url);
           return;
         }
 
+        renderLogsSummary(data.summary || null);
         renderLogsTable(data.items || []);
 
         logsFeedback.innerText = "Log caricati: " + formatNumber(data.count || 0);
@@ -935,19 +965,44 @@ const res = await fetch(url);
       }
     }
 
+    function renderLogsSummary(summary) {
+      const logsSummary = document.getElementById("logsSummary");
+
+      if (!summary) {
+        logsSummary.classList.add("hidden");
+        logsSummary.innerHTML = "";
+        return;
+      }
+
+      const engines = summary.byEngine || {};
+      const v1 = engines.v1 || 0;
+      const v2 = engines.v2 || 0;
+      const latestProblem = Array.isArray(summary.recentProblems) && summary.recentProblems.length
+        ? summary.recentProblems[0].message || "Problema recente"
+        : "Nessun problema recente";
+
+      logsSummary.classList.remove("hidden");
+      logsSummary.innerHTML =
+        '<div class="logs-summary-card"><span>Errori</span><strong>' + formatNumber(summary.errors || 0) + '</strong></div>' +
+        '<div class="logs-summary-card"><span>Warning</span><strong>' + formatNumber(summary.warnings || 0) + '</strong></div>' +
+        '<div class="logs-summary-card"><span>Engine</span><strong>v1 ' + formatNumber(v1) + ' / v2 ' + formatNumber(v2) + '</strong></div>' +
+        '<div class="logs-summary-card"><span>Ultimo problema</span><strong style="font-size:0.95rem;line-height:1.35;">' + escapeHtml(latestProblem) + '</strong></div>';
+    }
+
     function renderLogsTable(items) {
       const logsTable = document.getElementById("logsTable");
       logsTable.innerHTML = "";
 
       if (!Array.isArray(items) || items.length === 0) {
-        logsTable.innerHTML = "<tr><td colspan='7'>Nessun log disponibile.</td></tr>";
+        logsTable.innerHTML = "<tr><td colspan='9'>Nessun log disponibile.</td></tr>";
         return;
       }
 
       items.forEach((item) => {
         const tr = document.createElement("tr");
+        const context = item.details && item.details.context ? item.details.context : {};
 
-        const location = [item.city, item.country]
+        const location = [context.city, context.country]
           .filter(Boolean)
           .join(", ") || "—";
 
@@ -958,6 +1013,8 @@ const res = await fetch(url);
           "<td>" + escapeHtml(item.message || "—") + "</td>" +
           "<td>" + escapeHtml(item.file_name || "—") + "</td>" +
           "<td>" + escapeHtml(item.product_type || "—") + "</td>" +
+          "<td>" + escapeHtml(context.engine || "—") + "</td>" +
+          "<td>" + escapeHtml(context.statusCode || "—") + "</td>" +
           "<td>" + escapeHtml(location) + "</td>";
 
         logsTable.appendChild(tr);
