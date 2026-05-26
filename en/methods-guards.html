@@ -736,7 +736,8 @@
   margin: 16px 0 6px;
 }
 
-.report-quick-links a {
+.report-quick-links a,
+.report-copy-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -748,6 +749,29 @@
   font-size: 0.9rem;
   font-weight: 800;
   text-decoration: none;
+}
+
+.report-copy-button {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.report-copy-button:hover {
+  filter: brightness(0.96);
+}
+
+.report-copy-button:disabled {
+  opacity: 0.78;
+  cursor: default;
+}
+
+.copy-report-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin: 14px 0 10px;
 }
 .formal-quality-box {
   margin-top: 12px;
@@ -1081,7 +1105,8 @@
         margin: 12px 0 8px;
       }
 
-      .report-quick-links a {
+      .report-quick-links a,
+      .report-copy-button {
         font-size: 0.82rem;
         padding: 7px 10px;
       }
@@ -1495,6 +1520,9 @@
   </p>
 </div>
     <div id="reportDashboard" class="hidden"></div>
+<div id="copyReportToolbar" class="copy-report-toolbar hidden">
+  <button type="button" class="report-copy-button" onclick="copyCurrentReport(this)">Copy report</button>
+</div>
 <pre id="output" class="hidden"></pre>
     <div id="shareBanner" style="
   position:fixed;
@@ -1914,6 +1942,7 @@
 
   <script>
     let activeCode = "";
+    let currentReportText = "";
     let loadingTimers = [];
     let resourceRotationTimer = null;
     let resourceRotationIndex = 0;
@@ -2202,11 +2231,14 @@ if (!allowedProductTypes.includes(productType)) {
       const button = document.getElementById("analyzeButton");
       const donationSection = document.getElementById("donationSection");
       const resourceBanner = document.getElementById("resourceBanner");
+      const copyReportToolbar = document.getElementById("copyReportToolbar");
       const codeInput = document.getElementById("codeInput");
       const codeStatus = document.getElementById("codeStatus");
 
       output.classList.remove("hidden");
+      copyReportToolbar.classList.add("hidden");
       maintenanceAlert.classList.add("hidden");
+      currentReportText = "";
 
       const typedCode = codeInput.value.trim().toUpperCase();
       const code = activeCode && typedCode === activeCode ? activeCode : "";
@@ -2218,6 +2250,7 @@ if (!allowedProductTypes.includes(productType)) {
       if (!fileInput.files.length) {
         output.innerText = "Upload a PDF before starting the analysis.";
         donationSection.classList.add("hidden");
+        copyReportToolbar.classList.add("hidden");
         stopResourceRotation();
         resourceBanner.classList.add("hidden");
         return;
@@ -2228,6 +2261,7 @@ if (!allowedProductTypes.includes(productType)) {
       if (file.type !== "application/pdf") {
         output.innerText = "The file must be a PDF.";
         donationSection.classList.add("hidden");
+        copyReportToolbar.classList.add("hidden");
         stopResourceRotation();
         resourceBanner.classList.add("hidden");
         return;
@@ -2236,6 +2270,7 @@ if (!allowedProductTypes.includes(productType)) {
       if (file.size > 13 * 1024 * 1024) {
         output.innerText = "PDF too large. Use a file under 13 MB, preferably text-based or OCR.";
         donationSection.classList.add("hidden");
+        copyReportToolbar.classList.add("hidden");
         stopResourceRotation();
         resourceBanner.classList.add("hidden");
         return;
@@ -2289,14 +2324,17 @@ if (!allowedProductTypes.includes(productType)) {
        if (!res.ok) {
   if (res.status === 503) {
     output.classList.add("hidden");
+    copyReportToolbar.classList.add("hidden");
     maintenanceAlertText.innerText =
       data.error || "Methods Guards AI is temporarily unavailable. Please try again later.";
     maintenanceAlert.classList.remove("hidden");
   } else if (res.status === 429) {
     output.classList.remove("hidden");
+    copyReportToolbar.classList.add("hidden");
     output.innerText = "You have reached the daily limit. Please try again tomorrow.";
   } else {
     output.classList.remove("hidden");
+    copyReportToolbar.classList.add("hidden");
     output.innerText = data.error || "Server error during analysis.";
   }
 
@@ -2325,11 +2363,14 @@ if (jsonStart !== -1) {
 }
 
 output.innerText = visibleReport;
+currentReportText = visibleReport || rawOutput || "";
 if (hiddenJson) {
   renderMethodsGuardsDashboard(hiddenJson);
   output.classList.add("hidden");
+  copyReportToolbar.classList.add("hidden");
 } else {
   output.classList.remove("hidden");
+  copyReportToolbar.classList.remove("hidden");
 }
 
 const reportTarget = hiddenJson
@@ -2355,14 +2396,52 @@ const reportTarget = hiddenJson
           "Please try again in a few minutes. If the problem continues, try a lighter PDF.\n" +
           "Technical detail: " + technicalDetail;
         donationSection.classList.add("hidden");
+        copyReportToolbar.classList.add("hidden");
         resourceBanner.classList.add("hidden");
         console.error(error);
-      } finally {
+} finally {
         button.disabled = false;
         stopResourceRotation();
         stopLoadingState();
       }
     }
+
+    async function copyCurrentReport(button) {
+      const text = (currentReportText || document.getElementById("output")?.innerText || "").trim();
+
+      if (!text) {
+        return;
+      }
+
+      const originalText = button.innerText;
+
+      try {
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          throw new Error("Clipboard API unavailable");
+        }
+      } catch (error) {
+        const textarea = document.createElement("textarea");
+        textarea.value = text;
+        textarea.setAttribute("readonly", "");
+        textarea.style.position = "fixed";
+        textarea.style.left = "-9999px";
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+      }
+
+      button.innerText = "Report copied";
+      button.disabled = true;
+
+      setTimeout(() => {
+        button.innerText = originalText;
+        button.disabled = false;
+      }, 1800);
+    }
+
     function getGuardianImage(name) {
 
   const value = String(name || "").toLowerCase();
@@ -2528,6 +2607,7 @@ function renderMethodsGuardsDashboard(data) {
         <a href="#reportEvaluation">Evaluation</a>
         <a href="#reportActions">Actions</a>
         <a href="#donationSection">Support</a>
+        <button type="button" class="report-copy-button" onclick="copyCurrentReport(this)">Copy report</button>
       </nav>
 
       <div id="reportGuardians" class="report-card">
