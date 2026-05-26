@@ -5,120 +5,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Demo questionario web per ricerca e valutazione | Alfredo Matrella</title>
-  <meta name="description" content="Demo di questionario web personalizzato per ricerca sociale, valutazione e user experience, con output ordinato per Google Sheets ed Excel." />
+  <meta name="description" content="Demo di questionario web personalizzato per ricerca sociale, valutazione e user experience, con consenso informato, scale UX e output ordinato per Google Sheets ed Excel." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.matrella.it/questionario-demo.html" />
-  <meta property="og:locale" content="it_IT" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Alfredo Matrella" />
-  <meta property="og:title" content="Demo questionario web per ricerca e valutazione" />
-  <meta property="og:description" content="Esempio di questionario web con interfaccia personalizzata e dati pronti per Google Sheets ed Excel." />
-  <meta property="og:url" content="https://www.matrella.it/questionario-demo.html" />
-  <meta name="twitter:card" content="summary" />
   <style>
-    :root {
-      --bg: #f7f5ef;
-      --paper: #ffffff;
-      --ink: #1f2933;
-      --muted: #64748b;
-      --accent: #355c7d;
-      --accent-2: #b08968;
-      --line: #e5e0d8;
-      --soft: #edf2f7;
-      --ok: #1f8a5b;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: Inter, system-ui, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; }
-    a { color: inherit; text-decoration: none; }
-
-    header { position: sticky; top: 0; z-index: 20; background: rgba(247, 245, 239, 0.92); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
-    .nav { width: min(1120px, 92%); margin: auto; display: flex; justify-content: space-between; align-items: center; gap: 18px; padding: 18px 0; }
-    .logo { font-weight: 800; letter-spacing: -0.04em; font-size: 1.15rem; color: var(--ink); }
-    .logo span { color: var(--accent); }
-    nav ul { display: flex; gap: 22px; list-style: none; color: #475569; font-size: 0.96rem; font-weight: 600; letter-spacing: -0.01em; }
-    nav a:hover { color: var(--accent); }
-    .language-switch { display: inline-flex; align-items: center; gap: 6px; padding: 6px 8px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255, 255, 255, 0.62); color: #475569; font-size: 0.82rem; font-weight: 800; white-space: nowrap; }
-    .language-switch a, .language-switch span { color: inherit; padding: 2px 6px; border-radius: 999px; }
-    .language-switch .active { background: var(--ink); color: white; }
-    .nav-toggle { display: none; width: 42px; height: 42px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,0.78); color: var(--ink); align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; }
-    .nav-toggle span { display: block; width: 18px; height: 2px; border-radius: 999px; background: currentColor; position: relative; }
-    .nav-toggle span::before, .nav-toggle span::after { content: ""; position: absolute; left: 0; width: 18px; height: 2px; border-radius: 999px; background: currentColor; transition: transform 0.18s ease, top 0.18s ease; }
-    .nav-toggle span::before { top: -6px; }
-    .nav-toggle span::after { top: 6px; }
-    .nav.nav-open .nav-toggle span { background: transparent; }
-    .nav.nav-open .nav-toggle span::before { top: 0; transform: rotate(45deg); }
-    .nav.nav-open .nav-toggle span::after { top: 0; transform: rotate(-45deg); }
-
-    main { width: min(1120px, 92%); margin: auto; padding: 72px 0; }
-    .hero { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 28px; align-items: stretch; margin-bottom: 28px; }
-    .hero-copy, .demo-note { background: var(--paper); border: 1px solid var(--line); border-radius: 28px; padding: 36px; }
-    .eyebrow { color: var(--accent); text-transform: uppercase; font-weight: 800; letter-spacing: 0.08em; font-size: 0.82rem; margin-bottom: 14px; }
-    h1 { font-size: clamp(2.6rem, 5vw, 4.8rem); line-height: 0.98; letter-spacing: -0.06em; margin-bottom: 18px; }
-    .lead { color: #355c7d; font-size: 1.24rem; max-width: 760px; }
-    .demo-note h2 { font-size: 1.2rem; margin-bottom: 14px; }
-    .demo-note ul { display: grid; gap: 10px; padding-left: 18px; color: var(--muted); }
-
-    .layout { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 24px; align-items: start; }
-    .survey-card, .output-card { background: var(--paper); border: 1px solid var(--line); border-radius: 28px; padding: 28px; }
-    .survey-top { display: flex; justify-content: space-between; gap: 18px; align-items: center; margin-bottom: 20px; }
-    .step-label { color: var(--accent); font-size: 0.88rem; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; }
-    .progress { flex: 1; height: 9px; border-radius: 999px; background: #e8e2d8; overflow: hidden; }
-    .progress-fill { width: 25%; height: 100%; border-radius: inherit; background: var(--accent); transition: width 0.25s ease; }
-    .step { display: none; }
-    .step.active { display: block; }
-    .step h2 { font-size: 1.8rem; letter-spacing: -0.04em; margin-bottom: 8px; }
-    .step p { color: var(--muted); margin-bottom: 22px; }
-
-    .field-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-    .field, .choice-card { display: grid; gap: 8px; }
-    label { font-weight: 800; }
-    input, select, textarea { width: 100%; border: 1px solid #d8d2c8; border-radius: 16px; background: #fbfaf7; color: var(--ink); font: inherit; padding: 13px 14px; }
-    textarea { min-height: 120px; resize: vertical; }
-    .choice-list { display: grid; gap: 12px; }
-    .choice-card { border: 1px solid #d8d2c8; border-radius: 18px; padding: 15px; background: #fbfaf7; cursor: pointer; transition: 0.18s ease; }
-    .choice-card:hover { border-color: rgba(53, 92, 125, 0.6); transform: translateY(-1px); }
-    .choice-card input { width: auto; margin-right: 8px; }
-    .scale-grid { display: grid; gap: 16px; }
-    .scale-row { display: grid; gap: 8px; padding: 16px; border: 1px solid var(--line); border-radius: 18px; background: #fbfaf7; }
-    .scale-row input { padding: 0; accent-color: var(--accent); }
-    .scale-help { display: flex; justify-content: space-between; color: var(--muted); font-size: 0.88rem; }
-
-    .actions { display: flex; justify-content: space-between; gap: 12px; margin-top: 26px; }
-    button, .btn { border: 0; border-radius: 999px; padding: 13px 20px; font-weight: 800; font: inherit; cursor: pointer; }
-    .primary { background: var(--ink); color: white; }
-    .secondary { background: #ffffff; color: var(--ink); border: 1px solid var(--line); }
-    button:disabled { opacity: 0.45; cursor: not-allowed; }
-
-    .output-card { position: sticky; top: 92px; }
-    .output-card h2 { font-size: 1.35rem; margin-bottom: 10px; }
-    .output-card p { color: var(--muted); margin-bottom: 16px; }
-    .sheet-preview { display: grid; gap: 9px; border: 1px solid var(--line); border-radius: 18px; padding: 16px; background: #fbfaf7; color: #475569; font-size: 0.93rem; }
-    .sheet-row { display: grid; grid-template-columns: 120px 1fr; gap: 10px; border-bottom: 1px solid #ebe6df; padding-bottom: 8px; }
-    .sheet-row:last-child { border-bottom: 0; padding-bottom: 0; }
-    .sheet-row strong { color: var(--accent); }
-    .success-box { display: none; margin-top: 16px; padding: 16px; border-radius: 18px; border: 1px solid rgba(31, 138, 91, 0.28); background: #edf8f2; color: #145a3b; font-weight: 700; }
-    .payload-box { display: none; margin-top: 16px; white-space: pre-wrap; overflow: auto; max-height: 260px; padding: 14px; border-radius: 14px; background: #18232d; color: #f8fafc; font-size: 0.82rem; }
-
-    footer { width: min(1120px, 92%); margin: auto; padding: 32px 0 44px; color: var(--muted); border-top: 1px solid var(--line); font-size: 0.9rem; }
-
-    @media (max-width: 980px) {
-      .nav { position: relative; }
-      .nav-toggle { display: inline-flex; order: 2; }
-      .language-switch { order: 3; }
-      .nav nav { order: 4; width: 100%; }
-      nav ul { display: none; }
-      .nav.nav-open nav ul { display: flex; position: absolute; left: 0; right: 0; top: calc(100% + 10px); flex-direction: column; gap: 0; padding: 12px; background: rgba(255,255,255,0.97); border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 18px 40px rgba(31,41,51,0.12); color: var(--ink); z-index: 50; }
-      .nav.nav-open nav li + li { border-top: 1px solid var(--line); }
-      .nav.nav-open nav a { display: block; padding: 12px 10px; }
-      main { padding: 42px 0; }
-      .hero, .layout, .field-grid { grid-template-columns: 1fr; }
-      .hero-copy, .demo-note, .survey-card, .output-card { padding: 22px; border-radius: 22px; }
-      .output-card { position: static; }
-      .survey-top { display: grid; }
-      .actions { flex-direction: column-reverse; }
-      .actions button { width: 100%; }
-    }
+    :root{--bg:#f7f5ef;--paper:#fff;--ink:#1f2933;--muted:#64748b;--accent:#355c7d;--line:#e5e0d8;--soft:#edf2f7;--bad:#b42318}
+    *{box-sizing:border-box;margin:0;padding:0} body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6} a{text-decoration:none;color:inherit}
+    header{position:sticky;top:0;z-index:20;background:rgba(247,245,239,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .nav{width:min(1120px,92%);margin:auto;display:flex;justify-content:space-between;align-items:center;gap:18px;padding:18px 0}.logo{font-weight:800;font-size:1.15rem;letter-spacing:-.04em}.logo span{color:var(--accent)}
+    nav ul{display:flex;gap:22px;list-style:none;color:#475569;font-weight:650}.language-switch{display:inline-flex;gap:6px;padding:6px 8px;border:1px solid var(--line);border-radius:999px;background:#fff}.language-switch a,.language-switch span{padding:2px 6px;border-radius:999px;font-weight:800}.language-switch .active{background:var(--ink);color:#fff}
+    .nav-toggle{display:none;width:42px;height:42px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink);align-items:center;justify-content:center}.nav-toggle span,.nav-toggle span:before,.nav-toggle span:after{display:block;width:18px;height:2px;border-radius:999px;background:currentColor;position:relative}.nav-toggle span:before,.nav-toggle span:after{content:"";position:absolute;left:0}.nav-toggle span:before{top:-6px}.nav-toggle span:after{top:6px}.nav.nav-open .nav-toggle span{background:transparent}.nav.nav-open .nav-toggle span:before{top:0;transform:rotate(45deg)}.nav.nav-open .nav-toggle span:after{top:0;transform:rotate(-45deg)}
+    main{width:min(1120px,92%);margin:auto;padding:64px 0}.hero{display:grid;grid-template-columns:1.08fr .92fr;gap:26px;margin-bottom:26px}.hero-copy,.demo-note,.demo-shell{background:var(--paper);border:1px solid var(--line);border-radius:28px}.hero-copy{padding:38px}.demo-note{padding:30px;display:grid;align-content:center;gap:16px}.eyebrow{color:var(--accent);text-transform:uppercase;font-weight:900;letter-spacing:.08em;font-size:.82rem;margin-bottom:14px}h1{font-size:clamp(2.45rem,5vw,4.6rem);line-height:.98;letter-spacing:-.06em;margin-bottom:18px}.lead{color:#355c7d;font-size:1.2rem}.demo-note ul{display:grid;gap:10px;padding-left:18px;color:var(--muted)}
+    .demo-shell{overflow:hidden}.demo-header{padding:22px 26px;border-bottom:1px solid var(--line);background:linear-gradient(135deg,#fff,#f0f6fb)}.stepper{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:18px}.step-pill{border:1px solid #d8e4ee;border-radius:999px;padding:10px 12px;background:#fff;color:#526173;font-weight:850;font-size:.82rem;text-align:center}.step-pill.active{background:var(--accent);border-color:var(--accent);color:#fff}.progress{height:8px;border-radius:999px;background:#e8e2d8;overflow:hidden;margin-top:16px}.progress-fill{height:100%;width:20%;background:var(--accent);transition:.25s}
+    .demo-body{padding:30px}.step{display:none}.step.active{display:block}.step h2{font-size:clamp(1.7rem,3vw,2.45rem);line-height:1.04;letter-spacing:-.05em;margin-bottom:12px}.step>p{color:var(--muted);margin-bottom:22px;max-width:840px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.card{border:1px solid var(--line);border-radius:22px;background:#fbfaf7;padding:22px}.card h3{font-size:1.08rem;margin-bottom:8px}.card p,.card li{color:var(--muted)}.card ul{display:grid;gap:8px;padding-left:18px}
+    .choice-card{display:flex;gap:12px;align-items:flex-start;border:1px solid #d8d2c8;border-radius:18px;padding:16px;background:#fff;cursor:pointer;transition:.18s}.choice-card:hover{border-color:rgba(53,92,125,.65);transform:translateY(-1px)}.choice-card input{margin-top:4px;accent-color:var(--accent)}.choice-card span{color:var(--muted)}.choice-card strong{display:block;color:var(--ink)}.stop-message{display:none;border:1px solid rgba(180,35,24,.24);background:#fff4f2;color:var(--bad);border-radius:16px;padding:14px;font-weight:750}
+    .scale-gallery{display:grid;gap:18px}.scale-title{display:flex;justify-content:space-between;gap:12px;align-items:baseline}.scale-title small{color:var(--muted);font-weight:750}.matrix-scroll{overflow-x:auto}.matrix{width:100%;border-collapse:collapse;border-radius:18px;overflow:hidden;background:#fff}.matrix th,.matrix td{padding:12px 10px;border-bottom:1px solid #eee8df;text-align:center}.matrix th:first-child,.matrix td:first-child{text-align:left;min-width:150px;color:#334155}.matrix th{color:var(--muted);font-size:.78rem}.matrix input,input[type=range]{accent-color:var(--accent)}
+    .chip-row,.button-options{display:flex;flex-wrap:wrap;gap:8px}.chip-option input{position:absolute;opacity:0}.chip-option span{display:inline-flex;align-items:center;justify-content:center;min-width:42px;height:42px;border:1px solid #d8d2c8;border-radius:999px;background:#fff;font-weight:900;cursor:pointer}.chip-option input:checked+span{background:var(--accent);color:#fff;border-color:var(--accent)}.range-wrap{display:grid;gap:8px}.range-labels,.semantic-row{display:flex;justify-content:space-between;gap:10px;color:var(--muted);font-size:.88rem}.presence-row{display:grid;grid-template-columns:160px 1fr;gap:16px;align-items:center}.presence-row+.presence-row{border-top:1px solid var(--line);padding-top:14px}.not-present{display:inline-flex;gap:6px;color:var(--muted);margin-top:8px}
+    label{font-weight:850}input[type=text],input[type=email],select,textarea{width:100%;border:1px solid #d8d2c8;border-radius:16px;background:#fff;color:var(--ink);font:inherit;padding:13px 14px}textarea{min-height:130px;resize:vertical}.field{display:grid;gap:8px}.full{grid-column:1/-1}.actions{display:flex;justify-content:space-between;gap:12px;margin-top:26px;border-top:1px solid var(--line);padding-top:22px}button{border:0;border-radius:999px;padding:13px 20px;font:inherit;font-weight:850;cursor:pointer}.primary{background:var(--ink);color:#fff}.secondary{background:#fff;color:var(--ink);border:1px solid var(--line)}button:disabled{opacity:.45;cursor:not-allowed}
+    .sheet-preview{display:grid;gap:9px;border:1px solid var(--line);border-radius:18px;padding:16px;background:#fbfaf7;color:#475569}.sheet-row{display:grid;grid-template-columns:135px 1fr;gap:10px;border-bottom:1px solid #ebe6df;padding-bottom:8px}.sheet-row:last-child{border-bottom:0;padding-bottom:0}.sheet-row strong{color:var(--accent)}.success-box{display:none;margin-top:16px;padding:16px;border-radius:18px;border:1px solid rgba(31,138,91,.28);background:#edf8f2;color:#145a3b;font-weight:750}.payload-box{display:none;margin-top:16px;white-space:pre-wrap;overflow:auto;max-height:280px;padding:14px;border-radius:14px;background:#18232d;color:#f8fafc;font-size:.82rem}
+    footer{width:min(1120px,92%);margin:auto;padding:32px 0 44px;color:var(--muted);border-top:1px solid var(--line);font-size:.9rem}
+    @media(max-width:980px){.nav{position:relative}.nav-toggle{display:inline-flex;order:2}.language-switch{order:3}.nav nav{order:4;width:100%}nav ul{display:none}.nav.nav-open nav ul{display:flex;position:absolute;left:0;right:0;top:calc(100% + 10px);flex-direction:column;gap:0;padding:12px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 40px rgba(31,41,51,.12);z-index:50}.nav.nav-open nav li+li{border-top:1px solid var(--line)}.nav.nav-open nav a{display:block;padding:12px 10px}main{padding:42px 0}.hero,.grid-2{grid-template-columns:1fr}.hero-copy,.demo-note,.demo-body{padding:22px;border-radius:22px}.demo-header{padding:20px}.stepper{grid-template-columns:1fr}.step-pill{text-align:left}.actions{flex-direction:column-reverse}.actions button{width:100%}.presence-row{grid-template-columns:1fr}.matrix th,.matrix td{padding:10px 8px}}
   </style>
   <link rel="stylesheet" href="mobile-fixes.css" />
 </head>
@@ -127,253 +34,78 @@
   <div class="nav">
     <a class="logo" href="index.html">Alfredo <span>Matrella</span></a>
     <button class="nav-toggle" type="button" aria-label="Apri menu" aria-expanded="false"><span aria-hidden="true"></span></button>
-    <nav aria-label="Navigazione principale">
-      <ul>
-        <li><a href="missione-ricerca.html">Mission</a></li>
-        <li><a href="servizi.html">Servizi</a></li>
-        <li><a href="methods-guards.html">Methods Guards AI</a></li>
-        <li><a href="comunicazioni.html">Comunicazioni</a></li>
-        <li><a href="contatti.html">Contatti</a></li>
-      </ul>
-    </nav>
-    <div class="language-switch" aria-label="Selezione lingua">
-      <span class="active">IT</span>
-      <a href="en/services.html">EN</a>
-    </div>
+    <nav aria-label="Navigazione principale"><ul><li><a href="missione-ricerca.html">Mission</a></li><li><a href="servizi.html">Servizi</a></li><li><a href="methods-guards.html">Methods Guards AI</a></li><li><a href="comunicazioni.html">Comunicazioni</a></li><li><a href="contatti.html">Contatti</a></li></ul></nav>
+    <div class="language-switch"><span class="active">IT</span><a href="en/services.html">EN</a></div>
   </div>
 </header>
-
 <main>
   <section class="hero">
-    <div class="hero-copy">
-      <div class="eyebrow">Demo questionario</div>
-      <h1>Questionari web più chiari, leggibili e ordinati.</h1>
-      <p class="lead">Un esempio di modulo personalizzato per ricerca sociale, valutazione e user experience. L'interfaccia può essere costruita su misura e collegata a Google Sheets o a un file Excel.</p>
-    </div>
-    <aside class="demo-note">
-      <h2>Cosa mostra questa demo</h2>
-      <ul>
-        <li>Compilazione a step, più comoda di un modulo lungo.</li>
-        <li>Domande con scale, scelte multiple e commenti aperti.</li>
-        <li>Output strutturato, pronto per foglio dati e analisi.</li>
-        <li>Possibile collegamento a Google Sheets tramite Apps Script.</li>
-      </ul>
-    </aside>
+    <div class="hero-copy"><div class="eyebrow">Demo questionario</div><h1>Una pagina web per questionari, non solo un modulo.</h1><p class="lead">Questa demo mostra come un questionario di ricerca, valutazione o user experience puÃ² diventare una pagina web piÃ¹ chiara, guidata e leggibile, mantenendo un output ordinato per Google Sheets ed Excel.</p></div>
+    <aside class="demo-note"><h2>Cosa mostra questa demo</h2><ul><li>Pagina iniziale con finalitÃ  e contesto.</li><li>Consenso informato prima della compilazione.</li><li>Scale Likert, Cantril, frequenza, differenziale semantico e matrici.</li><li>Domande semplici con design orientato alla compilazione.</li></ul></aside>
   </section>
-
-  <section class="layout">
-    <form id="surveyForm" class="survey-card">
-      <div class="survey-top">
-        <div class="step-label" id="stepLabel">Step 1 di 4</div>
-        <div class="progress" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
-      </div>
-
-      <section class="step active" data-step="0">
-        <h2>Profilo della risposta</h2>
-        <p>Queste informazioni servono a leggere meglio i risultati aggregati.</p>
-        <div class="field-grid">
-          <div class="field">
-            <label for="profilo">Profilo</label>
-            <select id="profilo" name="profilo" required>
-              <option value="">Seleziona</option>
-              <option>Studente o studentessa</option>
-              <option>Ricercatore o ricercatrice</option>
-              <option>Docente</option>
-              <option>Professionista</option>
-              <option>Altro</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="contesto">Contesto</label>
-            <select id="contesto" name="contesto" required>
-              <option value="">Seleziona</option>
-              <option>Universita</option>
-              <option>Scuola</option>
-              <option>Ente pubblico</option>
-              <option>Azienda o organizzazione</option>
-              <option>Progetto personale</option>
-            </select>
-          </div>
+  <section class="demo-shell">
+    <div class="demo-header"><div class="eyebrow">Questionario Test 1</div><div class="stepper"><div class="step-pill active">1. Presentazione</div><div class="step-pill">2. Consenso</div><div class="step-pill">3. Scale</div><div class="step-pill">4. Domande</div><div class="step-pill">5. Output</div></div><div class="progress"><div class="progress-fill" id="progressFill"></div></div></div>
+    <form id="surveyForm" class="demo-body">
+      <section class="step active">
+        <h2>Pagina di presentazione</h2><p>Questa sezione introduce il questionario prima della compilazione, spiega a cosa serve e chiarisce come saranno organizzate le risposte.</p>
+        <div class="grid-2">
+          <article class="card"><h3>FinalitÃ  della demo</h3><p>Il questionario Ã¨ un esempio dimostrativo per illustrare struttura, organizzazione e impostazione di uno strumento digitale progettato per ricerca, valutazione e raccolta dati.</p></article>
+          <article class="card"><h3>Obiettivo</h3><p>Mostrare come domande e scale possano essere rese piÃ¹ leggibili, evitando l'effetto modulo lungo e migliorando l'esperienza di compilazione.</p></article>
+          <article class="card"><h3>Ambiti di applicazione</h3><ul><li>questionari per ricerca sociale e accademica;</li><li>indagini su customer e user experience;</li><li>valutazione di servizi, progetti e interventi;</li><li>studi esplorativi e organizzativi.</li></ul></article>
+          <article class="card"><h3>Output</h3><p>Le risposte possono essere salvate in modo ordinato su Google Sheets, esportate in Excel e preparate per analisi successive.</p></article>
         </div>
       </section>
-
-      <section class="step" data-step="1">
-        <h2>Esperienza con lo strumento</h2>
-        <p>Domande brevi per capire come viene percepita la pagina o il servizio.</p>
-        <div class="scale-grid">
-          <div class="scale-row">
-            <label for="chiarezza">Il contenuto è chiaro</label>
-            <input id="chiarezza" name="chiarezza" type="range" min="1" max="5" value="3">
-            <div class="scale-help"><span>Per nulla</span><span>Molto</span></div>
-          </div>
-          <div class="scale-row">
-            <label for="facilita">La compilazione è semplice</label>
-            <input id="facilita" name="facilita" type="range" min="1" max="5" value="3">
-            <div class="scale-help"><span>Per nulla</span><span>Molto</span></div>
-          </div>
-          <div class="scale-row">
-            <label for="fiducia">Lo strumento comunica fiducia</label>
-            <input id="fiducia" name="fiducia" type="range" min="1" max="5" value="3">
-            <div class="scale-help"><span>Per nulla</span><span>Molto</span></div>
-          </div>
+      <section class="step">
+        <h2>Consenso al trattamento dati</h2><p>Prima di proseguire, la pagina puÃ² mostrare una sezione dedicata al consenso informato e alla partecipazione volontaria.</p>
+        <div class="card"><h3>Informativa sintetica</h3><p>Le informazioni raccolte saranno trattate nel rispetto dei principi di correttezza, liceitÃ , trasparenza e tutela della riservatezza previsti dal Regolamento UE 2016/679 (GDPR).</p><p>La partecipazione Ã¨ libera e volontaria. I dati saranno utilizzati per finalitÃ  di ricerca, analisi, valutazione o progettazione del servizio.</p><div class="grid-2" style="margin-top:16px"><label class="choice-card"><input type="radio" name="consenso" value="acconsento" required><span><strong>Acconsento</strong>Ho letto l'informativa e desidero proseguire.</span></label><label class="choice-card"><input type="radio" name="consenso" value="non_acconsento" required><span><strong>Non acconsento</strong>Non desidero proseguire con la compilazione.</span></label></div><div class="stop-message" id="stopMessage">Hai selezionato â€œNon acconsentoâ€. In un questionario reale la compilazione si fermerebbe qui.</div></div>
+      </section>
+      <section class="step">
+        <h2>Scale di risposta</h2><p>Questa sezione mostra alcuni tipi di scale ridisegnate in modo piÃ¹ chiaro rispetto a una griglia standard.</p>
+        <div class="scale-gallery">
+          <article class="card"><div class="scale-title"><h3>Scala Likert</h3><small>Accordo 1-5</small></div><div class="matrix-scroll"><table class="matrix"><thead><tr><th>Item</th><th>Per nulla</th><th>Poco</th><th>Abbastanza</th><th>Molto</th><th>Moltissimo</th></tr></thead><tbody><tr><td>Il testo Ã¨ comprensibile</td><td><input type="radio" name="likert_1" value="1"></td><td><input type="radio" name="likert_1" value="2"></td><td><input type="radio" name="likert_1" value="3"></td><td><input type="radio" name="likert_1" value="4"></td><td><input type="radio" name="likert_1" value="5"></td></tr><tr><td>La struttura Ã¨ ordinata</td><td><input type="radio" name="likert_2" value="1"></td><td><input type="radio" name="likert_2" value="2"></td><td><input type="radio" name="likert_2" value="3"></td><td><input type="radio" name="likert_2" value="4"></td><td><input type="radio" name="likert_2" value="5"></td></tr><tr><td>La compilazione Ã¨ intuitiva</td><td><input type="radio" name="likert_3" value="1"></td><td><input type="radio" name="likert_3" value="2"></td><td><input type="radio" name="likert_3" value="3"></td><td><input type="radio" name="likert_3" value="4"></td><td><input type="radio" name="likert_3" value="5"></td></tr></tbody></table></div></article>
+          <article class="card"><div class="scale-title"><h3>Scala Cantril</h3><small>Valore 0-10</small></div><p>Quanto considera utile una pagina questionario personalizzata?</p><div class="chip-row"><label class="chip-option"><input type="radio" name="cantril" value="0"><span>0</span></label><label class="chip-option"><input type="radio" name="cantril" value="1"><span>1</span></label><label class="chip-option"><input type="radio" name="cantril" value="2"><span>2</span></label><label class="chip-option"><input type="radio" name="cantril" value="3"><span>3</span></label><label class="chip-option"><input type="radio" name="cantril" value="4"><span>4</span></label><label class="chip-option"><input type="radio" name="cantril" value="5"><span>5</span></label><label class="chip-option"><input type="radio" name="cantril" value="6"><span>6</span></label><label class="chip-option"><input type="radio" name="cantril" value="7"><span>7</span></label><label class="chip-option"><input type="radio" name="cantril" value="8"><span>8</span></label><label class="chip-option"><input type="radio" name="cantril" value="9"><span>9</span></label><label class="chip-option"><input type="radio" name="cantril" value="10"><span>10</span></label></div><div class="range-labels"><span>Per nulla utile</span><span>Molto utile</span></div></article>
+          <article class="card"><div class="scale-title"><h3>Scala di frequenza</h3><small>Risposta singola</small></div><div class="button-options"><label class="choice-card"><input type="radio" name="frequenza" value="molto_spesso"><span>Molto spesso</span></label><label class="choice-card"><input type="radio" name="frequenza" value="spesso"><span>Spesso</span></label><label class="choice-card"><input type="radio" name="frequenza" value="raramente"><span>Raramente</span></label><label class="choice-card"><input type="radio" name="frequenza" value="mai"><span>Mai</span></label></div></article>
+          <article class="card"><div class="scale-title"><h3>Frequenza con doppio ancoraggio</h3><small>Slider 1-5</small></div><div class="range-wrap"><label>Quanto spesso usa strumenti digitali per organizzare dati?</label><input name="freq_doppia_1" type="range" min="1" max="5" value="3"><div class="range-labels"><span>Molto spesso</span><span>Mai</span></div></div><div class="range-wrap"><label>Quanto spesso usa strumenti digitali per analizzare risultati?</label><input name="freq_doppia_2" type="range" min="1" max="5" value="3"><div class="range-labels"><span>Molto spesso</span><span>Mai</span></div></div></article>
+          <article class="card"><div class="scale-title"><h3>Differenziale semantico</h3><small>Coppie di aggettivi</small></div><div class="range-wrap"><div class="semantic-row"><strong>Tranquillo</strong><strong>Stressato</strong></div><input name="semantico_tranquillo_stressato" type="range" min="1" max="7" value="4"></div><div class="range-wrap"><div class="semantic-row"><strong>Adeguato</strong><strong>Inadeguato</strong></div><input name="semantico_adeguato_inadeguato" type="range" min="1" max="7" value="4"></div><div class="range-wrap"><div class="semantic-row"><strong>Semplice</strong><strong>Complicato</strong></div><input name="semantico_semplice_complicato" type="range" min="1" max="7" value="4"></div></article>
+          <article class="card"><div class="scale-title"><h3>Attribuzione con valori 0-5</h3><small>Con â€œnon presenteâ€</small></div><div class="presence-row"><label>Partner</label><div><div class="chip-row"><label class="chip-option"><input type="radio" name="partner" value="0"><span>0</span></label><label class="chip-option"><input type="radio" name="partner" value="1"><span>1</span></label><label class="chip-option"><input type="radio" name="partner" value="2"><span>2</span></label><label class="chip-option"><input type="radio" name="partner" value="3"><span>3</span></label><label class="chip-option"><input type="radio" name="partner" value="4"><span>4</span></label><label class="chip-option"><input type="radio" name="partner" value="5"><span>5</span></label></div><label class="not-present"><input type="checkbox" name="partner_non_presente" value="si"> Non presente</label></div></div><div class="presence-row"><label>Altri familiari</label><div><div class="chip-row"><label class="chip-option"><input type="radio" name="familiari" value="0"><span>0</span></label><label class="chip-option"><input type="radio" name="familiari" value="1"><span>1</span></label><label class="chip-option"><input type="radio" name="familiari" value="2"><span>2</span></label><label class="chip-option"><input type="radio" name="familiari" value="3"><span>3</span></label><label class="chip-option"><input type="radio" name="familiari" value="4"><span>4</span></label><label class="chip-option"><input type="radio" name="familiari" value="5"><span>5</span></label></div><label class="not-present"><input type="checkbox" name="familiari_non_presenti" value="si"> Non presenti</label></div></div><div class="presence-row"><label>Me stesso/a</label><div class="chip-row"><label class="chip-option"><input type="radio" name="me_stesso" value="0"><span>0</span></label><label class="chip-option"><input type="radio" name="me_stesso" value="1"><span>1</span></label><label class="chip-option"><input type="radio" name="me_stesso" value="2"><span>2</span></label><label class="chip-option"><input type="radio" name="me_stesso" value="3"><span>3</span></label><label class="chip-option"><input type="radio" name="me_stesso" value="4"><span>4</span></label><label class="chip-option"><input type="radio" name="me_stesso" value="5"><span>5</span></label></div></div></article>
         </div>
       </section>
-
-      <section class="step" data-step="2">
-        <h2>Funzioni utili</h2>
-        <p>Le risposte multiple possono essere salvate in una sola cella del foglio dati.</p>
-        <div class="choice-list">
-          <label class="choice-card"><span><input type="checkbox" name="funzioni" value="Report automatico">Report automatico</span></label>
-          <label class="choice-card"><span><input type="checkbox" name="funzioni" value="Dashboard dei risultati">Dashboard dei risultati</span></label>
-          <label class="choice-card"><span><input type="checkbox" name="funzioni" value="Esportazione Excel">Esportazione Excel</span></label>
-          <label class="choice-card"><span><input type="checkbox" name="funzioni" value="Logica condizionale">Logica condizionale tra domande</span></label>
-        </div>
+      <section class="step">
+        <h2>Domande semplici</h2><p>Anche le domande tradizionali possono essere rese piÃ¹ leggibili con spazi, blocchi e gerarchie visive piÃ¹ chiare.</p>
+        <div class="grid-2"><div class="card field"><label for="profilo">Quale profilo descrive meglio la sua posizione?</label><select id="profilo" name="profilo"><option value="">Seleziona una risposta</option><option>Studente o studentessa</option><option>Ricercatore o ricercatrice</option><option>Docente</option><option>Professionista</option><option>Altro</option></select></div><div class="card field"><label for="contesto">In quale contesto potrebbe essere usato il questionario?</label><select id="contesto" name="contesto"><option value="">Seleziona una risposta</option><option>Ricerca sociale</option><option>Valutazione di un servizio</option><option>User experience</option><option>Formazione</option><option>Altro</option></select></div><div class="card full"><h3>Quali elementi sarebbero piÃ¹ utili?</h3><div class="button-options" style="margin-top:12px"><label class="choice-card"><input type="checkbox" name="elementi_utili" value="dashboard"><span>Dashboard risultati</span></label><label class="choice-card"><input type="checkbox" name="elementi_utili" value="excel"><span>Output Excel</span></label><label class="choice-card"><input type="checkbox" name="elementi_utili" value="logiche"><span>Domande condizionali</span></label><label class="choice-card"><input type="checkbox" name="elementi_utili" value="report"><span>Report automatico</span></label></div></div><div class="card full field"><label for="commento">Commento aperto</label><textarea id="commento" name="commento" placeholder="Scrivi qui un commento, una richiesta o un esempio di questionario da progettare..."></textarea></div></div>
       </section>
-
-      <section class="step" data-step="3">
-        <h2>Commento finale</h2>
-        <p>La parte aperta resta utile per raccogliere dettagli qualitativi.</p>
-        <div class="field">
-          <label for="commento">Cosa miglioreresti?</label>
-          <textarea id="commento" name="commento" placeholder="Scrivi qui un commento libero..."></textarea>
-        </div>
-        <label class="choice-card" style="margin-top: 14px;">
-          <span><input type="checkbox" name="consenso" value="si" required> Confermo che questa è una demo e non sto inviando dati sensibili.</span>
-        </label>
+      <section class="step">
+        <h2>Anteprima output</h2><p>In una versione reale, ogni risposta puÃ² essere salvata come riga su Google Sheets, esportata in Excel o collegata a una dashboard.</p>
+        <div class="grid-2"><div class="card"><h3>Da pagina web a foglio Excel</h3><p>Il questionario puÃ² mantenere un'interfaccia personalizzata e allo stesso tempo produrre dati ordinati, leggibili e pronti per l'analisi.</p><div class="success-box" id="successBox">Demo completata. Con un endpoint Google Apps Script, questa risposta verrebbe salvata nel foglio dati.</div></div><div class="card"><div class="sheet-preview"><div class="sheet-row"><strong>timestamp</strong><span>automatico</span></div><div class="sheet-row"><strong>consenso</strong><span>acconsento / non acconsento</span></div><div class="sheet-row"><strong>scale</strong><span>valori numerici</span></div><div class="sheet-row"><strong>scelte</strong><span>risposte singole o multiple</span></div><div class="sheet-row"><strong>commento</strong><span>testo aperto</span></div></div><pre class="payload-box" id="payloadBox"></pre></div></div>
       </section>
-
-      <div class="actions">
-        <button class="secondary" type="button" id="prevBtn" disabled>Indietro</button>
-        <button class="primary" type="button" id="nextBtn">Avanti</button>
-      </div>
+      <div class="actions"><button class="secondary" type="button" id="prevBtn" disabled>Indietro</button><button class="primary" type="button" id="nextBtn">Continua</button></div>
     </form>
-
-    <aside class="output-card">
-      <div class="eyebrow">Output dati</div>
-      <h2>Da modulo a foglio Excel</h2>
-      <p>Ogni invio può diventare una riga ordinata in Google Sheets, esportabile in Excel.</p>
-      <div class="sheet-preview">
-        <div class="sheet-row"><strong>timestamp</strong><span>automatico</span></div>
-        <div class="sheet-row"><strong>profilo</strong><span>risposta singola</span></div>
-        <div class="sheet-row"><strong>scale</strong><span>valori 1-5</span></div>
-        <div class="sheet-row"><strong>funzioni</strong><span>scelte multiple</span></div>
-        <div class="sheet-row"><strong>commento</strong><span>testo aperto</span></div>
-      </div>
-      <div class="success-box" id="successBox">Demo completata. Con un endpoint Google Apps Script, questa risposta verrebbe salvata nel foglio dati.</div>
-      <pre class="payload-box" id="payloadBox"></pre>
-    </aside>
   </section>
 </main>
-
-<footer>
-  © <span id="year"></span> Alfredo Matrella
-</footer>
-
+<footer>Â© <span id="year"></span> Alfredo Matrella</footer>
 <script>
   const SHEETS_ENDPOINT = "";
   const steps = Array.from(document.querySelectorAll(".step"));
+  const pills = Array.from(document.querySelectorAll(".step-pill"));
   const form = document.getElementById("surveyForm");
-  const stepLabel = document.getElementById("stepLabel");
   const progressFill = document.getElementById("progressFill");
   const prevBtn = document.getElementById("prevBtn");
   const nextBtn = document.getElementById("nextBtn");
   const successBox = document.getElementById("successBox");
   const payloadBox = document.getElementById("payloadBox");
+  const stopMessage = document.getElementById("stopMessage");
   let currentStep = 0;
-
   document.getElementById("year").textContent = new Date().getFullYear();
-
-  function showStep(index) {
-    steps.forEach((step, i) => step.classList.toggle("active", i === index));
-    stepLabel.textContent = `Step ${index + 1} di ${steps.length}`;
-    progressFill.style.width = `${((index + 1) / steps.length) * 100}%`;
-    prevBtn.disabled = index === 0;
-    nextBtn.textContent = index === steps.length - 1 ? "Invia demo" : "Avanti";
-  }
-
-  function validateStep() {
-    const fields = Array.from(steps[currentStep].querySelectorAll("input, select, textarea"));
-    return fields.every((field) => field.reportValidity());
-  }
-
-  function collectPayload() {
-    const data = new FormData(form);
-    const payload = {
-      timestamp: new Date().toISOString(),
-      pagina: window.location.href
-    };
-
-    data.forEach((value, key) => {
-      if (payload[key]) {
-        payload[key] = Array.isArray(payload[key]) ? [...payload[key], value] : [payload[key], value];
-      } else {
-        payload[key] = value;
-      }
-    });
-
-    return payload;
-  }
-
-  async function submitDemo() {
-    const payload = collectPayload();
-    payloadBox.textContent = JSON.stringify(payload, null, 2);
-    payloadBox.style.display = "block";
-
-    if (!SHEETS_ENDPOINT) {
-      successBox.style.display = "block";
-      return;
-    }
-
-    await fetch(SHEETS_ENDPOINT, {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify(payload)
-    });
-    successBox.style.display = "block";
-  }
-
-  prevBtn.addEventListener("click", () => {
-    currentStep = Math.max(0, currentStep - 1);
-    showStep(currentStep);
-  });
-
-  nextBtn.addEventListener("click", async () => {
-    if (!validateStep()) return;
-    if (currentStep < steps.length - 1) {
-      currentStep += 1;
-      showStep(currentStep);
-      return;
-    }
-    nextBtn.disabled = true;
-    nextBtn.textContent = "Invio...";
-    try {
-      await submitDemo();
-      nextBtn.textContent = "Completato";
-    } catch (error) {
-      nextBtn.disabled = false;
-      nextBtn.textContent = "Riprova";
-      successBox.style.display = "block";
-      successBox.textContent = "Non è stato possibile inviare la demo. Controlla l'endpoint Google Sheets.";
-    }
-  });
-
-  document.querySelectorAll(".nav").forEach((nav) => {
-    const toggle = nav.querySelector(".nav-toggle");
-    if (!toggle) return;
-    toggle.addEventListener("click", () => {
-      const isOpen = nav.classList.toggle("nav-open");
-      toggle.setAttribute("aria-expanded", String(isOpen));
-    });
-    nav.querySelectorAll("nav a").forEach((link) => {
-      link.addEventListener("click", () => {
-        nav.classList.remove("nav-open");
-        toggle.setAttribute("aria-expanded", "false");
-      });
-    });
-  });
+  function showStep(index){steps.forEach((s,i)=>s.classList.toggle("active",i===index));pills.forEach((p,i)=>p.classList.toggle("active",i===index));progressFill.style.width=`${((index+1)/steps.length)*100}%`;prevBtn.disabled=index===0;nextBtn.textContent=index===steps.length-1?"Mostra output":"Continua";document.querySelector(".demo-shell").scrollIntoView({behavior:"smooth",block:"start"});}
+  function validateStep(){return Array.from(steps[currentStep].querySelectorAll("input,select,textarea")).every(f=>f.reportValidity());}
+  function consentAllowsProgress(){const selected=form.querySelector('input[name="consenso"]:checked');const blocked=selected&&selected.value==="non_acconsento";if(stopMessage)stopMessage.style.display=blocked?"block":"none";return !blocked;}
+  function collectPayload(){const data=new FormData(form);const payload={timestamp:new Date().toISOString(),pagina:window.location.href};data.forEach((value,key)=>{payload[key]=payload[key]?(Array.isArray(payload[key])?[...payload[key],value]:[payload[key],value]):value});return payload;}
+  async function submitDemo(){const payload=collectPayload();payloadBox.textContent=JSON.stringify(payload,null,2);payloadBox.style.display="block";successBox.style.display="block";if(!SHEETS_ENDPOINT)return;await fetch(SHEETS_ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});}
+  form.querySelectorAll('input[name="consenso"]').forEach(r=>r.addEventListener("change",consentAllowsProgress));
+  prevBtn.addEventListener("click",()=>{currentStep=Math.max(0,currentStep-1);showStep(currentStep);});
+  nextBtn.addEventListener("click",async()=>{if(!validateStep())return;if(currentStep===1&&!consentAllowsProgress())return;if(currentStep<steps.length-1){currentStep+=1;showStep(currentStep);return;}nextBtn.disabled=true;nextBtn.textContent="Preparazione output...";try{await submitDemo();nextBtn.textContent="Output creato";}catch(e){nextBtn.disabled=false;nextBtn.textContent="Riprova";successBox.style.display="block";successBox.textContent="Non Ã¨ stato possibile inviare la demo. Controlla l'endpoint Google Sheets.";}}); 
+  document.querySelectorAll(".nav").forEach(nav=>{const toggle=nav.querySelector(".nav-toggle");if(!toggle)return;toggle.addEventListener("click",()=>{const isOpen=nav.classList.toggle("nav-open");toggle.setAttribute("aria-expanded",String(isOpen));});nav.querySelectorAll("nav a").forEach(link=>link.addEventListener("click",()=>{nav.classList.remove("nav-open");toggle.setAttribute("aria-expanded","false");}));});
 </script>
 </body>
 </html>
-
 
