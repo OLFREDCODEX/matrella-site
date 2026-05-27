@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Questionnaire web demo for research and evaluation | Alfredo Matrella</title>
-  <meta name="description" content="Demo di questionario web personalizzato per ricerca sociale, valutazione e user experience, con consenso informato, scale UX e output ordinato per Google Sheets, Excel e CSV UTF-8." />
+  <meta name="description" content="Demo of a custom web questionnaire for social research, evaluation and user experience, with informed consent, UX-oriented scales and structured output for Google Sheets, Excel and CSV UTF-8." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.matrella.it/en/questionnaire-demo.html" />
   <style>
@@ -41,16 +41,16 @@
 <main>
   <section class="hero">
     <div class="hero-copy">
-      <div class="eyebrow">Demo questionario</div>
+      <div class="eyebrow">Questionnaire demo</div>
       <h1>A web page for questionnaires, not just a form.</h1>
-      <p class="lead">Questa demo mostra come un questionario di ricerca, valutazione o user experience pu&ograve; diventare una pagina web pi&ugrave; chiara, guidata e leggibile, mantenendo un output ordinato per Google Sheets, Excel e CSV UTF-8.</p>
+      <p class="lead">This demo shows how a research, evaluation or user experience questionnaire can become a clearer, guided and readable web page, while keeping structured output for Google Sheets, Excel and CSV UTF-8.</p>
     </div>
     <aside class="demo-note">
       <h2>What this demo shows</h2>
       <ul>
-        <li>Pagina iniziale con finalit&agrave; e contesto.</li>
+        <li>Opening page with purpose and context.</li>
         <li>Informed consent before completion.</li>
-        <li>Scale Likert, Cantril, frequency, doppio ancoraggio e differenziale semantico.</li>
+        <li>Likert, Cantril, frequency, double-anchored frequency and semantic differential scales.</li>
         <li>Simple questions with completion-oriented design.</li>
         <li>Structured output preview in Excel and CSV UTF-8 format.</li>
       </ul>
@@ -75,36 +75,36 @@
         <h2>Presentation page</h2>
         <p>This section introduces the questionnaire before completion, explains its purpose and clarifies how responses will be organized.</p>
         <div class="grid-2">
-          <article class="card"><h3>Finalit&agrave; della demo</h3><p>Il questionario &egrave; un esempio dimostrativo per illustrare struttura, organizzazione e impostazione di uno strumento digitale progettato per ricerca, valutazione e raccolta dati.</p></article>
-          <article class="card"><h3>Objective</h3><p>Mostrare come domande e scale possano essere rese pi&ugrave; leggibili, evitando l'effetto modulo lungo e migliorando l'esperienza di compilazione.</p></article>
+          <article class="card"><h3>Demo purpose</h3><p>The questionnaire is a demo example designed to show the structure, organization and setup of a digital tool for research, evaluation and data collection.</p></article>
+          <article class="card"><h3>Objective</h3><p>Show how questions and scales can be made more readable, avoiding the long-form effect and improving the completion experience.</p></article>
           <article class="card"><h3>Use cases</h3><ul><li>questionnaires for social and academic research;</li><li>customer and user experience studies;</li><li>evaluation of services, projects and interventions;</li><li>exploratory and organizational studies.</li></ul></article>
-          <article class="card"><h3>Output</h3><p>Le risposte possono essere salvate in modo ordinato su Google Sheets, esportate in Excel / CSV UTF-8 e preparate per analisi successive.</p></article>
+          <article class="card"><h3>Output</h3><p>Responses can be saved in an organized way in Google Sheets, exported to Excel / CSV UTF-8 and prepared for later analysis.</p></article>
         </div>
       </section>
 
       <section class="step">
         <h2>Data processing consent</h2>
-        <p>Prima di proseguire, la pagina pu&ograve; mostrare una sezione dedicata al consenso informato e alla partecipazione volontaria.</p>
+        <p>Before continuing, the page can show a dedicated section on informed consent and voluntary participation.</p>
         <div class="card">
-          <h3>Informativa sintetica</h3>
-          <p>Le informazioni raccolte saranno trattate nel rispetto dei principi di correttezza, liceit&agrave;, trasparenza e tutela della riservatezza previsti dal Regolamento UE 2016/679 (GDPR).</p>
-          <p>La partecipazione &egrave; libera e volontaria. I dati saranno utilizzati per finalit&agrave; di ricerca, analisi, valutazione o progettazione del servizio.</p>
+          <h3>Short information notice</h3>
+          <p>Collected information would be processed according to principles of fairness, lawfulness, transparency and confidentiality under Regulation (EU) 2016/679 (GDPR).</p>
+          <p>Participation is free and voluntary. Data would be used for research, analysis, evaluation or service design purposes.</p>
           <div class="grid-2" style="margin-top:16px">
-            <label class="choice-card"><input type="radio" name="consenso" value="consent" required><span><strong>Acconsento</strong>Ho letto l'informativa e desidero proseguire.</span></label>
-            <label class="choice-card"><input type="radio" name="consenso" value="non_consent" required><span><strong>I do not consent</strong>Non desidero proseguire con la compilazione.</span></label>
+            <label class="choice-card"><input type="radio" name="consent" value="consent" required><span><strong>I consent</strong>I have read the information notice and want to continue.</span></label>
+            <label class="choice-card"><input type="radio" name="consent" value="non_consent" required><span><strong>I do not consent</strong>I do not want to continue with completion.</span></label>
           </div>
-          <div class="stop-message" id="stopMessage">Hai selezionato "I do not consent". In un questionario reale la compilazione si fermerebbe qui.</div>
+          <div class="stop-message" id="stopMessage">You selected "I do not consent". In a real questionnaire, completion would stop here.</div>
         </div>
       </section>
 
       <section class="step">
-        <h2>Scale di risposta</h2>
-        <p>Gli esempi riprendono scale classiche di ricerca, ma con un'interfaccia pi&ugrave; leggibile e adatta alla compilazione online.</p>
+        <h2>Response scales</h2>
+        <p>The examples reproduce classic research scales with a more readable interface suitable for online completion.</p>
         <div class="scale-gallery">
           <article class="card">
-            <div class="scale-title"><h3>Domanda test 1 (Likert)</h3><small>Griglia a scelta multipla</small></div>
+            <div class="scale-title"><h3>Test question 1 (Likert)</h3><small>Multiple-choice grid</small></div>
             <div class="matrix-scroll"><table class="matrix">
-              <thead><tr><th>Righe</th><th>Completely disagree</th><th>Somewhat disagree</th><th>N&eacute; d'accordo, n&eacute; in disaccordo</th><th>Somewhat agree</th><th>Completely agree</th><th>I cannot answer</th></tr></thead>
+              <thead><tr><th>Rows</th><th>Completely disagree</th><th>Somewhat disagree</th><th>N&eacute; d'accordo, n&eacute; in disaccordo</th><th>Somewhat agree</th><th>Completely agree</th><th>I cannot answer</th></tr></thead>
               <tbody>
                 <tr><td>Item 1</td><td><input type="radio" name="likert_1" value="1"></td><td><input type="radio" name="likert_1" value="2"></td><td><input type="radio" name="likert_1" value="3"></td><td><input type="radio" name="likert_1" value="4"></td><td><input type="radio" name="likert_1" value="5"></td><td><input type="radio" name="likert_1" value="non_risponde"></td></tr>
                 <tr><td>Item 2</td><td><input type="radio" name="likert_2" value="1"></td><td><input type="radio" name="likert_2" value="2"></td><td><input type="radio" name="likert_2" value="3"></td><td><input type="radio" name="likert_2" value="4"></td><td><input type="radio" name="likert_2" value="5"></td><td><input type="radio" name="likert_2" value="non_risponde"></td></tr>
@@ -116,9 +116,9 @@
           </article>
 
           <article class="card">
-            <div class="scale-title"><h3>Domanda test 2 (Cantril)</h3><small>Values 1-7</small></div>
+            <div class="scale-title"><h3>Test question 2 (Cantril)</h3><small>Values 1-7</small></div>
             <div class="matrix-scroll"><table class="matrix">
-              <thead><tr><th>Righe</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>I cannot answer</th></tr></thead>
+              <thead><tr><th>Rows</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>I cannot answer</th></tr></thead>
               <tbody>
                 <tr><td>Item 1</td><td><input type="radio" name="cantril_1" value="1"></td><td><input type="radio" name="cantril_1" value="2"></td><td><input type="radio" name="cantril_1" value="3"></td><td><input type="radio" name="cantril_1" value="4"></td><td><input type="radio" name="cantril_1" value="5"></td><td><input type="radio" name="cantril_1" value="6"></td><td><input type="radio" name="cantril_1" value="7"></td><td><input type="radio" name="cantril_1" value="non_risponde"></td></tr>
                 <tr><td>Item 2</td><td><input type="radio" name="cantril_2" value="1"></td><td><input type="radio" name="cantril_2" value="2"></td><td><input type="radio" name="cantril_2" value="3"></td><td><input type="radio" name="cantril_2" value="4"></td><td><input type="radio" name="cantril_2" value="5"></td><td><input type="radio" name="cantril_2" value="6"></td><td><input type="radio" name="cantril_2" value="7"></td><td><input type="radio" name="cantril_2" value="non_risponde"></td></tr>
@@ -129,20 +129,20 @@
           </article>
 
           <article class="card">
-            <div class="scale-title"><h3>Domanda test 3 (Scala di frequency)</h3><small>Scelta multipla</small></div>
-            <p>Quanto spesso le capita di fare una determinata attivit&agrave;?</p>
+            <div class="scale-title"><h3>Test question 3 (Frequency scale)</h3><small>Multiple choice</small></div>
+            <p>How often do you happen to do a given activity?</p>
             <div class="button-options">
-              <label class="choice-card"><input type="radio" name="frequency" value="molto_spesso"><span>Very often</span></label>
-              <label class="choice-card"><input type="radio" name="frequency" value="spesso"><span>Often</span></label>
+              <label class="choice-card"><input type="radio" name="frequency" value="molto_often"><span>Very often</span></label>
+              <label class="choice-card"><input type="radio" name="frequency" value="often"><span>Often</span></label>
               <label class="choice-card"><input type="radio" name="frequency" value="raramente"><span>Rarely</span></label>
               <label class="choice-card"><input type="radio" name="frequency" value="mai"><span>Never</span></label>
             </div>
           </article>
 
           <article class="card">
-            <div class="scale-title"><h3>Domanda test 4 (Scala di frequency con doppio ancoraggio)</h3><small>Griglia a scelta multipla</small></div>
+            <div class="scale-title"><h3>Test question 4 (Double-anchored frequency scale)</h3><small>Multiple-choice grid</small></div>
             <div class="matrix-scroll"><table class="matrix">
-              <thead><tr><th>Righe</th><th>Very often (pi&ugrave; di tre volte a settimana)</th><th>Often (tre volte a settimana)</th><th>Qualche volta (2 volte a settimana)</th><th>Rarely (1 volta a settimana)</th><th>Never</th></tr></thead>
+              <thead><tr><th>Rows</th><th>Very often (more than three times a week)</th><th>Often (three times a week)</th><th>Sometimes (twice a week)</th><th>Rarely (once a week)</th><th>Never</th></tr></thead>
               <tbody>
                 <tr><td>Item 1</td><td><input type="radio" name="freq_doppia_1" value="5"></td><td><input type="radio" name="freq_doppia_1" value="4"></td><td><input type="radio" name="freq_doppia_1" value="3"></td><td><input type="radio" name="freq_doppia_1" value="2"></td><td><input type="radio" name="freq_doppia_1" value="1"></td></tr>
                 <tr><td>Item 2</td><td><input type="radio" name="freq_doppia_2" value="5"></td><td><input type="radio" name="freq_doppia_2" value="4"></td><td><input type="radio" name="freq_doppia_2" value="3"></td><td><input type="radio" name="freq_doppia_2" value="2"></td><td><input type="radio" name="freq_doppia_2" value="1"></td></tr>
@@ -153,7 +153,7 @@
           </article>
 
           <article class="card">
-            <div class="scale-title"><h3>Domanda test 5 (Differenziale semantico)</h3><small>Scala lineare 1-7</small></div>
+            <div class="scale-title"><h3>Test question 5 (Semantic differential)</h3><small>Linear scale 1-7</small></div>
             <div class="range-wrap">
               <div class="semantic-row"><strong>Unpleasant</strong><strong>Pleasant</strong></div>
               <input name="semantico_sgradevole_gradevole" type="range" min="1" max="7" value="4">
@@ -165,34 +165,34 @@
 
       <section class="step">
         <h2>Simple questions</h2>
-        <p>Anche le domande tradizionali possono essere rese pi&ugrave; leggibili con spazi, blocchi e gerarchie visive pi&ugrave; chiare.</p>
+        <p>Traditional questions can also be made more readable through clearer spacing, blocks and visual hierarchy.</p>
         <div class="grid-2">
-          <div class="card field"><label for="profilo">Quale profilo descrive meglio la sua posizione?</label><select id="profilo" name="profilo"><option value="">Seleziona una risposta</option><option>Student</option><option>Researcher</option><option>Docente</option><option>Professionista</option><option>Other</option></select></div>
-          <div class="card field"><label for="contesto">In quale contesto potrebbe essere usato il questionario?</label><select id="contesto" name="contesto"><option value="">Seleziona una risposta</option><option>Ricerca sociale</option><option>Valutazione di un servizio</option><option>User experience</option><option>Formazione</option><option>Other</option></select></div>
-          <div class="card full"><h3>Quali elementi sarebbero pi&ugrave; utili?</h3><div class="button-options" style="margin-top:12px"><label class="choice-card"><input type="checkbox" name="elementi_utili" value="dashboard"><span>Dashboard risultati</span></label><label class="choice-card"><input type="checkbox" name="elementi_utili" value="excel"><span>Output Excel</span></label><label class="choice-card"><input type="checkbox" name="elementi_utili" value="logiche"><span>Conditional questions</span></label><label class="choice-card"><input type="checkbox" name="elementi_utili" value="report"><span>Report automatico</span></label></div></div>
-          <div class="card full field"><label for="comment">Open comment</label><textarea id="comment" name="comment" placeholder="Scrivi qui un comment, una richiesta o un esempio di questionario da progettare..."></textarea></div>
+          <div class="card field"><label for="profilo">Which profile best describes your position?</label><select id="profilo" name="profilo"><option value="">Select an answer</option><option>Student</option><option>Researcher</option><option>Docente</option><option>Professionista</option><option>Other</option></select></div>
+          <div class="card field"><label for="contesto">In which context could this questionnaire be used?</label><select id="contesto" name="contesto"><option value="">Select an answer</option><option>Ricerca sociale</option><option>Valutazione di un servizio</option><option>User experience</option><option>Formazione</option><option>Other</option></select></div>
+          <div class="card full"><h3>Which elements would be most useful?</h3><div class="button-options" style="margin-top:12px"><label class="choice-card"><input type="checkbox" name="elementi_utili" value="dashboard"><span>Results dashboard</span></label><label class="choice-card"><input type="checkbox" name="elementi_utili" value="excel"><span>Output Excel</span></label><label class="choice-card"><input type="checkbox" name="elementi_utili" value="logiche"><span>Conditional questions</span></label><label class="choice-card"><input type="checkbox" name="elementi_utili" value="report"><span>Automatic report</span></label></div></div>
+          <div class="card full field"><label for="comment">Open comment</label><textarea id="comment" name="comment" placeholder="Write a comment, a request or an example of a questionnaire to design..."></textarea></div>
         </div>
       </section>
 
       <section class="step">
         <h2>Output preview</h2>
-        <p>In una versione reale, ogni risposta pu&ograve; essere salvata come riga su Google Sheets, esportata in Excel oppure scaricata in CSV UTF-8.</p>
+        <p>In a real version, each response can be saved as a row in Google Sheets, exported to Excel or downloaded as CSV UTF-8.</p>
         <div class="output-intro">
           <h3>From web page to Excel sheet</h3>
-          <p>Il questionario pu&ograve; mantenere un'interfaccia personalizzata e allo stesso tempo produrre dati ordinati, leggibili e pronti per l'analisi.</p>
+          <p>The questionnaire can keep a custom interface while producing structured, readable data ready for analysis.</p>
           <div class="success-box" id="successBox">Demo completed. With a Google Apps Script endpoint, this response would be saved in the data sheet.</div>
         </div>
         <div class="card output-preview">
           <h3>Excel preview</h3>
           <div class="excel-wrap">
             <table class="excel-table" aria-label="Anteprima tabella Excel">
-              <thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th></tr><tr><th class="row-head">1</th><th>timestamp</th><th>consenso</th><th>likert_item_1</th><th>cantril_item_1</th><th>frequency</th><th>semantico_1_7</th><th>comment</th></tr></thead>
-              <tbody><tr><td class="row-head">2</td><td id="cellTimestamp">2026-05-26 20:19</td><td id="cellConsenso">consent</td><td id="cellLikert">4</td><td id="cellCantril">6</td><td id="cellFreq">spesso</td><td id="cellSem">5</td><td id="cellCommento">Sample open response</td></tr></tbody>
+              <thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th></tr><tr><th class="row-head">1</th><th>timestamp</th><th>consent</th><th>likert_item_1</th><th>cantril_item_1</th><th>frequency</th><th>semantico_1_7</th><th>comment</th></tr></thead>
+              <tbody><tr><td class="row-head">2</td><td id="cellTimestamp">2026-05-26 20:19</td><td id="cellConsenso">consent</td><td id="cellLikert">4</td><td id="cellCantril">6</td><td id="cellFreq">often</td><td id="cellSem">5</td><td id="cellCommento">Sample open response</td></tr></tbody>
             </table>
           </div>
           <h3 style="margin-top:18px">CSV UTF-8 preview</h3>
-          <pre class="csv-box" id="csvBox">timestamp;consenso;likert_item_1;cantril_item_1;frequency;semantico_1_7;comment
-"2026-05-26 20:19";"consent";"4";"6";"spesso";"5";"Sample open response"</pre>
+          <pre class="csv-box" id="csvBox">timestamp;consent;likert_item_1;cantril_item_1;frequency;semantico_1_7;comment
+"2026-05-26 20:19";"consent";"4";"6";"often";"5";"Sample open response"</pre>
         </div>
       </section>
 
@@ -216,12 +216,12 @@
   document.getElementById("year").textContent = new Date().getFullYear();
   function showStep(index){steps.forEach((s,i)=>s.classList.toggle("active",i===index));pills.forEach((p,i)=>p.classList.toggle("active",i===index));progressFill.style.width=`${((index+1)/steps.length)*100}%`;prevBtn.disabled=index===0;nextBtn.textContent=index===steps.length-1?"Show output":"Continue";document.querySelector(".demo-shell").scrollIntoView({behavior:"smooth",block:"start"});}
   function validateStep(){return Array.from(steps[currentStep].querySelectorAll("input,select,textarea")).every(f=>f.reportValidity());}
-  function consentAllowsProgress(){const selected=form.querySelector('input[name="consenso"]:checked');const blocked=selected&&selected.value==="non_consent";if(stopMessage)stopMessage.style.display=blocked?"block":"none";return !blocked;}
+  function consentAllowsProgress(){const selected=form.querySelector('input[name="consent"]:checked');const blocked=selected&&selected.value==="non_consent";if(stopMessage)stopMessage.style.display=blocked?"block":"none";return !blocked;}
   function collectPayload(){const data=new FormData(form);const payload={timestamp:new Date().toISOString(),pagina:window.location.href};data.forEach((value,key)=>{payload[key]=payload[key]?(Array.isArray(payload[key])?[...payload[key],value]:[payload[key],value]):value});return payload;}
   function csvEscape(value){return `"${String(value ?? "").replaceAll('"','""')}"`;}
-  function updateOutputPreview(payload){const ts=new Date(payload.timestamp).toLocaleString("en-GB");const row={timestamp:ts,consenso:payload.consenso||"consent",likert:payload.likert_1||"4",cantril:payload.cantril_1||"6",frequency:payload.frequency||"spesso",semantico:payload.semantico_sgradevole_gradevole||"5",comment:payload.comment||"Sample open response"};document.getElementById("cellTimestamp").textContent=row.timestamp;document.getElementById("cellConsenso").textContent=row.consenso;document.getElementById("cellLikert").textContent=row.likert;document.getElementById("cellCantril").textContent=row.cantril;document.getElementById("cellFreq").textContent=row.frequency;document.getElementById("cellSem").textContent=row.semantico;document.getElementById("cellCommento").textContent=row.comment;csvBox.textContent=`timestamp;consenso;likert_item_1;cantril_item_1;frequency;semantico_1_7;comment\n${[row.timestamp,row.consenso,row.likert,row.cantril,row.frequency,row.semantico,row.comment].map(csvEscape).join(";")}`;}
+  function updateOutputPreview(payload){const ts=new Date(payload.timestamp).toLocaleString("en-GB");const row={timestamp:ts,consent:payload.consent||"consent",likert:payload.likert_1||"4",cantril:payload.cantril_1||"6",frequency:payload.frequency||"often",semantico:payload.semantico_sgradevole_gradevole||"5",comment:payload.comment||"Sample open response"};document.getElementById("cellTimestamp").textContent=row.timestamp;document.getElementById("cellConsenso").textContent=row.consent;document.getElementById("cellLikert").textContent=row.likert;document.getElementById("cellCantril").textContent=row.cantril;document.getElementById("cellFreq").textContent=row.frequency;document.getElementById("cellSem").textContent=row.semantico;document.getElementById("cellCommento").textContent=row.comment;csvBox.textContent=`timestamp;consent;likert_item_1;cantril_item_1;frequency;semantico_1_7;comment\n${[row.timestamp,row.consent,row.likert,row.cantril,row.frequency,row.semantico,row.comment].map(csvEscape).join(";")}`;}
   async function submitDemo(){const payload=collectPayload();updateOutputPreview(payload);successBox.style.display="block";if(!SHEETS_ENDPOINT)return;await fetch(SHEETS_ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});}
-  form.querySelectorAll('input[name="consenso"]').forEach(r=>r.addEventListener("change",consentAllowsProgress));
+  form.querySelectorAll('input[name="consent"]').forEach(r=>r.addEventListener("change",consentAllowsProgress));
   prevBtn.addEventListener("click",()=>{currentStep=Math.max(0,currentStep-1);showStep(currentStep);});
   nextBtn.addEventListener("click",async()=>{if(!validateStep())return;if(currentStep===1&&!consentAllowsProgress())return;if(currentStep<steps.length-1){currentStep+=1;showStep(currentStep);return;}nextBtn.disabled=true;nextBtn.textContent="Preparing output...";try{await submitDemo();nextBtn.textContent="Output created";}catch(e){nextBtn.disabled=false;nextBtn.textContent="Retry";successBox.style.display="block";successBox.textContent="Non e' stato possibile inviare la demo. Controlla l'endpoint Google Sheets.";}}); 
   document.querySelectorAll(".nav").forEach(nav=>{const toggle=nav.querySelector(".nav-toggle");if(!toggle)return;toggle.addEventListener("click",()=>{const isOpen=nav.classList.toggle("nav-open");toggle.setAttribute("aria-expanded",String(isOpen));});nav.querySelectorAll("nav a").forEach(link=>link.addEventListener("click",()=>{nav.classList.remove("nav-open");toggle.setAttribute("aria-expanded","false");}));});
