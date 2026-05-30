@@ -682,6 +682,262 @@ main > .methods-guards-box {
         padding: 12px 10px;
       }
     }
+  
+    /* Mission content refresh */
+    main {
+      width: min(1120px, 92%);
+      margin: auto;
+      padding: 90px 0 110px;
+    }
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      font-size: 0.82rem;
+      margin-bottom: 14px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 13px 22px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: 0.2s ease;
+      border: 1px solid transparent;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-outline { background: white; color: var(--ink); border-color: var(--line); }
+    .btn-ghost { background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2); }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--line);
+      margin: 72px 0;
+    }
+    .hero { text-align: center; margin-bottom: 72px; }
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      margin-bottom: 22px;
+    }
+    .hero-lead {
+      max-width: 740px;
+      margin: 0 auto 30px;
+      color: var(--accent);
+      font-size: 1.22rem;
+      line-height: 1.7;
+      font-weight: 500;
+    }
+    .hero-divider {
+      width: 80px;
+      height: 4px;
+      border-radius: 999px;
+      background: var(--accent);
+      margin: 0 auto;
+      opacity: 0.18;
+    }
+    .narrative {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 52px;
+      align-items: start;
+    }
+    .narrative-body h2 {
+      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+      line-height: 1.05;
+      letter-spacing: -0.055em;
+      margin-bottom: 24px;
+    }
+    .narrative-body p {
+      color: #3d4f5f;
+      font-size: 1.02rem;
+      line-height: 1.75;
+      margin-bottom: 18px;
+    }
+    .narrative-body p:last-child { margin-bottom: 0; }
+    .narrative-body em {
+      font-style: normal;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .narrative-aside {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .quote-card {
+      background: linear-gradient(145deg, var(--paper) 0%, #edf4fa 100%);
+      border: 1px solid rgba(53,92,125,0.18);
+      border-radius: 22px;
+      padding: 28px;
+    }
+    .quote-card blockquote {
+      border-left: 3px solid var(--accent);
+      padding-left: 18px;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: var(--accent);
+      font-style: italic;
+    }
+    .quote-card blockquote cite {
+      display: block;
+      margin-top: 10px;
+      font-style: normal;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--accent-2);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .insight-card {
+      background: #f4f8fb;
+      border: 1px solid rgba(53,92,125,0.14);
+      border-radius: 22px;
+      padding: 24px;
+    }
+    .insight-card p {
+      font-size: 0.92rem;
+      color: #374151;
+      line-height: 1.65;
+    }
+    .insight-card strong { color: var(--ink); }
+    .card-kicker {
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .insight-card h3 {
+      font-size: 1.05rem;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+      color: var(--ink);
+    }
+    .highlight-card {
+      background: #fff7ed;
+      border-color: rgba(176,137,104,0.22);
+    }
+    .homo {
+      background: linear-gradient(155deg, var(--paper) 0%, #edf4fa 100%);
+      border: 1px solid rgba(53,92,125,0.2);
+      border-radius: 30px;
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 48px;
+      align-items: center;
+      margin-top: 72px;
+    }
+    .homo .eyebrow { color: var(--accent-2); }
+    .homo h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1;
+      letter-spacing: -0.055em;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+    .homo p {
+      color: #435263;
+      margin-bottom: 14px;
+      font-size: 0.97rem;
+      line-height: 1.7;
+    }
+    .homo p:last-of-type { margin-bottom: 26px; }
+    .homo-visual { display: flex; align-items: center; justify-content: center; }
+    .homo-ring { position: relative; width: 200px; height: 200px; }
+    .homo-ring-outer {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 1px dashed rgba(53,92,125,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: spin 22s linear infinite;
+    }
+    .homo-ring-inner {
+      width: 128px;
+      height: 128px;
+      border-radius: 50%;
+      background: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      animation: spin 22s linear infinite reverse;
+    }
+    .homo-ring-inner span {
+      font-size: 0.78rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.4;
+      padding: 0 12px;
+    }
+    .homo-ring-dot {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent-2);
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .cta-box {
+      background: var(--ink);
+      color: white;
+      border-radius: 30px;
+      padding: 46px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: center;
+      margin-top: 72px;
+    }
+    .cta-box .eyebrow { color: var(--accent-2); }
+    .cta-box h2 {
+      font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+      line-height: 1.05;
+      letter-spacing: -0.05em;
+      margin-bottom: 14px;
+    }
+    .cta-box p {
+      color: rgba(255,255,255,0.72);
+      max-width: 620px;
+    }
+    @media (max-width: 900px) {
+      .narrative,
+      .homo,
+      .cta-box {
+        grid-template-columns: 1fr;
+      }
+      .homo-visual {
+        display: none;
+      }
+    }
+    @media (max-width: 560px) {
+      main {
+        padding: 64px 0 88px;
+      }
+      .hero h1 {
+        font-size: clamp(2.2rem, 12vw, 3.2rem);
+      }
+      .homo,
+      .cta-box {
+        padding: 30px;
+      }
+      .narrative-aside {
+        flex-direction: column;
+      }
+    }
+    /* End mission content refresh */
   </style>
   <link rel="stylesheet" href="mobile-fixes.css" />
 </head>
@@ -714,65 +970,121 @@ main > .methods-guards-box {
   </header>
 
 <main>
-  <section class="page-hero">
+
+  <!-- ① HERO -->
+  <section class="hero">
     <p class="eyebrow">Missione e ricerca</p>
-    <h1>Chiamatemi pure metodologo di frontiera.</h1>
-    <p>
-      Esploro il confine tra ci&ograve; che la ricerca sociale sa gi&agrave; fare e ci&ograve; che non ha ancora provato, o non ha provato abbastanza. Testare nuovi strumenti, nuove combinazioni di tecniche e nuovi approcci non &egrave; un interesse secondario: &egrave; parte della ricerca stessa.
-    </p>
+    <h1>Let them call me<br>a frontier methodologist.</h1>
+    <p class="hero-lead">Esploro il confine tra ciò che la ricerca sociale conosce già e ciò che non ha ancora provato. Testare nuovi strumenti e nuove strategie non è un interesse secondario: è parte della ricerca stessa.</p>
+    <div class="hero-divider"></div>
   </section>
 
-  <section class="mission-box mission-split" aria-label="Interessi e missione">
-    <div class="mission-panel">
-      <div class="mission-kicker">Interessi principali</div>
-      <ul class="interest-list">
-        <li>
-          <img src="images/interest-methodology.svg" alt="" aria-hidden="true">
-          <span>
-            <strong>Innovazione metodologica</strong>
-            Gli strumenti non arrivano gi&agrave; pronti per le domande che vogliamo davvero porre. Lavoro su nuovi strumenti, combinazioni di tecniche e disegni di ricerca ibridi, con attenzione costante a ci&ograve; che viene misurato, ci&ograve; che si perde e ci&ograve; che i dati possono o non possono sostenere.
-          </span>
-        </li>
-        <li>
-          <img src="images/interest-researchers.svg" alt="" aria-hidden="true">
-          <span>
-            <strong>Qualit&agrave; della vita dei ricercatori</strong>
-            Le persone che producono conoscenza non sono variabili di sfondo. Condizioni di lavoro, traiettorie di carriera, precariet&agrave; e benessere organizzativo influenzano quale ricerca viene prodotta e in che modo. &Egrave; un interesse scientifico e, in parte, anche personale.
-          </span>
-        </li>
-        <li>
-          <img src="images/interest-digital.svg" alt="" aria-hidden="true">
-          <span>
-            <strong>Usi e impatti delle tecnologie digitali</strong>
-            La frontiera attuale passa in larga parte dagli ambienti digitali. IA, piattaforme e sistemi informativi non offrono soltanto nuovi strumenti: ridefiniscono quali domande possiamo porre, a quale costo e chi pu&ograve; formularle.
-          </span>
-        </li>
-      </ul>
+  <!-- ② STORIA -->
+  <section class="narrative" aria-labelledby="storia-h2">
+    <div class="narrative-body">
+      <p class="eyebrow">Come ci sono arrivato</p>
+      <h2 id="storia-h2">La metodologia della ricerca sociale non si può conoscere prima di incontrarla.</h2>
+
+      <p>Quando mi chiedono come mai sono diventato metodologo, rispondo sempre che è stato un puro caso. Mi ero iscritto a scienze della comunicazione con l'idea di diventare direttore artistico radiofonico. Poi ho seguito le lezioni di <em>M.C. Pitrone</em> di metodologia della ricerca sociale, e tutto è cambiato.</p>
+
+      <p>All'università si arriva già con altri obiettivi: diventare giornalista, psicologo, educatore. La metodologia della ricerca sociale è una materia insolita, percepita come ostica e distante dal proprio percorso. Chi la incontra tende a volerla solo superare. Io sono stato invece travolto e affascinato dalle lezioni di M.C. Pitrone, e da quel momento non ho fatto che chiedermi quanto sarebbe stato utile incontrarla prima.</p>
+
+      <p>Il problema è strutturale: fin da piccoli sappiamo cosa sono i giornalisti, i professori, gli avvocati. Li vediamo in televisione, li incontriamo nella vita. Ma <em>il metodologo?</em> Non compare nei racconti, non ha un volto riconoscibile. Lo si scopre solo se lo si incontra per la propria strada — e spesso ciò non accade.</p>
     </div>
 
-    <div class="mission-panel">
-      <div class="mission-kicker">Mission</div>
-      <h2>La metodologia come spazio critico</h2>
-      <p>Sono arrivato alla metodologia per caso. Mi ero iscritto a scienze della comunicazione con l&rsquo;idea di diventare direttore artistico radiofonico. Poi ho seguito un corso di metodologia, e tutto &egrave; cambiato.</p>
-      <p>Di solito funziona cos&igrave;: non puoi scoprire la metodologia prima di incontrarla. Non si studia alle superiori. Quando la incontri all&rsquo;universit&agrave;, hai gi&agrave; altri progetti. Molti vogliono solo superare l&rsquo;esame e andare avanti: la materia &egrave; insolita, esigente, diversa da tutto il resto del percorso. Solo pochi ne restano davvero catturati. Io sono stato uno di quelli.</p>
-      <p>Ci&ograve; che mi ha catturato &egrave; questo: la metodologia non &egrave; un insieme di procedure da applicare. &Egrave; lo spazio in cui si decide che cosa pu&ograve; essere osservato, come pu&ograve; essere classificato e che cosa conter&agrave; come evidenza. Ogni scelta metodologica ha conseguenze teoriche, empiriche ed etiche, conseguenze che raramente entrano nei risultati pubblicati, ma li plasmano interamente.</p>
-      <p>La frontiera su cui lavoro oggi passa in larga parte dagli ambienti digitali. Nuovi strumenti e sistemi di IA cambiano non solo il modo in cui raccogliamo dati, ma anche quali domande diventano formulabili e che cosa resta fuori portata. Per questo mi sono orientato verso lo studio di come le tecnologie trasformano la pratica empirica: non come una forza esterna che agisce sulla ricerca, ma come qualcosa che ne &egrave; intrecciato dall&rsquo;interno.</p>
-      <p>Ed &egrave; anche per questo che la qualit&agrave; della vita dei ricercatori mi interessa. Le persone che fanno ricerca non sono intercambiabili. Pressioni istituzionali, contratti precari e condizioni quotidiane influenzano che cosa viene studiato e come. In Italia, in particolare, il divario tra le condizioni di lavoro dei ricercatori e quelle di altri Paesi &egrave; ben documentato, e ancora troppo poco esaminato come variabile metodologica in s&eacute;.</p>
-      <p>Niente di tutto questo &egrave; incidentale. Le tre cose che studio, innovazione metodologica, tecnologie digitali e vita dei ricercatori, sono collegate dalla stessa domanda: quali sono le condizioni reali in cui produciamo conoscenza, e quanto ci costano?</p>
-      <p>Costruire comunit&agrave; scientifiche in cui queste domande possano essere poste con onest&agrave;, non solo attraverso competizione e specializzazione, ma tramite scambio reale, &egrave; per me la conseguenza pratica del prendere sul serio la metodologia.</p>
-    </div>
+    <aside class="narrative-aside">
+      <div class="quote-card">
+        <blockquote>
+          "La metodologia della ricerca sociale non si può conoscere prima di incontrarla: è confinata nel suo ambito di utilizzo e rimane invisibile a chi non la pratica. Un vero peccato."
+          <cite>— Alfredo Matrella</cite>
+        </blockquote>
+      </div>
+    </aside>
   </section>
 
-  <section class="mission-cta">
-    <p class="eyebrow">Prossimo passo</p>
-    <h2>Dalle domande di ricerca a evidenze utilizzabili.</h2>
-    <p>Collaboro su disegno della ricerca, revisione metodologica, valutazione e analisi dei dati.</p>
-    <div class="cta-row">
-      <a class="btn primary" href="servizi.html">Vai ai servizi</a>
-      <a class="btn" href="methods-guards.html">Esplora Methods Guards AI</a>
-      <a class="btn" href="pubblicazioni.html">Leggi le pubblicazioni</a>
+  <hr class="section-divider">
+
+  <!-- ③ IL METODOLOGO DI FRONTIERA -->
+  <section class="narrative" aria-labelledby="frontiera-h2">
+    <div class="narrative-body">
+      <p class="eyebrow">Una figura da costruire</p>
+      <h2 id="frontiera-h2">Il metodologo di frontiera.</h2>
+
+      <p>Una delle ragioni per cui la metodologia resta invisibile è che la figura stessa del metodologo non è chiara — né all'esterno, né spesso all'interno del mondo accademico. Si tende a pensare alla metodologia come un semplice supporto tecnico per fare ricerca. In realtà, è una dimensione fondamentale della produzione scientifica, che necessita di uno spazio di sviluppo autonomo, critico e continuo.</p>
+
+      <p>Il <em>metodologo di frontiera</em> è chi si interessa allo studio e alla sperimentazione di nuove strategie e nuovi strumenti di ricerca nel tentativo di comprenderne potenzialità e limiti.</p>
+
+      <p>Questa prospettiva implica che ogni scelta porta con sé una visione del mondo: definisce chi o cosa può essere studiato, in quali termini, con quali risorse. Lavorare sulla frontiera significa rendere esplicite queste scelte, assumersi la responsabilità di averle fatte e avere la capacità di restituirle in modo trasparente alla comunità scientifica.</p>
+
+      <p>Oggi quella frontiera passa sempre più attraverso gli ambienti digitali. Le piattaforme, gli algoritmi, le tracce digitali e l'intelligenza artificiale non stanno solo cambiando gli strumenti della ricerca: stanno modificando il modo stesso in cui osserviamo, interpretiamo e costruiamo la realtà sociale.</p>
     </div>
+
+    <aside class="narrative-aside">
+      <div class="insight-card">
+        <div style="color:var(--accent);font-size:0.72rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">Definizione</div>
+        <h3 style="font-size:1.05rem;letter-spacing:-0.03em;margin-bottom:10px;color:var(--ink);">Metodologo di frontiera</h3>
+        <p style="font-size:0.92rem;color:#374151;line-height:1.65;">Chi si interessa allo studio e alla sperimentazione di nuove strategie e nuovi strumenti di ricerca nel tentativo di comprenderne potenzialità e limiti — e di restituirne l'esperienza in modo trasparente alla comunità scientifica.</p>
+      </div>
+    </aside>
   </section>
+
+  <hr class="section-divider">
+
+  <!-- ④ LA MISSION -->
+  <section class="narrative" aria-labelledby="mission-h2">
+    <div class="narrative-body">
+      <p class="eyebrow">La missione</p>
+      <h2 id="mission-h2">Far conoscere la metodologia dove ancora non è arrivata.</h2>
+
+      <p>Uno dei miei obiettivi è contribuire a far conoscere la metodologia anche oltre i confini della ricerca accademica. Le conoscenze metodologiche, infatti, possono rivelarsi estremamente feconde in molti contesti della vita sociale: dall'organizzazione del lavoro ai processi formativi, fino alle pratiche e alle decisioni della quotidianità.</p>
+    </div>
+
+    <aside class="narrative-aside">
+      <div class="insight-card">
+        <p>La metodologia è utile <strong>nella ricerca sociale</strong>, <strong>nelle organizzazioni</strong>, <strong>nella quotidianità</strong> e <strong>nella formazione</strong>. Non come tecnica da applicare — ma come modo di affrontare la complessità.</p>
+      </div>
+    </aside>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ⑤ HOMO METHODOLOGICUS -->
+  <div class="homo" aria-labelledby="homo-h2">
+    <div>
+      <p class="eyebrow">Iniziativa</p>
+      <h2 id="homo-h2">Homo Methodologicus</h2>
+      <p>Per dare forma concreta a queste idee, ho avviato il progetto <strong>Homo Methodologicus</strong>: ovvero l'intento di costruire uno spazio autonomo dedicato alla metodologia della ricerca sociale, alle sue trasformazioni e alle sue possibilità ancora inesplorate.</p>
+      <p>In un periodo storico segnato da rapide innovazioni digitali, sarebbe davvero utile avere uno spazio in cui la priorità sia fare ricerca <em>sulle</em> innovazioni metodologiche. Un luogo dove sperimentare, confrontarsi e tenere viva la curiosità per gli strumenti e le strategie con cui costruiamo conoscenza.</p>
+      <div class="btn-row">
+        <a class="btn btn-outline" href="#" style="pointer-events:none;opacity:0.55;cursor:default;">Work in progress</a>
+      </div>
+    </div>
+    <div class="homo-visual" aria-hidden="true">
+      <div class="homo-ring">
+        <div class="homo-ring-outer">
+          <div class="homo-ring-inner">
+            <span>Research &amp; Method</span>
+          </div>
+        </div>
+        <div class="homo-ring-dot"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑥ CTA -->
+  <div class="cta-box" aria-label="Prossimo passo">
+    <div>
+      <p class="eyebrow">Prossimo passo</p>
+      <h2>Dalle domande di ricerca a evidenze utilizzabili.</h2>
+      <p>Collaboro su disegno della ricerca, revisione metodologica, valutazione e analisi dei dati.</p>
+    </div>
+    <div class="cta-buttons">
+      <a class="btn btn-outline" href="servizi.html">Vai ai servizi</a>
+      <a class="btn btn-ghost"   href="methods-guards.html">Methods Guards AI</a>
+      <a class="btn btn-ghost"   href="pubblicazioni.html">Pubblicazioni</a>
+    </div>
+  </div>
+
 </main>
 
 <footer>

@@ -465,6 +465,262 @@
         padding: 12px 10px;
       }
     }
+  
+    /* Mission content refresh */
+    main {
+      width: min(1120px, 92%);
+      margin: auto;
+      padding: 90px 0 110px;
+    }
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      font-size: 0.82rem;
+      margin-bottom: 14px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 13px 22px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: 0.2s ease;
+      border: 1px solid transparent;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-outline { background: white; color: var(--ink); border-color: var(--line); }
+    .btn-ghost { background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2); }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--line);
+      margin: 72px 0;
+    }
+    .hero { text-align: center; margin-bottom: 72px; }
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      margin-bottom: 22px;
+    }
+    .hero-lead {
+      max-width: 740px;
+      margin: 0 auto 30px;
+      color: var(--accent);
+      font-size: 1.22rem;
+      line-height: 1.7;
+      font-weight: 500;
+    }
+    .hero-divider {
+      width: 80px;
+      height: 4px;
+      border-radius: 999px;
+      background: var(--accent);
+      margin: 0 auto;
+      opacity: 0.18;
+    }
+    .narrative {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 52px;
+      align-items: start;
+    }
+    .narrative-body h2 {
+      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+      line-height: 1.05;
+      letter-spacing: -0.055em;
+      margin-bottom: 24px;
+    }
+    .narrative-body p {
+      color: #3d4f5f;
+      font-size: 1.02rem;
+      line-height: 1.75;
+      margin-bottom: 18px;
+    }
+    .narrative-body p:last-child { margin-bottom: 0; }
+    .narrative-body em {
+      font-style: normal;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .narrative-aside {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .quote-card {
+      background: linear-gradient(145deg, var(--paper) 0%, #edf4fa 100%);
+      border: 1px solid rgba(53,92,125,0.18);
+      border-radius: 22px;
+      padding: 28px;
+    }
+    .quote-card blockquote {
+      border-left: 3px solid var(--accent);
+      padding-left: 18px;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: var(--accent);
+      font-style: italic;
+    }
+    .quote-card blockquote cite {
+      display: block;
+      margin-top: 10px;
+      font-style: normal;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--accent-2);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .insight-card {
+      background: #f4f8fb;
+      border: 1px solid rgba(53,92,125,0.14);
+      border-radius: 22px;
+      padding: 24px;
+    }
+    .insight-card p {
+      font-size: 0.92rem;
+      color: #374151;
+      line-height: 1.65;
+    }
+    .insight-card strong { color: var(--ink); }
+    .card-kicker {
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .insight-card h3 {
+      font-size: 1.05rem;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+      color: var(--ink);
+    }
+    .highlight-card {
+      background: #fff7ed;
+      border-color: rgba(176,137,104,0.22);
+    }
+    .homo {
+      background: linear-gradient(155deg, var(--paper) 0%, #edf4fa 100%);
+      border: 1px solid rgba(53,92,125,0.2);
+      border-radius: 30px;
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 48px;
+      align-items: center;
+      margin-top: 72px;
+    }
+    .homo .eyebrow { color: var(--accent-2); }
+    .homo h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1;
+      letter-spacing: -0.055em;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+    .homo p {
+      color: #435263;
+      margin-bottom: 14px;
+      font-size: 0.97rem;
+      line-height: 1.7;
+    }
+    .homo p:last-of-type { margin-bottom: 26px; }
+    .homo-visual { display: flex; align-items: center; justify-content: center; }
+    .homo-ring { position: relative; width: 200px; height: 200px; }
+    .homo-ring-outer {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 1px dashed rgba(53,92,125,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: spin 22s linear infinite;
+    }
+    .homo-ring-inner {
+      width: 128px;
+      height: 128px;
+      border-radius: 50%;
+      background: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      animation: spin 22s linear infinite reverse;
+    }
+    .homo-ring-inner span {
+      font-size: 0.78rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.4;
+      padding: 0 12px;
+    }
+    .homo-ring-dot {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent-2);
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .cta-box {
+      background: var(--ink);
+      color: white;
+      border-radius: 30px;
+      padding: 46px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: center;
+      margin-top: 72px;
+    }
+    .cta-box .eyebrow { color: var(--accent-2); }
+    .cta-box h2 {
+      font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+      line-height: 1.05;
+      letter-spacing: -0.05em;
+      margin-bottom: 14px;
+    }
+    .cta-box p {
+      color: rgba(255,255,255,0.72);
+      max-width: 620px;
+    }
+    @media (max-width: 900px) {
+      .narrative,
+      .homo,
+      .cta-box {
+        grid-template-columns: 1fr;
+      }
+      .homo-visual {
+        display: none;
+      }
+    }
+    @media (max-width: 560px) {
+      main {
+        padding: 64px 0 88px;
+      }
+      .hero h1 {
+        font-size: clamp(2.2rem, 12vw, 3.2rem);
+      }
+      .homo,
+      .cta-box {
+        padding: 30px;
+      }
+      .narrative-aside {
+        flex-direction: column;
+      }
+    }
+    /* End mission content refresh */
   </style>
   <link rel="stylesheet" href="../mobile-fixes.css" />
 </head>
@@ -497,63 +753,94 @@
   </header>
 
     <main>
-  <section class="page-hero">
-    <p class="eyebrow">Mission and Research</p>
-    <h1>Let Them Call Me Frontier Methodologist.</h1>
-    <p>
-      Exploring the boundary between what social research already knows how to do and what it has not tried yet, or has not tried enough. Testing new tools, new combinations of old ones and new approaches is not a secondary interest: it is the research itself.
-    </p>
+  <section class="hero">
+    <p class="eyebrow">Mission and research</p>
+    <h1>Let them call me<br>a frontier methodologist.</h1>
+    <p class="hero-lead">I explore the boundary between what social research already knows how to do and what it has not yet tried. Testing new tools and new strategies is not a secondary interest: it is part of the research itself.</p>
+    <div class="hero-divider"></div>
   </section>
 
-  <section class="mission-box mission-split" aria-label="Main interests and mission">
-    <div class="mission-panel">
-      <div class="mission-kicker">Main interests</div>
-      <ul class="interest-list">
-        <li>
-          <img src="../images/interest-methodology.svg" alt="" aria-hidden="true">
-          <span>
-            <strong>Methodological innovation</strong>
-            Tools do not come ready-made for the questions we actually want to ask. I work on new instruments, combinations of techniques and hybrid research designs, with a constant eye on what gets measured, what gets lost, and what the data can and cannot bear.
-          </span>
-        </li>
-        <li>
-          <img src="../images/interest-researchers.svg" alt="" aria-hidden="true">
-          <span>
-            <strong>Quality of life of researchers</strong>
-            The people who produce knowledge are not background variables. Working conditions, career trajectories, precarity and organizational well-being shape what research gets done, and how. This is partly a scientific interest, partly a personal one.
-          </span>
-        </li>
-        <li>
-          <img src="../images/interest-digital.svg" alt="" aria-hidden="true">
-          <span>
-            <strong>Uses and impacts of digital technologies</strong>
-            Today&rsquo;s frontier runs largely through digital environments. AI, platforms and information systems do not just offer new tools: they reshape what questions we can ask, at what cost, and who gets to ask them.
-          </span>
-        </li>
-      </ul>
+  <section class="narrative" aria-labelledby="story-h2">
+    <div class="narrative-body">
+      <p class="eyebrow">How I got here</p>
+      <h2 id="story-h2">You cannot really know social research methodology before you encounter it.</h2>
+      <p>When people ask me how I became a methodologist, I usually answer that it happened almost by chance. I enrolled in communication sciences with the idea of becoming a radio artistic director. Then I attended M.C. Pitrone's course in social research methodology, and everything changed.</p>
+      <p>At university, people often arrive with other goals already in mind: becoming a journalist, psychologist, educator. Social research methodology is an unusual subject, often perceived as demanding and distant from one's path. Most students just want to pass the exam and move on. I was instead struck and fascinated by M.C. Pitrone's lectures, and from that moment I kept asking myself how useful it would have been to encounter methodology earlier.</p>
+      <p>The problem is structural: from childhood we know what journalists, teachers and lawyers are. We see them on television and meet them in everyday life. But <em>the methodologist?</em> The figure has no recognizable face. You discover it only if it crosses your path, and often it does not.</p>
     </div>
-
-    <div class="mission-panel">
-      <div class="mission-kicker">Mission</div>
-      <h2>Methodology as a critical space</h2>
-      <p>I came to methodology by accident. I enrolled in communication sciences wanting to become a radio artistic director. Then I took a methodology course, and everything changed.</p>
-      <p>That is how it usually goes: you cannot discover methodology before you encounter it. It is not taught in secondary school. By the time you meet it at university, you already have other plans. Most people just want to pass the exam and move on: the subject is unusual, demanding, unlike anything else in the curriculum. Only a few get genuinely hooked. I was one of them.</p>
-      <p>What hooked me was this: methodology is not a set of procedures to apply. It is the space where you decide what can be observed, how it can be classified, and what will count as evidence. Every methodological choice has theoretical, empirical and ethical consequences, consequences that rarely make it into published results, but shape them entirely.</p>
-      <p>The frontier I work on today runs largely through digital environments. New tools and AI systems change not only how we collect data, but what questions become askable and what remains out of reach. That is why I have moved toward studying how technologies transform empirical practice, not as an external force acting on research, but as something entangled with it from the inside.</p>
-      <p>And it is also why the quality of researchers&rsquo; lives matters to me. The people doing this work are not interchangeable. Their institutional pressures, precarious contracts and daily conditions shape what gets studied and how. In Italy especially, the gap between researchers&rsquo; working conditions and those in other countries is well-documented, and underexamined as a methodological variable in its own right.</p>
-      <p>None of this is incidental. The three things I study, methodological innovation, digital technologies and researchers&rsquo; lives, are connected by the same question: what are the actual conditions under which we produce knowledge, and what do they cost us?</p>
-      <p>Building scientific communities where these questions can be asked honestly, not just through competition and specialization, but through genuine exchange, is, for me, the practical conclusion of taking methodology seriously.</p>
-    </div>
+    <aside class="narrative-aside">
+      <div class="quote-card">
+        <blockquote>
+          "You cannot really know social research methodology before you encounter it: it remains confined to its own field of use and invisible to those who do not practice it. A real pity."
+          <cite>- Alfredo Matrella</cite>
+        </blockquote>
+      </div>
+    </aside>
   </section>
 
-  <section class="mission-cta">
-    <p class="eyebrow">Next step</p>
-    <h2>From research questions to usable evidence.</h2>
-    <p>I collaborate on research design, methodological review, evaluation and data analysis.</p>
-    <div class="cta-row">
-      <a class="btn primary" href="services.html">View services</a>
-      <a class="btn" href="methods-guards.html">Explore Methods Guards AI</a>
-      <a class="btn" href="publications.html">Read publications</a>
+  <hr class="section-divider">
+
+  <section class="narrative" aria-labelledby="frontier-h2">
+    <div class="narrative-body">
+      <p class="eyebrow">A figure to build</p>
+      <h2 id="frontier-h2">The frontier methodologist.</h2>
+      <p>One reason methodology remains invisible is that the figure of the methodologist itself is not clear, neither outside nor often inside academia. Methodology is still too often understood as a technical support for doing research. In reality, it is a fundamental dimension of scientific production, requiring its own autonomous, critical and continuous space of development.</p>
+      <p>The <em>frontier methodologist</em> is someone who studies and experiments with new research strategies and tools in order to understand their potential and limits.</p>
+      <p>This perspective implies that every choice carries a view of the world: it defines who or what can be studied, in what terms, and with what resources. Working at the frontier means making these choices explicit, taking responsibility for them and returning them transparently to the scientific community.</p>
+      <p>Today that frontier increasingly runs through digital environments. Platforms, algorithms, digital traces and artificial intelligence are not only changing research tools: they are changing how we observe, interpret and construct social reality.</p>
+    </div>
+    <aside class="narrative-aside">
+      <div class="insight-card">
+        <div class="card-kicker">Definition</div>
+        <h3>The frontier methodologist</h3>
+        <p>Someone who studies and experiments with new research strategies and tools in order to understand their possibilities and limits, and to return that experience transparently to the scientific community.</p>
+      </div>
+    </aside>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="narrative" aria-labelledby="mission-h2">
+    <div class="narrative-body">
+      <p class="eyebrow">The mission</p>
+      <h2 id="mission-h2">Making methodology visible where it has not yet arrived.</h2>
+      <p>One of my goals is to help make methodology known beyond the boundaries of academic research. Methodological knowledge can be extremely fruitful in many areas of social life: from work organization to training processes, and from everyday practices to decision-making.</p>
+    </div>
+    <aside class="narrative-aside">
+      <div class="insight-card highlight-card">
+        <p>Methodology is useful <strong>in social research</strong>, <strong>in organizations</strong>, <strong>in everyday life</strong> and <strong>in training</strong>. Not as a technique to be applied, but as a way of dealing with complexity.</p>
+      </div>
+    </aside>
+  </section>
+
+  <hr class="section-divider">
+
+  <div class="homo" aria-labelledby="homo-h2">
+    <div>
+      <p class="eyebrow">Initiative</p>
+      <h2 id="homo-h2">Homo Methodologicus</h2>
+      <p>To give concrete form to these ideas, I started the <strong>Homo Methodologicus</strong> project: the attempt to build an autonomous space dedicated to social research methodology, its transformations and its still unexplored possibilities.</p>
+      <p>In a historical moment marked by rapid digital innovation, it would be useful to have a space where the priority is to do research on methodological innovation itself. A place for experimenting, comparing experiences and keeping curiosity alive about the tools and strategies through which we build knowledge.</p>
+      <span class="btn btn-outline" aria-disabled="true">Work in progress</span>
+    </div>
+    <div class="homo-visual" aria-hidden="true">
+      <div class="homo-ring">
+        <div class="homo-ring-outer"><div class="homo-ring-inner"><span>Research &amp; Method</span></div></div>
+        <div class="homo-ring-dot"></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="cta-box" aria-labelledby="cta-h2">
+    <div>
+      <p class="eyebrow">Next step</p>
+      <h2 id="cta-h2">From research questions to usable evidence.</h2>
+      <p>I collaborate on research design, methodological review, evaluation and data analysis.</p>
+    </div>
+    <div class="btn-row">
+      <a class="btn btn-ghost" href="services.html">View services</a>
+      <a class="btn btn-ghost" href="methods-guards.html">Methods Guards AI</a>
+      <a class="btn btn-ghost" href="publications.html">Read publications</a>
     </div>
   </section>
 </main>
