@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <script defer src="../cookie-consent.js"></script>
@@ -1441,15 +1441,13 @@
       <label for="engine"><strong>Methods Guards engine</strong></label>
       <select id="engine">
         <option value="v1">MG AI v1 - stable</option>
-        <option value="v2">MG AI v2 - laboratory</option>
+        <option value="v2">MG AI v2.1 - laboratory</option>
       </select>
 
       <div class="engine-note">
         <strong>MG AI v1 - stable:</strong> for a fast, clear and compact methodological diagnosis.<br>
-        <strong>MG AI v2 - laboratory:</strong> for a more analytical methodological reading, with greater attention to contribution type, overall robustness and a cautious check of textual indicators compatible with possible AI assistance.
-      </div>
-
-      <p class="upload-title">Upload your PDF document</p>
+        <strong>MG AI v2.1 - laboratory:</strong> for a more analytical methodological reading, with greater attention to contribution type, overall robustness, AI Trace Check and a more accessible explanation of technical criticisms.
+      </p>
       <p class="upload-helper">
         PDF format &middot; maximum 13 MB &middot; the document is analyzed only to produce the requested methodological diagnosis.
       </p>
@@ -1709,7 +1707,7 @@
 
       <div>
         <div style="font-weight:700; font-size:0.95rem;">
-          23 May 2026
+          6 June 2026
         </div>
 
         <p style="
@@ -1718,7 +1716,7 @@
           color:var(--muted);
           line-height:1.45;
         ">
-          Introduced AI Trace Check in MG AI v2: a cautious, non-probative check of textual indicators compatible with possible AI assistance.
+          Added a plain-language reading of the Guardians' technical criticisms in MG AI v2.1, while preserving the specialist methodological diagnosis.
         </p>
       </div>
 
@@ -2491,6 +2489,8 @@ function getBadgeClass(level) {
 }
 
 function renderMethodsGuardsDashboard(data) {
+  const getPlainGuardianNote = (g) =>
+    g.lettura_semplice || g.plain_language_note || g.lettura_accessibile || "";
   const dashboard = document.getElementById("reportDashboard");
 
   if (!dashboard || !data) return;
@@ -2542,6 +2542,7 @@ function renderMethodsGuardsDashboard(data) {
 
         <div class="guardian-cell" data-label="Diagnosis">
           ${g.diagnosi || ""}
+          ${getPlainGuardianNote(g) ? `<div class="guardian-simple-note"><strong>Plain-language reading:</strong> ${getPlainGuardianNote(g)}</div>` : ""}
         </div>
 
       </div>

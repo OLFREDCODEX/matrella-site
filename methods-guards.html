@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
   <script defer src="cookie-consent.js"></script>
@@ -1440,15 +1440,13 @@
       <label for="engine"><strong>Motore Methods Guards</strong></label>
       <select id="engine">
         <option value="v1">MG AI v1 - stabile</option>
-        <option value="v2">MG AI v2 - laboratorio</option>
+        <option value="v2">MG AI v2.1 - laboratorio</option>
       </select>
 
       <div class="engine-note">
         <strong>MG AI v1 - stabile:</strong> per una diagnosi metodologica rapida, chiara e compatta.<br>
-        <strong>MG AI v2 - laboratorio:</strong> per una lettura metodologica pi&ugrave; analitica, con maggiore attenzione al tipo di contributo, alla solidit&agrave; complessiva e a un controllo prudente degli indicatori testuali compatibili con possibile assistenza AI.
-      </div>
-
-      <p class="upload-title">Carica il tuo documento PDF</p>
+        <strong>MG AI v2.1 - laboratorio:</strong> per una lettura metodologica pi&ugrave; analitica, con maggiore attenzione al tipo di contributo, alla solidit&agrave; complessiva, all'AI Trace Check e a una spiegazione pi&ugrave; accessibile delle criticit&agrave; tecniche.
+      </p>
       <p class="upload-helper">
         Formato PDF &middot; massimo 13 MB &middot; il documento viene analizzato solo per produrre la diagnosi metodologica richiesta.
       </p>
@@ -1708,7 +1706,7 @@
 
       <div>
         <div style="font-weight:700; font-size:0.95rem;">
-          23 maggio 2026
+          6 giugno 2026
         </div>
 
         <p style="
@@ -1717,7 +1715,7 @@
           color:var(--muted);
           line-height:1.45;
         ">
-          Introdotto AI Trace Check in MG AI v2: un controllo prudente e non probatorio su indicatori testuali compatibili con possibile assistenza AI.
+          Aggiunta in MG AI v2.1 una lettura semplice delle criticit&agrave; tecniche dei Guardiani, mantenendo invariata la diagnosi metodologica specialistica.
         </p>
       </div>
 
@@ -2490,6 +2488,8 @@ function getBadgeClass(level) {
 }
 
 function renderMethodsGuardsDashboard(data) {
+  const getPlainGuardianNote = (g) =>
+    g.lettura_semplice || g.plain_language_note || g.lettura_accessibile || "";
   const dashboard = document.getElementById("reportDashboard");
 
   if (!dashboard || !data) return;
@@ -2541,6 +2541,7 @@ function renderMethodsGuardsDashboard(data) {
 
         <div class="guardian-cell" data-label="Diagnosi">
           ${g.diagnosi || ""}
+          ${getPlainGuardianNote(g) ? `<div class="guardian-simple-note"><strong>In parole semplici:</strong> ${getPlainGuardianNote(g)}</div>` : ""}
         </div>
 
       </div>
