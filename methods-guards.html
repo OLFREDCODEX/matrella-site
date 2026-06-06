@@ -2185,7 +2185,7 @@
       scheduleLoadingStep(2200, "82%", "Finalizzazione del risultato...", loadingBar, loadingText);
     }
 
-    function stopLoadingState() {
+    function stopLoadingState(finalText = "Analisi completata.") {
       const loadingBox = document.getElementById("loadingBox");
       const loadingBar = document.getElementById("loadingBar");
       const loadingText = document.getElementById("loadingText");
@@ -2195,7 +2195,7 @@
       clearLoadingTimers();
 
       loadingBar.style.width = "100%";
-      loadingText.innerText = "Analisi completata.";
+      loadingText.innerText = finalText;
 
       setTimeout(() => {
         loadingBox.classList.add("hidden");
@@ -2290,6 +2290,7 @@ if (!allowedProductTypes.includes(productType)) {
       }
 
       button.disabled = true;
+      let analysisHadError = false;
 
       try {
         const base64 = await fileToBase64(file);
@@ -2390,6 +2391,8 @@ const reportTarget = hiddenJson
         }
 
       } catch (error) {
+        analysisHadError = true;
+        output.classList.remove("hidden");
         const technicalDetail = error.message === "Failed to fetch" ? "failed_to_fetch" : error.message;
         output.innerText =
           "Non è stato possibile completare la connessione con Methods Guards AI.\n" +
@@ -2402,7 +2405,7 @@ const reportTarget = hiddenJson
 } finally {
         button.disabled = false;
         stopResourceRotation();
-        stopLoadingState();
+        stopLoadingState(analysisHadError ? "Analisi non completata." : "Analisi completata.");
       }
     }
 
@@ -2891,9 +2894,4 @@ function copySiteLink() {
   </script>
 </body>
 </html>
-
-
-
-
-
 
