@@ -913,7 +913,7 @@
 
 .guardian-table-header {
   display: grid;
-  grid-template-columns: minmax(140px, 0.95fr) minmax(88px, 0.5fr) minmax(180px, 1.2fr) minmax(230px, 1.45fr) minmax(230px, 1.45fr);
+  grid-template-columns: 220px 120px 1fr 1fr;
   background: #f8fafc;
   border-bottom: 1px solid var(--line);
   font-weight: 700;
@@ -926,7 +926,7 @@
 
 .guardian-row {
   display: grid;
-  grid-template-columns: minmax(140px, 0.95fr) minmax(88px, 0.5fr) minmax(180px, 1.2fr) minmax(230px, 1.45fr) minmax(230px, 1.45fr);
+  grid-template-columns: 220px 120px 1fr 1fr;
   border-bottom: 1px solid var(--line);
   align-items: stretch;
 }
@@ -956,19 +956,6 @@
   line-height: 1.2;
 }
 
-
-.guardian-simple-cell {
-  color: var(--text);
-}
-
-.guardian-simple-note {
-  margin: 0;
-  padding: 10px 12px;
-  border-radius: 14px;
-  background: #f8fbff;
-  border: 1px solid #dbe7f1;
-  line-height: 1.55;
-}
 .guardian-avatar {
   width: 140px;
   height: 140px;
@@ -2515,7 +2502,6 @@ function renderMethodsGuardsDashboard(data) {
       <div>Robustezza</div>
       <div>Criticità principali</div>
       <div>Diagnosi</div>
-      <div>In parole semplici</div>
     </div>
 
     ${(data.guardiani || []).map(g => `
@@ -2555,10 +2541,7 @@ function renderMethodsGuardsDashboard(data) {
 
         <div class="guardian-cell" data-label="Diagnosi">
           ${g.diagnosi || ""}
-        </div>
-
-        <div class="guardian-cell guardian-simple-cell" data-label="In parole semplici">
-          ${getPlainGuardianNote(g) ? `<div class="guardian-simple-note">${getPlainGuardianNote(g)}</div>` : ""}
+          ${getPlainGuardianNote(g) ? `<div class="guardian-simple-note"><strong>In parole semplici:</strong> ${getPlainGuardianNote(g)}</div>` : ""}
         </div>
 
       </div>
